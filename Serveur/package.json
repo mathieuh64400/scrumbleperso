@@ -1,0 +1,25 @@
+{
+  "name": "serveur-scrumble",
+  "version": "0.1.0",
+  "description": "Serveur de données pour le jeu Scrumble",
+  "main": "scrumble.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabriqueNumerique/Scrumble.git"
+  },
+  "keywords": [
+    "Agilité",
+    "jeu",
+    "nodeJs",
+    "scrum"
+  ],
+  "author": "Fabrique numérique",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FabriqueNumerique/Scrumble/issues"
+  },
+  "homepage": "https://github.com/FabriqueNumerique/Scrumble#readme"
+}

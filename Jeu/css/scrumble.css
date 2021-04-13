@@ -16,13 +16,14 @@ footer {
   color: white;
   text-align: left;
   font-size: small;
+  margin-top: 5%;
 }
 
 .cercle {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background: rgb(14, 119, 14);
+  background:#A9FF00;
   margin-left: 0;
   margin-right: 3%;
 }
@@ -190,12 +191,34 @@ section>h2 {
 section div>div>h3 {
   font-size: 1.1em;
   margin-left: 5%;
-
 }
 
 div>p {
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.rectangle {
+  height:7.5em;
+  width: 2.5em;
+  background-color: black;
+  margin-left: 2%;
+  margin-top:5% ;
+  
+}
+.rectangleB {
+  height: 2em;
+  width: 10em;
+ 
+  background-color: black;
+  margin-left: 2%;
+  margin-top:5% ;
+}
+
+.rectangle > span{
+  margin-top:10%;
+  width: 2.5em;
+  color: white;
 }
 
 #container {
@@ -208,17 +231,42 @@ div>p {
   height: 20em;
   background-color: #FAF5BC;
   margin-left: 1%;
+  margin-right: 3%;
   margin-bottom: 3%;
 }
 
-
-
-
-.rectangle {
-  width: 150px;
-  height: 50px;
-  background-color: rgb(251, 173, 37);
-  margin-right: 10%;
-  transform: rotate(90deg);
+.case {
+  width: 15em;
+  height: 2em;
+  text-align: center;
+  background-color: black;
+  margin-top:5%;
+  padding-top: 2%;
+  margin-left: 5%;
 
 }
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  width: auto;
+  padding: 16px;
+  margin-top: -25px;
+  color: white;
+  font-weight: bold;
+  font-size: 5em;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  background-color: #475158;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+

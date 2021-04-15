@@ -29,7 +29,8 @@ class Regles {
 
         let img = document.createElement("img");
         img.setAttribute("src", this.img);
-        img.classList.add("img");
+        
+        img.classList.add("img");console.log(img);
         let value = "image de l'element à étudier";
         img.setAttribute("alt", value);
         // cadrebox: je crée la partie immage que je defini grace à une classe et un attribut alt
@@ -37,6 +38,7 @@ class Regles {
         let partgauche = document.createElement("div");
         let titre = document.createElement("h2");
         let description = document.createElement("p");
+        description.style.fontSize="0.8em";
         let bouton = document.createElement("button");
         bouton.classList.add("boutton");
         let lienbouton = document.createElement("a");

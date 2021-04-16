@@ -32,7 +32,7 @@ footer {
 .cadre {
   background-color: #475158;
   width: 57%;
-  height: 45em;
+  height: 40em;
   margin-top: -2%;
   margin-left: 20%;
   border-radius: 25px;
@@ -233,8 +233,8 @@ div>p {
 }
 
 .box {
-  width: 12em;
-  height: 20em;
+  width: 16em;
+  height: 15em;
   background-color: #FAF5BC;
   margin-left: 1%;
   margin-right: 3%;
@@ -274,5 +274,8 @@ div>p {
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
+}
+.cadrespecial{
+  background-color: #475158;
 }
 

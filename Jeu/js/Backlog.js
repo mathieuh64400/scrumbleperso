@@ -1,6 +1,6 @@
-class Backlog{
+// class Backlog{
 
-    constructor(abscisse,ordonnée){
+//     constructor(abscisse,ordonnée){
 
-    }
-}
+//     }
+// }

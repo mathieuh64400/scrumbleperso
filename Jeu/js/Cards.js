@@ -11,8 +11,9 @@ class Cards {
         this.img = img;
     }
     createCards(){
-        let container = document.getElementById("container");
-        console.log(container);
+        let containerglider = document.getElementById("glider");
+        console.log(containerglider);
+
         let carte = document.createElement("div");
         console.log(carte);
         carte.classList.add("box");
@@ -26,7 +27,7 @@ class Cards {
         titrecarte.innerHTML = this.titre;
         contenucard.innerHTML = this.contenu;
 
-        container.appendChild(carte);
+        containerglider.appendChild(carte);
         carte.appendChild(image);
         carte.appendChild(titrecarte);
         carte.appendChild(contenucard);

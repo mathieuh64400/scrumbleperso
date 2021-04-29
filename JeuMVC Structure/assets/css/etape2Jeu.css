@@ -58,3 +58,14 @@ div{
     transition:  0.5s;
     background-color: #FAF5BC;
 }
+#fleche2{
+    top: 100%;color:#202525;
+    
+}
+#fleche2:nth-of-type(2){
+    left:87%;
+    width: 1em;
+    text-align: center;
+    color:#202525;
+    
+}

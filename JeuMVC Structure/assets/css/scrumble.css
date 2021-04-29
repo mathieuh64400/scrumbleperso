@@ -327,7 +327,7 @@ div>p {
 
 .box {
   width: 16em;
-  height: 15em;
+  /* height: 15em; */
   background-color: #FAF5BC;
   margin-left: 1%;
   margin-right: 3%;

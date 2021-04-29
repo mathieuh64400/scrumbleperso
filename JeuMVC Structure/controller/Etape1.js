@@ -15,7 +15,7 @@ export default class Etape1 extends Controller {
 
       form.addEventListener("formdata",(e)=>{
         const data = e.formData;
-       if (data.get("mail")==="" || data.get("password")===""|| data.get("level")==="") return;
+       if (data.get("name")==="" && (data.get("statut")==="statut"||data.get("statut")==="")) return;
         
         console.log(data.entries());
 
@@ -37,7 +37,7 @@ export default class Etape1 extends Controller {
         this.state.joueurs = joueurs
         console.log(this.state.joueurs);
 
-        this.go("/etape2")
+        this.go("/etape2");
     })
 
         let nbrejouer= document.getElementById("valeurjoueur");

@@ -7,10 +7,13 @@ export default class Etape2 extends Controller {
     console.log(this.state);
     // voir si le state est conservé dans cette page
     let fleche =document.querySelectorAll("span.fleche");
+    let paquet =document.querySelectorAll("section > article>div:nth-child(2)");
     console.log(fleche);
     console.log(fleche[0]);
-    fleche[0].onclick=()=>{
-      
+    console.log(paquet[0]);
+    fleche[1].onclick=()=>{
+    paquet[0].style.tranform="translate(+150px);"
+
     }
      
     // const span = document.getElementsByClassName('fleche'); //selectionne tous les elements de classes fléches (a asvoir mes 6 fleches)

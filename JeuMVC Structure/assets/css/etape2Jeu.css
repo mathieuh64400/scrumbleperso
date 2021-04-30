@@ -1,76 +1,77 @@
-.image {
-    width: 100%;
-    height: 33%;
+section{
+    display:flex;
+    flex-flow:column nowrap;
+    margin:auto;
 }
+article{
+    border: none;
+}
+section > section{
+    width:80%;
+}
+section > article{
+    overflow:hidden;
+    overflow-x:auto ;
+    width:100%;
+    margin:10px 0;
+}
+section > article > div{
+    display:flex;
+    flex-flow:row nowrap;
+    color:black;
+}
+section > article.selection{
+    border:2px solid green;
+}
+section > article>div:nth-child(1), section > article>div:nth-child(3){
+    width:75px;
+    color:white;
+    font-size:32px;
+    transition:background-color .3s ease;
+}
+section > article>div:nth-child(1) > *, section > article>div:nth-child(3) > *{
+    margin:auto;
+}
+/* section > article>div:nth-child(1):hover, section > article>div:nth-child(3):hover{
+     background-color:rgba(0,0,0,.9); 
+    border-radius: 50px;
+} */
+section > article>div:nth-child(2){
+    width:calc(100% - 150px);
+    overflow:hidden;
+    overflow-x:hidden;
+}
+section > article.etape{
+    justify-content:space-around;
+}
+.etape{margin-top:0}
 
-.titreCard {
-    font-size: 1.3em;
-    color: black;
+div[data-selected]{
+    height:100%;
+    overflow-x: hidden;
+    margin-top: 0;
 }
-
-.texteCard {
-    font-size: 0, 3em;
-    color: black;
+.projet{
+    border: 3px solid black;
+    border-radius:50px;
+    margin-bottom: 2%;
+    background-color: #475158;
+    height:550px;
 }
-
-article{border: none;}
-
-article>div>div>.fleche{
-    margin:0  ;
-    /* border: red 1px solid; */
+.projet > p{
+    text-align: left;
+    margin-left:50px;
+    margin-top: 1%;
 }
-.fleche {
-    position: absolute;
-    z-index: 1;
-    width: 200px;
-    top:25%;
-    color:#202525;
+.box{
+    min-width:200px;
+    margin : 2px 0 10px auto 10px;
+    justify-content: space-around;
+    padding:10px;
+    height: 375px;
 }
-
-.fleche:nth-of-type(2) {
-    left: 89.5%;
-    width: calc(100%-200px);
-    text-align: center; 
-}
-
-.elementspecial{
-
-    width: 98%;
-    height: 25em;
-    background-color: transparent;
-    margin-top: 0%;
-    display: flex;
-    justify-content: left;
-    overflow-y: hidden;
-    overflow-x: hidden
-}
-
-.elementspecial::-webkit-scrollbar {
-    visibility: hidden;
-}
-
-div {
-    min-width: 13.67em;
-    /* height:98%; */
-    position: relative;
-    left: 0;
-    text-align: center;
-    padding-top: 0.5%;
-    font-size: medium;
-    font-weight: bold;
-    color: white;
-    margin-left: 2%;
-    transition: 0.5s;
-    background-color:transparent
-}
-#fleche2{
-    top: 100%;color:#202525;
-    
-}
-#fleche2:nth-of-type(2){
-    left:87%;
-    width: 1em;
-    text-align: center;
-    color:#202525;
-    
+.box>img{
+    width:100%;
+    padding-top:-15px;
+    padding-bottom:0px;
 }

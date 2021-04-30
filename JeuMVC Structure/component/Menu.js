@@ -6,7 +6,7 @@ export class Menu extends HTMLElement{
         super();
         this.innerHTML= `
         <ul>
-            <li> <a href="/">Accueil</a>  </li>  
+            <li> <a href="/">ACCUEIL</a>  </li>  
             <li> <a href="/regles" data-link="/regles"> REGLES DU JEU</a>  </li>  
             <li> <a href="/etape1"data-link="/etape1"> JOUER</a>  </li>  
             <li> <a href="#"> FAQ</a>  </li>  

@@ -12,7 +12,7 @@ body {
 header,
 section {
   margin-top: 0%;
-  
+
 }
 
 .phrase {
@@ -32,19 +32,7 @@ section {
   margin-top: 1%;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #62797F;
-  color: white;
-  text-align: left;
 
-  display: flex;
-  font-size: 0.75em;
-  font-weight: bold;
-}
 
 .cercle {
   width: 1.4em;
@@ -60,26 +48,27 @@ footer {
   background-color: #475158;
   width: 75%;
   height: 35em;
- margin-top: 0;
+  margin-top: 0;
   margin-left: 10%;
   border-radius: 25px;
-  
+
 }
-.particadre2{
+
+.particadre2 {
   padding-top: 3%;
-  margin-left:0%;
+  margin-left: 0%;
 }
 
 
 .cadreconnexion {
   margin-top: 2.5%;
-  height:36em;
+  height: 36em;
   background-color: #475158;
   width: 60%;
   margin-left: 20%;
   border-radius: 25px;
   margin-bottom: 2%;
- 
+
 }
 
 .repartition {
@@ -94,11 +83,13 @@ section>h1 {
   padding-top: 0%;
 
 }
+
 section>h2 {
   text-align: center;
   font-size: 1.3em;
   margin-bottom: 2%;
 }
+
 article {
   display: flex;
   flex-direction: row;
@@ -109,6 +100,7 @@ article {
   border: 1px solid black;
   height: 38em;
 }
+
 div>h1 {
   text-align: center;
   font-size: 2em;
@@ -116,11 +108,13 @@ div>h1 {
   padding-top: 2%;
   margin-bottom: 7.5%;
 }
+
 h3 {
   margin-top: 2%;
   font-size: 0.9em;
   margin-left: 5%;
 }
+
 input[type=number],
 input[type=password],
 input[type=text] {
@@ -364,13 +358,42 @@ div>p {
   background-color: #475158;
 }
 
-/* Position the "next button" to the right */
+
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-.cadrespecial {
-  background-color: #475158;
-  height:32em;
+.btn {
+  background-color: rgb(77, 200, 52);
+  color: white;
+  padding: 25px 75px;
+  margin-top: 10%;
+  border-radius: 50px;
+  height: 5em;
+  width: 23em;
+}
+
+.btn2 {
+  background-color: rgb(251, 173, 37);
+  color: black;
+  padding: 25px 75px;
+  margin-top: 10%;
+  border-radius: 50px;
+  height: 5em;
+  width: 15em;
+}
+.btn3{
+  background-color:#FAF5BC;
+  color: black;
+  margin-left:0;
+  padding: 25px 75px;
+  margin-top: 10%;
+  border-radius: 50px;
+  height: 5em;
+  width: 5em;
+  text-align: left;
+}
+.position{
+  margin-left: 33%;
 }

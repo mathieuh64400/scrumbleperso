@@ -18,14 +18,14 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script> -->
 </head>
 
-<section>
+<section id="ref">
 
   <h1>PREPARER LE JEU</h1>
 
   <h2> 2 - Choisissez votre projet (et ses users stories) </h2>
 
   <!-- PROJETS A SELECTIONNER -->
-  <section data-cadreselected="cas1" class="projet">
+  <section data-cadreselected="cas1" class="projet" >
     <h3> L'agence de voyages</h3>
     <p>Vous développez le site Internet d’une agence de voyages super géniale.</p>
     <p>Aperçu sur les users stories du projet (*cliquez sur une liste de user stories pour
@@ -34,7 +34,8 @@
       <div>
         <span class="fleche" class="prev">&#10094;</span>
       </div>
-      <div data-selected="false">
+      <!-- debut ici du fetch pour creer les cartes  -->
+      <div data-selected="false"id="paquet0">
         <div class="box">
 
           <img src="https://images-na.ssl-images-amazon.com/images/I/51iy3b19iAL._AC_UY500_.jpg" alt="jeu">
@@ -99,7 +100,9 @@
         <div class="box">12</div>
 
       </div>
-      <div> <span class="fleche" class="next">&#10095;</span> </div>
+      <div> 
+        <span class="fleche" class="next">&#10095;</span>
+      </div>
     </article>
 
   </section>

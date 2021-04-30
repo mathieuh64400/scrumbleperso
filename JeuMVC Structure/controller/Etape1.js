@@ -63,7 +63,7 @@ export default class Etape1 extends Controller {
         <div class="repartition" style=" width:100%; margin-right:3%;">
             <input class="inputtext" type="text" name="${nomAtr}" Value="Beta">
             <select name="${statutAtr}" class="select">
-                <option>statut</option>
+                <option>Responsabilité</option>
                 <option value="Scrum Master">Scrum Master</option>
                 <option value="ProductOwner"> Product Owner</option>
                 <option value="Developpeur">Dévéloppeur</option>

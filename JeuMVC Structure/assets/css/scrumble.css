@@ -14,6 +14,10 @@ section {
   margin-top: 0%;
 
 }
+a
+{ 
+ text-decoration:none; 
+} 
 
 .phrase {
   margin-left: 38%;
@@ -32,8 +36,6 @@ section {
   margin-top: 1%;
 }
 
-
-
 .cercle {
   width: 1.4em;
   height: 1.4em;
@@ -47,7 +49,7 @@ section {
 .cadre {
   background-color: #475158;
   width: 75%;
-  height: 35em;
+  height:28em;
   margin-top: 0;
   margin-left: 10%;
   border-radius: 25px;
@@ -58,7 +60,6 @@ section {
   padding-top: 3%;
   margin-left: 0%;
 }
-
 
 .cadreconnexion {
   margin-top: 2.5%;
@@ -137,7 +138,7 @@ input[type=submit] {
   color: white;
   padding: 14px 25px;
   margin-top: 5%;
-  margin-left: 5%;
+  margin-left: 15%;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -230,10 +231,9 @@ select {
   border-radius: 10px;
 
 }
-
 .rep {
   width: 97%;
-  height: 12em;
+  height: 15em;
   border: 5px solid black;
   margin-bottom: 2%;
   display: flex;
@@ -274,7 +274,7 @@ section>h2 {
 
 .trait {
   width: 0.5%;
-  height: 30em;
+  height: 28em;
   background-color: black;
   margin-right: 3%;
   margin-left: 3%;
@@ -296,7 +296,6 @@ div>p {
   background-color: black;
   margin-left: 2%;
   margin-top: 5%;
-
 }
 
 .rectangleB {
@@ -338,9 +337,6 @@ div>p {
   padding-top: 5%;
 
 }
-
-/* Next & previous buttons */
-
 .prev,
 .next {
   cursor: pointer;
@@ -357,8 +353,6 @@ div>p {
   -webkit-user-select: none;
   background-color: #475158;
 }
-
-
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
@@ -391,9 +385,36 @@ div>p {
   margin-top: 10%;
   border-radius: 50px;
   height: 5em;
-  width: 5em;
-  text-align: left;
+ 
+}
+.btn4{
+  background-color: #202525;/* Green */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 85%; 
+  border-radius: 12px;
+  padding: 0.2em 1.0em;
+  color: white;
+  cursor: pointer;
 }
 .position{
-  margin-left: 33%;
+  margin-left: 25%;
+}
+li{
+  list-style: none;
+}
+.description{
+  font-size:1em;
+  margin-top: 2em;
+}
+li > .rep{
+  margin-top:5%;
+
+}
+.titre{
+  margin-top: 2%;
+  margin-left:5%;
+  font-size: 2em;
 }

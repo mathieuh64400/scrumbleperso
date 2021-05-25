@@ -28,8 +28,7 @@ export default class Regles extends Controller {
                             <div>
                                 <h2 class="titre"> ${character.titre}</h2>
                                 <p class="description"> ${character.contenu}</p>
-                                <boutton  class="btn4" ><a href="#">Voir</a></boutton>
-                                    
+                                <boutton  class="btn4" > Voir </boutton>  
                             </div>
                         </div>
                     </li>

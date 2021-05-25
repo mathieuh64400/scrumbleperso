@@ -38,7 +38,6 @@ export default class Etape4 extends Controller {
                 });
 
             }
-
         }
 
     }

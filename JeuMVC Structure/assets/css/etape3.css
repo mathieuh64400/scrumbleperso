@@ -1,0 +1,19 @@
+/* .span5{
+padding-top:0%;
+} */
+/* .span4{
+    padding-top: 5%;
+} */
+h3, p{ color:black;}
+.span1{padding-top: 0%;}
+.span3{
+    padding-top:10em;
+}
+.span4{
+    padding-top:50%;
+}
+.span5{
+    padding-top: 66%;
+    height: 100%;
+    vertical-align: middle;
+}

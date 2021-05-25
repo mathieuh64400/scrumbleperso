@@ -1,5 +1,5 @@
 import Controller from "../core/Controller.js";
-// import Xhrrequest from "../component/Xhrrequest.js";
+import Joueur from '../Model/Joueur.js';
 export default class Etape2 extends Controller {
   constructor() {
     super();
@@ -11,27 +11,131 @@ export default class Etape2 extends Controller {
     let url1 = "http://localhost:3000/paquet2";
     let url2 = "http://localhost:3000/paquet3";
 
-    var O = new Object();
-    O[url0] = 0;
-    O[url1] = 1;
-    O[url2] = 2;
 
-  
-    console.log(O)
-    for (var i in O) {
-      console.log(i);
-      console.log(i +" "+O[i]);
-      let elt;
-      elt[i]= document.querySelectorAll("#paquet"+O[i]);
-      console.log(elt[O]);
-    }
+    // creation des paquet de cartes
+
+    // paquet0
+    const paquet = document.getElementById("paquet0");
+
+    let hpCharacters = [];
+
+
+    const loadCharacters = async () => {
+      try {
+        const res = await fetch(url0);
+        hpCharacters = await res.json();
+        console.log(res + "  " + hpCharacters);
+        displayCharacters(hpCharacters);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    const displayCharacters = (characters) => {
+      const htmlString = characters
+        .map((character) => {
+          return `
+                    
+                        <div class="box">
+                            <img src=${character.img} alt="logo de la regle"class="img">
+                                <h3> ${character.titre}</h3>
+                                <p> ${character.contenu}</p>
+                        </div>
+                    
+                `;
+        })
+        .join('');
+      paquet.innerHTML = htmlString;
+    };
+
+
+
+    loadCharacters();
+
+    //paquet1
+
+    const paquet1 = document.getElementById("paquet1");
+
+    let hpCharacters1 = [];
+
+
+    const loadCharacters1 = async () => {
+      try {
+        const res = await fetch(url1);
+        hpCharacters1 = await res.json();
+        console.log(res + "  " + hpCharacters1);
+        displayCharacters1(hpCharacters1);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    const displayCharacters1 = (characters) => {
+      const htmlString = characters
+        .map((character) => {
+          return `
+                          
+                              <div class="box">
+                                  <img src=${character.img} alt="logo de la regle" class="img">
+                                      <h3> ${character.titre}</h3>
+                                      <p> ${character.contenu}</p>
+                              </div>
+                          
+                      `;
+        })
+        .join('');
+      paquet1.innerHTML = htmlString;
+    };
+
+
+
+    loadCharacters1();
+
+    //paquet2
+
+    const paquet2 = document.getElementById("paquet2");
+
+    let hpCharacters2 = [];
+
+
+    const loadCharacters2 = async () => {
+      try {
+        const res = await fetch(url2);
+        hpCharacters2 = await res.json();
+        console.log(res + "  " + hpCharacters2);
+        displayCharacters2(hpCharacters2);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    const displayCharacters2 = (characters) => {
+      const htmlString = characters
+        .map((character) => {
+          return `
+                          
+                              <div class="box">
+                                  <img src=${character.img} alt="logo de la regle" class="img">
+                                      <h3> ${character.titre}</h3>
+                                      <p> ${character.contenu}</p>
+                              </div>
+                          
+                      `;
+        })
+        .join('');
+      paquet2.innerHTML = htmlString;
+    };
+
+
+
+    loadCharacters2();
+
+
 
     // selection de l'ensemble des div avec l'attribut data-selected
     const listeUserStories = document.querySelectorAll("div[data-selected]");
-    console.log(listeUserStories);
+    console.log(typeof(listeUserStories) + listeUserStories);
 
     listeUserStories.forEach(listeUserStorie => { //boucle sur chaque div auquel on applique un evenement click qui lance la fonction selectionner
       listeUserStorie.addEventListener('click', selectionner);
+
     });
 
     function selectionner() {
@@ -42,10 +146,36 @@ export default class Etape2 extends Controller {
       alert('votre selection est réussie!!Validez-la en cliquant sur le bouton Finalisez la préparation'); //message utilisateur de validation de la manoeuvre
 
       const selection = document.querySelectorAll('div[data-selected="true"]').length; //verification que l'ensemble des div avec le data-selected est bien = a 1
-
+      console.log(selection);
       const elementSelected = document.querySelectorAll('div[data-selected="true"]'); //verification que l'ensemble des element avec le data-selected =trues soit bien = une div
+      console.log(elementSelected);
+      elementSelected.forEach(e => {
+          console.log(e.id);
+          let valeurpaquet = e.id;
+          console.log(valeurpaquet);
 
-      console.log(selection, elementSelected);
+          let urlselecionne;
+          if (valeurpaquet === "paquet0") {
+            console.log(valeurpaquet);
+            urlselecionne = url0;
+            console.log(urlselecionne)
+
+          } else if (valeurpaquet === "paquet1") {
+            console.log(valeurpaquet);
+            urlselecionne = url1;
+            console.log(urlselecionne);
+          } else {
+            console.log(valeurpaquet);
+            urlselecionne = url2;
+            console.log(urlselecionne);
+          }
+
+
+        }
+
+      )
+
+
 
 
       // selection de tout les data-cadreref 
@@ -53,6 +183,7 @@ export default class Etape2 extends Controller {
       const listecadrerefs = document.querySelectorAll("section[data-cadreselected]"); // selection de l'ensemble des article avec l'attribut data-cadreselected
       listecadrerefs.forEach(listecadreref => {
         listecadreref.addEventListener('click', selectionnercadre); //boucle sur chaque article auquel on applique un evenement click qui lance la fonction selectionnercadre
+
       });
 
       function selectionnercadre() {
@@ -74,6 +205,7 @@ export default class Etape2 extends Controller {
           docResultat.innerHTML = " Bravo !!!!  vous avez selectionné votre projet!! "
           titre.appendChild(docResultat); // mise en tant qu'enfant du titre du message de felicitation
 
+          ;
 
         }
       }
@@ -81,8 +213,7 @@ export default class Etape2 extends Controller {
 
     }
 
-
-
+    console.log(this.state);
 
   }
   //importer les user stories (3 jeu de fichiers Json avec une classe Userstories et mis en place avec une requet Ajax)

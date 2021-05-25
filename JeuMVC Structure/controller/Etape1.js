@@ -15,7 +15,7 @@ export default class Etape1 extends Controller {
 
       form.addEventListener("formdata",(e)=>{
         const data = e.formData;
-       if (data.get("name")==="" && (data.get("statut")==="statut"||data.get("statut")==="")) return;
+       if (data.get("name")===" " && (data.get("statut")==="statut"||data.get("statut")==="")) return;
         
         console.log(data.entries());
 
@@ -23,10 +23,13 @@ export default class Etape1 extends Controller {
         
         for (const item of data) {
             console.log(item);
-            const info = item[0].split('#')
-            const key = info[0]
-            const id = info[1]
-            const value = item[1]
+            const info = item[0].split('#');
+            console.log("item:"+item[0]);
+            const key = info[0];
+             console.log( "info:"+info[0])
+            const id = info[1];
+            console.log("id:"+id);
+            const value = item[1];
 
             joueurs[id] = {
                 ...joueurs[id],
@@ -40,17 +43,18 @@ export default class Etape1 extends Controller {
         this.go("/etape2");
     })
 
+        // partie gauche recuperer la valeur du champs nbre de joueur nbrejouer.value
         let nbrejouer= document.getElementById("valeurjoueur");
         this.creerInputJoueur(form,  nbrejouer.value)
-
+        // evenement listener change pour modifier le nombre de champs du formulaire form, en fonction du nombre de joueur taper dans creerInputJoueur
         nbrejouer.addEventListener("change", e => {
-            this.creerInputJoueur(form,  e.target.value)
+            this.creerInputJoueur(form,  e.target.value);
         })
         
     }
 
     creerInputJoueur(form, nombreDeJoueur) {
-        let html = ""
+        let html = "";
         for (let index = 0; index < nombreDeJoueur; index++) {
             html += this.rendreInputBloc(`name#${index}`, `statut#${index}`)                
         }

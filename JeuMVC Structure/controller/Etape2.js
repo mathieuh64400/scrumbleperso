@@ -144,11 +144,25 @@ export default class Etape2 extends Controller {
       // this.dataset.selected = this.dataset.selected == "true" ? this.dataset.cadreselected=="false" : this.dataset.cadreselected=="true";
 
       alert('votre selection est réussie!!Validez-la en cliquant sur le bouton Finalisez la préparation'); //message utilisateur de validation de la manoeuvre
-
-      const selection = document.querySelectorAll('div[data-selected="true"]').length; //verification que l'ensemble des div avec le data-selected est bien = a 1
-      console.log(selection);
-      const elementSelected = document.querySelectorAll('div[data-selected="true"]'); //verification que l'ensemble des element avec le data-selected =trues soit bien = une div
+     
+      let elementSelected = document.querySelectorAll('div[data-selected="true"]'); //verification que l'ensemble des element avec le data-selected =trues soit bien = une div
       console.log(elementSelected);
+      const selection = elementSelected.length; //verification que l'ensemble des div avec le data-selected est bien = a 1
+      console.log(selection);
+      if (elementSelected.length==1) {
+        console.log("ok");
+      } else {
+       
+        // for (let i=0;i<elementSelected.length;i++){
+        //   let items=elementSelected[i];
+        //   console.log(items);
+        //   elementSelected=items[0];
+        //   console.log(elementSelected);
+        // }
+        console.log(elementSelected);
+
+      }
+      
       elementSelected.forEach(e => {
           console.log(e.id);
           let valeurpaquet = e.id;
@@ -191,7 +205,7 @@ export default class Etape2 extends Controller {
         const cadreselected = document.querySelectorAll('section[data-cadreselected="true"]'); //verification que l'ensemble des elements avec le data-selected =trues soit bien = un article
         console.log(cadreselected);
 
-        if (selection == 1 && elementSelected[0] != "" && cadreselected[0] != "") { //si presence d'un seul element selectionner non vide en relation avec un article [data-cadreselected="true"] non vide
+        if (selection == 1 && selection!=2 && elementSelected[0] != "" && cadreselected[0] != "") { //si presence d'un seul element selectionner non vide en relation avec un article [data-cadreselected="true"] non vide
           let titre = document.querySelector("h2"); //selection du titre 
           let cadrevert = document.querySelector('section[data-cadreselected="true"]'); // verdissement de ces contours
           console.log(cadrevert);
@@ -207,6 +221,9 @@ export default class Etape2 extends Controller {
 
           ;
 
+        }else{
+          alert("probleme: vous avez selectionné un paquet en trop, en conséquence pour la bonne marche du jeu nous choissions un des paquets selectionnés seulement ")
+        console.log(cadreselected);
         }
       }
 

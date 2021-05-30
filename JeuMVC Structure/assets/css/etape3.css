@@ -6,7 +6,7 @@ padding-top:0%;
 } */
 h3{ color:black;}
 .forme>p{ color:black;}
-.span1{padding-top: 0%;}
+
 .span3{
     padding-top:10em;
 }
@@ -14,8 +14,7 @@ h3{ color:black;}
     padding-top:50%;
 }
 .span5{
-    padding-top: 66%;
-    height: 100%;
+  
     vertical-align: middle;
 }
 .position{

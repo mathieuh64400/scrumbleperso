@@ -222,7 +222,7 @@ export default class Etape2 extends Controller {
           ;
 
         }else{
-          alert("probleme: vous avez selectionné un paquet en trop, en conséquence pour la bonne marche du jeu nous choissions un des paquets selectionnés seulement ")
+          alert("probleme: vous avez selectionné un paquet en trop, en conséquence pour la bonne marche du jeu nous choissions un seul des paquets selectionnés seulement ")
         console.log(cadreselected);
         }
       }

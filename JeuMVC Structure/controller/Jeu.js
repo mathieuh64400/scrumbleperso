@@ -1,5 +1,6 @@
 import Controller from "../core/Controller.js";
 // import * as THREE from "https://cdn.skypack.dev/three@0.1.3";
+
 export default class Jeu extends Controller {
     constructor (){
         super();

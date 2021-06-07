@@ -102,23 +102,26 @@ export default class Etape3 extends Controller {
              contenu.innerText="Lorem ipsum dolor sit amet. Ut voluptas quia et quod voluptatem est recusandae ducimus aut earum et nihil fuga aut officiis consequuntur et voluptas optio. "
               
             }
+            if (i>14) {
+              userstorie.classList.remove("forme");
+            }
           
             elementref.appendChild(userstorie);
             userstorie.appendChild(titre);
             userstorie.appendChild(contenu);
            
 
-
-
-
-            // console.log(userstorie);
         }
 
 
-    var Sortable = function (element) {
+    var Sortable = function (element, scrollable) {
      
       var rect;
       let self =this;
+      if (scrollable ==null) {
+        scrollable=document.getElementById("ref");
+      }
+      this.scrollable =scrollable;
       this.element=element;
       this.items=this.element.querySelectorAll(this.element.dataset.sortable);
 
@@ -151,15 +154,28 @@ export default class Etape3 extends Controller {
       }).draggable({
         inertia:false,
         manualStart:false,
+        autoScoll:{
+            container:scrollable,
+            margin:10,
+            speed:600
+        },
         onmove:function(e){
         // console.log(e);
         self.move(e);
         }
       }).on('dragstart',function(e) {
+        var r= e.target.getBoundingClientRect();
+        console.log(r.left);
         e.target.classList.add('drag');
         self.startPosition=e.target.dataset.position;
+        self.offset={
+          x:e.clientX-r.left,
+          y:e.clientY-r.top
+        };console.log(x);
+        self.scrollTopStart=self.scrollable.scrollTop;
       }).on('dragend',function (e) {
         e.target.classList.remove('drag');
+        self.moveItem(e.target,e.target.dataset.position);
       })
          
       
@@ -172,7 +188,7 @@ export default class Etape3 extends Controller {
       // console.log(x,y);
       e.target.style.transform="translate3D("+x+"px,"+y+"px,0px)";
      var oldposition=e.target.dataset.position;
-     var newPosition=this.guessPosition(x,y);
+     var newPosition=this.guessPosition(x+this.offset.x,y+this.offset.y);
      if(oldposition!=newPosition){
       //  console.log(oldposition);
       this.swap(oldposition,newPosition);

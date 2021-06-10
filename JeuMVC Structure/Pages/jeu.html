@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jeu</title>
-    
+
     <link rel="stylesheet" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/scrumble.css">
     <link rel="stylesheet" href="../assets/css/jeu.css">
-    
-    
+
+
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 </head>
+
 <body style="overflow-x: hidden;">
-    
-        <a class="prev" class="posfleche" href="/etape4" data-link="/etape4">&#10094;</a>
-     <div id="titreJeu">   
-         <h2> C'est le tour du joueur N°2</h2>
-         <p>Tirez le dé</p>
+
+    <a class="prev" class="posfleche" href="/etape4" data-link="/etape4">&#10094;</a>
+    <div id="titreJeu">
+        <h2> C'est le tour du joueur N°2</h2>
+        <p>Tirez le dé</p>
     </div>
-  
-    <section class="cadreCentrale">  
+
+    <section class="cadreCentrale">
         <section class="cadreGauche">
-            <article class="cadrejeu"></article>
+            <article class="cadrejeu">
+                <div id="chartdiv"></div>
+            </article>
             <article></article>
         </section>
         <section class="cadreDroite">
-            <article>
-                 <article class="pistede"> </article>
-            </article>
+           
+                <article class="pistede dice">
+                    <ol class="die-list even-roll" data-roll="1" id="die-1">
+                        <li class="die-item" data-side="1">
+                            <span class="dot"></span>
+                        </li>
+                        <li class="die-item" data-side="2">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </li>
+                        <li class="die-item" data-side="3">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </li>
+                        <li class="die-item" data-side="4">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </li>
+                        <li class="die-item" data-side="5">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </li>
+                        <li class="die-item" data-side="6">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </li>
+                    </ol>
+             
+                </article>
+            
             <article></article>
             <article></article>
         </section>
 
     </section>
-    
+
 
 </body>
+
 </html>

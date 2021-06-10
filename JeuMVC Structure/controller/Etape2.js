@@ -7,12 +7,13 @@ export default class Etape2 extends Controller {
     console.log("jeu:etape2");
     console.log(this.state);
 
+    // liste des paquet existant associer a des variables unique dont une sera socké dans state
     let url0 = "http://localhost:3000/paquet1";
     let url1 = "http://localhost:3000/paquet2";
     let url2 = "http://localhost:3000/paquet3";
 
 
-    // creation des paquet de cartes
+    // creation des paquets de cartes (ici 1 a 1 mais voir amellioration par une boucle for)
 
     // paquet0
     const paquet = document.getElementById("paquet0");
@@ -152,13 +153,7 @@ export default class Etape2 extends Controller {
       if (elementSelected.length==1) {
         console.log("ok");
       } else {
-       
-        // for (let i=0;i<elementSelected.length;i++){
-        //   let items=elementSelected[i];
-        //   console.log(items);
-        //   elementSelected=items[0];
-        //   console.log(elementSelected);
-        // }
+      
         console.log(elementSelected);
 
       }
@@ -188,10 +183,6 @@ export default class Etape2 extends Controller {
         }
 
       )
-
-
-
-
       // selection de tout les data-cadreref 
 
       const listecadrerefs = document.querySelectorAll("section[data-cadreselected]"); // selection de l'ensemble des article avec l'attribut data-cadreselected
@@ -205,7 +196,7 @@ export default class Etape2 extends Controller {
         const cadreselected = document.querySelectorAll('section[data-cadreselected="true"]'); //verification que l'ensemble des elements avec le data-selected =trues soit bien = un article
         console.log(cadreselected);
 
-        if (selection == 1 && selection!=2 && elementSelected[0] != "" && cadreselected[0] != "") { //si presence d'un seul element selectionner non vide en relation avec un article [data-cadreselected="true"] non vide
+        if (selection == 1 && selection<2 && elementSelected[0] != "" && cadreselected[0] != ""&&elementSelected.length==1) { //si presence d'un seul element selectionner non vide en relation avec un article [data-cadreselected="true"] non vide
           let titre = document.querySelector("h2"); //selection du titre 
           let cadrevert = document.querySelector('section[data-cadreselected="true"]'); // verdissement de ces contours
           console.log(cadrevert);
@@ -218,12 +209,35 @@ export default class Etape2 extends Controller {
 
           docResultat.innerHTML = " Bravo !!!!  vous avez selectionné votre projet!! "
           titre.appendChild(docResultat); // mise en tant qu'enfant du titre du message de felicitation
-
           ;
+          elementSelected.forEach(e => {
+            console.log(e.id);
+            let valeurpaquet = e.id;
+            console.log(valeurpaquet);});
 
         }else{
           alert("probleme: vous avez selectionné un paquet en trop, en conséquence pour la bonne marche du jeu nous choissions un seul des paquets selectionnés seulement ")
-        console.log(cadreselected);
+          console.log(cadreselected);
+           elementSelected.forEach(e => {
+          console.log(e.id);
+          let valeurpaquet = e.id;
+          console.log(valeurpaquet);
+           
+          let urldiffpaquet =[];
+          let url=urldiffpaquet.push(valeurpaquet);
+          console.log(urldiffpaquet);
+         
+          }
+          );
+          let urldiffpaquet =[];
+          let url=urldiffpaquet.push(cadreselected);
+          console.log(urldiffpaquet,url);
+          let urlselecionne;
+          urlselecionne =urldiffpaquet[0];
+          console.log(urlselecionne);
+          // alert( "nous avons donc selectionné le paquet de user storie n°"+urlselecionne);
+
+
         }
       }
 

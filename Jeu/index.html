@@ -4,43 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Accueil</title>
-    <link rel="stylesheet" href="css/scrumble.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.1.0/dist/css/axentix.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/axentix@1.1.0/dist/js/axentix.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./public/assets/css/navbar.css">
+    <link rel="stylesheet" href="./public/assets/css/footer.css">
+    <link rel="stylesheet" href="./public/assets/css/scrumble.css">
+  
+
 </head>
 
-<body style="overflow-x: hidden;overflow-y: hidden;">
-    
-    <header style="margin-top:1%;" id="header">
-       
-<!--         
-            <nav class="navbar shadow-1"style=" background-color:#62797F; ">
-              <a href="#" target="_blank" class="navbar-brand"><img src="" alt="logo scrumble"></a>
-              <div class="navbar-menu " style="margin-left: 15%; font-weight: bold;font-size: 1.5em; width:33%;" >
-                <a class="navbar-link " style="margin-left: 20%;"href="authentification.html">CONNEXION</a>
-                <a class="navbar-link" style="margin-left: 20%;" href="#">FAQ</a>
-                <a class="navbar-link" style="margin-left: 20%;" href="preparerJeuEtape1.html">JOUER</a>
-                <a class="navbar-link " style="margin-left: 20%;width:33%;"href="regles.html">REGLES </a>
-                <a class="navbar-link" style="margin-left: 20%;" href="index.html">ACCUEIL</a>
-              </div>
-            </nav>
-        -->
+<body>
+    <header>
+        <nav>
+            <img src="./public/assets/img/logo_scrumble.png" alt="">
+            <menu-component></menu-component>
+        </nav>
     </header>
-    <section style="margin-left:50%; margin-top: 5%">
-        <h1>SCRUMBLE</h1>
-        <h2>L'expérience agile</h2>
-        <p style="margin-left:33%">Bienvenue dans la simulation des méthodes agiles.</p>
-    </section>
-    <footer class="footer" style="display:flex; background-color:#62797F;font-size:0.75em;margin-top:50%;">
-      
+    <main id="app">
+
+
+
+    </main>
+    <footer>
+        <div class="divfooter" id="divcas1">
+            <img src="./public/assets/img/Logo_FabriqueNumerique_blanc_96.png" alt="logosimplon">
+            <p>Mentions légales | RGPD | une réalisation Pyxis.com /
+                Fabriquenumerique.fr</p>
+        </div>
+        <div class="divfooter" id="divcas2">
+            <p>Le serveur est prêt à jouer... la balle
+                est
+                dans votre camp </p>
+            <p class="cercle"></p>
+        </div>
     </footer>
-   <script src="js/navbar.js"></script>
-   <script src="js/footer.js"></script>
+    <script src="./public/src/main.js" type="module"></script>
 </body>
+
+
 
 </html>

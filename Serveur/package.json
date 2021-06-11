@@ -4,7 +4,8 @@
   "description": "Serveur de données pour le jeu Scrumble",
   "main": "scrumble.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./scrumble.js",
+    "dev": "nodemon ./scrumble.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/FabriqueNumerique/Scrumble/issues"
   },
-  "homepage": "https://github.com/FabriqueNumerique/Scrumble#readme"
+  "homepage": "https://github.com/FabriqueNumerique/Scrumble#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@interactjs/types": "^1.10.11",
+    "nodemon": "^2.0.7"
+  }
 }

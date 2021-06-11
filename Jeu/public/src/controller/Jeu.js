@@ -630,7 +630,7 @@ export default class Jeu extends Controller {
             chart.series.values.forEach((pie) => {
                 pie.slices.template.events.on("hit", function (ev) {
                     // console.log("clicked on ", ev.target);
-                    console.log(ev.target.cloneId);
+                    console.log(ev.target, ev.target._baseId, ev.target._uid);
                 }, this);
             });
             console.log(chart.series.template.dataItems.template.uid);

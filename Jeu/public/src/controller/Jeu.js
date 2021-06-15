@@ -23,10 +23,8 @@ export default class Jeu extends Controller {
             nmbredejoeur.innerHTML = nbrejoeur;
         } else {
             console.log(nbrejoeur);
-            alert("le nombre de developpeur n'est pas au minimu égal a 1! retournez a l'étape 1 pour continuer a joeur")
+            alert("le nombre de developpeur n'est pas au minimu égal a 1! retournez a l'étape 1 pour continuer à jouer")
         }
-
-
 
         //    création du dé:
         let eltref = document.getElementById("ref");
@@ -117,10 +115,6 @@ export default class Jeu extends Controller {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         
-
-
-
-
         // creation de la méthode pour créer le plateau de jeu
         console.log("cela marche?");
 

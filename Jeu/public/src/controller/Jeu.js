@@ -5,40 +5,129 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 export default class Jeu extends Controller {
     constructor() {
         super();
+        let joueurs=this.state.joueurs;
+        console.log(joueurs);
+        console.log(this.state.joueurs.length);
+        let nbrejoeur = joueurs.length - 2;
+        if (joueurs.length >= 3) {
+            console.log(nbrejoeur);
+            let nmbredejoeur = document.getElementById("nmbredejoeur");
+            let nameJoeur=document.getElementById("nameJoeur");
+            console.log(nameJoeur);
+            
+        //    for (let index = 0; index < joueurs.length; index++) {
+        //        const element = joueurs.name[index];
+        //        console.log(element);}
+            
+            console.log(nmbredejoeur);
+            nmbredejoeur.innerHTML = nbrejoeur;
+        } else {
+            console.log(nbrejoeur);
+            alert("le nombre de developpeur n'est pas au minimu égal a 1! retournez a l'étape 1 pour continuer a joeur")
+        }
+
+
 
         //    création du dé:
+        let eltref = document.getElementById("ref");
+
+        console.log(eltref);
+        
+        for (let i = 0; i < nbrejoeur ; i++) {
+        
+          
+          let list = document.createElement("ol");
+          list.classList.add("die-list");
+          list.classList.add("even-roll");
+         
+          list.setAttribute("data-roll", "1");
+          list.innerHTML = `
+           <li class="die-item" data-side="1">
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="2">
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="3">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="4">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="5">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>
+        <li class="die-item" data-side="6">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </li>;`
+          console.log(i);
+          list.id = "die-"+i;
+        
+          // console.log(list.id);
+          
+          eltref.append(list);
+          
+          // console.log(typeof list);
+          document.getElementById("die-"+i).addEventListener("click", rollDice);
+
+          let result=document.getElementById("resultatTirage");
+          console.log(result);
+          let eltselect=document.querySelectorAll("ol[data-roll]");
+         eltselect.forEach( Element=>{
+             console.log(Element.getAttribute("ol[data-roll]"));
+         })
+
+        }
+        
+        
         let dice = [...document.querySelectorAll(".die-list")];
         console.log(dice);
-
+        
         function rollDice() {
-
-            dice.forEach(die => {
-                toggleClasses(die);
-                die.dataset.roll = getRandomNumber(1, 6);
-            });
+        
+          dice.forEach(die => {
+            toggleClasses(die);
+            die.dataset.roll = getRandomNumber(1, 6);
+          });
         }
-
+        
         function toggleClasses(die) {
-            die.classList.toggle("odd-roll");
-            die.classList.toggle("even-roll");
+          die.classList.toggle("odd-roll");
+          die.classList.toggle("even-roll");
         }
-
+        
         function getRandomNumber(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+        
 
-        document.getElementById("die-1").addEventListener("click", rollDice);
+
+
+
         // creation de la méthode pour créer le plateau de jeu
         console.log("cela marche?");
 
         function plateaudeJeu() {
             const chart = am4core.create("chartdiv", am4charts.PieChart);
 
-            // chart.events.on("hit", (e) => {
-            //     console.log("chart", e);
-            // })
+
             console.log(chart, "cela marche!!!!!");
 
             chart.innerRadius = am4core.percent(35);
@@ -626,11 +715,15 @@ export default class Jeu extends Controller {
             console.log(chart.series);
 
             console.log(chart.series.values);
-
+            chart.series.values.forEach((elt => {
+                let y = [];
+                let x = elt.slices.template.events.target.uid;
+                console.log(x);
+            }))
             chart.series.values.forEach((pie) => {
                 pie.slices.template.events.on("hit", function (ev) {
                     // console.log("clicked on ", ev.target);
-                    console.log(ev.target.cloneId);
+                    console.log("cloneId" + "" + ev.target.cloneId, "clone_uid:" + ev.target.uid);
                 }, this);
             });
             console.log(chart.series.template.dataItems.template.uid);

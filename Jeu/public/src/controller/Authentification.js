@@ -24,7 +24,7 @@ export default class Authentification extends Controller {
             this.state.level=data.get("level");
             console.log(data.get("level"));
             
-            // this.go("/");
+             this.go("/");
         })
     }
 

@@ -10,7 +10,7 @@ export default class Regles extends Controller {
 
         const loadCharacters = async () => {
             try {
-                const res = await fetch('http://localhost:3000/regles');
+                const res = await fetch('http://localhost:3003/regles');
                 hpCharacters = await res.json();
                 console.log(res+"  "+hpCharacters);
                 displayCharacters(hpCharacters);
@@ -51,24 +51,3 @@ export default class Regles extends Controller {
 
 
 
-
-        //         let affichage='<ul style="display:flex; flex-direction:column;>'
-        //         for (let elt of data) {
-        //             affichage +=`
-        //         <li style="list-type:none>
-        //         <div style="display:flex; flex-direction:row; border:solid 5px red;">
-        //             <img src=${elt.img} alt="logo de la regle"class="img">
-        //             <div>
-        //                 <h2 style="border: solid 10px green;"> ${elt.titre}</h2>
-        //                 <p> ${elt.contenu}</p>
-        //                 <boutton class="boutton"><a href="#">
-        //                     Voir</a>
-        //                 </boutton>
-        //             </div>
-        //         </div></li>`
-        //         }
-        //         affichage +=`</ul>`
-        //         document.querySelector("#cadreregles").innerHTML= affichage;
-
-        //  )
-          

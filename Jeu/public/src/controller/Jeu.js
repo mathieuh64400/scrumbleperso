@@ -104,8 +104,9 @@ export default class Jeu extends Controller {
                 toggleClasses(die);
                 console.log(die);
                 die.dataset.roll = getRandomNumber(1, 6);
-                 result=die.dataset.roll+"-";
-                 console.log(result);afficheresult.innerHTML="le tirage est le suivant:"+result;
+                 result+=die.dataset.roll+"-";
+                 console.log(result);
+                 afficheresult.innerHTML="le tirage est le suivant:"+result;
                 
             });
         }

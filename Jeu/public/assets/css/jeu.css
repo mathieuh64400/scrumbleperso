@@ -5,6 +5,9 @@ h2{
 #titreJeu > p{
     text-align: center; 
 }
+#resultatTirage{
+ margin-left: 45%; 
+}
 .posfleche{
     margin-top: 1%;
 }

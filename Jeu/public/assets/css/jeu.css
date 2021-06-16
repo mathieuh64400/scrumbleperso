@@ -16,7 +16,6 @@ h2{
     width: 55%;
     display: flex;
     flex-direction: column;
-    
 }
 .cadreDroite{
     width:44%;
@@ -24,7 +23,7 @@ h2{
     flex-direction: column;  
 }
 article{
-    height:25vw;
+    height:20vw;
     margin-top: 2%;
     border-radius: none;
 }
@@ -32,9 +31,9 @@ article{
     height: 50vw;
 }
 .pistede{
-    height:25vw;
-    width:85%;
-    margin-left: 0%;
+    height:35vw;
+    width:100%;
+    margin-left: 10%;
     border:  black 5px solid;
     border-radius: 50px;
     background-color: #313439;
@@ -48,7 +47,7 @@ article{
     grid-template-rows: auto;
     justify-items: center;
     padding: 2rem;
-    perspective: 600px;
+    perspective: 8000px; transform: scale(0.5);
   }
   .die-list {
     display: grid;
@@ -57,7 +56,7 @@ article{
     height: 3rem;
     list-style-type: none;
     transform-style: preserve-3d;
-    width: 3rem;
+    width: 3rem;transform: scale(0.5);
   }
   .even-roll {
     transition: transform 1.5s ease-out;
@@ -81,6 +80,7 @@ article{
     height: 100%;
     padding: 1rem;
     width: 100%;
+    
   }
   .dot {
     align-self: center;
@@ -213,9 +213,10 @@ article{
 
 
 #chartdiv {
+  margin-top:-8.5%;
     width: 100%;
     height: 100%;
-  border: none;
-    transform: rotate(180deg);
+    border: none;
+    transform: rotate(180deg) scale(1.25);
   }
   

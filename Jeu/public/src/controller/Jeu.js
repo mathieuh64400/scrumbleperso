@@ -5,41 +5,52 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 export default class Jeu extends Controller {
     constructor() {
         super();
-        let joueurs=this.state.joueurs;
-        console.log(joueurs);
+        let joueurs = this.state.joueurs;
+        console.log(typeof joueurs);
         console.log(this.state.joueurs.length);
         let nbrejoeur = joueurs.length - 2;
         if (joueurs.length >= 3) {
             console.log(nbrejoeur);
             let nmbredejoeur = document.getElementById("nmbredejoeur");
-            let nameJoeur=document.getElementById("nameJoeur");
+            let nameJoueur = document.getElementById("nameJoeur");
+           let text = "";
+           for (const joueur of joueurs) {  
+               console.log(joueur.statut); 
+            console.log(joueur.name);
+ 
+               if (joueur.statut == "Developpeur") {
+               text +=" "+joueur.name+",";
+                    console.log(joueur,joueur.name,joueur.statut);
+                    console.log(joueur.name, typeof (joueur.name));
+                    nameJoueur.innerHTML =text;
+                    console.log(nameJoeur);
+                }
+            }
             console.log(nameJoeur);
-            
-        //    for (let index = 0; index < joueurs.length; index++) {
-        //        const element = joueurs.name[index];
-        //        console.log(element);}
-            
+            console.log("........................................................................")
+         
             console.log(nmbredejoeur);
             nmbredejoeur.innerHTML = nbrejoeur;
         } else {
             console.log(nbrejoeur);
-            alert("le nombre de developpeur n'est pas au minimu égal a 1! retournez a l'étape 1 pour continuer à jouer")
+            alert("le nombre de developpeur n'est pas au minimun égal a 1! retournez a l'étape 1 pour continuer a joeur")
         }
 
         //    création du dé:
         let eltref = document.getElementById("ref");
 
         console.log(eltref);
-        
-        for (let i = 0; i < nbrejoeur ; i++) {
-        
-          
-          let list = document.createElement("ol");
-          list.classList.add("die-list");
-          list.classList.add("even-roll");
-         
-          list.setAttribute("data-roll", "1");
-          list.innerHTML = `
+
+        for (let i = 0; i < nbrejoeur; i++) {
+
+
+            let list = document.createElement("ol");
+            list.classList.add("die-list");
+            list.classList.add("even-roll");
+
+
+            list.setAttribute("data-roll","");
+            list.innerHTML = `
            <li class="die-item" data-side="1">
           <span class="dot"></span>
         </li>
@@ -73,48 +84,47 @@ export default class Jeu extends Controller {
           <span class="dot"></span>
           <span class="dot"></span>
         </li>;`
-          console.log(i);
-          list.id = "die-"+i;
-        
-          // console.log(list.id);
-          
-          eltref.append(list);
-          
-          // console.log(typeof list);
-          document.getElementById("die-"+i).addEventListener("click", rollDice);
+            console.log(i);
+            list.id = "die-" + i;
 
-          let result=document.getElementById("resultatTirage");
-          console.log(result);
-          let eltselect=document.querySelectorAll("ol[data-roll]");
-         eltselect.forEach( Element=>{
-             console.log(Element.getAttribute("ol[data-roll]"));
-         })
+            eltref.append(list);
 
+            document.getElementById("die-" + i).addEventListener("click", rollDice);
         }
-        
-        
+       
+
         let dice = [...document.querySelectorAll(".die-list")];
         console.log(dice);
-        
+
         function rollDice() {
-        
-          dice.forEach(die => {
-            toggleClasses(die);
-            die.dataset.roll = getRandomNumber(1, 6);
-          });
+            let afficheresult = document.getElementById("resultatTirage");
+            console.log(afficheresult);
+            let result = "";
+            dice.forEach(die => {
+                toggleClasses(die);
+                console.log(die);
+                die.dataset.roll = getRandomNumber(1, 6);
+                 result=die.dataset.roll+"-";
+                 console.log(result);afficheresult.innerHTML="le tirage est le suivant:"+result;
+                
+            });
         }
-        
+
         function toggleClasses(die) {
-          die.classList.toggle("odd-roll");
-          die.classList.toggle("even-roll");
+            die.classList.toggle("odd-roll");
+            die.classList.toggle("even-roll");
         }
-        
+
         function getRandomNumber(min, max) {
-          min = Math.ceil(min);
-          max = Math.floor(max);
-          return Math.floor(Math.random() * (max - min + 1)) + min;
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        
+
+
+
+
+
         // creation de la méthode pour créer le plateau de jeu
         console.log("cela marche?");
 
@@ -124,7 +134,7 @@ export default class Jeu extends Controller {
 
             console.log(chart, "cela marche!!!!!");
 
-            chart.innerRadius = am4core.percent(35);
+            chart.innerRadius = am4core.percent(30);
             chart.data = [{
                     "case": "1",
                     "case2": "1",

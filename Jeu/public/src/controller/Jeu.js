@@ -96,21 +96,21 @@ export default class Jeu extends Controller {
 
             document.getElementById("die-" + i).addEventListener("click", rollDice);
 
-            var myDearray = [];
+            // var myDearray = [];
 
 
         }
 
-        for (const name in joueurs) {
-            console.log(name.statut);
-            console.log(name.name);
+        // for (const name in joueurs) {
+        //     console.log(name.statut);
+        //     console.log(name.name);
 
-            for (let i = 0; i < nbrejoeur; i++) {
-                myDearray["die-" + i] = name.name;
-                console.log(myDearray);
-            }
+        //     for (let i = 0; i < nbrejoeur; i++) {
+        //         myDearray["die-" + i] = name.name;
+        //         console.log(myDearray);
+        //     }
 
-        }
+        // }
 
 
         let dice = [...document.querySelectorAll(".die-list")];
@@ -127,6 +127,7 @@ export default class Jeu extends Controller {
                 result += die.dataset.roll + "-";
                 console.log(result);
                 afficheresult.innerHTML = "le tirage est le suivant:" + result;
+                deliaisonJoueur(result);
 
             });
         }
@@ -142,23 +143,23 @@ export default class Jeu extends Controller {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-
-        // test tableaux associatif
-        let x = this.state.joueurs;
-        var myArray = [];
-        for (const name of x) {
-            console.log(name.name);
-            console.log(nbrejoeur);
+        function deliaisonJoueur(result) {
+            let x = this.state.joueurs;
+            let myArray = {};
             for (let i = 0; i < nbrejoeur; i++) {
                 console.log("die-" + i);
-                console.log(name.statut);
-                if (name.statut == "Developpeur") {
-                    myArray[name.name] +="die-" + i;
-                    console.log(myArray);
+                for (const name of x) {
+                    console.log(name.name);
+                    console.log(nbrejoeur);
+                    console.log(name.statut);
+                    if (name.statut == "Developpeur") {
+                        myArray[name.name] = result;
+                        console.log(myArray);
+                    }
                 }
-
             }
         }
+
 
 
         // creation de la méthode pour créer le plateau de jeu

@@ -13,27 +13,32 @@ export default class Jeu extends Controller {
             console.log(nbrejoeur);
             let nmbredejoeur = document.getElementById("nmbredejoeur");
             let nameJoueur = document.getElementById("nameJoeur");
-           let text = "";
-           for (const joueur of joueurs) {  
-               console.log(joueur.statut); 
-            console.log(joueur.name);
- 
-               if (joueur.statut == "Developpeur") {
-               text +=" "+joueur.name+",";
-                    console.log(joueur,joueur.name,joueur.statut);
-                    console.log(joueur.name, typeof (joueur.name));
-                    nameJoueur.innerHTML =text;
-                    console.log(nameJoeur);
+            let text = "";
+            if (joueurs != "") {
+                if (joueurs.statut != "Responsabilite") {
+                    for (const joueur of joueurs) {
+                        console.log(joueur.statut);
+                        console.log(joueur.name);
+
+                        if (joueur.statut == "Developpeur") {
+                            text += " " + joueur.name + ",";
+                            console.log(joueur, joueur.name, joueur.statut);
+                            console.log(joueur.name, typeof (joueur.name));
+                            nameJoueur.innerHTML = text;
+                            console.log(nameJoeur);
+                        }
+                    }
                 }
+
+                console.log(nameJoeur);
+                console.log(".........................................................................................");
+
+                console.log(nmbredejoeur);
+                nmbredejoeur.innerHTML = nbrejoeur;
+            } else {
+                console.log(nbrejoeur);
+                alert("le nombre de developpeur n'est pas au minimun égal a 1! retournez a l'étape 1 pour continuer a joeur")
             }
-            console.log(nameJoeur);
-            console.log("........................................................................")
-         
-            console.log(nmbredejoeur);
-            nmbredejoeur.innerHTML = nbrejoeur;
-        } else {
-            console.log(nbrejoeur);
-            alert("le nombre de developpeur n'est pas au minimun égal a 1! retournez a l'étape 1 pour continuer a joeur")
         }
 
         //    création du dé:
@@ -49,7 +54,7 @@ export default class Jeu extends Controller {
             list.classList.add("even-roll");
 
 
-            list.setAttribute("data-roll","");
+            list.setAttribute("data-roll", "");
             list.innerHTML = `
            <li class="die-item" data-side="1">
           <span class="dot"></span>
@@ -90,8 +95,23 @@ export default class Jeu extends Controller {
             eltref.append(list);
 
             document.getElementById("die-" + i).addEventListener("click", rollDice);
+
+            var myDearray = [];
+
+
         }
-       
+
+        for (const name in joueurs) {
+            console.log(name.statut);
+            console.log(name.name);
+
+            for (let i = 0; i < nbrejoeur; i++) {
+                myDearray["die-" + i] = name.name;
+                console.log(myDearray);
+            }
+
+        }
+
 
         let dice = [...document.querySelectorAll(".die-list")];
         console.log(dice);
@@ -104,10 +124,10 @@ export default class Jeu extends Controller {
                 toggleClasses(die);
                 console.log(die);
                 die.dataset.roll = getRandomNumber(1, 6);
-                 result+=die.dataset.roll+"-";
-                 console.log(result);
-                 afficheresult.innerHTML="le tirage est le suivant:"+result;
-                
+                result += die.dataset.roll + "-";
+                console.log(result);
+                afficheresult.innerHTML = "le tirage est le suivant:" + result;
+
             });
         }
 
@@ -123,7 +143,22 @@ export default class Jeu extends Controller {
         }
 
 
+        // test tableaux associatif
+        let x = this.state.joueurs;
+        var myArray = [];
+        for (const name of x) {
+            console.log(name.name);
+            console.log(nbrejoeur);
+            for (let i = 0; i < nbrejoeur; i++) {
+                console.log("die-" + i);
+                console.log(name.statut);
+                if (name.statut == "Developpeur") {
+                    myArray[name.name] +="die-" + i;
+                    console.log(myArray);
+                }
 
+            }
+        }
 
 
         // creation de la méthode pour créer le plateau de jeu

@@ -59,7 +59,8 @@ article{
     height: 3rem;
     list-style-type: none;
     transform-style: preserve-3d;
-    width: 3rem;transform: scale(0.5);
+    width: 3rem;
+    transform: scale(0.5);
   }
   .even-roll {
     transition: transform 1.5s ease-out;
@@ -193,10 +194,7 @@ article{
   }
   [data-side="5"] .dot:nth-of-type(5) {
     grid-area: nine;
-  }
-  [data-side="6"] .dot:nth-of-type(1) {
-    grid-area: one;
-  }
+  }            
   [data-side="6"] .dot:nth-of-type(2) {
     grid-area: three;
   }
@@ -220,6 +218,12 @@ article{
     width: 100%;
     height: 100%;
     border: none;
-    transform: rotate(180deg) scale(1.25);
+     transform: /*rotate(180deg)*/ scale(1.25); 
   }
-  
+
+  .die-overlay {
+    box-sizing: border-box;
+    width: 5rem;
+    height: 5rem;
+    z-index: 100000;
+  }

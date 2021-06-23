@@ -6,46 +6,14 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 export default class Jeu extends Controller {
     constructor() {
         super();
+
         let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
         console.log(joueurs);
         let nomJoueur = this.state.joueurs.name;
-        console.log("Hic"); 
-       
-        
-
+        console.log("Hic");
         //console.log(typeof joueurs); //verification du type de donnée récupérer
         //console.log(this.state.joueurs.length); //récupération de la longueur de la liste de joueurs
         let nbrejoeur = joueurs.length - 2; //récupération de la longueur de la liste de joueurs de type developpeurs
-        if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
-            //console.log(nbrejoeur);
-            let nmbredejoeur = document.getElementById("nmbredejoeur"); //selection balise ou id = nmbredejoeur
-            let nameJoueur = document.getElementById("nameJoeur"); //selection balise ou id = namedejoeur
-            let text = ""; //definition d'une varaible qui posséde le texte (nom des joueurs) comme valeur donc initialement est vide
-            if (joueurs != "") { //si la liste des joeurs type developpeurs existe
-                if (joueurs.statut != "Responsabilite") { //si le statut de ces joeurs  est différents du  type responsabilité
-                    for (const joueur of joueurs) { // pour tout les joueur parmi la liste des joueurs
-                        //console.log(joueur.statut); // recup du statut
-                        //console.log(joueur.name); // recup du nom des joueurs pour chaque joueurs
-
-                        if (joueur.statut == "Developpeur") { //si le statut du joeur est type developpeur uniquement
-                            text += " " + joueur.name + ","; // la variable text est rempli par l'iteration dde noms des joueurs
-                            //console.log(joueur, joueur.name, joueur.statut);
-                            //console.log(joueur.name, typeof (joueur.name));
-                            nameJoueur.innerHTML = text; // le contenu de la balise nameJoeur est à pour valeur text soit le nom des joueurs
-                           
-                        }
-                    }
-                }
-                //console.log(nameJoeur);
-                //console.log(".........................................................................................");
-
-                ////////console.log(nmbredejoeur);
-                nmbredejoeur.innerHTML = nbrejoeur; //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
-            } else {
-                //console.log(nbrejoeur);
-                alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
-            }
-        }
         //    création du dé:
         let eltref = document.getElementById("ref");
 
@@ -59,9 +27,8 @@ export default class Jeu extends Controller {
             let list = document.createElement("ol");
             list.classList.add("die-list");
             list.classList.add("even-roll");
-
-
             list.setAttribute("data-roll", "");
+            list.setAttribute("data-level", i + 1);
             list.innerHTML = `
            <li class="die-item" data-side="1">
           <span class="dot"></span>
@@ -101,67 +68,96 @@ export default class Jeu extends Controller {
 
             overlay.appendChild(list);
             eltref.append(overlay);
-
-
         }
-        
+
         let dice = [...document.querySelectorAll(".die-overlay")];
-        
-        
+
+
         //console.log(dice);
         dice.forEach(De => { //boucle sur chaque div auquel on applique un evenement click qui lance la fonction selectionner
             De.addEventListener('click', (e) => rollDice(e, De));
-            
+
         });
-        
-        let x = this.state.joueurs; console.log(x);
+        //console.log(nbrejoeur);
+        let nmbredejoeur = document.getElementById("nmbredejoeur"); //selection balise ou id = nmbredejoeur
+        let nameJoueur = document.getElementById("nameJoeur"); //selection balise ou id = namedejoeur
+        let myarray= {};
+        let text = ""; //definition d'une varaible qui posséde le texte (nom des joueurs) comme valeur donc initialement est vide
+         //let nameDev = "";definition d'une variable avec le role identique que la variable text mais servant dans le cas du Dé;
+        if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
+            if (joueurs != "") { //si la liste des joeurs  existe
+                let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
+                console.log('deve', developpeurs)
+                for (let i = 0; i < developpeurs.length; ++i) {
+                    text += " " + developpeurs[i].name + " " + "(En partant de la gauche) le Dé n°" + (i + 1) + " est le votre ;<br>"; // la variable text est rempli par l'iteration dde noms des joueurs
+                    console.log(developpeurs[i].name, "....", text);
+                    nameJoueur.innerHTML = text;
+                }
+                nmbredejoeur.innerHTML = nbrejoeur; //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
+            } else {
+                //console.log(nbrejoeur);
+                alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
+            }
+        }
+        // let x = this.state.joueurs;
+        // console.log(x);
+        // let myarray = {};
+
 
         function rollDice(e, elmt) {
             e.preventDefault();
-            
-            console.log(e);
+            console.log(elmt);
+            // console.log(e);
             let afficheresult = document.getElementById("resultatTirage");
             console.log("resultat:", afficheresult, console.log(e.target));
             let result = " ";
-
-            console.log(elmt);
+           
+            // console.log('deve', developpeurs)
+            // console.log(elmt);
             const die = elmt.firstElementChild;
-
+            
             toggleClasses(die);
             console.log(die);
             die.dataset.roll = getRandomNumber(1, 6);
-            result += [die.dataset.roll] ;
-            console.log(result);
-           
-           
-            let myArray = {};
-            for (let i = 0; i < nbrejoeur; i++) {
-                console.log("die-" + i);
-                for (const name of x) {
-                    console.log(name.name);
-                    console.log(nbrejoeur);
-                    console.log(name.statut);
-                    if (name.statut == "Developpeur") {
-                        myArray[name.name] = "die-" + i;
-                        console.log(myArray);
-                    }
-                }
-            }
+            
+             result = die.dataset.roll;
+            // console.log(result);
+            // y = {
+            //     result
+            // };
+            // console.log(y);
+            let affichenom ;
             setTimeout(function () {
-             
-                afficheresult.innerHTML = "le tirage est le suivant pour Joeur"+"XXX"+" "+ ":"+" " + result;
-            }, 1000); 
+                // for (const name of x) {
+                let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
+                console.log('deve', developpeurs)
+                for (let i = 0; i < developpeurs.length; ++i) {
+                    // result = die.dataset.roll;
+                    // console.log(result);
+                    myarray[developpeurs[i].name]=result;
+                    console.log(myarray);
+                        var test= myarray[developpeurs[2].name];
+                        console.log(test);
+                 
+                }
+                
+               
+               
+                //     if (name.statut == "Developpeur") {
+                //         console.log(name.name);
+                //         myarray = {
+                //             name: name.name
+                //         };
+                //         console.log(myarray);
 
-            
-            
+                //         afficheresult.innerHTML = "le tirage pour  le Joeur" + " " + myarray.name + " "+ "est le " + result;
+                //     }
+                // }
+                // console.log(myarray);
+
+            }, 1000);
+
         }
-        // let x = this.state.joueurs; console.log(x);
-        // function findPlayer() {
-         
-        // }
-       
-          
-
 
         function toggleClasses(die) {
             die.classList.toggle("odd-roll");
@@ -173,12 +169,14 @@ export default class Jeu extends Controller {
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-
-
         // creation objet avec resultat
 
 
-       
+
+
+
+
+
 
         // creation de la méthode pour créer le plateau de jeu
         console.log("cela marche?");
@@ -694,7 +692,7 @@ export default class Jeu extends Controller {
             pieSeries5.labels.template.disabled = true;
             pieSeries5.ticks.template.disabled = true;
             pieSeries5.slices.template.tooltipText = "";
-            pieSeries5.tooltip.pointerOrientation = "down";
+            // pieSeries5.tooltip.pointerOrientation = "down";
             const hs5 = pieSeries5.slices.template.states.getKey("hover");
             hs5.properties.scale = 1;
             const as5 = pieSeries5.slices.template.states.getKey("active");
@@ -789,7 +787,7 @@ export default class Jeu extends Controller {
                     console.log(pie);
                     console.log(ev);
 
-                    console.log("cloneId" + "  " + ev.target.cloneId, "clone_uid:" + ev.target.uid);
+                    console.log("cloneId" + "  " + typeof (ev.target.cloneId), "clone_uid:" + ev.target.uid);
                 }, this);
                 console.log(this);
 

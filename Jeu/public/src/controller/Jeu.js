@@ -8,12 +8,14 @@ export default class Jeu extends Controller {
         super();
 
         let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
+        console.log(joueurs.statut);
         console.log(joueurs);
         let nomJoueur = this.state.joueurs.name;
         console.log("Hic");
         //console.log(typeof joueurs); //verification du type de donnée récupérer
         //console.log(this.state.joueurs.length); //récupération de la longueur de la liste de joueurs
         let nbrejoeur = joueurs.length - 2; //récupération de la longueur de la liste de joueurs de type developpeurs
+        
         //    création du dé:
         let eltref = document.getElementById("ref");
 
@@ -94,15 +96,18 @@ export default class Jeu extends Controller {
                     nameJoueur.innerHTML = "(En partant de la gauche) " + text;
                 }
                 nmbredejoeur.innerHTML = nbrejoeur; //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
-            } 
-        } else {
+            } else {
                 //console.log(nbrejoeur);
                 alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
             }
-        let afficheresult=document.getElementById("#resultatTirage");
-        let textDe="";
+        } else {
+            //console.log(nbrejoeur);
+            alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
+        }
+        let afficheresult = document.getElementById("#resultatTirage");
+        let textDe = "";
         let numberDe;
-        let textResult="";
+        let textResult = "";
         let tableauDesRes = [];
 
         function rollDice(e, elmt) {
@@ -125,19 +130,19 @@ export default class Jeu extends Controller {
 
 
             setTimeout(function () {
-            //     let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
-            // console.log('deve', developpeurs)
-            // for (let i = 0; i < developpeurs.length; ++i) {
-              // }
+                //     let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
+                // console.log('deve', developpeurs)
+                // for (let i = 0; i < developpeurs.length; ++i) {
+                // }
 
                 let listeDe = document.querySelectorAll("ol[data-level]");
                 console.log(listeDe);
                 let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
                 console.log('deve', developpeurs)
                 for (let i = 0; i < developpeurs.length; ++i) {
-                    
-                   
-                   console.log(numberDe);
+
+
+                    console.log(numberDe);
                     let listDice = listeDe.forEach(Res => {
                         tableauDesRes = [Res.dataset.roll];
                         console.log("resultat dans tableau sont" + developpeurs[i].name + tableauDesRes);
@@ -150,13 +155,14 @@ export default class Jeu extends Controller {
                     // console.log(test);
                     // console.log(listDice); 
                 }
-                afficheresult.innerHTML="Votre dé a pour resultat est le :"+result;
-               
+                afficheresult.innerHTML = "Votre dé a pour resultat est le :" + result;
+
             }, 1000);
-           
-              
-            
+
+
+
         }
+
         function toggleClasses(die) {
             die.classList.toggle("odd-roll");
             die.classList.toggle("even-roll");
@@ -183,14 +189,17 @@ export default class Jeu extends Controller {
             const chart = am4core.create("chartdiv", am4charts.PieChart);
             chart.tooltip.getFillFromObject = false;
             chart.tooltip.background.fill = am4core.color("#67b7dc");
-            chart.tooltip.label.fontSize = 20;
-            chart.tooltip.label.textAlign = "middle";
+            // chart.tooltip.label.fontSize = 15;
+            // chart.tooltip.label.textAlign = "middle";
             chart.tooltip.label.maxWidth = 5;
             chart.tooltip.label.wrap = true;
+
+
+
             //    chart.tooltip.pointerOrientation="down";
             console.log(chart, "cela marche!!!!!");
 
-            chart.innerRadius = am4core.percent(30);
+            chart.innerRadius = am4core.percent(38);
             chart.data = [{
                 "case": "1",
                 "case2": "1",
@@ -687,7 +696,7 @@ export default class Jeu extends Controller {
             pieSeries5.slices.template.strokeWidth = 2;
             pieSeries5.slices.template.strokeOpacity = 1;
             pieSeries5.slices.template.propertyFields.fill = "color5";
-            pieSeries5.labels.template.disabled = true;
+            // pieSeries5.labels.template.disabled = true;
             pieSeries5.ticks.template.disabled = true;
             pieSeries5.slices.template.tooltipText = "";
             // pieSeries5.tooltip.pointerOrientation = "down";
@@ -696,9 +705,20 @@ export default class Jeu extends Controller {
             const as5 = pieSeries5.slices.template.states.getKey("active");
             as5.properties.shiftRadius = 0;
             pieSeries5.slices.template.cursorOverStyle = am4core.MouseCursorStyle.pointer;
-
-            pieSeries5.slices.template.tooltipText = "{category}: XXXXX";
-
+            
+            let tabdatapieSeries5=["Jour1","Jour2","Jour3","Jour4","Jour5","Jour6","Jour7","Jour8","Jour9","*","*","*"]; 
+        for (let index = 0; index < tabdatapieSeries5.length; index++) {
+                const element = tabdatapieSeries5[index];
+                console.log(tabdatapieSeries5[index]); 
+                pieSeries5.labels.template.text=element;
+                console.log( pieSeries5.labels.template.text);
+            }
+           
+            pieSeries5.labels.template.bent = true;
+            pieSeries5.alignLabels = false;
+            ;
+            pieSeries5.labels.template.radius = am4core.percent(-15);
+            pieSeries5.labels.template.fill = am4core.color("white");
 
 
             // Ajout du 4 niveau:
@@ -717,8 +737,10 @@ export default class Jeu extends Controller {
             const as4 = pieSeries4.slices.template.states.getKey("active");
             as4.properties.shiftRadius = 0;
             pieSeries4.slices.template.tooltipText = "{category}: Y";
-
+            pieSeries4.labels.template.bent = true;
             // Ajout du troisième niveau:
+
+
             const pieSeries3 = chart.series.push(new am4charts.PieSeries());
             pieSeries3.dataFields.value = "taille3";
             pieSeries3.dataFields.category = "case";
@@ -734,8 +756,10 @@ export default class Jeu extends Controller {
             const as3 = pieSeries3.slices.template.states.getKey("active");
             as3.properties.shiftRadius = 0;
             pieSeries3.slices.template.tooltipText = "{category}: ZZ";
-
+            pieSeries3.labels.template.bent = true;
             // Ajout d'un second cercle  qui est le plus bas
+
+
             const pieSeries2 = chart.series.push(new am4charts.PieSeries());
             pieSeries2.dataFields.value = "taille2";
             pieSeries2.dataFields.category = "case";
@@ -748,80 +772,126 @@ export default class Jeu extends Controller {
             pieSeries2.slices.template.tooltipText = "";
             const hs2 = pieSeries2.slices.template.states.getKey("hover");
             hs2.properties.scale = 1;
-             const as2 = pieSeries2.slices.template.states.getKey("active");
-             as2.properties.shiftRadius = 0;
+            const as2 = pieSeries2.slices.template.states.getKey("active");
+            as2.properties.shiftRadius = 0;
             pieSeries2.slices.template.tooltipText = "{category}: RER";
-
+            pieSeries2.labels.template.bent = true;
             // premier cercle qui est le plus haut
+
+
             const pieSeries = chart.series.push(new am4charts.PieSeries());
             pieSeries.dataFields.value = "taille";
             pieSeries.dataFields.category = "case";
+
             pieSeries.slices.template.stroke = am4core.color("#2B2D31");
             pieSeries.slices.template.strokeWidth = 2;
             pieSeries.slices.template.strokeOpacity = 1;
             pieSeries.slices.template.propertyFields.fill = "color";
             pieSeries.tooltip.pointerOrientation = "vertical";
-            pieSeries.labels.template.disabled = true;
-        //   tooltip
-   
+            // pieSeries.labels.template.disabled = true;
+            pieSeries.slices.template.cursorOverStyle = am4core.MouseCursorStyle.pointer; //cursor sous forme de main
+            pieSeries.ticks.template.disabled = true;
+            pieSeries.alignLabels = false;
+            pieSeries.ticks.template.disabled = true;
+            pieSeries.alignLabels = false;
+            for (let index = 0; index < 5; index++) {
+                const element = index + 1;
+                pieSeries.labels.template.html = "<div>" + element + "</div>";
+            }
+            pieSeries.labels.template.radius = am4core.percent(-5.75);
+            pieSeries.labels.template.fill = am4core.color("black");
+            // chart.legend = new am4charts.Legend();
 
-let USERSTORIES="En tant que commerçant, je veux ajouter et éditer de nouveaux produits dans ma boutique.<br><br> &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
-  
-    pieSeries.ticks.template.disabled = true;
-    pieSeries.tooltip.label.maxWidth = 210;
-    pieSeries.tooltip.label.wrap = true;
-    pieSeries.slices.template.tooltipHTML = "USERSTORIES INITIALES";
+            ///////////////////////Element Central/////////////////////:::
+
+            var label = pieSeries.createChild(am4core.Label);
+
+            label.html = "<div>Are you Ready to <br><strong>SCRUMBLE</strong><br> Pyxis/Fabrique Numerique Paloise</div>";
+            label.isMeasured = false;
+            label.x = am4core.percent(66);
+            label.horizontalCenter = "middle";
+            label.verticalCenter = "middle";
+            label.marginRight = "-10px";
+            label.align = "center";
+            label.isMeasured = false;
+            label.x = 45;
+            label.y = -10;
+            label.fontSize = 26;
+            label.wrap = true;
+            label.config = {
+                "fill": "white"
+            }
+
+
+
+
+
+
+
+
+
+
+            ////////////////////  tooltip //////
+
+
+            let USERSTORIES = "En tant que commerçant, je veux ajouter et éditer de nouveaux produits dans ma boutique.<br><br> &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
+
+            pieSeries.ticks.template.disabled = true; //elimine le fait que les tooltip sont invisibles
+            pieSeries.tooltip.label.maxWidth = 210; //taille du tootip
+            pieSeries.tooltip.label.wrap = true; //contenu du tootip va a la ligne
+            pieSeries.slices.template.tooltipHTML = "USERSTORIES INITIALES"; //tooltip 
 
             const hs = pieSeries.slices.template.states.getKey("hover");
             hs.properties.scale = 1;
             // const as = pieSeries.slices.template.states.getKey("active");
             // as.properties.shiftRadius = 0;
 
-// Add slice click event
-var currentSlice;
-pieSeries.slices.template.events.on("hit", function(ev) {
-	if (currentSlice) {
-		currentSlice.tooltip.hide();
-	}
-	currentSlice = ev.target;
-	currentSlice.tooltipHTML = USERSTORIES;
-	currentSlice.showTooltip();
-});
+            // Add slice click event
+            var currentSlice;
+            pieSeries.slices.template.events.on("hit", function (ev) { // active l'ecouteur d'evenement grace a  on et l'event d'eclanche click grace a hit
+                if (currentSlice) {
+                    currentSlice.tooltip.hide(); //
+                }
+                currentSlice = ev.target;
+                currentSlice.tooltipHTML = USERSTORIES;
+                console.log(current.slice);
+                currentSlice.showTooltip();
+            });
 
-// Set up page click event to close open tooltip
-am4core.getInteraction().body.events.on("hit", function() {
-	if (currentSlice) {
-        currentSlice.tooltip.hide();
-        console.log(currentSlice);
-	}
-});
+            // Set up page click event to close open tooltip
+            am4core.getInteraction().body.events.on("hit", function () {
+                if (currentSlice) {
+                    currentSlice.tooltip.hide();
+                    console.log(currentSlice);
+                }
+            });
             // add click listener
-    // add click listener
-    console.log(chart.series.values);
 
-    // pieSeries.slices.template.events.on("hit", function(ev) {
-    //     var series = ev.target.dataItem.component;
-    //     series.slices.each(function(item) {
-    //       if (item.isActive && item != ev.target) {
-    //         item.isActive = false;
-    //         console.log(item);
-    //       }
-    //     })
-    //   });
-   
-    chart.hiddenState.properties.innerRadius = am4core.percent(0);
-    chart.hiddenState.properties.radius = am4core.percent(250);
+            console.log(chart.series.values);
 
-pieSeries.slices.template.events.on("hit", function(ev){
-    console.log(ev.target.dataItem.value);
-  });
+            // pieSeries.slices.template.events.on("hit", function(ev) {
+            //     var series = ev.target.dataItem.component;
+            //     series.slices.each(function(item) {
+            //       if (item.isActive && item != ev.target) {
+            //         item.isActive = false;
+            //         console.log(item);
+            //       }
+            //     })
+            //   });
+
+            chart.hiddenState.properties.innerRadius = am4core.percent(0);
+            chart.hiddenState.properties.radius = am4core.percent(250);
+
+            pieSeries.slices.template.events.on("hit", function (ev) {
+                console.log(ev.target.dataItem.value);
+            });
             chart.series.values.forEach((pie) => {
                 pie.slices.template.events.on("hit", function (ev) {
                     console.log(pie);
                     console.log(ev);
                     let xx = document.querySelector(ev.target.id);
                     // xx.addEventListener("click",alert('Alors cela marche'));
-                    
+
                     console.log(xx);
                     console.log("cloneId" + "  " + ev.target.cloneId, "clone_uid:" + ev.target.uid);
                 }, this);

@@ -25,6 +25,19 @@ h2{
     display: flex;
     flex-direction: column;  
 }
+.repartition{
+  display: flex;
+    flex-direction: row; 
+    margin-left: 33%;
+}
+.cercles {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.75em;
+  margin-left: 0;
+  margin-right: 3%;
+  margin-top: 1%;
+}
 article{
     height:20vw;
     margin-top: 2%;
@@ -69,7 +82,7 @@ article{
     transition: transform 1.25s ease-out;
   }
   .die-item {
-     background-color: white; 
+     /* background-color: pink;  */
     box-shadow: inset -0.35rem 0.35rem 0.75rem rgba(0, 0, 0, 0.3),
       inset 0.5rem -0.25rem 0.5rem rgba(0, 0, 0, 0.15);
     display: grid;

@@ -20,17 +20,16 @@ export default class Jeu extends Controller {
         let color8 = "black";
         let color = [color1, color2, color3, color4, color5, color6, color7, color8];
         console.log(color);
-// let cube1=document.getElementById("die-1");
-// let cube2=document.getElementById("die-2");
-// let cube3=document.getElementById("die-3");
-// let cube4=document.getElementById("die-4");
-// let cube5=document.getElementById("die-5");
-// let cube6=document.getElementById("die-6");
-// let cube7=document.getElementById("die-7");
-// let cube8=document.getElementById("die-8");
 
-//         let cube=[cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8];
-// console.log(cube[0]);
+        // création des cartes 
+        let carte=document.getElementById("carte");
+        console.log(carte);
+        
+        carte.addEventListener("click",flipcard);
+        function flipcard(){
+            carte.classList.add("active");
+        }
+
         console.log(joueurs.statut);
         console.log(joueurs);
         let nomJoueur = this.state.joueurs.name;
@@ -42,7 +41,6 @@ export default class Jeu extends Controller {
         //    création du dé:
         let eltref = document.getElementById("ref");
 
-        //console.log(eltref);
 
         for (let i = 0; i < nbrejoeur; i++) {
 

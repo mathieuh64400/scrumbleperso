@@ -45,6 +45,13 @@ a {
   margin-right: 3%;
   margin-top: 1%;
 }
+.croix {
+  margin-left: 90%;
+  margin-top: 10%;
+  color: black;
+  font-size: 2em;
+ 
+}
 
 .cadre {
   background-color: #475158;

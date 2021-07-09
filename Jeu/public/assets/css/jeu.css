@@ -3,16 +3,20 @@ h2,h3 {
   text-align: center;
   margin-top: 2%;
 }
+#bloc1> h2{font-size:1em;}
+#bloc1 > h2> span{font-size:0.5em;}
 
 .userstorie>div{
   color: black;
 }
-#titreJeu>p {
+#titreJeu >p {
   text-align: center;
+  
 }
 
 #resultatTirage {
   margin-left: 45%;
+ 
 }
 
 .posfleche {
@@ -77,6 +81,7 @@ article {
   height:90%;
   background: none;
   margin: 5%;
+  margin-left: 40%;
 }
 .thecard{
   position:absolute;
@@ -107,13 +112,13 @@ width:100%;
 height: 100%;
 backface-visibility: hidden;
 background-color:white;
-transform: rotateY(180deg);border-radius:10px ;
+transform: rotateY(180deg);
+border-radius:10px ;
 }
 .back >h3,.back>p{
   color: black;
   text-align: center;
   font-size: 1em;
-
 }
 
 

@@ -7,28 +7,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 export default class Jeu extends Controller {
   constructor() {
     super();
-    // } else if (front.style.backgroundColor == "green") {
-    //   back.classList.add("back");
-    //   back.id="backRevue";
-    //   back.innerHTML = `
-    //   <p class="interpretation"> Carte Revue </p><p>----------------------------</p>
-    //   <h3> Titre1</h3>
-    //   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim rem expedita, officia,
-    //       eum corporis suscipit nemo optio tera espare torie est!</p>
-    //   <p class="croix1" id="interet"> + </p>
-    //   `;
-    // } else if (front.style.backgroundColor == "red") {
-    //   back.classList.add("back");
-    //   back.id="backPb";
-    //   back.innerHTML = `
-    //   <p class="interpretation"> Carte Probléme </p><p>-----------------------------</p>
-    //   <h3> Titre1</h3>
-    //   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim rem expedita, officia,
-    //       eum corporis suscipit nemo optio tera espare torie est etc...!</p>
-    //   <p class="croix1" id="interet"> + </p>
-    //   `;
-    // }
-    // 
+    
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
 
     let color1 = "white";
@@ -48,9 +27,6 @@ export default class Jeu extends Controller {
     let carteDayli = "http://localhost:3003/carteJeudayli";
     let carteRevue = "http://localhost:3003/carteJeudayli";
     let cartePb = " http://localhost:3003/carteJeuPb";
-
-
-
     let colorcard = ["blue", "green", "red"];
     console.log(colorcard);
     let idList = ["carteday", "carterev", "cartepb"];
@@ -78,7 +54,7 @@ export default class Jeu extends Controller {
         if (front.style.backgroundColor == colorcard[h]) {
           back.classList.add("back");
           back.id = "backDayli";
-          back.style.border = "2px solid blue";
+         back.style.border = "5px solid "+colorcard[h];
 
           let hpCharacters = [];
            const loadCharacters = async () => { //ensemble de la fonction qui est asynchrone
@@ -116,6 +92,7 @@ export default class Jeu extends Controller {
             setTimeout(function () {
               let carte = document.getElementById("carte");
               console.log(carte);
+
               // carte validée
               let carteaurebus = document.getElementById("carterebu");
               console.log("xx:", carteaurebus);
@@ -131,49 +108,21 @@ export default class Jeu extends Controller {
               }
               carteaurebus.appendChild(frontrejet);
               carte.innerHTML = "";
+              carte.classList.remove("active")
   
             }, 3000)
   
           }
     
     } 
-      
+
       loadCharacters();
-
-          // let titreBackrevue=document.createElement("p");
-          // titreBackrevue.innerText= titrecard;
-          // console.log(titreBackrevue);
-
-          // let contentBackrevue=document.createElement("div");
-          // contentBackrevue.innerText=textcard;
-          // contentBackrevue.style.color="black";
-          // contentBackrevue.style.margin="5%";
-          // let backrevueInteret=document.createElement("p");
-          // backrevueInteret.classList.add("croix1");
-          // backrevueInteret.id="interet1";
-          // backrevueInteret.innerText= " + ";
-
-          // console.log(back);
-         
-          // back.appendChild(titreBackrevue);
-          // back.appendChild(contentBackrevue);
-          // contentBackrevue.appendChild(backrevueInteret);
-          // console.log(carte);
-          // console.log(back);
-          // carte.appendChild(front);
-          // carte.appendChild(back);
-          // back.appendChild(titreBackrevue);
-          // back.appendChild(contentBackrevue);
-          // back.appendChild(backrevueInteret)
           console.log(carte);
         }
 
         function flipcard() {
           carte.classList.add("active");
         }
-
-       
-
       }
     }
 

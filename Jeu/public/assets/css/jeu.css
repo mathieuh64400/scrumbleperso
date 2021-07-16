@@ -1,26 +1,66 @@
-body{margin-bottom: 5%;}
-h2,h3 {
+body {
+  margin-bottom: 5%;
+}
+
+h2,
+h3 {
   text-align: center;
   margin-top: 2%;
-}
-#bloc1> h2{font-size:1em;}
-#bloc1 > h2> span{font-size:0.5em;}
+  margin-left: 2%;
+  width: 100%;
 
-.userstorie>div{
-  color: black;
 }
-#titreJeu >p {
+
+#titreJeu {
+  /* border:5px solid black; */
+  width: 55%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 2%;
+
+}
+
+/* #titreJeu span {margin-left: 25%;} */
+
+#titreJeu>p {
   text-align: center;
-  
+
+}
+
+.cadretitre {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.titre {
+  margin-left: -33%;
+  font-size: 1em;
+}
+
+.titre>span {
+  font-size: 0.75em;
+}
+
+#cadrefleche {
+  /* margin-top: 10%; */
+  cursor: pointer;
+  width: auto;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  border-radius: 0 3px 3px 0;
+  background-color: #475158;
+}
+
+.userstorie>div {
+  color: black;
 }
 
 #resultatTirage {
   margin-left: 45%;
- 
-}
 
-.posfleche {
-  margin-top: 1%;
 }
 
 .cadreCentrale {
@@ -43,84 +83,176 @@ h2,h3 {
 .repartition {
   display: flex;
   flex-direction: row;
-  margin-left: 33%;
+  margin-left: 10%;
 }
-
+/* formes geometriques */
 .cercles {
   width: 1.5em;
   height: 1.5em;
   border-radius: 0.75em;
   margin-left: 0;
-  margin-right: 3%;
+  margin-right: 2%;
   margin-top: 1%;
 }
+.croix1 {
+  margin-left: 90%;
+  margin-top: 2%;
+  color: black;
+  font-size: 2em;
+ 
+}
+.formegeom {
+  height: 5em;
+  width: 2.5em;
+  margin-left: 25%;
+  margin-top: 5%;
+  border-radius: 5px;
+  border: 1px solid white
+}
+/* ///////////////////////////////////////////////////////////////////////////////////:: */
 
 article {
   height: 20vw;
   margin-top: 0%;
   border-radius: none;
 }
-.cadreDroite>div{
-  margin-top: -22%;
+.dashed{
+  width: 33%;
+  height: 75%;
+  background: none;
+  margin: 5%;
+  border: dashed 5px black;
+  border-radius: 10px;
+  /* margin-left: 25%; */
 }
+
+.cadreDroite>div {
+  margin-top: 0%;
+}
+
 /* creation des cartes */
-.pistecard{
-  height: 20vw;
-  width: 56%;
+.piste {
+  height: 7.5vw;
+  width: 99%;
+  border: black 2px solid;
+  border-radius: 50px;
+  margin-left: -2%;
+}
+
+.piste>p {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25%;
+}
+
+.cadrecarte {
+  margin-right: 10%;
+}
+
+/* .piste>p>div {
+  margin-right: 10%;
+  border: solid 1px black;
+
+} */
+.color1 {
+  background: blue;
+}
+
+.color2 {
+  background: green;
+}
+
+.color3 {
+  background: red;
+}
+
+.pistecard {
+  height: 30vw;
+  width: 99%;
   /* margin-left: -0%; */
   border: black 2px solid;
   border-radius: 50px;
   background-color: #313439;
   margin-top: 2%;
- 
+  margin-left: -2%;
+
+}
+.rebmaincontainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: none;
+  margin: 0%;
 }
 
-.maincontainer{
-  position:relative;
-  width: 50%;
-  height:90%;
+.maincontainer {
+  position: relative;
+  width: 33%;
+  height: 75%;
   background: none;
   margin: 5%;
-  margin-left: 40%;
+  margin-left: 25%;
+
 }
-.thecard{
-  position:absolute;
-  width:100%;
-  height:100%;
+
+.thecard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
-  transition:all 0.5s ease;
+  transition: all 0.5s ease;
   background: transparent;
-  border-radius:10px ;
- 
+  border-radius: 10px;
+
 }
-.active{
-transform: rotateY(180deg) ;
+
+.active {
+  transform: rotateY(180deg);
 }
-.front{
-  position:absolute;
-  border: 1px solid white; 
-  width:100%;
+
+.thefront {
+  position: absolute;
+  border: 1px solid white;
+  width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background-color:blue;
-  color: white;border-radius:10px ;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
 }
-.back{
-position:absolute;
-border: 1px solid white;
-width:100%;
-height: 100%;
-backface-visibility: hidden;
-background-color:white;
-transform: rotateY(180deg);
-border-radius:10px ;
+
+.front {
+  position: absolute;
+  border: 1px solid white;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* background-color: blue; */
+  color: white;
+  border-radius: 10px;
 }
-.back >h3,.back>p{
+.interpretation{
+  width:100%;
+  height:5%;
+  margin-top: 5%;margin-bottom: 5%;
+}
+.back {
+  position: absolute;
+  /* border: 1px solid white; */
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: white;
+  transform: rotateY(180deg);
+  border-radius: 10px;
+}
+
+.back>h3,
+.back>p {
   color: black;
   text-align: center;
   font-size: 1em;
 }
-
 
 .userstorie {
   width: 53%;
@@ -135,18 +267,22 @@ border-radius:10px ;
 }
 
 .pistede {
-  height: 35vw;
-  width: 100%;
-  margin-left: -17%;
+  height: 15vw;
+  width: 180%;
   border: black 5px solid;
   border-radius: 50px;
   background-color: #313439;
-  margin-top: -25%;
+  margin-left: -50%;
+  margin-top: -15%;
+  margin-bottom: -10%;
 }
 
 /* création du dé */
 .dice {
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  /* margin-left: -40%; */
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
@@ -375,4 +511,93 @@ border-radius:10px ;
   width: 5rem;
   height: 5rem;
   z-index: 100000;
+}
+
+/* relier a l'accordeon pour voir les differentes userstories en cours */
+.insideboxdetail {
+  width: 98%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  padding: 2%;
+  margin-left: 10%;
+}
+
+/* STYLE THE ACCORDION HOLDING CONTAINER */
+.accordionbox {
+  max-width: 480px;
+  /* margin: 100px; */
+  margin-left: 10%;
+  padding: 2%;
+  z-index: 2;
+}
+
+/* STYLE THE CHECKBOX LABELS */
+
+.accordionbox label {
+  /* font-family: 'PT Sans Narrow', sans-serif; */
+  padding: 10px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  color: white;
+  font-size: 1em;
+  background: #313438;
+  border-bottom: 2px solid #313439;
+  transition: all 0.3s ease;
+}
+
+
+
+/* HIDE THE HTML CHECKBOX SQUARE */
+.accordionbox input {
+  display: none;
+}
+
+/* STYLE THE INITIAL DROPDOWN CONTENT BOX */
+.insideboxcadre {
+  width: 98%;
+  height: 7.5%;
+  display: flex;
+  flex-direction: row;
+  background-color: #313439;
+  margin-top: 2%;
+  padding-bottom: 2%;
+  padding: 2%;
+  color: white;
+}
+
+.insideboxtext {
+  font-size: 0.75em;
+}
+
+.insidebox {
+  height: 0px;
+  padding: 0px 15px;
+  font-size: 1em;
+  /* font-family: 'PT Sans', sans-serif; */
+  color: #111111;
+  background: #ffffff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+
+/* STYLE THE CLICKED DROPDOWN CONTENT BOX */
+.accordionbox input:checked~.insidebox {
+  height: 250px;
+  /* overflow: scroll; */
+}
+
+
+/* SHOW THE + SIGN WHEN BOXES ARE CLOSED */
+input[type=checkbox]+label::before {
+  content: "+";
+}
+
+
+/* SHOW THE – SIGN WHEN BOXES ARE OPEN */
+input[type=checkbox]:checked+label::before {
+  content: "-";
 }

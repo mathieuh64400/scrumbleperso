@@ -299,42 +299,9 @@ export default class Jeu extends Controller {
           syscolor.style.background = color[i];
           syscolor.setAttribute("draggable", "true");
           syscolor.classList.add("itemGame");
-// creation du drage and drop sur accordeon
-           const zonejoueur= document.querySelectorAll('.cadrebox');
-           const itemGame=document.querySelectorAll('itemGame');
-           console.log(zonejoueur,itemGame);
-           let draggedItem = null;
-           for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
-              const item = itemGame[i];
-              item.addEventListener('dragstart', function (e) { // sur chaque carte on effectue un evement d'activation du déplacement
-                  console.log('dragstart', e);
-                  draggedItem = item; // 1 elt deplacé = un item
-                  setTimeout(function () {
-                      item.style.display = "none"; // chaque item n'a pas de style display particulier
-                  }, 0)
 
-              })
-              item.addEventListener('dragend', function () { // sur chaque carte on effectue un evement de fin du déplacement
-                console.log('dragend');
-                setTimeout(function (e) {
-                    draggedItem.style.display = "block"; // chaque item déplacé a style display particulier block
-                    draggedItem = null;
-                }, 0)
-            })
-            for (let j = 0; j < zonejoueur.length; j++) { // chaque item déplacé a style display particulier block
-              const listZoneJ = zonejoueur[j];
-              listZoneJ.addEventListener('dragover', function (e) {
-                  e.preventDefault();
-              });
-              listZoneJ.addEventListener('dragenter', function (e) {
-                  e.preventDefault();
-              });
-              listZoneJ.addEventListener('drop', function () {
-                  this.append(draggedItem);
-              });
 
-          }
-           }
+// ////////////////////////////////////////////////////////////////
           let backapion = document.getElementById("backapion");
           backapion.style.display = "flex";
           backapion.style.flexDirection = "row";
@@ -348,11 +315,12 @@ export default class Jeu extends Controller {
           label.innerHTML = developpeurs[i].name;
           label.style.color = color[i];
           console.log(developpeurs[0]);
+          // pion
           pion.style.backgroundColor = label.style.color;
           console.log(pion);
           pion.style.backgroundImage = listimage[i];
           console.log(pion.style.backgroundImage, listimage[i]);
-
+          // fin pion
 
           // la variable text est rempli par l'iteration de noms des joueurs
           console.log(developpeurs[i].name, "....", text);
@@ -361,9 +329,57 @@ export default class Jeu extends Controller {
           nameJoueur.append(label);
 
           list.append(syscolor);
+          console.log(syscolor);
 
           nameJoueur.classList.add("repartition");
           nameJoueur.style.width = "100%";
+
+
+
+          // creation du drage and drop sur accordeon
+          const zonejoueur= document.querySelectorAll('.cadrebox');
+          const itemGame=document.querySelectorAll('.itemGame');
+          console.log(zonejoueur,itemGame);
+          let draggedItem = null;
+          itemGame.forEach(element => {
+            // const item = element[i];
+            // console.log(element[i])
+             element.addEventListener('dragstart', function (e) { // sur chaque carte on effectue un evement d'activation du déplacement
+                 console.log('dragstart', e);
+                 draggedItem = element; // 1 elt deplacé = un item
+                 setTimeout(function () {
+                     element.style.display = "none"; // chaque item n'a pas de style display particulier
+                 }, 0)
+
+             })
+             element.addEventListener('dragend', function () { // sur chaque carte on effectue un evement de fin du déplacement
+               console.log('dragend');
+               setTimeout(function (e) {
+                   draggedItem.style.display = "block"; // chaque item déplacé a style display particulier block
+                  //  draggedItem = null;
+               }, 0)
+           })
+           zonejoueur.forEach(zone=>{
+            zone.addEventListener('dragover', function (e) {
+              e.preventDefault();
+          });
+          zone.addEventListener('dragenter', function (e) {
+              e.preventDefault();
+          });
+          zone.addEventListener('drop', function (){
+          //  e.preventDefault();
+              zone.append(draggedItem);
+          });
+           })
+        //    for (let j = 0; j < zonejoueur.length; j++) { // chaque item déplacé a style display particulier block
+        //      const listZoneJ = zonejoueur[j];
+           
+
+        //  }
+          });
+          // for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
+             
+          // }
         }
         nmbredejoeur.innerHTML = nbrejoeur; //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
       } else {

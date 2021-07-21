@@ -10,7 +10,9 @@ h3 {
   width: 100%;
 
 }
-
+#listJoueur{
+  border:solid 1px black;margin-top: 2%;background-color: #313439;display: flex; flex-direction: row;
+}
 #titreJeu {
   /* border:5px solid black; */
   width: 55%;
@@ -66,6 +68,7 @@ h3 {
 .cadreCentrale {
   display: flex;
   flex-direction: row;
+  margin-bottom: 20%;
 }
 
 .cadreGauche {
@@ -101,11 +104,10 @@ h3 {
   margin-top: 2%;
   color: black;
   font-size: 2em;
-
 }
 
 .formegeom {
-  height: 5em;
+  height: 3.75em;
   width: 2.5em;
   margin-left: 25%;
   margin-top: 5%;
@@ -153,12 +155,17 @@ article {
   background-color: red;
   border: 1px solid black;
   border-radius: 50%;
-  background-image: url("../img/torii-gate.png");
+  /* background-image: url("../img/torii-gate.png"); */
   background-size: 50%;
   background-position: 50%, 50%;
   background-repeat: no-repeat;
   box-shadow: black;
 
+}
+#backapion{
+  width: 60%;
+  flex-wrap: wrap;
+  
 }
 
 /* creation des cartes */
@@ -224,6 +231,17 @@ article {
 }
 
 .thecard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  background: transparent;
+  border-radius: 10px;
+
+}
+
+.thecarde {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -554,6 +572,14 @@ article {
   padding: 2%;
   margin-left: 10%;
 }
+.cadrebox{
+  width:25%;
+  display: flex;
+  flex-direction: row;
+  /* border:solid 1px red; */
+  margin-left: 0%;
+  margin-right: 0%;
+}
 
 /* STYLE THE ACCORDION HOLDING CONTAINER */
 .accordionbox {
@@ -589,7 +615,7 @@ article {
 /* STYLE THE INITIAL DROPDOWN CONTENT BOX */
 .insideboxcadre {
   width: 98%;
-  height: 7.5%;
+  height: 9%;
   display: flex;
   flex-direction: row;
   background-color: #313439;
@@ -601,6 +627,8 @@ article {
 
 .insideboxtext {
   font-size: 0.75em;
+  display: flex;
+  flex-direction: row;
 }
 
 .insidebox {

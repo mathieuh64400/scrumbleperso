@@ -7,7 +7,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 export default class Jeu extends Controller {
   constructor() {
     super();
-    
+
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
 
     let color1 = "white";
@@ -24,108 +24,155 @@ export default class Jeu extends Controller {
     // création des cartes 
 
 
-    let carteDayli = "http://localhost:3003/carteJeudayli";
-    let carteRevue = "http://localhost:3003/carteJeudayli";
-    let cartePb = " http://localhost:3003/carteJeuPb";
+    let carteDayli = "http://localhost:3003/carteJeudayli/";
+    let carteRevue = "http://localhost:3003/carteJeuRevue/";
+    let cartePb = " http://localhost:3003/carteJeuPb/";
     let colorcard = ["blue", "green", "red"];
     console.log(colorcard);
+
+
     let idList = ["carteday", "carterev", "cartepb"];
+    let backid=["backid1", "backid2", "backid3"];
     console.log(idList);
+
     let longtab = idList.length;
-  let controlCard=[carteDayli,carteRevue,cartePb];  
-  
-  for (let h = 0; h < longtab; h++) {
+    let controlCard = [carteDayli, carteRevue, cartePb];
+
+    // creation des cartes:
+    for (let h = 0; h < longtab; h++) {
       let minicarte1 = document.getElementById(idList[h]);
       console.log(minicarte1);
       minicarte1.addEventListener("click", createbigcard);
 
       function createbigcard() {
+       
+          console.log(minicarte1);
+        
         let carte = document.getElementById("carte");
+        // carte.style.border="10px solid red";
         carte.addEventListener("click", flipcard);
         console.log(carte);
         let front = document.createElement("div");
         front.classList.add("front");
         front.style.backgroundColor = colorcard[h];
         console.log(colorcard[h], front);
-        let back = document.createElement("div");
-
+       let back = document.createElement("div");
         console.log(back);
-       
         if (front.style.backgroundColor == colorcard[h]) {
+ 
           back.classList.add("back");
-          back.id = "backDayli";
-         back.style.border = "5px solid "+colorcard[h];
+          back.id = backid[h];
+          back.style.border = "5px solid " + colorcard[h];
+          back.style.color = "black";
+          let titre = document.createElement('h3');
+          let paragraphe = document.createElement('p');
+          let croix = document.createElement('p');
+          croix.innerText = "+";
+          croix.id = "interet1";
+          croix.classList.add("croix1");
 
-          let hpCharacters = [];
-           const loadCharacters = async () => { //ensemble de la fonction qui est asynchrone
-      try {
-        const res = await fetch(controlCard[h]); //stockage dans une constante des données issues du paquet 1 grace a un fetch 
-        hpCharacters = await res.json();
-        console.log(hpCharacters); //mise des données dans le tableau de données  
-        displayCharacters(hpCharacters); //céation d'une fonction avec ce  tableau de données en paramétres
-
-      } catch (err) {
-        console.error(err);
-      }
-    };
-      const displayCharacters = (characters) => { //fonction fléchée displayCharacters
-      const htmlString = characters //création d'une constante de mapage des données (characters)qui retoune sous forme de contenu (innerhtml de  )
-        .map((character) => {
-         return ` <h3>${character.titre} </h3>
-            <p>${character.contenu}</p>
-          <p class="croix1" id="interet1"> + </p>
-                    `;
-        })
-        .join('');
-     back.innerHTML = htmlString;
-     carte.appendChild(front);
-          carte.appendChild(back);
-
-
-          let croixclick = document.getElementById("interet1");
-          console.log(croixclick);
-          croixclick.addEventListener("click", validate);
-  
-          function validate() {
-            console.log("x");
-            croixclick.innerHTML = `<span class=cercle> \ud83d\udc4d </span>`;
-            setTimeout(function () {
-              let carte = document.getElementById("carte");
-              console.log(carte);
-
-              // carte validée
-              let carteaurebus = document.getElementById("carterebu");
-              console.log("xx:", carteaurebus);
-              let frontrejet = document.createElement("div");
-              frontrejet.classList.add("front");
-  
-              if (front.style.backgroundColor == "blue") {
-                frontrejet.style.backgroundColor = colorcard[h];
-              } else if (front.style.backgroundColor == "green") {
-                frontrejet.style.backgroundColor = colorcard[h];
-              } else if (front.style.backgroundColor == "red") {
-                frontrejet.style.backgroundColor = colorcard[h];
+          if(back.id=="backid1"){
+             let urlfetch= controlCard[0]
+          
+          //  for (let i = 1; i < 11; i++) { 
+            fetch(urlfetch + 5)
+            .then(res => res.json())
+            .then(data => {
+                titre.innerText = `${data.titre}`;
+                paragraphe.innerText = `${data.contenu}`;
               }
-              carteaurebus.appendChild(frontrejet);
-              carte.innerHTML = "";
-              carte.classList.remove("active")
-  
-            }, 3000)
-  
+
+            );
+            paragraphe.style.fontSize="0.9em";
+          back.appendChild(titre);
+          back.appendChild(paragraphe);
+          back.appendChild(croix);
+        // }
+          }else if (back.id=="backid2") {
+            let urlfetch= controlCard[1];
+          
+          //  for (let i = 1; i < 11; i++) { 
+            fetch(urlfetch + 2)
+            .then(res => res.json())
+            .then(data => {
+                titre.innerText = `${data.titre}`;
+                paragraphe.innerText = `${data.contenu}`;
+              }
+
+            );
+            paragraphe.style.fontSize="0.9em";
+          back.appendChild(titre);
+          back.appendChild(paragraphe);
+          back.appendChild(croix);
+            
+          } else if(back.id=="backid3") {
+            let urlfetch= controlCard[2]
+          
+          //  for (let i = 1; i < 11; i++) { 
+            fetch(urlfetch + 3)
+            .then(res => res.json())
+            .then(data => {
+                titre.innerText = `${data.titre}`;
+                paragraphe.innerText = `${data.contenu}`;
+              }
+
+            );
+            paragraphe.style.fontSize="0.9em";
+          back.appendChild(titre);
+          back.appendChild(paragraphe);
+          back.appendChild(croix);
+            
           }
-    
-    } 
+         
+        };
+        carte.appendChild(front);
+        carte.appendChild(back);
 
-      loadCharacters();
-          console.log(carte);
+
+        let croixclick = document.getElementById("interet1");
+        console.log(croixclick);
+        croixclick.addEventListener("click", validate);
+
+        function validate() {
+          console.log("x");
+          croixclick.innerHTML = `<span class=cercle> \ud83d\udc4d </span>`;
+          setTimeout(function () {
+            let carte = document.getElementById("carte");
+            console.log(carte);
+
+            // carte validée
+            let carteaurebus = document.getElementById("carterebu");
+            console.log("xx:", carteaurebus);
+            let frontrejet = document.createElement("div");
+            frontrejet.classList.add("front");
+
+            if (front.style.backgroundColor == "blue") {
+              frontrejet.style.backgroundColor = colorcard[h];
+            } else if (front.style.backgroundColor == "green") {
+              frontrejet.style.backgroundColor = colorcard[h];
+            } else if (front.style.backgroundColor == "red") {
+              frontrejet.style.backgroundColor = colorcard[h];
+            }
+            carteaurebus.appendChild(frontrejet);
+            carte.innerHTML = "";
+            carte.classList.remove("active");
+
+          }, 3000)
+
         }
 
-        function flipcard() {
-          carte.classList.add("active");
-        }
+        // } 
+
+        // loadCharacters();
+        //     console.log(carte);
+      }
+
+      function flipcard() {
+        carte.classList.add("active");
       }
     }
-
+    // }
+    // creation des joueurs et des dés.
 
     console.log(joueurs.statut);
     console.log(joueurs);
@@ -230,34 +277,93 @@ export default class Jeu extends Controller {
     });
     //console.log(nbrejoeur);
     let nmbredejoeur = document.getElementById("nmbredejoeur");
+    let list = document.getElementById("listJoueur");
+    console.log(list);
     nmbredejoeur.style.fontSize = "1.1em";
     //selection balise ou id = nmbredejoeur
     let nameJoueur = document.getElementById("nameJoeur"); //selection balise ou id = namedejoeur
     let myarray = {};
-
+    let listimage = ["url('../../assets/img/atomium.png')", "url('../../assets/img/chichen-itza.png')", "url('../../assets/img/egyptian.png')", "url('../../assets/img/eiffel-tower.png')", "url('../../assets/img/giza.png')", "url('../../assets/img/statue-of-liberty.png')", "url('../../assets/img/torii-gate.png')", "url('../../assets/img/pisa.png')"];
+    console.log(listimage.length);
     let text = ""; //definition d'une varaible qui posséde le texte (nom des joueurs) comme valeur donc initialement est vide
     //let nameDev = "";definition d'une variable avec le role identique que la variable text mais servant dans le cas du Dé;
+
     if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
       if (joueurs != "") { //si la liste des joeurs  existe
         let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
         console.log('deve', developpeurs)
         for (let i = 0; i < developpeurs.length; ++i) {
-          const label = document.createElement("span");
-          label.style.marginTop = "2%";
-          label.style.marginRight = "1%";
 
           const syscolor = document.createElement("div");
           syscolor.classList.add("cercles");
           syscolor.style.background = color[i];
-          console.log(syscolor);
+          syscolor.setAttribute("draggable", "true");
+          syscolor.classList.add("itemGame");
+// creation du drage and drop sur accordeon
+           const zonejoueur= document.querySelectorAll('.cadrebox');
+           const itemGame=document.querySelectorAll('itemGame');
+           console.log(zonejoueur,itemGame);
+           let draggedItem = null;
+           for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
+              const item = itemGame[i];
+              item.addEventListener('dragstart', function (e) { // sur chaque carte on effectue un evement d'activation du déplacement
+                  console.log('dragstart', e);
+                  draggedItem = item; // 1 elt deplacé = un item
+                  setTimeout(function () {
+                      item.style.display = "none"; // chaque item n'a pas de style display particulier
+                  }, 0)
+
+              })
+              item.addEventListener('dragend', function () { // sur chaque carte on effectue un evement de fin du déplacement
+                console.log('dragend');
+                setTimeout(function (e) {
+                    draggedItem.style.display = "block"; // chaque item déplacé a style display particulier block
+                    draggedItem = null;
+                }, 0)
+            })
+            for (let j = 0; j < zonejoueur.length; j++) { // chaque item déplacé a style display particulier block
+              const listZoneJ = zonejoueur[j];
+              listZoneJ.addEventListener('dragover', function (e) {
+                  e.preventDefault();
+              });
+              listZoneJ.addEventListener('dragenter', function (e) {
+                  e.preventDefault();
+              });
+              listZoneJ.addEventListener('drop', function () {
+                  this.append(draggedItem);
+              });
+
+          }
+           }
+          let backapion = document.getElementById("backapion");
+          backapion.style.display = "flex";
+          backapion.style.flexDirection = "row";
+          console.log(backapion);
+          let pion = document.createElement('div');
+          pion.classList.add("pion");
+
+          const label = document.createElement("span");
+          label.style.marginTop = "2%";
+          label.style.marginRight = "1%";
           label.innerHTML = developpeurs[i].name;
+          label.style.color = color[i];
+          console.log(developpeurs[0]);
+          pion.style.backgroundColor = label.style.color;
+          console.log(pion);
+          pion.style.backgroundImage = listimage[i];
+          console.log(pion.style.backgroundImage, listimage[i]);
+
+
           // la variable text est rempli par l'iteration de noms des joueurs
           console.log(developpeurs[i].name, "....", text);
           // nameJoueur.innerHTML =  text ;
-
+          backapion.append(pion);
           nameJoueur.append(label);
-          nameJoueur.append(syscolor);
+
+          list.append(syscolor);
+
           nameJoueur.classList.add("repartition");
+          nameJoueur.style.width = "100%";
         }
         nmbredejoeur.innerHTML = nbrejoeur; //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
       } else {
@@ -296,11 +402,6 @@ export default class Jeu extends Controller {
 
 
       setTimeout(function () {
-        //     let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
-        // console.log('deve', developpeurs)
-        // for (let i = 0; i < developpeurs.length; ++i) {
-        // }
-
         let listeDe = document.querySelectorAll("ol[data-level]");
         console.log(listeDe);
         let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
@@ -317,9 +418,7 @@ export default class Jeu extends Controller {
           console.log("le array du resultat" + tableauDesRes);
           myarray[developpeurs[i].name] = tableauDesRes;
           console.log("le array du resultat" + myarray[developpeurs[i].name]);
-          // var test= myarray[developpeurs[2].name];
-          // console.log(test);
-          // console.log(listDice); 
+
         }
         afficheresult.innerHTML = "Votre dé a pour resultat:" + result;
 
@@ -980,6 +1079,7 @@ export default class Jeu extends Controller {
       // pieSeries4.slices.template.tooltipText = "{category}: Y";
       pieSeries4.labels.template.bent = true;
       pieSeries4.labels.template.text = "{text4}";
+      // pieSeries4.labels.template.color="black";
       pieSeries4.labels.template.fontSize = "0.75em";
       pieSeries4.labels.template.maxBottom = "5%";
       pieSeries4.alignLabels = false;

@@ -28,25 +28,33 @@ export default class Jeu extends Controller {
     let carteRevue = "http://localhost:3003/carteJeuRevue/";
     let cartePb = " http://localhost:3003/carteJeuPb/";
     let colorcard = ["blue", "green", "red"];
-    console.log(colorcard);
-
-
     let idList = ["carteday", "carterev", "cartepb"];
     let backid=["backid1", "backid2", "backid3"];
+    let minicarte0=document.getElementById(idList[0]);
+let minicarte1=document.getElementById(idList[1]);
+let minicarte2=document.getElementById(idList[2]);
+let minicarte=[minicarte0,minicarte1,minicarte2];
+
     console.log(idList);
 
     let longtab = idList.length;
     let controlCard = [carteDayli, carteRevue, cartePb];
-
+  
     // creation des cartes:
     for (let h = 0; h < longtab; h++) {
-      let minicarte1 = document.getElementById(idList[h]);
-      console.log(minicarte1);
-      minicarte1.addEventListener("click", createbigcard);
+      minicarte[h].addEventListener("click", createbigcard);
 
-      function createbigcard() {
-       
-          console.log(minicarte1);
+let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;  
+      let nbrclick=[nbreclick1,nbreclick2,nbreclick3];
+// console.log(nbrclick[h]);nbrclick[h]; 
+ 
+
+      function createbigcard() { 
+    
+     
+      nbrclick[h]++;
+        console.log("nbrclick0:", nbrclick[0],"nbrclick1:",nbrclick[1],"nbrclick2:",nbrclick[2]);
+          console.log(minicarte[h]);
         
         let carte = document.getElementById("carte");
         // carte.style.border="10px solid red";
@@ -74,8 +82,8 @@ export default class Jeu extends Controller {
           if(back.id=="backid1"){
              let urlfetch= controlCard[0]
           
-          //  for (let i = 1; i < 11; i++) { 
-            fetch(urlfetch + 5)
+           
+            fetch(urlfetch + nbrclick[0])
             .then(res => res.json())
             .then(data => {
                 titre.innerText = `${data.titre}`;
@@ -87,12 +95,12 @@ export default class Jeu extends Controller {
           back.appendChild(titre);
           back.appendChild(paragraphe);
           back.appendChild(croix);
-        // }
+        
           }else if (back.id=="backid2") {
             let urlfetch= controlCard[1];
           
           //  for (let i = 1; i < 11; i++) { 
-            fetch(urlfetch + 2)
+            fetch(urlfetch + nbrclick[1])
             .then(res => res.json())
             .then(data => {
                 titre.innerText = `${data.titre}`;
@@ -109,7 +117,7 @@ export default class Jeu extends Controller {
             let urlfetch= controlCard[2]
           
           //  for (let i = 1; i < 11; i++) { 
-            fetch(urlfetch + 3)
+            fetch(urlfetch + nbrclick[2])
             .then(res => res.json())
             .then(data => {
                 titre.innerText = `${data.titre}`;
@@ -341,42 +349,51 @@ export default class Jeu extends Controller {
           const itemGame=document.querySelectorAll('.itemGame');
           console.log(zonejoueur,itemGame);
           let draggedItem = null;
-          itemGame.forEach(element => {
+          itemGame.forEach((element) => {
             // const item = element[i];
             // console.log(element[i])
-             element.addEventListener('dragstart', function (e) { // sur chaque carte on effectue un evement d'activation du déplacement
-                 console.log('dragstart', e);
-                 draggedItem = element; // 1 elt deplacé = un item
-                 setTimeout(function () {
-                     element.style.display = "none"; // chaque item n'a pas de style display particulier
-                 }, 0)
 
-             })
-             element.addEventListener('dragend', function () { // sur chaque carte on effectue un evement de fin du déplacement
-               console.log('dragend');
-               setTimeout(function (e) {
-                   draggedItem.style.display = "block"; // chaque item déplacé a style display particulier block
-                  //  draggedItem = null;
-               }, 0)
-           })
-           zonejoueur.forEach(zone=>{
-            zone.addEventListener('dragover', function (e) {
-              e.preventDefault();
-          });
-          zone.addEventListener('dragenter', function (e) {
-              e.preventDefault();
-          });
-          zone.addEventListener('drop', function (){
-          //  e.preventDefault();
-              zone.append(draggedItem);
-          });
-           })
-        //    for (let j = 0; j < zonejoueur.length; j++) { // chaque item déplacé a style display particulier block
-        //      const listZoneJ = zonejoueur[j];
-           
+            element.addEventListener("dragstart", function (e) {
+              const element = e.target;
 
-        //  }
+              function display(e) {
+                const zone = e.target;
+                zone.append(element);
+                console.log("elment", element);
+
+                zonejoueur.forEach((zone) => {
+                  zone.removeEventListener("drop", display);
+                });
+              }
+
+              //sur chaque carte on effectue un evement d'activation du déplacement
+              console.log("dragstart", e);
+              // draggedItem = element; // 1 elt deplacé = un item
+              setTimeout(function () {
+                element.style.display = "none"; // chaque item n'a pas de style display particulier
+              }, 0);
+
+              zonejoueur.forEach((zone) => {
+                zone.addEventListener("dragover", function (e) {
+                  e.preventDefault();
+                });
+                zone.addEventListener("dragenter", function (e) {
+                  e.preventDefault();
+                });
+                zone.addEventListener("drop", display);
+              });
+            });
+
+            element.addEventListener("dragend", function () {
+              // sur chaque carte on effectue un evement de fin du déplacement
+              console.log("dragend");
+              setTimeout(function (e) {
+                element.style.display = "block"; // chaque item déplacé a style display particulier block
+                //  draggedItem = null;
+              }, 0);
+            });
           });
+         
           // for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
              
           // }

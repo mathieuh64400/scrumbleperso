@@ -29,33 +29,35 @@ export default class Jeu extends Controller {
     let cartePb = " http://localhost:3003/carteJeuPb/";
     let colorcard = ["blue", "green", "red"];
     let idList = ["carteday", "carterev", "cartepb"];
-    let backid=["backid1", "backid2", "backid3"];
-    let minicarte0=document.getElementById(idList[0]);
-let minicarte1=document.getElementById(idList[1]);
-let minicarte2=document.getElementById(idList[2]);
-let minicarte=[minicarte0,minicarte1,minicarte2];
+    let backid = ["backid1", "backid2", "backid3"];
+    let minicarte0 = document.getElementById(idList[0]);
+    let minicarte1 = document.getElementById(idList[1]);
+    let minicarte2 = document.getElementById(idList[2]);
+    let minicarte = [minicarte0, minicarte1, minicarte2];
 
     console.log(idList);
 
     let longtab = idList.length;
     let controlCard = [carteDayli, carteRevue, cartePb];
-  
+
     // creation des cartes:
     for (let h = 0; h < longtab; h++) {
       minicarte[h].addEventListener("click", createbigcard);
 
-let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;  
-      let nbrclick=[nbreclick1,nbreclick2,nbreclick3];
-// console.log(nbrclick[h]);nbrclick[h]; 
- 
+      let nbreclick1 = 0;
+      let nbreclick2 = 0;
+      let nbreclick3 = 0;
+      let nbrclick = [nbreclick1, nbreclick2, nbreclick3];
+      // console.log(nbrclick[h]);nbrclick[h]; 
 
-      function createbigcard() { 
-    
-     
-      nbrclick[h]++;
-        console.log("nbrclick0:", nbrclick[0],"nbrclick1:",nbrclick[1],"nbrclick2:",nbrclick[2]);
-          console.log(minicarte[h]);
-        
+
+      function createbigcard() {
+
+
+        nbrclick[h]++;
+        console.log("nbrclick0:", nbrclick[0], "nbrclick1:", nbrclick[1], "nbrclick2:", nbrclick[2]);
+        console.log(minicarte[h]);
+
         let carte = document.getElementById("carte");
         // carte.style.border="10px solid red";
         carte.addEventListener("click", flipcard);
@@ -64,10 +66,10 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
         front.classList.add("front");
         front.style.backgroundColor = colorcard[h];
         console.log(colorcard[h], front);
-       let back = document.createElement("div");
+        let back = document.createElement("div");
         console.log(back);
         if (front.style.backgroundColor == colorcard[h]) {
- 
+
           back.classList.add("back");
           back.id = backid[h];
           back.style.border = "5px solid " + colorcard[h];
@@ -79,59 +81,57 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
           croix.id = "interet1";
           croix.classList.add("croix1");
 
-          if(back.id=="backid1"){
-             let urlfetch= controlCard[0]
-          
-           
+          if (back.id == "backid1") {
+            let urlfetch = controlCard[0];
             fetch(urlfetch + nbrclick[0])
-            .then(res => res.json())
-            .then(data => {
-                titre.innerText = `${data.titre}`;
-                paragraphe.innerText = `${data.contenu}`;
-              }
+              .then(res => res.json())
+              .then(data => {
+                  titre.innerText = `${data.titre}`;
+                  paragraphe.innerText = `${data.contenu}`;
+                }
 
-            );
-            paragraphe.style.fontSize="0.9em";
-          back.appendChild(titre);
-          back.appendChild(paragraphe);
-          back.appendChild(croix);
-        
-          }else if (back.id=="backid2") {
-            let urlfetch= controlCard[1];
-          
-          //  for (let i = 1; i < 11; i++) { 
+              );
+            paragraphe.style.fontSize = "0.9em";
+            back.appendChild(titre);
+            back.appendChild(paragraphe);
+            back.appendChild(croix);
+
+          } else if (back.id == "backid2") {
+            let urlfetch = controlCard[1];
+
+            //  for (let i = 1; i < 11; i++) { 
             fetch(urlfetch + nbrclick[1])
-            .then(res => res.json())
-            .then(data => {
-                titre.innerText = `${data.titre}`;
-                paragraphe.innerText = `${data.contenu}`;
-              }
+              .then(res => res.json())
+              .then(data => {
+                  titre.innerText = `${data.titre}`;
+                  paragraphe.innerText = `${data.contenu}`;
+                }
 
-            );
-            paragraphe.style.fontSize="0.9em";
-          back.appendChild(titre);
-          back.appendChild(paragraphe);
-          back.appendChild(croix);
-            
-          } else if(back.id=="backid3") {
-            let urlfetch= controlCard[2]
-          
-          //  for (let i = 1; i < 11; i++) { 
+              );
+            paragraphe.style.fontSize = "0.9em";
+            back.appendChild(titre);
+            back.appendChild(paragraphe);
+            back.appendChild(croix);
+
+          } else if (back.id == "backid3") {
+            let urlfetch = controlCard[2]
+
+            //  for (let i = 1; i < 11; i++) { 
             fetch(urlfetch + nbrclick[2])
-            .then(res => res.json())
-            .then(data => {
-                titre.innerText = `${data.titre}`;
-                paragraphe.innerText = `${data.contenu}`;
-              }
+              .then(res => res.json())
+              .then(data => {
+                  titre.innerText = `${data.titre}`;
+                  paragraphe.innerText = `${data.contenu}`;
+                }
 
-            );
-            paragraphe.style.fontSize="0.9em";
-          back.appendChild(titre);
-          back.appendChild(paragraphe);
-          back.appendChild(croix);
-            
+              );
+            paragraphe.style.fontSize = "0.9em";
+            back.appendChild(titre);
+            back.appendChild(paragraphe);
+            back.appendChild(croix);
+
           }
-         
+
         };
         carte.appendChild(front);
         carte.appendChild(back);
@@ -309,7 +309,7 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
           syscolor.classList.add("itemGame");
 
 
-// ////////////////////////////////////////////////////////////////
+          // ////////////////////////////////////////////////////////////////
           let backapion = document.getElementById("backapion");
           backapion.style.display = "flex";
           backapion.style.flexDirection = "row";
@@ -345,9 +345,9 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
 
 
           // creation du drage and drop sur accordeon
-          const zonejoueur= document.querySelectorAll('.cadrebox');
-          const itemGame=document.querySelectorAll('.itemGame');
-          console.log(zonejoueur,itemGame);
+          const zonejoueur = document.querySelectorAll('.cadrebox');
+          const itemGame = document.querySelectorAll('.itemGame');
+          console.log(zonejoueur, itemGame);
           let draggedItem = null;
           itemGame.forEach((element) => {
             // const item = element[i];
@@ -393,9 +393,9 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
               }, 0);
             });
           });
-         
+
           // for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
-             
+
           // }
         }
         nmbredejoeur.innerHTML = nbrejoeur; //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
@@ -1081,15 +1081,15 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
       const as5 = pieSeries5.slices.template.states.getKey("active");
       as5.properties.shiftRadius = 0;
       pieSeries5.slices.template.cursorOverStyle = am4core.MouseCursorStyle.pointer;
-
+      pieSeries5.labels.template.padding(0, 0, 0, 0);
 
       pieSeries5.alignLabels = false;
 
 
 
 
-      pieSeries5.labels.template.radius = am4core.percent(-20.5);
-      pieSeries5.labels.template.fill = am4core.color("white");
+      pieSeries5.labels.template.radius = am4core.percent(-19.5);
+      pieSeries5.labels.template.fill = am4core.color("black");
       pieSeries5.labels.template.relativeRotation = 0;
 
       pieSeries5.labels.template.text = "{text5}";
@@ -1116,9 +1116,10 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
       pieSeries4.labels.template.fontSize = "0.75em";
       pieSeries4.labels.template.maxBottom = "5%";
       pieSeries4.alignLabels = false;
-      pieSeries4.labels.template.radius = am4core.percent(-13.5);
-      pieSeries4.labels.template.fill = am4core.color("white");
+      pieSeries4.labels.template.radius = am4core.percent(-12.5);
+      pieSeries4.labels.template.fill = am4core.color("black");
       pieSeries4.labels.template.relativeRotation = 0;
+      pieSeries4.labels.template.padding(0, 0, 0, 0);
       // Ajout du troisième niveau:
 
       const pieSeries3 = chart.series.push(new am4charts.PieSeries());
@@ -1140,8 +1141,9 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
       pieSeries3.alignLabels = false;
       pieSeries3.labels.template.radius = am4core.percent(-10.5);
       pieSeries3.labels.template.textAlign = "center";
-      pieSeries3.labels.template.fill = am4core.color("white");
+      pieSeries3.labels.template.fill = am4core.color("black");
       pieSeries3.labels.template.relativeRotation = 0;
+      pieSeries3.labels.template.padding(0, 0, 0, 0);
       // Ajout d'un second cercle  qui est le plus bas
 
       const pieSeries2 = chart.series.push(new am4charts.PieSeries());
@@ -1163,9 +1165,9 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
       pieSeries2.alignLabels = false;
       pieSeries2.labels.template.radius = am4core.percent(-9.5);
       pieSeries2.labels.template.textAlign = "left";
-      pieSeries2.labels.template.fill = am4core.color("white");
+      pieSeries2.labels.template.fill = am4core.color("black");
       pieSeries2.labels.template.relativeRotation = 0;
-
+      pieSeries2.labels.template.padding(0, 0, 0, 0);
       // premier cercle qui est le plus haut
 
       const pieSeries = chart.series.push(new am4charts.PieSeries());
@@ -1183,13 +1185,32 @@ let nbreclick1=0;let nbreclick2=0; let nbreclick3=0;
       pieSeries.labels.template.text = "{text3}";
       pieSeries.labels.template.radius = am4core.percent(-9.5);
       pieSeries.labels.template.textAlign = "left";
-      pieSeries.labels.template.fill = am4core.color("white");
+      pieSeries.labels.template.fill = am4core.color("black");
+      pieSeries.labels.template.padding(0, 0, 0, 0);
       pieSeries.labels.template.relativeRotation = 0;
 
       ////////////////////  tooltip //////
+//       let x = "http://localhost:3003/paquet1/1"
+//       console.log(x);
+//      let USERSTORIES;
+//       let paragraphecard = document.createElement('p');
+//       fetch(x)
+//         .then(res => res.json())
+//         .then(data => { let USERSTORIES;
+//           // console.log(data.contenu);
+//           // USERSTORIES.innerText=`${data.contenu}`;
+//           // console.log(USERSTORIES.innerText);
 
-      let USERSTORIES =
-        "En tant que commerçant, je veux ajouter et éditer de nouveaux produits dans ma boutique.<br><br> &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
+//             // titre.innerText = `${data.titre}`;
+//             paragraphecard.innerText = `${data.contenu}`;
+//             // USERSTORIES.innertext =
+//             // `${data.contenu}`+ " " + "<br><br>" + " &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
+
+//           }
+
+//         );
+// // USERSTORIES.appendChild( paragraphecard);
+
 
       pieSeries.ticks.template.disabled = true; //elimine le fait que les tooltip sont invisibles
       pieSeries.tooltip.label.maxWidth = 210; //taille du tootip

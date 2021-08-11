@@ -64,7 +64,7 @@ export default class Etape1 extends Controller {
 
     rendreInputBloc(nomAtr, statutAtr) {
         return  `
-        <div class="repartition" style=" width:100%; margin-right:3%;">
+        <div class="repartition" style="width:100%; margin-right:3%;">
             <input class="inputtext" type="text" name="${nomAtr}" Value="Beta">
             <select name="${statutAtr}" class="select">
                 <option>Responsabilité</option>

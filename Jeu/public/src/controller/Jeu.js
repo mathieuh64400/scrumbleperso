@@ -1,15 +1,32 @@
 import Controller from "../core/Controller.js";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
+import {
+  io
+} from "socket.io-client";
 
 
 
 export default class Jeu extends Controller {
   constructor() {
     super();
+    fetch('http://localhost:3000/').then(res => console.log(res))
+
+    // player ajouté donnée au state joueur des le debut du jeu
+    const player = {
+      host: false,
+      roomId: null,
+      username: "",
+      socketId: ""
+    };
+    console.log(player);
 
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
-
+    console.log(joueurs.length);
+    const nbrejoeuer = {
+      nbre: joueurs.length
+    }
+    console.log(nbrejoeuer);
     let color1 = "white";
     let color2 = "red";
     let color3 = "blue";
@@ -20,10 +37,136 @@ export default class Jeu extends Controller {
     let color8 = "black";
     let color = [color1, color2, color3, color4, color5, color6, color7, color8];
     console.log(color);
+    // modal:
+    var modal = document.getElementById('myModal');
 
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    //  creation de session de de jeu:
+    //  pb socket Failed to load resource: net::ERR_CONNECTION_REFUSED dans console
+    const formentretchat = document.getElementById("entretchat");
+    console.log(formentretchat);
+    let containertchat = document.getElementById('containerdutchat');
+    let formsessions = document.getElementById("salon");
+    const inputvalue = document.getElementById("username");
+    const carduser = document.querySelector("#usercard");
+
+    let toddolist = document.getElementById('roomcard');
+    let listsalon = document.getElementById('myUL');
+    const linkToShare = document.getElementById('link-to-share');
+
+    console.log(listsalon, "etat i");
+    console.log(formsessions, inputvalue, carduser, toddolist);
+
+    const socket = io('http://localhost:3004').connect();
+    console.log(socket);
+
+    // socket.emit('get rooms');
+    // socket.on('list rooms', (rooms) => {
+    //     let html = "";
+    //    console.log(html);
+    //     if (rooms.length > 0) { console.log(rooms);
+    //         rooms.forEach(room => {
+    //             if (room.players.length !== 2) {
+    //                 html += `<li>
+    //                             <p> Salon proposé par ${room.players[0].username} - ${room.id}</p>
+    //                             <button data-room="${room.id}">Rejoindre</button>
+    //                         </li>`;
+    //             }
+    //         });
+    //     } else{
+    //       alert("pb");
+    //     }
+
+    //     // if (html !== "") {
+    //     //   console.log(html);
+    //     //   listsalon.innerHTML="";
+    //     //   listsalon.innerHTML = html;
+    //     //   console.log(listsalon);
+
+    //     //     // for (const element of document.getElementsByClassName('join-room')) {
+    //     //     //     element.addEventListener('click', joinRoom, false)
+    //     //     // }
+    //     // }
+    // });
+
+    formsessions.onsubmit = function (e) {
+      e.preventDefault();
+      player.username = inputvalue.value;
+      player.host = true;
+      player.socketId = socket.id;
+      console.log(player);
+      carduser.innerHTML = "";
+      let parauser = document.createElement('p');
+      parauser.innerHTML = 'Partagez ce lien afin d inviter les autres joueurs à te rejoindre :'
+      carduser.appendChild(parauser);
+
+      socket.emit('playerData', player);
+      socket.emit('playernbre', nbrejoeuer);
+    }
+    socket.on('join room', (roomId) => {
+      player.roomId = roomId;
+      console.log(roomId);
+      linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank">${window.location.href}?room=${player.roomId}</a>`;
+      console.log(linkToShare);
+    });
+
+    //  creation du tchat
+    formentretchat.onsubmit = function (e) {
+      e.preventDefault();
+      containertchat.innerHTML=` 
+      <div class="chat-container">
+      <div class="chat-header">
+        <h3><i class="fas fa-smile"></i> Zone de Discussion</h3>
+        <a id="leave-btn" class="myBtn">Quitter</a>
+      </div>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3><i class="fas fa-comments"></i> Nom</h3>
+          <h2 id="room-name"></h2>
+          <h3><i class="fas fa-users"></i> Users</h3>
+          <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+      <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button class="btn"><i class="fas fa-paper-plane"></i> Envoyer</button>
+        </form>
+      </div>
+    </div>`;
+    }
+    // var socket = io.connect();
+    // socket.on('faitUneAlerte', function () {
+    //       alert('Je fais une alerte car on m\'a appelé !');});
     // création des cartes 
-
-
     let carteDayli = "http://localhost:3003/carteJeudayli/";
     let carteRevue = "http://localhost:3003/carteJeuRevue/";
     let cartePb = " http://localhost:3003/carteJeuPb/";
@@ -142,7 +285,7 @@ export default class Jeu extends Controller {
         croixclick.addEventListener("click", validate);
 
         function validate() {
-          console.log("x");
+
           croixclick.innerHTML = `<span class=cercle> \ud83d\udc4d </span>`;
           setTimeout(function () {
             let carte = document.getElementById("carte");
@@ -316,7 +459,7 @@ export default class Jeu extends Controller {
           console.log(backapion);
           let pion = document.createElement('div');
           pion.classList.add("pion");
-
+          socket.emit('custom-evenet', pion);
           const label = document.createElement("span");
           label.style.marginTop = "2%";
           label.style.marginRight = "1%";
@@ -342,7 +485,7 @@ export default class Jeu extends Controller {
           nameJoueur.classList.add("repartition");
           nameJoueur.style.width = "100%";
 
-
+          socket.on('connect')
 
           // creation du drage and drop sur accordeon
           const zonejoueur = document.querySelectorAll('.cadrebox');
@@ -432,6 +575,7 @@ export default class Jeu extends Controller {
 
       result = die.dataset.roll;
 
+      console.log(socket);
 
 
       setTimeout(function () {
@@ -1190,26 +1334,26 @@ export default class Jeu extends Controller {
       pieSeries.labels.template.relativeRotation = 0;
 
       ////////////////////  tooltip //////
-//       let x = "http://localhost:3003/paquet1/1"
-//       console.log(x);
-//      let USERSTORIES;
-//       let paragraphecard = document.createElement('p');
-//       fetch(x)
-//         .then(res => res.json())
-//         .then(data => { let USERSTORIES;
-//           // console.log(data.contenu);
-//           // USERSTORIES.innerText=`${data.contenu}`;
-//           // console.log(USERSTORIES.innerText);
+      //       let x = "http://localhost:3003/paquet1/1"
+      //       console.log(x);
+      //      let USERSTORIES;
+      //       let paragraphecard = document.createElement('p');
+      //       fetch(x)
+      //         .then(res => res.json())
+      //         .then(data => { let USERSTORIES;
+      //           // console.log(data.contenu);
+      //           // USERSTORIES.innerText=`${data.contenu}`;
+      //           // console.log(USERSTORIES.innerText);
 
-//             // titre.innerText = `${data.titre}`;
-//             paragraphecard.innerText = `${data.contenu}`;
-//             // USERSTORIES.innertext =
-//             // `${data.contenu}`+ " " + "<br><br>" + " &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
+      //             // titre.innerText = `${data.titre}`;
+      //             paragraphecard.innerText = `${data.contenu}`;
+      //             // USERSTORIES.innertext =
+      //             // `${data.contenu}`+ " " + "<br><br>" + " &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
 
-//           }
+      //           }
 
-//         );
-// // USERSTORIES.appendChild( paragraphecard);
+      //         );
+      // // USERSTORIES.appendChild( paragraphecard);
 
 
       pieSeries.ticks.template.disabled = true; //elimine le fait que les tooltip sont invisibles

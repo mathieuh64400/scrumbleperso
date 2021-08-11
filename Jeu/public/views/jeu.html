@@ -11,21 +11,101 @@
     <link rel="stylesheet" href="../assets/css/scrumble.css">
     <link rel="stylesheet" href="../assets/css/jeu.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
 
 <body>
+    <button id="myBtn"> Session de jeu</button>
+    <div>
+        <input type="checkbox" name="toogle" id="toogle" />
+        <div id="volet">
 
+            <ul>
+                <li id="containerdutchat">
+                    <div class="join-container">
+                        <div class="join-header">
+                            <h3><i class="fas fa-smile"></i> Zone de conversation</h3>
+                        </div>
+                        <main class="join-main">
+                            <form action="" id="entretchat">
+                                <div class="form-control">
+                                    <label for="username" class="list"> Listes des Joueurs</label>
+                                    <select name="username" id="joueurduroom">
+                                        <option value="JavaScript">joueur1</option>
+                                        <option value="Python">joueur2</option>
+                                        <option value="PHP">joueur3</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="form-control">
+                                    <label for="room" class="list">Sujet de Conversation</label>
+                                    <select name="room" id="room">
+                                        <option value="General">General</option>
+                                        <option value="Python">Python</option>
+                                        <option value="PHP">PHP</option>
+                                        <option value="C#">C#</option>
+                                        <option value="Ruby">Ruby</option>
+                                        <option value="Java">Java</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn">Rejoindre</button>
+                            </form>
+                        </main>
+                    </div>
+                </li>
+            </ul>
+
+            <label for="toogle">Tchat</label>
+        </div>
+    </div>
+
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div>
+                <div id="usercard">
+                    <p class="formsession"> creer un salon privé: <br>
+                    <form action="" method="post" id="salon">
+                        <label for="fname">Nom du Joueur</label><br>
+                        <input type="text" id="username" name="fname" placeholder="Saisir votre nom d'utilisateur"><br>
+                        <button id="validation">Creer un salon privée en génerant un lien à partager</button>
+                    </form>
+                    </p>
+
+                </div>
+                <p class="repartition">
+                <p>lien:
+                    <span id="link-to-share"></span></p>
+                </p>
+            </div>
+            <div>
+                <p class="listsession" id="roomcard"> Liste des salons <br>
+
+                <ul id="myUL">
+                    <li>Aucun salon n'est proposé</li>
+                </ul>
+                </p>
+            </div>
+            <span class="close">x</span>
+        </div>
+
+    </div>
     <div class="cadretitre">
+
+
         <div id="titreJeu">
 
             <span> <a id="cadrefleche" href="/etape4" data-link="/etape4"> &#10094;</a></span>
             <span>
                 <h2> Bravo!!! vous etes <span id="nmbredejoeur"> 0 </span> joeurs/joeuses à pouvoir tirer les dés en
-                    même temps
+                    même temps : <br> <span id="infosocket"> </span>
                 </h2><br>
                 <p> <span id="nameJoeur"></span>
                     <br> Tirez votre dé
+                    <span id=" donneestestsocket"></span>
                     <span id="resultatTirage"></span>
                 </p>
 
@@ -38,7 +118,7 @@
                 <label for="tab-one">Voir les differentes Users stories en Cours</label>
 
                 <div class="insidebox">
-                    <div id="listJoueur" > 
+                    <div id="listJoueur">
 
                     </div>
                     <div class="insideboxdetail">
@@ -54,7 +134,7 @@
                         <p class="insideboxtext"> <span>&#x2605;</span> <span>&#x2605;</span>
                             <span>&#x2605;</span></p>
                         <p style="margin-left: 2% ;margin-right: 2%;">|</p>
-                         <p class="cadrebox"> </p>
+                        <p class="cadrebox"> </p>
                     </div>
                     <div class="insideboxcadre">
                         <p class="insideboxtext"> N°2 loreme Ipsum</p>
@@ -68,14 +148,14 @@
                         <p style="margin-left: 2% ;margin-right: 2%;">|</p>
                         <p class="insideboxtext"> <span>&#x2605;</span> <span>&#x2605;</span></p>
                         <p style="margin-left: 2% ;margin-right: 2%;">|</p>
-                         <p class="cadrebox"> </p>
+                        <p class="cadrebox"> </p>
                     </div>
                     <div class="insideboxcadre">
                         <p class="insideboxtext">N°4 loreme Ipsum</p>
                         <p style="margin-left: 2% ;margin-right: 2%;">|</p>
                         <p class="insideboxtext"> <span>&#x2605;</span> <span>&#x2605;</span></p>
                         <p style="margin-left: 2% ;margin-right: 2%;">|</p>
-                       <p class="cadrebox">  </p>
+                        <p class="cadrebox"> </p>
                     </div>
 
                 </div>
@@ -97,10 +177,10 @@
                         </div>
                     </div>
                 </div>
-                <p >
-                     <div id="backapion">
+                <p>
+                <div id="backapion">
 
-                    </div> 
+                </div>
                 </p>
 
             </article>
@@ -110,7 +190,7 @@
             <article class="pistede dice" id="ref">
 
             </article>
-            <div style="font-size: 0.75em; margin-top: 2%;">
+            <div class="explication">
                 cliquez sur un des paquets puis sur la carte dans le cadre et enfin sur la petite croix une fois la
                 carte lue.
             </div>
@@ -165,42 +245,10 @@
         </section>
 
     </section>
-    <!-- //  const zonejoueur= document.querySelectorAll('.insideboxtext');
-    //  const itemGame=document.querySelectorAll('itemGame');
-    //  console.log(zonejoueur,itemGame);
-    //  let draggedItem = null;
-    //  for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
-    //     const item = itemGame[i];
-    //     item.addEventListener('dragstart', function (e) { // sur chaque carte on effectue un evement d'activation du déplacement
-    //         console.log('dragstart', e);
-    //         draggedItem = item; // 1 elt deplacé = un item
-    //         setTimeout(function () {
-    //             item.style.display = "none"; // chaque item n'a pas de style display particulier
-    //         }, 0)
 
-    //     })
-    //     item.addEventListener('dragend', function () { // sur chaque carte on effectue un evement de fin du déplacement
-    //       console.log('dragend');
-    //       setTimeout(function (e) {
-    //           draggedItem.style.display = "block"; // chaque item déplacé a style display particulier block
-    //           draggedItem = null;
-    //       }, 0)
-    //   })
-    //   for (let j = 0; j < zonejoueur.length; j++) { // chaque item déplacé a style display particulier block
-    //     const listZoneJ = zonejoueur[j];
-    //     listZoneJ.addEventListener('dragover', function (e) {
-    //         e.preventDefault();
-    //     });
-    //     listZoneJ.addEventListener('dragenter', function (e) {
-    //         e.preventDefault();
-    //     });
-    //     listZoneJ.addEventListener('drop', function () {
-    //         this.append(draggedItem);
-    //     });
-
-    // }
-    //  } -->
-
+    <script src="/socket.io/socket.io.js"></script>
 </body>
+
+
 
 </html>

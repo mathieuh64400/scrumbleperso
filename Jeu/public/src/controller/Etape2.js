@@ -12,7 +12,7 @@ export default class Etape2 extends Controller {
     let url1 = "http://localhost:3003/paquet2";
     let url2 = "http://localhost:3003/paquet3";
 
-
+    let urlselecionne;
     // creation des paquets de cartes (ici 1 a 1 mais voir amellioration par une boucle for)
 
     // paquet0
@@ -232,7 +232,7 @@ export default class Etape2 extends Controller {
           let urldiffpaquet =[];
           let url=urldiffpaquet.push(cadreselected);
           console.log(urldiffpaquet,url);
-          let urlselecionne;
+          // let urlselecionne;
           urlselecionne =urldiffpaquet[0];
           console.log(urlselecionne);
           // alert( "nous avons donc selectionné le paquet de user storie n°"+urlselecionne);
@@ -243,7 +243,7 @@ export default class Etape2 extends Controller {
 
 
     }
-
+ 
     console.log(this.state);
 
   }

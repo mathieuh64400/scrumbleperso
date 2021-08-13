@@ -6,7 +6,6 @@ import {
 } from "socket.io-client";
 
 
-
 export default class Jeu extends Controller {
   constructor() {
     super();
@@ -74,7 +73,10 @@ export default class Jeu extends Controller {
     let toddolist = document.getElementById('roomcard');
     let listsalon = document.getElementById('myUL');
     const linkToShare = document.getElementById('link-to-share');
-
+    const room=document.getElementById('room');
+    console.log(room);
+    const username=document.getElementById('joueurduroom');
+    console.log(username);
     console.log(listsalon, "etat i");
     console.log(formsessions, inputvalue, carduser, toddolist);
 
@@ -132,20 +134,22 @@ export default class Jeu extends Controller {
     });
 
     //  creation du tchat
+
     formentretchat.onsubmit = function (e) {
       e.preventDefault();
-      containertchat.innerHTML=` 
+      containertchat.innerHTML = ` 
       <div class="chat-container">
       <div class="chat-header">
         <h3><i class="fas fa-smile"></i> Zone de Discussion</h3>
-        <a id="leave-btn" class="myBtn">Quitter</a>
+        <button id="leave-btn" class="quitBtn">X</button>
       </div>
       <main class="chat-main">
         <div class="chat-sidebar">
-          <h3><i class="fas fa-comments"></i> Nom</h3>
+          <h3><i class="fas fa-comments"></i> Sujet </h3>
           <h2 id="room-name"></h2>
           <h3><i class="fas fa-users"></i> Users</h3>
-          <ul id="users"></ul>
+          <ul id="users">
+          </ul>
         </div>
         <div class="chat-messages"></div>
       </main>
@@ -162,7 +166,127 @@ export default class Jeu extends Controller {
         </form>
       </div>
     </div>`;
+    
+      
+    const chatform = document.getElementById('chat-form');
+    const chatMessages=document.querySelector('.chat-messages'); 
+    //creation d'un objet récupérant et stockant les valeurs des inputs nom et du select rooms=sujet de discussions
+    let interlocuteur={room:room.value,username: username.value};
+    // roomsname.innerHTML=interlocuteur.room;
+    socket.emit('joinRoom',interlocuteur);
+
+    socket.on('roomUsers',({room ,users})=>{
+      outputRoomName(room,users)// cela va nous afficher les données room=sujet de conversation et les noms des participants(ci-dessous)
+    })
+    // Mettre dans la barre de coté le salon et 
+      // message issu du server 
+       console.log(interlocuteur);
+      socket.on('message', message => {
+        console.log(message);
+        outputMessage(message); // fonction d'envoi du nom de l'utilisateur et le contenu du message
+        
+        
+        chatMessages.scrollTop=chatMessages.scrollHeight;// scrolldu chat et egal a taille ecran defini en css
+      })
+      
+      //  message submit
+      chatform.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // obtenir message text du champs input
+        const msg = e.target.elements.msg.value;
+        console.log(msg);
+        // emettre message au server
+        socket.emit('chatMessage', msg);
+        // nettoyer l'input quand le message est envoyé
+        e.target.elements.msg.value="";
+        e.target.elements.msg.focus();
+      })
+        
+      //  fonction output envoi le message dans le tchat
+      function outputMessage(message){
+        console.log(message)
+        const paragraphechat=document.createElement("p");
+       
+        
+        paragraphechat.classList.add('message');
+        const p = document.createElement('p');
+        p.classList.add('meta');
+        
+        console.log("HI!",username);
+        p.innerText = message.username;
+        console.log(p);
+        paragraphechat.appendChild(p);
+
+        const para = document.createElement('span');
+        para.classList.add('infochat');
+        para.innerText = message.text; //message ecrit dans le champ input retranscrit dans le tchat
+        console.log(para);
+        paragraphechat.appendChild(para);
+        document.querySelector('.chat-messages').appendChild(paragraphechat);
+
+      }
+      // fonction d'ajout du nom du sujet de discussion et de listes des joueurs
+      // function outputRoomName(room,users) {
+      //   const roomsname=document.getElementById("room-name");
+      //   const listparticipants=document.getElementById('users');
+      //   room=interlocuteur.room;
+      //   roomsname.innerHTML= room;
+      //   listparticipants.innerHTML=`
+      //     ${users.map(user=>`<li> ${user.username} </li>`).join()}
+      //   `;
+      // }
+      document.getElementById('leave-btn').addEventListener('click', () => {
+        const leaveRoom = confirm('êtes vous sur de vouloir quitter le jeu?');
+        if (leaveRoom) {
+          containertchat.innerHTML =`  <div class="join-container" id="zoneform">
+          <div class="join-header">
+              <h3><i class="fas fa-smile"></i> Zone de conversation</h3>
+          </div>
+          <main class="join-main">
+              <form action="" id="entretchat">
+                  <div class="form-control">
+                      <label for="username" class="list"> Nom des Joueurs</label>
+                      <!-- <select name="room" id="username">
+                          <option value="Joueur1">Joueur1</option>
+                          <option value="Joueur2">Joueur2</option>
+                          <option value="Joueur3">Joueurs3</option>
+                        
+                      </select> -->
+                     <input
+                      type="text"
+                      name="username"
+                      id="joueurduroom"
+                      placeholder="Entrer votre nom"
+                      required 
+                  /> 
+                  </div>
+                  <div class="form-control">
+                      <label for="room" class="list">Sujet de Conversation</label>
+                      <select name="room" id="room">
+                          <option value="General">General</option>
+                          <option value="Userstories1">Userstories1</option>
+                          <option value="Userstories2">Userstories2</option>
+                          <option value="Userstories3">Userstories3</option>
+                          <option value="Userstories4">Userstories4</option>
+                          <option value="Jeu">Jeu</option>
+                      </select>
+                  </div>
+                  <button type="submit" class="btn">Rejoindre</button>
+              </form>
+          </main>
+      </div>`;
+        } else {
+          alert("Merci de ne pas avoir quitté le chat!!")
+        }
+      });
+      
     }
+
+
+
+    socket.on('message', message => {
+      console.log(message);
+    })
     // var socket = io.connect();
     // socket.on('faitUneAlerte', function () {
     //       alert('Je fais une alerte car on m\'a appelé !');});

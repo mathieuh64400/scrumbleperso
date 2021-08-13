@@ -13,6 +13,11 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
         integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+        integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+        crossorigin="anonymous"
+      ></script>
 </head>
 
 <body>
@@ -23,30 +28,37 @@
 
             <ul>
                 <li id="containerdutchat">
-                    <div class="join-container">
+                    <div class="join-container" id="zoneform">
                         <div class="join-header">
                             <h3><i class="fas fa-smile"></i> Zone de conversation</h3>
                         </div>
                         <main class="join-main">
                             <form action="" id="entretchat">
                                 <div class="form-control">
-                                    <label for="username" class="list"> Listes des Joueurs</label>
-                                    <select name="username" id="joueurduroom">
-                                        <option value="JavaScript">joueur1</option>
-                                        <option value="Python">joueur2</option>
-                                        <option value="PHP">joueur3</option>
-                                        
-                                    </select>
+                                    <label for="username" class="list"> Nom des Joueurs</label>
+                                    <!-- <select name="room" id="username">
+                                        <option value="Joueur1">Joueur1</option>
+                                        <option value="Joueur2">Joueur2</option>
+                                        <option value="Joueur3">Joueurs3</option>
+                                      
+                                    </select> -->
+                                   <input
+                                    type="text"
+                                    name="username"
+                                    id="joueurduroom"
+                                    placeholder="Entrer votre nom"
+                                    required 
+                                /> 
                                 </div>
                                 <div class="form-control">
                                     <label for="room" class="list">Sujet de Conversation</label>
                                     <select name="room" id="room">
                                         <option value="General">General</option>
-                                        <option value="Python">Python</option>
-                                        <option value="PHP">PHP</option>
-                                        <option value="C#">C#</option>
-                                        <option value="Ruby">Ruby</option>
-                                        <option value="Java">Java</option>
+                                        <option value="Userstories1">Userstories1</option>
+                                        <option value="Userstories2">Userstories2</option>
+                                        <option value="Userstories3">Userstories3</option>
+                                        <option value="Userstories4">Userstories4</option>
+                                        <option value="Jeu">Jeu</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn">Rejoindre</button>

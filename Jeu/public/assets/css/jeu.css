@@ -23,6 +23,8 @@ label[for=toogle]{
   z-index:3;
   transform: rotate(270deg);
   border-radius: 0 0 10px 10px;
+  color:white;
+  
 }
 /* .reponglet{
   display: flex;
@@ -30,19 +32,16 @@ label[for=toogle]{
 } */
 #volet{
   position: fixed;
-  top: 150px;
+  top: 160px;
   left: 0;
-  height:78.5%;
-  width: 53%;
+  height:72.66%;
+  width: 90%;
   background-color: #313439;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
   z-index:3;
 }
-/* #volet ul li {
-  display: flex;
-  flex-direction: column;
-} */
+
 #volet ul li{
   padding-left: 10px;
 }
@@ -52,8 +51,9 @@ label[for=toogle]{
   -webkit-transition: all .5s ease-in;
   transition: all .3s ease;
 }
+
 #toogle:checked ~ #volet{
-  left: -53%;
+  left: -90%;
 }
 /* tchat */
 /*  formulaire d'entrée */
@@ -89,44 +89,46 @@ label[for=toogle]{
 
 .join-main .form-control {
   margin-bottom: 20px;
-  background-color: 'red';
+  
+  display: flex;
+  flex-direction: column;
+
 }
 
 .join-main label {
 	display: block;
-  margin-bottom: -15%; 
+  margin-bottom: -5%; 
 
   color:white;
   margin-left:-15px;
 }
-label{
-  color:'red';
-}
+
 
 .join-main select {
 	font-size: 16px;
 	padding: 1px;
 	height: 40px;
-	width: 100%;
+  width: 100%;
+  margin-top: 5%;
 }
 /* tchat en lui-même */
 .chat-container {
-	width: 50em;
+	width: 66em;
 	background: #fff;
   margin-left: 2%;
-  margin-top:4%;
+  margin-top:1%;
   overflow: hidden;
   border: solid 1px black;
-
 }
 
 .chat-header {
 	background:#475158;
 	color: #fff;
-	padding: 15px;
+	padding: 10px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+  justify-content: space-between;
+  
 }
 
 .chat-main {
@@ -137,9 +139,10 @@ label{
 .chat-sidebar {
 	background: #475158;
 	color: #fff;
-	padding: 20px 20px 60px;
+	padding:0;
   /* overflow-y: scroll; */
-	padding: 30px;
+  padding: 0;
+ ;
   
 }
 
@@ -147,7 +150,9 @@ label{
 	font-size: 20px;
 	background: rgba(0, 0, 0, 0.1);
 	padding: 10px;
-	margin-bottom: 20px;
+  margin-bottom: 20px;
+  width:88%;
+ 
 }
 
 .chat-sidebar h3 {
@@ -157,41 +162,52 @@ label{
 .chat-sidebar ul li {
 	padding: 10px 0;
 }
-
+.infochat{
+  width:80%;
+  color:white;
+  font-size: 0.90em;
+}
 .chat-messages {
-	padding: 30px;
-	height: 15em;
+	padding-left: 0;
+  height: 20em;
+  margin-left:0%;
   overflow-y: scroll;
+ 
 }
 
 .chat-messages .message {
+  width:80%;
+  margin-top: 2%;
 	padding: 10px;
 	margin-bottom: 15px;
-	background-color:#313439;
+	background-color:#63737F;
 	border-radius: 5px;
   overflow-wrap: break-word;
+  
 }
 
 .chat-messages .message .meta {
-	font-size: 15px;
+	font-size: 1.5em;
 	font-weight: bold;
-	color:black;
+  color: white;
 	opacity: 0.7;
-	margin-bottom: 7px;
+  margin-bottom: 7px;
+  
 }
 
 .chat-messages .message .meta span {
-	color: #777;
-}
+	color: white; }
 
 .chat-form-container {
-	padding: 20px 30px;
+padding: 0 0 0 0;
   background-color:  #475158;
+ 
 }
 
 .chat-form-container form {
   display: flex;
   flex-direction: column;
+  margin-left: 2%;
 }
 
 .chat-form-container input[type='text'] {
@@ -205,6 +221,15 @@ label{
   margin-top: -10px;
   margin-left: -5px;
 }
+.quitBtn{ 
+  background-color: rgb(251, 173, 37);
+  border-radius: 50px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;}
 /* modal */
 /* Remove margins and padding from the list */
 #myUL {
@@ -955,7 +980,6 @@ article {
   height: 0px;
   padding: 0px 15px;
   font-size: 1em;
- 
   color: #111111;
   background: #ffffff;
   overflow: hidden;

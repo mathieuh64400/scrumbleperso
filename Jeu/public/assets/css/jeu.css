@@ -965,12 +965,13 @@ article {
   flex-direction: row;
   background-color: #313439;
   margin-top: 2%;
+  margin-bottom: 2%;
   padding-bottom: 2%;
   padding: 2%;
   color: white;
 }
 
-.insideboxtext {
+.insideboxtext, .insideboxtextdette{
   font-size: 0.75em;
   display: flex;
   flex-direction: row;

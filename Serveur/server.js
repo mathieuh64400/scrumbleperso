@@ -5,13 +5,13 @@ const app = express();
 // const path=require('path');
 const http = require('http').createServer(app);
 const port = 3004;
-const formatMessage = require('./utils/messages');
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  // getRoomsUsers
-} = require('./utils/users');
+// const formatMessage = require('./utils/messages');
+// const {
+//   userJoin,
+//   getCurrentUser,
+//   userLeave,
+//   // getRoomsUsers
+// } = require('./utils/users');
 const io = require('socket.io')(http, {
   cors: {
     origin: "*",
@@ -24,6 +24,7 @@ const io = require('socket.io')(http, {
 app.get('/', (req, res) => {
   res.sendFiles(`/var/www/html/Scrumble/Jeu/views/jeu.html`);
 });
+app.get('/rooms', (r, res)=>{res.json(rooms)})
 http.listen(port, () => {
   console.log(`listening on http://localhost:3004/`);
 });
@@ -42,16 +43,21 @@ io.on('connection', (socket) => { // connection de la socket grace a l'evenement
     console.log(`[playerData],${player.username},${player}`);// récupération de data username et player
     let room = null; //etat initial pas de room crée
     if (!player.roomId) { //si le player n'est pas lé a une valeur Id de room
+    console.log("ping0");
       room = createRoom(player); //creation de la room (session) pour 
 
       console.log(`[createRoom],${room.id}-${player.username},${player.roomId}`);//
     } else {
       room = rooms.find(r=>r.id ===  player.roomId);
+      console.log("ping1");
       if(room === undefined){
+        console.log("ping2");
         return;
       }
       player.roomId = room.id;
       room.players.push(player);
+      console.log("ping3");
+
     }
     //  socket.on('playernbre',(nbreplayer)=>{
     //   console.log(`[playerNbre],${nbreplayer.nbre}`);
@@ -69,45 +75,6 @@ io.on('connection', (socket) => { // connection de la socket grace a l'evenement
 
     io.to(socket.id).emit('listRooms', rooms);
   })
-
-  //  partie sur le tchat:
-  // let interlocuteur={room,username};
-  const botName = 'Chat de Scrumble';
-  socket.on('joinRoom', ({
-    room,
-    username
-  }) => {
-    const user = userJoin(socket.id, room, username);
-    console.log("socket.id:", socket.id);
-    socket.join(user.room);
-    console.log("user.room", user.room);
-    socket.emit('message', formatMessage(botName, 'Bienvenue dans le chat'))
-    // broadcast when a user connects
-    socket.broadcast.emit('message', formatMessage(botName, ` ${user.username} a rejoint ce tchat`));
-    console.log("username:", user.username);
-    // envoie des informations dans le salon de user.room et de users 
-    // io.to(user.room).emit('roomUsers', {
-    //   room: user.room,
-    //   users: getRoomsUsers(user.room)
-    // })
-  });
-
-  // list de event chat message
-  socket.on('chatMessage', msg => {
-    console.log(msg);
-    const user = getCurrentUser(socket.id);
-
-    io.emit('message', formatMessage(user.username, msg));
-
-  });
-  // Runs when client disconnects
-  socket.on('disconnect', () => {
-    const user = userLeave(socket.id);
-    if (user) {
-      io.emit('message', `${user.username} a quitté le tchat`);
-    }
-
-  });
 
 });
 

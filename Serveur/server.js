@@ -40,7 +40,7 @@ io.on('connection', (socket) => { // connection de la socket grace a l'evenement
   console.log(`[connection],${socket.id}`);//log sur l'evt connection et récupère l'id de sa socket
 
   socket.on('playerData', (player) => { //création d'un evt playerData avec por nature d'evt une fonction fléché de creation de room
-    console.log(`[playerData],${player.username},${player}`);// récupération de data username et player
+    console.log(`[playerData],${player.username},[connection],${socket.id},${player}`);// récupération de data username et player
     let room = null; //etat initial pas de room crée
     if (!player.roomId) { //si le player n'est pas lé a une valeur Id de room
     console.log("ping0");

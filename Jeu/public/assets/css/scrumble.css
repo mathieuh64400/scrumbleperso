@@ -399,7 +399,14 @@ div>p {
   height: 5em;
   width: 23em;
 }
-
+.reussite {
+  background-color: rgb(77, 200, 52);
+  color: white;
+  margin-left: 20%;
+  padding: 25px 75px;
+  border-radius: 50px;
+  margin-top: 3%;
+}
 .btn2 {
   background-color: rgb(251, 173, 37);
   color: black;

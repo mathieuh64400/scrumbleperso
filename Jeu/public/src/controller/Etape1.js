@@ -58,7 +58,7 @@ export default class Etape1 extends Controller {
         for (let index = 0; index < nombreDeJoueur; index++) {
             html += this.rendreInputBloc(`name#${index}`, `statut#${index}`)                
         }
-        html+="<button style='background-color: rgb(77, 200, 52);color:white; margin-left:25%;padding: 25px 75px;border-radius: 50px;'>Passez a l'Etape Suivante</button>"
+        html+="<button class='reussite'>Passez a l'Etape Suivante</button>"
         form.innerHTML = html;
     }
 

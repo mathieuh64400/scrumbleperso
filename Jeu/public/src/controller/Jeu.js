@@ -13,10 +13,12 @@ export default class Jeu extends Controller {
 
     // player ajouté donnée au state joueur des le debut du jeu
     const player = {
+    
       host: false,
       roomId: null,
       username: "",
       socketId: "",
+      role:"",
       statut: ""
     };
     console.log(player);
@@ -278,7 +280,7 @@ export default class Jeu extends Controller {
     // creation des joueurs et des dés.
     console.log(joueurs.statut);
     console.log(joueurs);
-    let nomJoueur = this.state.joueurs.name;
+    // let nomJoueur = this.state.joueurs.name;
     console.log("Hic");
     //console.log(typeof joueurs); //verification du type de donnée récupérer
     //console.log(this.state.joueurs.length); //récupération de la longueur de la liste de joueurs
@@ -291,79 +293,98 @@ export default class Jeu extends Controller {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Debut  de la partie socket //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    let socket;
+    
     let cadrechoix = document.getElementById('cadrechoix');
-    //  let NameGamejoueurs= joueurs.filter((e) => e.name != '')
-    //  console.log(NameGamejoueurs);
-
-    //  let listGameur= [];
-    //  console.log(listGameur);
-    //   for(let i=0;i<joueurs.length;i++){
-    //    listGameur[i]= NameGamejoueurs[i].name;
-
-    //   console.log(listGameur,listGameur[1]);
-    //   }
-    //   console.log(listGameur);
-    //   let GamejoueursStatut= joueurs.filter((e) => e.statut != '')
-    //   console.log(GamejoueursStatut);
-    //   let listGameurStatut= [];
-    //   for(let i=0;i<joueurs.length;i++){
-    //      listGameurStatut[i]= GamejoueursStatut[i].statut;
-    //      console.log(listGameurStatut);
-    //   }
-    //   console.log(listGameurStatut);
-
-
-    //  Object.values(joueurs);
-    //  Object.getOwnPropertyNames(joueurs);
-    //  console.log(Gamejoueurs);
-    // console.log(Gamejoueurs,Gamejoueurs[0]);
-    // let firstplayer=Object.values(Gamejoueurs);
-    // let gameurScrumble=Object.entries(firstplayer);
-    // console.log(gameurScrumble);
-    // let gameurScrumble1=gameurScrumble[0];
-    // console.log(gameurScrumble1[0].name);
-    // for (let index = 0; index < firstplayer.length; index++) {
-    //  console.log(firstplayer[index]);
-    //  let Gameurlist= new Array();
-    //  console.log(Gameurlist);
-
-
-    //   // let player1=Gameurlist[0];
-    //   // console.log(player1);
-
-    // }
+   
 
     formsessions.onsubmit = function (e) {
       e.preventDefault();
+      // let socket;
+     
 
-      const socket = io('http://localhost:3004').connect();
-      console.log(socket, socket.id);
 
+      const socket = io('http://localhost:3018').connect( 
+    
+      ) 
+      formsessions.addEventListener('submit',function state(){
+      
+        if ( socket.id!="" && player.username !=" ") {
+          
+        
+          socket.on('statejoueurscommun',(sysstateencommun)=>{ 
+             joueurs=JSON.parse(sysstateencommun);
+            console.log(sysstateencommun,joueurs);})
+          }
+     
+      })
+        
+      console.log(typeof(joueurs));
+      const sysJson=JSON.stringify(joueurs);
+    console.log(sysJson);
+      socket.emit('joeuers',sysJson);
+    
+   console.log(joueurs);
+   
+   
       player.username = inputvalue.value;
       player.host = true;
       player.socketId = socket.id;
+      console.log(socket.id);
       console.log(player);
-      carduser.innerHTML = "";
+      carduser.innerHTML = " ";
       let parauser = document.createElement('p');
       parauser.innerHTML = 'Partagez ce lien afin d inviter les autres joueurs à te rejoindre :';
       carduser.appendChild(parauser);
-
+     
+// let firstlistgameur=Object.values( player);
+// console.log(firstlistgameur);
       socket.emit('playerData', player);
+      let listsocket=[];
+      socket.on('socketdeconnection',(idsocket)=>{
+        console.log(idsocket);
+         player.socketId=idsocket;
+         listsocket.push(idsocket);
+  
+      })
+      console.log(listsocket);
       socket.emit('playernbre', nbretotjoeuer);
-
+      
+      //  socket.on('statejoueurscommun',(sysstateencommun)=>{ 
+      //     joueurs=JSON.parse(sysstateencommun);
+      //     console.log(sysstateencommun,joueurs);
+      //   });
       socket.on('join room', (roomId) => {
         player.roomId = roomId;
         console.log(roomId);
-        linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank">${window.location.href}?room=${player.roomId}</a>`;
+
+      
+//         let id=1;
+//  console.log(player.id, player);
+        
+            linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
+          
+            
+            // linkToShare.addEventListener('click', function addclient(){
+            //   if (joueurs==="") {
+            //     socket.on('statejoueurscommun',(sysstateencommun)=>{ 
+            //        joueurs=JSON.parse(sysstateencommun);
+            //       console.log(sysstateencommun,joueurs);})
+            //   } else {
+            //     const sysJson=JSON.stringify(joueurs);
+            //   console.log(sysJson);
+            //     socket.emit('joeuers',sysJson);
+            //   }
+              
+            // })
+          
         console.log(linkToShare);
         console.log(joueurs);
         console.log(socket.id);
         console.log(socket);
 
-        if (linkToShare.innerHTML != "") {
-
-          cadrechoix.innerHTML = `<p>vous choississez d'incarner:`
+        if (linkToShare.innerHTML !=" ") {
+       
+          cadrechoix.innerHTML = `<p>vous choississez d'incarner:</p>`
           let formchoix = document.createElement('form');
           formchoix.id = 'formchoix';
           formchoix.classList.add('formchoix');
@@ -372,10 +393,14 @@ export default class Jeu extends Controller {
           let buttonvalidationchoix = document.createElement('button');
           buttonvalidationchoix.innerHTML = "Go to Play";
           buttonvalidationchoix.classList.add("reussite");
+          buttonvalidationchoix.style.marginRight="10%";
+          buttonvalidationchoix.style.width="25%";
+          buttonvalidationchoix.style.marginLeft="25%";
           select.getAttribute('name', 'role');
           select.id = "role-select";
+          console.log(player);
         let gameur=Object.values(player);
-          console.log(gameur);
+          console.log(gameur, player);
           let val = Object.values(joueurs);
 
           let optionsHTML = "";
@@ -396,21 +421,25 @@ export default class Jeu extends Controller {
               var option = select.options[select.selectedIndex];
               console.log(option, option.value, option.text);
               cadrechoix.innerHTML = "<p> vous etes:" + "  " + option.text + "   " + option.value + "</p>";
-              // player.role =option.value;
+               player.role =option.text;
               player.statut = option.value;
               console.log(player.statut, player);
               console.log(gameur.statut);
+              console.log(gameur, player);
+             
             } else {
               alert("vous avez un probleme!! relancer le jeu depuis le départ (étape1)")
             }
-
+            
           });
-
+// socket.emit('playerData', player);
         }
         console.log(joueurs);
 
         console.log(nbrejoeur);
-
+        console.log(joueurs);
+        //  envoyer le state en socket idée send() ou io.emit() recherche set ?
+        // io.to(roomId).emit('statejoueur',joueurs);
 
         //console.log(nbrejoeur);
         let nmbredejoeur = document.getElementById("nmbredejoeur");
@@ -519,6 +548,7 @@ export default class Jeu extends Controller {
                 if (player.statut === "Developpeur") {
 
                   rollDice(e, De);
+
                 } else {
                   alert('vous n avez pas le droit de jouer car vous etes soit scrum master soit product owner');
                 }
@@ -689,14 +719,20 @@ export default class Jeu extends Controller {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
+       
 
-
-
+  
+     
 
 
 
       });
+    
+
     }
+   
+
+      // socket.emit('statejeu',joueurs);
 
     // creation objet avec resultat
 

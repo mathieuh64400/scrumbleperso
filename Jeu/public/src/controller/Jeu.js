@@ -13,32 +13,49 @@ export default class Jeu extends Controller {
 
     // player ajouté donnée au state joueur des le debut du jeu
     const player = {
-    
+
       host: false,
       roomId: null,
       username: "",
       socketId: "",
-      role:"",
+      role: "",
       statut: ""
     };
     console.log(player);
 
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
+
+
     console.log(joueurs.length);
     const nbretotjoeuer = {
       nbre: joueurs.length
     }
     console.log(nbretotjoeuer);
-    let color1 = "white";
-    let color2 = "red";
-    let color3 = "blue";
-    let color4 = "yellow";
-    let color5 = "green";
-    let color6 = "orange";
-    let color7 = "pink";
-    let color8 = "black";
-    let color = [color1, color2, color3, color4, color5, color6, color7, color8];
-    console.log(color);
+    // let listcolor=["white","red","blue","yellow","green","orange","pink","black"];
+
+
+    let listcolor = ["cyan", "purple", "white", "red", "blue", "yellow", "green", "orange", "pink", "lime"];
+
+    // let color = [color1, color2, color3, color4, color5, color6, color7, color8];
+    let color = [];
+    console.log(color)
+    for (let i = 0; i < joueurs.length; i++) {
+      if (joueurs[i].statut === "Developpeur") {
+        Object.defineProperty(joueurs[i], 'color', {
+          value: listcolor[i],
+          writable: false
+        });
+        color.push(joueurs[i].color);
+        console.log(color);
+      }
+
+      console.log(joueurs);
+    }
+    // if (joueurs[i].statut==="Developpeur") {
+    // ;
+    // for(let colori=0; colori<joueurs.length;colori++){
+
+    //  }}
     // modal:
     var modal = document.getElementById('myModal');
 
@@ -146,9 +163,7 @@ export default class Jeu extends Controller {
       let nbrclick = [nbreclick1, nbreclick2, nbreclick3];
       // console.log(nbrclick[h]);nbrclick[h]; 
 
-
       function createbigcard() {
-
 
         nbrclick[h]++;
         console.log("nbrclick0:", nbrclick[0], "nbrclick1:", nbrclick[1], "nbrclick2:", nbrclick[2]);
@@ -260,22 +275,14 @@ export default class Jeu extends Controller {
             carteaurebus.appendChild(frontrejet);
             carte.innerHTML = "";
             carte.classList.remove("active");
-
           }, 3000)
-
         }
-
-        // } 
-
-        // loadCharacters();
-        //     console.log(carte);
       }
 
       function flipcard() {
         carte.classList.add("active");
       }
     }
-
 
     // creation des joueurs et des dés.
     console.log(joueurs.statut);
@@ -293,97 +300,93 @@ export default class Jeu extends Controller {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Debut  de la partie socket //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     let cadrechoix = document.getElementById('cadrechoix');
-   
+
 
     formsessions.onsubmit = function (e) {
       e.preventDefault();
       // let socket;
-     
 
+      const socket = io('http://localhost:3018').connect()
+      formsessions.addEventListener('submit', function state() {
 
-      const socket = io('http://localhost:3018').connect( 
-    
-      ) 
-      formsessions.addEventListener('submit',function state(){
-      
-        if ( socket.id!="" && player.username !=" ") {
-          
-        
-          socket.on('statejoueurscommun',(sysstateencommun)=>{ 
-             joueurs=JSON.parse(sysstateencommun);
-            console.log(sysstateencommun,joueurs);})
-          }
-     
+        if (socket.id != "" && player.username != " ") {
+
+          socket.on('statejoueurscommun', (sysstateencommun) => {
+            joueurs = JSON.parse(sysstateencommun);
+            console.log(sysstateencommun, joueurs);
+          })
+        }
       })
-        
-      console.log(typeof(joueurs));
       const sysJson=JSON.stringify(joueurs);
-    console.log(sysJson);
+      console.log(sysJson);
       socket.emit('joeuers',sysJson);
-    
-   console.log(joueurs);
-   
-   
+      console.log(joueurs);
+
       player.username = inputvalue.value;
       player.host = true;
-      player.socketId = socket.id;
+      // player.socketId = socket.id;
       console.log(socket.id);
       console.log(player);
       carduser.innerHTML = " ";
       let parauser = document.createElement('p');
       parauser.innerHTML = 'Partagez ce lien afin d inviter les autres joueurs à te rejoindre :';
       carduser.appendChild(parauser);
-     
-// let firstlistgameur=Object.values( player);
-// console.log(firstlistgameur);
+
+      // let firstlistgameur=Object.values( player);
+      // console.log(firstlistgameur);
       socket.emit('playerData', player);
-      let listsocket=[];
-      socket.on('socketdeconnection',(idsocket)=>{
-        console.log(idsocket);
-         player.socketId=idsocket;
-         listsocket.push(idsocket);
-  
-      })
-      console.log(listsocket);
+     
       socket.emit('playernbre', nbretotjoeuer);
-      
+
       //  socket.on('statejoueurscommun',(sysstateencommun)=>{ 
       //     joueurs=JSON.parse(sysstateencommun);
       //     console.log(sysstateencommun,joueurs);
       //   });
+      let listsocket = [];
+      socket.on('socketnecessaireaconnection', (idsocket) => {
+        console.log(idsocket);
+        player.socketId = idsocket;
+        listsocket.push(idsocket);
+        console.log(listsocket, player,joueurs);
+       
+       
+         
+      }) ;
       socket.on('join room', (roomId) => {
         player.roomId = roomId;
         console.log(roomId);
 
-      
-//         let id=1;
-//  console.log(player.id, player);
-        
-            linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
-          
-            
-            // linkToShare.addEventListener('click', function addclient(){
-            //   if (joueurs==="") {
-            //     socket.on('statejoueurscommun',(sysstateencommun)=>{ 
-            //        joueurs=JSON.parse(sysstateencommun);
-            //       console.log(sysstateencommun,joueurs);})
-            //   } else {
-            //     const sysJson=JSON.stringify(joueurs);
-            //   console.log(sysJson);
-            //     socket.emit('joeuers',sysJson);
-            //   }
-              
-            // })
-          
+        socket.on('listplayername',(listplayer)=>{
+          console.log("ff:",listplayer,joueurs,player     )  });
+        console.log(joueurs,player.role);
+        // for (let id = 0; id < joueurs.length; id++) {
+        //   if (player.role===joueurs[id].name) {}}
+        linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
+
+
+
+        // linkToShare.addEventListener('click', function addclient(){
+        //   if (joueurs==="") {
+        //     socket.on('statejoueurscommun',(sysstateencommun)=>{ 
+        //        joueurs=JSON.parse(sysstateencommun);
+        //       console.log(sysstateencommun,joueurs);})
+        //   } else {
+        //     const sysJson=JSON.stringify(joueurs);
+        //   console.log(sysJson);
+        //     socket.emit('joeuers',sysJson);
+        //   }
+
+        // })
+
         console.log(linkToShare);
         console.log(joueurs);
         console.log(socket.id);
         console.log(socket);
 
-        if (linkToShare.innerHTML !=" ") {
-       
+        if (linkToShare.innerHTML != " ") {
+
           cadrechoix.innerHTML = `<p>vous choississez d'incarner:</p>`
           let formchoix = document.createElement('form');
           formchoix.id = 'formchoix';
@@ -393,15 +396,16 @@ export default class Jeu extends Controller {
           let buttonvalidationchoix = document.createElement('button');
           buttonvalidationchoix.innerHTML = "Go to Play";
           buttonvalidationchoix.classList.add("reussite");
-          buttonvalidationchoix.style.marginRight="10%";
-          buttonvalidationchoix.style.width="25%";
-          buttonvalidationchoix.style.marginLeft="25%";
+          buttonvalidationchoix.style.marginRight = "10%";
+          buttonvalidationchoix.style.width = "25%";
+          buttonvalidationchoix.style.marginLeft = "25%";
           select.getAttribute('name', 'role');
           select.id = "role-select";
           console.log(player);
-        let gameur=Object.values(player);
+          let gameur = Object.values(player);
           console.log(gameur, player);
           let val = Object.values(joueurs);
+          console.log(val, val[0]);
 
           let optionsHTML = "";
 
@@ -421,21 +425,34 @@ export default class Jeu extends Controller {
               var option = select.options[select.selectedIndex];
               console.log(option, option.value, option.text);
               cadrechoix.innerHTML = "<p> vous etes:" + "  " + option.text + "   " + option.value + "</p>";
-               player.role =option.text;
+              player.role = option.text;
               player.statut = option.value;
               console.log(player.statut, player);
               console.log(gameur.statut);
               console.log(gameur, player);
-             
+              console.log(joueurs, joueurs[0]);
             } else {
               alert("vous avez un probleme!! relancer le jeu depuis le départ (étape1)")
             }
-            
+          for (let id = 0; id < joueurs.length; id++) {
+                if (player.role===joueurs[id].name) {
+                Object.defineProperty(joueurs[id], 'idsocket', {
+                  value: player.socketId,
+                  writable: false
+                });
+                console.log(joueurs, player.role)
+              }
+              }
+             
+
           });
-// socket.emit('playerData', player);
+         
+         
+          // socket.emit('playerData', player);
+          
         }
         console.log(joueurs);
-
+       
         console.log(nbrejoeur);
         console.log(joueurs);
         //  envoyer le state en socket idée send() ou io.emit() recherche set ?
@@ -449,7 +466,20 @@ export default class Jeu extends Controller {
         //selection balise ou id = nmbredejoeur
         let nameJoueur = document.getElementById("nameJoeur"); //selection balise ou id = namedejoeur
         let myarray = {};
-        let listimage = ["url('../../assets/img/atomium.png')", "url('../../assets/img/chichen-itza.png')", "url('../../assets/img/egyptian.png')", "url('../../assets/img/eiffel-tower.png')", "url('../../assets/img/giza.png')", "url('../../assets/img/statue-of-liberty.png')", "url('../../assets/img/torii-gate.png')", "url('../../assets/img/pisa.png')"];
+        let listimage = ["url('../../assets/img/pagoda.png')", "url('../../assets/img/monument-de-la-democratie.png')", "url('../../assets/img/atomium.png')", "url('../../assets/img/chichen-itza.png')", "url('../../assets/img/egyptian.png')", "url('../../assets/img/eiffel-tower.png')", "url('../../assets/img/giza.png')", "url('../../assets/img/statue-of-liberty.png')", "url('../../assets/img/torii-gate.png')", "url('../../assets/img/pisa.png')"];
+        let image = [];
+        for (let index = 0; index < joueurs.length; index++) {
+          if (joueurs[index].statut === "Developpeur") {
+            Object.defineProperty(joueurs[index], 'image', {
+              value: listimage[index],
+              writable: false
+            });
+            image.push(joueurs[index].image);
+            console.log(image);
+          }
+          console.log(joueurs);
+        }
+        console.log(joueurs);
         console.log(listimage.length);
         let text = ""; //definition d'une varaible qui posséde le texte (nom des joueurs) comme valeur donc initialement est vide
         //let nameDev = "";definition d'une variable avec le role identique que la variable text mais servant dans le cas du Dé;
@@ -457,8 +487,9 @@ export default class Jeu extends Controller {
         if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
           if (joueurs != "") { //si la liste des joeurs  existe
             let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
-            console.log('deve', developpeurs)
+            console.log('deve', developpeurs, typeof (developpeurs));
             console.log(joueurs);
+            let Die = ["die-0", "die-1", "die-2", "die-3", "die-4", "die-5", "die-6", "die-7", "die-8", "die-9", "die-10"];
             for (let i = 0; i < nbrejoeur; i++) {
 
               let overlay = document.createElement("a");
@@ -505,11 +536,12 @@ export default class Jeu extends Controller {
                 <span class="dot"></span>
               </li>;`
 
+
               list.id = "die-" + i;
               console.log(list.id);
               overlay.appendChild(list);
               eltref.append(overlay);
-
+              console.log(joueurs);
 
               let cube1 = document.getElementById("die-0");
               let cube2 = document.getElementById("die-1");
@@ -519,11 +551,13 @@ export default class Jeu extends Controller {
               let cube6 = document.getElementById("die-5");
               let cube7 = document.getElementById("die-6");
               let cube8 = document.getElementById("die-7");
+              let cube9 = document.getElementById("die-8");
+              let cube10 = document.getElementById("die-9");
 
-              let cube = [cube1, cube2, cube3, cube4, cube5, cube6, cube7, cube8];
+              let cube = [cube1, cube2, cube3, cube4, cube5, cube6, cube7, cube8, cube9, cube10];
               console.log(cube[0]);
 
-              if (cube[i] != "") {
+              if (cube[i] != " ") {
                 console.log(cube[i]);
                 let face = cube[i].querySelectorAll("li.die-item");
                 console.log(face);
@@ -534,8 +568,28 @@ export default class Jeu extends Controller {
                   console.log(face[j].style.background, color[i]);
                 }
               }
-            }
 
+
+              for (let i = 0; i < joueurs.length; i++) {
+                if (joueurs[i].statut === "Developpeur") {
+                  console.log(joueurs);
+                  Object.defineProperty(joueurs[i], 'cube', {
+                    value: Die[i],
+                    writable: false
+                  });
+
+                }
+
+                console.log("list:", joueurs);
+              }
+
+              console.log("toto:", joueurs[i].statut);
+
+            }
+           
+            console.log(listsocket); console.log("xxx:",joueurs[2],player);
+            console.log(typeof(joueurs),joueurs);
+           
             let dice = [...document.querySelectorAll(".die-overlay")];
 
             //console.log(dice);
@@ -561,6 +615,7 @@ export default class Jeu extends Controller {
                 const syscolor = document.createElement("div");
                 syscolor.classList.add("cercles");
                 syscolor.style.background = color[i];
+                console.log(color[i]);
                 syscolor.setAttribute("draggable", "true");
                 syscolor.classList.add("itemGame");
 
@@ -581,9 +636,13 @@ export default class Jeu extends Controller {
                 // pion
                 pion.style.backgroundColor = label.style.color;
                 console.log(pion);
-                pion.style.backgroundImage = listimage[i];
-                console.log(pion.style.backgroundImage, listimage[i]);
+
+                console.log(joueurs, joueurs[i].image);
+                pion.style.backgroundImage = image[i];
+                console.log(pion.style.backgroundImage, image[i]);
                 // fin pion
+
+
 
                 // la variable text est rempli par l'iteration de noms des joueurs
                 console.log(developpeurs[i].name, "....", text);
@@ -661,7 +720,6 @@ export default class Jeu extends Controller {
           alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
         }
 
-
         function rollDice(e, elmt) {
 
           console.log(elmt);
@@ -719,20 +777,12 @@ export default class Jeu extends Controller {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-       
-
-  
-     
-
-
-
       });
-    
 
     }
-   
 
-      // socket.emit('statejeu',joueurs);
+
+    // socket.emit('statejeu',joueurs);
 
     // creation objet avec resultat
 

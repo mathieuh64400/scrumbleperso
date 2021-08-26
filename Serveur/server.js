@@ -44,7 +44,7 @@ console.log("rooms",rooms);
 
 io.on('connection', (socket) => { // connection de la socket grace a l'evenement on connection
   console.log(`[connection],${socket.id}`);//log sur l'evt connection et récupère l'id de sa socket
-  socket.emit('socketdeconnection',`${socket.id}`);
+  socket.emit('socketnecessaireaconnection',`${socket.id}`);
 
   let stocksys=[];
   socket.on('joeuers',(sysJson)=>{ 
@@ -79,8 +79,9 @@ let listplayer=[];
       room.players.push(player);
       console.log("ping3");
 
-      listplayer.push(player);
+      listplayer.push(player.username);
       console.log( 'listplayer',listplayer);
+      socket.emit('listplayername',listplayer);
     }
     //  socket.on('playernbre',(nbreplayer)=>{
     //   console.log(`[playerNbre],${nbreplayer.nbre}`);

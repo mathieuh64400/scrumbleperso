@@ -1,0 +1,47 @@
+.titre{
+    margin-bottom: 2%;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th{
+      background-color: #313439 ;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* tr:nth-child(even) {
+    background-color: #dddddd;
+  } */
+  .cadregestionjeu {
+    width: 66%;
+    margin-top: 2.5%;
+    height: 30em;
+    margin-left: 15%;
+    border-radius: 30px;
+    margin-bottom: 1%;
+    background-color: #475158;
+    padding-left:5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+.cadrecreateregles{
+    margin-top:2%;
+
+}
+.btnregles{
+    background-color: #FAF5BC;
+    color: black;
+    margin-left: 0;
+    padding: 25px 75px;
+    margin-top: 1%;
+    border-radius: 50px;
+    height: 5em;
+    margin-bottom: 2%;
+}

@@ -126,7 +126,8 @@ h3 {
 
 input[type=number],
 input[type=password],
-input[type=text] {
+input[type=text],
+input [type=file] {
   width: 55%;
   padding: 8px 16px;
   margin-left: 20%;
@@ -474,7 +475,7 @@ li>.rep {
   height: 19%;
   background-color: #FAF5BC;
   padding: 5px;
-  border: 5px solid  #475158!important;
+  /* border: 5px solid  #475158!important; */
   box-shadow: none;
   transition: 0,5s;
 }

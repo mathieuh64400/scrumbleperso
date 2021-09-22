@@ -6,7 +6,8 @@ class Context {
   // Objet partagé entre les contrôleurs pour enregistrer les différents états
   state = {
     joueurs: [],
-    tours: []
+    tours: [],
+    paquet:[]
   };
   // ? Ca ressemble à un développeur qui se la joue mais il faudra vérifier
   static getInstance() {

@@ -36,3 +36,18 @@ h3 {
 .position {
     position: absolute;
 }
+.transp{
+    background-color: transparent;
+    margin:0%;
+  width: 11.5em;
+  height: 19%;
+  /* background-color: #FAF5BC; */
+  padding: 5px;
+  border: 5px solid  #475158!important;
+  /* box-shadow: none;
+  transition: 0,5s; */
+}
+.marque{
+    color:green;
+    font-size: xx-large;
+}

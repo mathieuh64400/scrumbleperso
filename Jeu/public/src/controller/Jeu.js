@@ -24,6 +24,56 @@ export default class Jeu extends Controller {
     console.log(player);
 
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
+    let config = this.state.paquet[0];
+    console.log(config);
+
+// traitement de la partie usersstories en cours
+let dettetechnique=document.getElementById("dettetech");
+console.log(dettetechnique);
+dettetechnique.innerHTML=config.dettetechnique;
+// let eltbase = document.querySelector('#depart');
+// eltbase.innerHTML = ` `;
+// console.log(eltbase);
+
+// function fetchDATA() {
+//   fetch(config.configuration).then(response => {
+//       return response.json();
+
+//   }).then(
+//       data => {
+//           console.log(data);
+//           const html = data.map(carte => {
+//               //    console.log(carte);
+//               if (carte.id === valuecarteid1 || carte.id === valuecarteid2 || carte.id === valuecarteid3 || carte.id === valuecarteid4) {
+//                   return `
+//                   <div class="insideboxcadre">
+//                   <p class="insideboxtext"> N°${carte.id}: ${carte.titre}</p>
+//                   <p style="margin-left: 1%; margin-right: 1%;">|</p>
+//                   <p class="insideboxtext"> <span>&#x2605;</span> <span>&#x2605;</span>
+//                       <span>&#x2605;</span></p>
+//                   <p style="margin-left: 2% ;margin-right: 2%;">|</p>
+//                   <p class="cadrebox"> </p>
+//               </div>
+//      `;
+//               }
+
+//           }).join('');
+
+//           console.log(html);
+//           // console.log(data, eltbase); 
+//           eltbase.insertAdjacentHTML('beforeend', html);
+//         }
+         
+//   ).catch(er => {
+//       console.log(er);
+//   });
+// }
+// fetchDATA();
+
+
+
+
+
 
 
     console.log(joueurs.length);
@@ -361,9 +411,9 @@ export default class Jeu extends Controller {
         socket.on('listplayername',(listplayer)=>{
           console.log("ff:",listplayer,joueurs,player     )  });
         console.log(joueurs,player.role);
-        // for (let id = 0; id < joueurs.length; id++) {
-        //   if (player.role===joueurs[id].name) {}}
-        linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
+        for (let id = 0; id < joueurs.length; id++) {
+          if (player.role===joueurs[id].name) { console.log( "toto:",linkToShare.innerHTML);}}
+        linkToShare.innerHTML = " ";
 
 
 
@@ -385,7 +435,7 @@ export default class Jeu extends Controller {
         console.log(socket.id);
         console.log(socket);
 
-        if (linkToShare.innerHTML != " ") {
+        if (linkToShare.innerHTML = " ") {
 
           cadrechoix.innerHTML = `<p>vous choississez d'incarner:</p>`
           let formchoix = document.createElement('form');
@@ -431,8 +481,16 @@ export default class Jeu extends Controller {
               console.log(gameur.statut);
               console.log(gameur, player);
               console.log(joueurs, joueurs[0]);
+
+              for (let h = 0; h< joueurs.length; h++) {
+                if (player.role===joueurs[h].name) { 
+                  
+                  linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
+                  
+                 console.log( "toto:",linkToShare.innerHTML);}};
+
             } else {
-              alert("vous avez un probleme!! relancer le jeu depuis le départ (étape1)")
+              alert("vous avez un probleme!! relancer le jeu depuis le départ (étape1)");
             }
           for (let id = 0; id < joueurs.length; id++) {
                 if (player.role===joueurs[id].name) {
@@ -655,7 +713,7 @@ export default class Jeu extends Controller {
 
                 nameJoueur.classList.add("repartition");
                 nameJoueur.style.width = "100%";
-                // creation du drage and drop sur accordeon
+                /////// creation du drage and drop sur accordeon
                 const zonejoueur = document.querySelectorAll('.cadrebox');
                 const itemGame = document.querySelectorAll('.itemGame');
                 console.log(zonejoueur, itemGame);
@@ -704,7 +762,7 @@ export default class Jeu extends Controller {
                     }, 0);
                   });
                 });
-
+///////////////////////////////fin dragenddrop////////
                 // for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
 
                 // }

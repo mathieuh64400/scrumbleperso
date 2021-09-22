@@ -5,7 +5,97 @@ const app = express();
 // const path=require('path');
 const http = require('http').createServer(app);
 const port = 3018;
+const bodyParser = require('body-parser');
 const { instrument } = require("@socket.io/admin-ui");
+
+// IMPORT DB CONNECTION
+const connection = require('./database');
+console.log(connection);
+// USE BODY-PARSER MIDDLEWARE
+app.use(bodyParser.urlencoded({extended:false}));
+
+// route gestion regles:
+app.get('/', (req, res) => {
+  // FETCH ALL THE REGLES FROM DATABASE
+  connection.query('SELECT * FROM `Regles`', (err, results) => {
+      if (err) throw err;
+      // RENDERING INDEX.HTML FILE WITH ALL REGLES
+      res.render('index',{
+          regles:results
+      },console.log(results));
+  });
+  
+});
+
+// route gestion create regles:
+app.post('/createregles', (req, res) => {
+  const titre = req.body.titre;
+  const resume=req.body.resume;
+  const description= req.body.description;
+  const image= req.body.image;
+  const video = req.body.video;
+  const regles = {
+      titre: titre,
+      resume: resume,
+      description: description,
+      image: image,
+      video:video
+  }
+  connection.query('INSERT INTO `Regles` SET ?', regles, (err) => {
+      if (err) throw err;
+      console.log('Data inserted');
+      return res.redirect('/');
+  });
+});
+// EDIT PAGE
+app.get('createregles/edit/:id', (req, res) => {
+  const edit_reglesId = req.params.id;
+  // FIND POST BY ID
+  connection.query('SELECT * FROM `Regles` WHERE id=?',[edit_reglesId] , (err, results) => {
+      if (err) throw err;
+      res.render('edit',{
+          regles:results[0]
+      });
+  });
+});
+// POST UPDATING
+app.post('createregles/edit/:id', (req, res) => {
+  const update_titre = req.body.titre;
+  const update_resume = req.body.resume;
+  const update_description = req.body.description;
+  const update_image = req.body.author_name;
+  const update_video = req.body.video;
+  const idRegles = req.params.id;
+  connection.query('UPDATE `Regles` SET titre = ?, resume = ?, description = ?, image=?, video=? WHERE idRegles = ?', [update_titre, update_resume, update_description,update_image,update_video, idRegles], (err, results) => {
+      if (err) throw err;
+      if(results.changedRows === 1){
+          console.log('Post Updated');
+          return res.redirect('/');
+      }
+  });
+});
+
+// POST DELETING
+app.get('/regles/delete/:id', (req, res) => {
+  connection.query('DELETE FROM `regles` WHERE idRegles = ?', [req.params.id], (err, results) => {
+      if (err) throw err;
+      res.redirect('/');
+  });
+});
+app.use('/regles',(req,res) => {
+  res.status(404).send('<h1>404 Page Not Found!</h1>');
+});
+
+// IF DATABASE CONNECTION IS SUCCESSFUL
+connection.connect((err) => {
+  if (err) throw err;
+  console.log("Connected!");
+  // app.listen(3000);
+});
+
+
+
+
 // const formatMessage = require('./utils/messages');
 // const {
 //   userJoin,
@@ -80,8 +170,9 @@ let listplayer=[];
       console.log("ping3");
 
       listplayer.push(player.username);
-      console.log( 'listplayer',listplayer);
+      
       socket.emit('listplayername',listplayer);
+      console.log('listplayername')
     }
     //  socket.on('playernbre',(nbreplayer)=>{
     //   console.log(`[playerNbre],${nbreplayer.nbre}`);

@@ -1,3 +1,4 @@
+import { math } from "@amcharts/amcharts4/core";
 import Controller from "../core/Controller.js";
 // import Joueur from '../model/Joueur.js';
 export default class Etape2 extends Controller {
@@ -6,17 +7,33 @@ export default class Etape2 extends Controller {
     document.title = "Etape du jeu 2"
     console.log("jeu:etape2");
     console.log(this.state);
-
+    let urlchoisi=this.state.paquet;
+    console.log(urlchoisi); 
+    const entries= new Map([
+      [ 'url','url'],
+      ['dettetechnique','...'],
+      ['configuration','....']
+    
+    ]); 
+    const obj=Object.fromEntries(entries);
+    console.log(obj);
+    urlchoisi.push(obj);
+    console.log(urlchoisi);
     // liste des paquet existant associer a des variables unique dont une sera socké dans state
     let url0 = "http://localhost:3003/paquet1";
     let url1 = "http://localhost:3003/paquet2";
     let url2 = "http://localhost:3003/paquet3";
 
-    let urlselecionne;
+
+    
+
+
+
     // creation des paquets de cartes (ici 1 a 1 mais voir amellioration par une boucle for)
 
     // paquet0
     const paquet = document.getElementById("paquet0");
+
 
     let hpCharacters = [];
 
@@ -47,7 +64,6 @@ export default class Etape2 extends Controller {
         .join('');
       paquet.innerHTML = htmlString;
     };
-
 
 
     loadCharacters();
@@ -132,12 +148,14 @@ export default class Etape2 extends Controller {
 
     // selection de l'ensemble des div avec l'attribut data-selected
     const listeUserStories = document.querySelectorAll("div[data-selected]");
-    console.log(typeof(listeUserStories) + listeUserStories);
+    console.log(typeof (listeUserStories) + listeUserStories);
 
     listeUserStories.forEach(listeUserStorie => { //boucle sur chaque div auquel on applique un evenement click qui lance la fonction selectionner
       listeUserStorie.addEventListener('click', selectionner);
-
+    
+     
     });
+    let urlselecionne;
 
     function selectionner() {
       this.dataset.selected = this.dataset.selected == "true" ? "false" : "true"; //si  le dataset.selected de notre div selectionner est true elle passe a false sinon reste a true
@@ -145,19 +163,19 @@ export default class Etape2 extends Controller {
       // this.dataset.selected = this.dataset.selected == "true" ? this.dataset.cadreselected=="false" : this.dataset.cadreselected=="true";
 
       alert('votre selection est réussie!!Validez-la en cliquant sur le bouton Finalisez la préparation'); //message utilisateur de validation de la manoeuvre
-     
+
       let elementSelected = document.querySelectorAll('div[data-selected="true"]'); //verification que l'ensemble des element avec le data-selected =trues soit bien = une div
       console.log(elementSelected);
       const selection = elementSelected.length; //verification que l'ensemble des div avec le data-selected est bien = a 1
       console.log(selection);
-      if (elementSelected.length==1) {
+      if (elementSelected.length == 1) {
         console.log("ok");
       } else {
-      
+
         console.log(elementSelected);
 
       }
-      
+
       elementSelected.forEach(e => {
           console.log(e.id);
           let valeurpaquet = e.id;
@@ -178,7 +196,13 @@ export default class Etape2 extends Controller {
             urlselecionne = url2;
             console.log(urlselecionne);
           }
+          console.log(urlselecionne);
+          console.log(urlchoisi);
 
+          Object.defineProperty(urlchoisi[0], 'url', {
+            value: urlselecionne,
+            writable: false
+          });
 
         }
 
@@ -196,7 +220,7 @@ export default class Etape2 extends Controller {
         const cadreselected = document.querySelectorAll('section[data-cadreselected="true"]'); //verification que l'ensemble des elements avec le data-selected =trues soit bien = un article
         console.log(cadreselected);
 
-        if (selection == 1 && selection<2 && elementSelected[0] != "" && cadreselected[0] != ""&&elementSelected.length==1) { //si presence d'un seul element selectionner non vide en relation avec un article [data-cadreselected="true"] non vide
+        if (selection == 1 && selection < 2 && elementSelected[0] != "" && cadreselected[0] != "" && elementSelected.length == 1) { //si presence d'un seul element selectionner non vide en relation avec un article [data-cadreselected="true"] non vide
           let titre = document.querySelector("h2"); //selection du titre 
           let cadrevert = document.querySelector('section[data-cadreselected="true"]'); // verdissement de ces contours
           console.log(cadrevert);
@@ -213,27 +237,27 @@ export default class Etape2 extends Controller {
           elementSelected.forEach(e => {
             console.log(e.id);
             let valeurpaquet = e.id;
-            console.log(valeurpaquet);});
+            console.log(valeurpaquet);
+          });
 
-        }else{
+        } else {
           alert("probleme: vous avez selectionné un paquet en trop, en conséquence pour la bonne marche du jeu nous choissions un seul des paquets selectionnés seulement ")
           console.log(cadreselected);
-           elementSelected.forEach(e => {
-          console.log(e.id);
-          let valeurpaquet = e.id;
-          console.log(valeurpaquet);
-           
-          let urldiffpaquet =[];
-          let url=urldiffpaquet.push(valeurpaquet);
-          console.log(urldiffpaquet);
-         
-          }
-          );
-          let urldiffpaquet =[];
-          let url=urldiffpaquet.push(cadreselected);
-          console.log(urldiffpaquet,url);
+          elementSelected.forEach(e => {
+            console.log(e.id);
+            let valeurpaquet = e.id;
+            console.log(valeurpaquet);
+
+            let urldiffpaquet = [];
+            let url = urldiffpaquet.push(valeurpaquet);
+            console.log(urldiffpaquet);
+
+          });
+          let urldiffpaquet = [];
+          let url = urldiffpaquet.push(cadreselected);
+          console.log(urldiffpaquet, url);
           // let urlselecionne;
-          urlselecionne =urldiffpaquet[0];
+          urlselecionne = urldiffpaquet[0];
           console.log(urlselecionne);
           // alert( "nous avons donc selectionné le paquet de user storie n°"+urlselecionne);
 
@@ -243,9 +267,22 @@ export default class Etape2 extends Controller {
 
 
     }
- 
+
     console.log(this.state);
 
+let paquetcarte=this.state.paquet[0];
+    console.log(paquetcarte);
+    let dettetechpos=["DETTE INEXISTANTE x3","DETTE FAIBLE x4","DETTE MOYENNE x5"];
+    let nombreposdette=Math.trunc(Math.random()*3);
+    console.log(nombreposdette);
+  let dette=dettetechpos[nombreposdette];
+  console.log(dette);
+  Object.defineProperty(urlchoisi[0], "dettetechnique", {
+    enumerable: false,
+    configurable: true,
+    writable: false,
+    value: dette
+  });
   }
   //importer les user stories (3 jeu de fichiers Json avec une classe Userstories et mis en place avec une requet Ajax)
   //sauvegarder le nom du paquetselectionner state (equipe a creer ou ajout de cette a prop a state joueur prééxistant)

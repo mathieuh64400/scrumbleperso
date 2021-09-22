@@ -1,5 +1,5 @@
 import Accueil from "../controller/Accueil.js";
-import Authentification  from "../controller/Authentification.js";
+import Connexion  from "../controller/Connexion.js";
 import Regles from "../controller/Regles.js";
 import  Etape1 from "../controller/Etape1.js";
 import  Etape2 from "../controller/Etape2.js";
@@ -7,15 +7,34 @@ import  Etape3 from "../controller/Etape3.js";
 import  Etape4 from "../controller/Etape4.js";
 import  Jeu from "../controller/Jeu.js";
 import  FinduJeu from "../controller/FinduJeu.js";
-
+import Createregles from "../controller/createregles.js";
+import Administration from "../controller/administration.js";
+import Administrationregles from "../controller/Administrationregles.js";
+import Compte from "../controller/Compte.js";
 export const routes = {
     "/": {
         controller: Accueil,
         view: "accueil"
     },
-    "/authentification": {
-        controller: Authentification,
-        view: "authentification"
+     "/administration":{
+        controller : Administration,
+        view :"administration"
+    },
+    "/administrationregles":{
+        controller : Administrationregles,
+        view :"administrationregles"
+    },
+    "/connexion" : {
+        controller: Connexion,
+        view : "connexion"
+    },
+    "/compte" : {
+        controller: Compte,
+        view : "compte"
+    },
+    "/createregles":{
+    controller: Createregles,
+    view:"createregles"
     },
     "/regles": {
         controller: Regles,

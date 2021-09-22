@@ -10,7 +10,8 @@ export class Menu extends HTMLElement{
             <li> <a href="/regles" data-link="/regles"> REGLES DU JEU</a>  </li>  
             <li> <a href="/etape1"data-link="/etape1"> JOUER</a>  </li>  
             <li> <a href="#"> FAQ</a>  </li>  
-            <li> <a href="/authentification" data-link="/authentification"> CONNEXION </a>  </li>  
+            <li> <a href="/compte" data-link="/compte"> COMPTE </a>  </li>  
+            
         </ul>
         
         `

@@ -8,8 +8,15 @@
   .position{
       margin-left: 20%;
   }
-  #textarea{margin-left: 20%;}
-  .btnregles{
+  #textarea{margin-left: 20%;
+}
+#titre{
+   margin-top:0%;
+}
+#resume{
+    margin-top:-33%;
+}
+.btnregles{
     background-color: #FAF5BC;
     color: black;
     margin-left: 0;
@@ -19,3 +26,7 @@
     height: 5em;
     margin-bottom: 2%;
 }
+#reglecadre{
+    margin-top:-5%;
+  }
+ 

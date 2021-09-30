@@ -31,10 +31,7 @@ label[for=toogle] {
 
 }
 
-/* .reponglet{
-  display: flex;
-  flex-direction: column;
-} */
+
 #volet {
   position: fixed;
   top: 160px;

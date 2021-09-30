@@ -11,6 +11,10 @@ import Createregles from "../controller/createregles.js";
 import Administration from "../controller/administration.js";
 import Administrationregles from "../controller/Administrationregles.js";
 import Compte from "../controller/Compte.js";
+import Authentification from "../controller/Authentification.js";
+// import Administrationuserstories from "../controller/Administrationuserstories.js";
+import Administrationroles from"../controller/Administrationroles.js";
+import Createroles from"../controller/Createroles.js";
 export const routes = {
     "/": {
         controller: Accueil,
@@ -24,9 +28,25 @@ export const routes = {
         controller : Administrationregles,
         view :"administrationregles"
     },
+    "/createroles":{
+        controller: Createroles,
+        view:"createroles"
+        },
+    // "/administrationusesrstories":{
+    //     controller : Administrationuserstories,
+    //     view :"administrationuserstories"
+    // },
+    "/administrationroles":{
+        controller : Administrationroles,
+        view :"administrationroles"
+    },
     "/connexion" : {
         controller: Connexion,
         view : "connexion"
+    },
+    "/authentification" : {
+        controller: Authentification,
+        view : "authentification"
     },
     "/compte" : {
         controller: Compte,

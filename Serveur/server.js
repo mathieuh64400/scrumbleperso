@@ -1,109 +1,127 @@
 const socket = require('socket.io');
 const express = require('express');
+const mongoose = require('mongoose');
+const jsonwebtoken = require("jsonwebtoken");
+
+
+const routes = require('./routes/routes.js')
 // const { on } = require('process');
 const app = express();
+const cors = require('cors');
 // const path=require('path');
 const http = require('http').createServer(app);
 const port = 3018;
+const port2 = 3050;
+
 const bodyParser = require('body-parser');
-const { instrument } = require("@socket.io/admin-ui");
+const dotenv = require("dotenv");
+const fs=require("fs");
+const {
+  instrument
+} = require("@socket.io/admin-ui");
 
-// IMPORT DB CONNECTION
-const connection = require('./database');
-console.log(connection);
-// USE BODY-PARSER MIDDLEWARE
-app.use(bodyParser.urlencoded({extended:false}));
+// import routes
+const authRoutes = require("./routes/auth");
+const dashboardRoutes = require("./routes/dashboard");
+const verifyToken = require("./routes/validate-token");
 
-// route gestion regles:
+
+// const postsRoute= require('./routes/posts');
+// app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+// app.use('/posts',postsRoute)
+// routes:
 app.get('/', (req, res) => {
-  // FETCH ALL THE REGLES FROM DATABASE
-  connection.query('SELECT * FROM `Regles`', (err, results) => {
-      if (err) throw err;
-      // RENDERING INDEX.HTML FILE WITH ALL REGLES
-      res.render('index',{
-          regles:results
-      },console.log(results));
-  });
-  
-});
+  res.send('hello');
+})
 
-// route gestion create regles:
-app.post('/createregles', (req, res) => {
-  const titre = req.body.titre;
-  const resume=req.body.resume;
-  const description= req.body.description;
-  const image= req.body.image;
-  const video = req.body.video;
-  const regles = {
-      titre: titre,
-      resume: resume,
-      description: description,
-      image: image,
-      video:video
-  }
-  connection.query('INSERT INTO `Regles` SET ?', regles, (err) => {
-      if (err) throw err;
-      console.log('Data inserted');
-      return res.redirect('/');
-  });
-});
-// EDIT PAGE
-app.get('createregles/edit/:id', (req, res) => {
-  const edit_reglesId = req.params.id;
-  // FIND POST BY ID
-  connection.query('SELECT * FROM `Regles` WHERE id=?',[edit_reglesId] , (err, results) => {
-      if (err) throw err;
-      res.render('edit',{
-          regles:results[0]
-      });
-  });
-});
-// POST UPDATING
-app.post('createregles/edit/:id', (req, res) => {
-  const update_titre = req.body.titre;
-  const update_resume = req.body.resume;
-  const update_description = req.body.description;
-  const update_image = req.body.author_name;
-  const update_video = req.body.video;
-  const idRegles = req.params.id;
-  connection.query('UPDATE `Regles` SET titre = ?, resume = ?, description = ?, image=?, video=? WHERE idRegles = ?', [update_titre, update_resume, update_description,update_image,update_video, idRegles], (err, results) => {
-      if (err) throw err;
-      if(results.changedRows === 1){
-          console.log('Post Updated');
-          return res.redirect('/');
+// cas du json:
+
+let paquet1 =require("./models/paquet1.json");
+console.log(paquet1);
+//save function
+const save = () => {
+  fs.writeFile(
+    "./models/paquet1.json",
+    JSON.stringify(paquet1, null, 2),
+    (error) => {
+      if (error) {
+        throw error;
       }
+    }
+  );
+};
+//Read(R) in CRUD
+app.get("/paquet1", (req, res) => {
+  res.json(paquet1);
+});
+
+//Create(C) in CRUD
+app.post("/paquet1", bodyParser.json(), (req, res) => {
+  paquet1.push(req.body);
+  save();
+  res.json({
+    status: "success",
+    stateInfo: req.body,
+  });
+});
+// put
+app.put("/paquet1", bodyParser.json(), (req, res) => {
+  paquet1 = paquet1.map((paquet) => {
+    console.log(paquet);
+    if (paquet.id === Number(req.params.id)) {
+      return req.body;
+    } else {
+      return paquet;
+    }
+  });
+  save();
+  res.json({
+    status: "success",
+    paquetInfo: req.body,
   });
 });
 
-// POST DELETING
-app.get('/regles/delete/:id', (req, res) => {
-  connection.query('DELETE FROM `regles` WHERE idRegles = ?', [req.params.id], (err, results) => {
-      if (err) throw err;
-      res.redirect('/');
+app.delete("/paquet1/:id", (req, res) => {
+  paquet1 = paquet1.filter((paquet) => paquet.id !== Number(req.params.id));
+  save();
+  res.json({
+    status: "success",
+    removed: req.params.id,
+    newLength: paquet1.length,
   });
 });
-app.use('/regles',(req,res) => {
-  res.status(404).send('<h1>404 Page Not Found!</h1>');
-});
-
-// IF DATABASE CONNECTION IS SUCCESSFUL
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("Connected!");
-  // app.listen(3000);
-});
 
 
+// fin partie json
+// Listen to server
+// Connect to MongoDB database
+dotenv.config();
+mongoose
+  .connect(process.env.DB_CONNECT, {
+    useNewUrlParser: true
+  }, console.log("db connecté!!"))
+  .then(() => {
+    const app = express()
+    app.use(express.json())
+    app.use("/api", routes);
+    app.use("/api/user", authRoutes);
+    app.use("/api/dashboard", verifyToken, dashboardRoutes);
 
 
-// const formatMessage = require('./utils/messages');
-// const {
-//   userJoin,
-//   getCurrentUser,
-//   userLeave,
-//   // getRoomsUsers
-// } = require('./utils/users');
+    app.listen(port2, () => {
+      console.log(`Server running at http://localhost:${port2}`);
+    })
+  });
 
+
+
+
+
+// socket part
 const io = require('socket.io')(http, {
   cors: {
     origin: "*",
@@ -117,51 +135,55 @@ instrument(io, {
 });
 
 app.use(express.static("public"))
-app.get('/', (req, res) => {
-  res.sendFiles(`/var/www/html/Scrumble/Jeu/views/jeu.html`);
-});
-app.get('/rooms', (r, res)=>{res.json(rooms)})
+// app.get('/', (req, res) => {
+//   res.sendFiles(`/var/www/html/Scrumble/Jeu/views/jeu.html`);
+// });
+app.get('/rooms', (r, res) => {
+  res.json(rooms)
+})
 http.listen(port, () => {
-  console.log(`listening on http://localhost:3018/`);
+  console.log(`listening on http://localhost:3018`);
 });
 
 // attention toujours le pb  des routes car port 3000 est toujours utilisé donc 3020
 // creation d'une session de jeu
 //  const players=[]; 
- let rooms = []; // toutes les rooms qui existe
-console.log("rooms",rooms);
+let rooms = []; // toutes les rooms qui existe
+console.log("rooms", rooms);
 // creation de la socket permettant de donnecter les différents joueurs
 
 io.on('connection', (socket) => { // connection de la socket grace a l'evenement on connection
-  console.log(`[connection],${socket.id}`);//log sur l'evt connection et récupère l'id de sa socket
-  socket.emit('socketnecessaireaconnection',`${socket.id}`);
+  console.log(`[connection],${socket.id}`); //log sur l'evt connection et récupère l'id de sa socket
+  socket.emit('socketnecessaireaconnection', `${socket.id}`);
 
-  let stocksys=[];
-  socket.on('joeuers',(sysJson)=>{ 
-    const state=JSON.parse(sysJson);
-    console.log('[joeuers]',state);
+  let stocksys = [];
+  socket.on('joeuers', (sysJson) => {
+    const state = JSON.parse(sysJson);
+    console.log('[joeuers]', state);
     stocksys.push(state);
-  
-    let sysstateencommun=JSON.stringify( stocksys);
-    console.log( '[sysstateencommun]',sysstateencommun);
-    socket.broadcast.emit( 'statejoueurscommun', sysstateencommun);
-});
-let listplayer=[];
+
+    let sysstateencommun = JSON.stringify(stocksys);
+    console.log('[sysstateencommun]', sysstateencommun);
+    socket.broadcast.emit('statejoueurscommun', sysstateencommun);
+  });
+  let listplayer = [];
   socket.on('playerData', (player) => { //création d'un event playerData avec por nature d'evt une fonction fléché de creation de room
-    console.log(`[playerData],${player.username},[connection],${socket.id},${player}`);// récupération de data username et player
+    console.log(`[playerData],${player.username},[connection],${socket.id},${player}`); // récupération de data username et player
     let room = null; //etat initial pas de room crée
-      if(roomId!=null){listplayer.push(player);
-      console.log( 'listplayer',listplayer);}
-    
+    if (roomId != null) {
+      listplayer.push(player);
+      console.log('listplayer', listplayer);
+    }
+
     if (!player.roomId) { //si le player n'est pas lé a une valeur Id de room
-    console.log("ping0");
+      console.log("ping0");
       room = createRoom(player); //creation de la room (session) pour 
-     
-      console.log(`[createRoom],${room.id}-${player.username},${player.roomId}`);//
+
+      console.log(`[createRoom],${room.id}-${player.username},${player.roomId}`); //
     } else {
-      room = rooms.find(r=>r.id ===  player.roomId);
+      room = rooms.find(r => r.id === player.roomId);
       console.log("ping1");
-      if(room === undefined){
+      if (room === undefined) {
         console.log("ping2");
         return;
       }
@@ -170,18 +192,18 @@ let listplayer=[];
       console.log("ping3");
 
       listplayer.push(player.username);
-      
-      socket.emit('listplayername',listplayer);
+
+      socket.emit('listplayername', listplayer);
       console.log('listplayername')
     }
     //  socket.on('playernbre',(nbreplayer)=>{
     //   console.log(`[playerNbre],${nbreplayer.nbre}`);
     // })
     socket.join(room.id);
- 
+
     // socket.broadcast.emit("listplayer",player);
     // console.log('[listplayer]',player);
- 
+
     io.to(socket.id).emit('join room', room.id);
 
     // le 2 va changer pour être remplacé par nbreplayer.nbre
@@ -189,8 +211,8 @@ let listplayer=[];
     //   io.to(room.id).emit('start game', room.players);
     // }
 
-  }) ;
- 
+  });
+
 
   // socket.on('getRooms', ()=>{
 
@@ -199,7 +221,7 @@ let listplayer=[];
   // socket.on('statejoueur',()=>{
   //   console.log('[statejouers]',joueurs,state);
   // })
- 
+
 
 });
 

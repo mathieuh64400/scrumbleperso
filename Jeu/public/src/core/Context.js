@@ -5,6 +5,7 @@ class Context {
   static instance;
   // Objet partagé entre les contrôleurs pour enregistrer les différents états
   state = {
+    user:[],
     joueurs: [],
     tours: [],
     paquet:[]

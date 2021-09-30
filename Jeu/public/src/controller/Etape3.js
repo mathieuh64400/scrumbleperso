@@ -203,14 +203,14 @@ export default class Etape3 extends Controller {
 
 
             if(listeltselectionne[0]!=""){
-              let ident=listeltselectionne[0].id;
+              let ident=listeltselectionne[0].id; //correspond a l'id de la userstorie donc a un id sur 25 pas au titre 
               console.log(ident);
               listeltselectionne[0].innerHTML = "A";
               listeltselectionne[0].classList.add("marque");
               console.log(obj1);
             Object.defineProperty(obj1, "carteid1", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: ident
             });
@@ -225,7 +225,7 @@ export default class Etape3 extends Controller {
               console.log(obj2);
               Object.defineProperty(obj2, "carteid2", {
                 enumerable: false,
-                configurable: false,
+                configurable: true,
                 writable: false,
                 value: ident1
               });
@@ -242,7 +242,7 @@ export default class Etape3 extends Controller {
               console.log(obj3);
               Object.defineProperty(obj3, "carteid3", {
                 enumerable: false,
-                configurable: false,
+                configurable: true,
                 writable: false,
                 value: ident2
               });
@@ -261,7 +261,7 @@ export default class Etape3 extends Controller {
               console.log(obj4);
               Object.defineProperty(obj4, "carteid4", {
                 enumerable: false,
-                configurable: false,
+                configurable: true,
                 writable: false,
                 value: ident3
               });
@@ -280,7 +280,7 @@ export default class Etape3 extends Controller {
             console.log(obj2);
               Object.defineProperty(paquetref, "carte1", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: obj1.carteid1
             });
@@ -288,20 +288,20 @@ export default class Etape3 extends Controller {
            
                Object.defineProperty(paquetref, "carte2", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: obj2.carteid2
             });
             
             Object.defineProperty(paquetref, "carte3", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: obj3.carteid3
             });
             Object.defineProperty(paquetref, "carte4", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: obj4.carteid4
             });
@@ -357,13 +357,14 @@ export default class Etape3 extends Controller {
           console.log(obj1);
           Object.defineProperty(obj1, "configuration", {
             enumerable: false,
-            configurable: false,
+            configurable: true,
             writable: false,
             value: urlcas
           });
           console.log(paquetref);
           Object.defineProperty(paquetref, 'configuration', {
             value: obj1.configuration,
+            configurable: true,
             writable: false
           });
           console.log(urlcas, obj1.configuration);
@@ -384,7 +385,7 @@ export default class Etape3 extends Controller {
             console.log(obj2);
             Object.defineProperty(obj2, "configuration", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: newurl
             });
@@ -392,7 +393,7 @@ export default class Etape3 extends Controller {
 
             Object.defineProperty(paquetref, "configuration", {
               enumerable: false,
-              configurable: false,
+              configurable: true,
               writable: false,
               value: obj2.configuration
             });

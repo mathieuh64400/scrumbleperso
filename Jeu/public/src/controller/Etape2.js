@@ -1,4 +1,4 @@
-import { math } from "@amcharts/amcharts4/core";
+
 import Controller from "../core/Controller.js";
 // import Joueur from '../model/Joueur.js';
 export default class Etape2 extends Controller {

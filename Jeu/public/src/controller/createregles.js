@@ -12,7 +12,9 @@ export default class Createregles extends Controller {
             console.log("go");
             let validationmessage=document.getElementById("messageflash");
             validationmessage.innerHTML="nouvelle regles creer";
-            let button=document.createElement('button');
+            validationmessage.style.marginLeft="20%";
+            let button=document.createElement('button')
+            button.classList.add('btnregles');
            let lienrelance= document.createElement('a');
            lienrelance.innerHTML="NEW";
            lienrelance.setAttribute("href","/createregles");

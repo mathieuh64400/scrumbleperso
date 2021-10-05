@@ -15,28 +15,31 @@
 
 <section>
     <h1> Selection du paquet de userstories a créer et a traiter</h1>
-    <div id="reglecadre">
+    <p id="messageflash"> </p>
+    <div class="cadreconnexion">
 
         <form action="" method="post" id="formpaquet">
 
-
-            <select id="level" name="level" placeholder="selection du paquet">
+            <!-- <label class="labelspec"> Votre nom de paquet de userstories</label><br> -->
+            <select id="paquet" name="paquet" placeholder="selection du paquet">
                 <option value=""> selection du nom du paquet</option>
-                <option value="paquet1">paqu1et</option>
+                <option value="paquet1">paquet1</option>
                 <option value="paquet2">paquet2</option>
                 <option value="paquet3">paquet3</option>
             </select>
+
+            <!-- <label class="labelspec"> le nom de la configuration du paquet des userstories</label><br> -->
             <select id="configuration" name="configuration" placeholder="selection de la configuration du paquet traité">
-                <option value=""> selection du nom du paquet </option>
+                <option value=""> selection du nom de la configuration du paquet </option>
                 <option value=""> none </option>
-                <option value="paquet1">paquet1.1</option>
-                <option value="paquet2">paquet1.2</option>
-                <option value="paquet3">paquet1.3</option>
-                <option value="paquet3">paquet1.4</option>
-                <option value="paquet3">paquet1.5</option>
+                <option value="paquet1.1">paquet1.1</option>
+                <option value="paquet1.2">paquet1.2</option>
+                <option value="paquet1.3">paquet1.3</option>
+                <option value="paquet1.4">paquet1.4</option>
+                <option value="paquet1.">paquet1.5</option>
             </select>
 
-            <div style="display: flex;flex-direction: row; justify-content: center;">
+            <div class="buttonrep">
                 <input type="reset" value="Annuler">
                 <input type="submit" value="Valider la regle">
 

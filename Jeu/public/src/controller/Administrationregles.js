@@ -66,6 +66,8 @@ export default class Administrationregles extends Controller {
       button.appendChild(lienrelance);
     })
 
+
+    // get
     let contenutable = document.getElementById("contenutable");
     console.log(contenutable);
 

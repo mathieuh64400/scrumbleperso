@@ -23,21 +23,21 @@
         <h1> Creer une regle de jeu: </h1>
         <div id="reglecadre">
 
-            <form action="" method="post" id="formcreateregles">
+            <form  method="post" id="myForm" name="myForm">
 
 
                 <input type="text" id="titre" name="titre" placeholder="entre le titre de l'article">
 
 
-                <input type="text" id="resume" name="resume" placeholder="entrer votre resume (max: 3lignes)">
+                <input type="text" id="contenu" name="contenu" placeholder="entrer votre resume (max: 3lignes)">
 
-                <textarea id="textarea" name="description" rows="4" cols="65"
+                <textarea id="textarea" name="texte" rows="4" cols="65"
                     placeholder="rentrer le descriptif de votre regle de jeu">
                 </textarea> <br>
                 <p class="repartitionVert">
                 <p class="repartition">
                     <label class="position">choisir une image:</label>
-                    <input type="file" id="myFile" name="image">
+                    <input type="file" id="myFile" name="img" accept="image/x-png">
                 </p><br>
                 <p class="repartition">
                     <label class="position">choisir une video :</label>

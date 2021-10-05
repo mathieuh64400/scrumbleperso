@@ -8,6 +8,12 @@ const routes = require('./routes/routes.js')
 // const { on } = require('process');
 const app = express();
 const cors = require('cors');
+// app.use((req,res,next)=>{
+//   res.header("Access-Control-Allow-Origin","*");
+//   res.header("Access-Control-Allow-Methods","GET,POST,HEAD,OPTIONS,PUT,PATCH,DELETE");
+//   res.header("Access-Control-Allow-Headers","Origin,X-Requested-Width,Content-Type,OPTIONS,Accept");
+//   next();
+// })
 // const path=require('path');
 const http = require('http').createServer(app);
 const port = 3018;
@@ -38,6 +44,14 @@ app.get('/', (req, res) => {
   res.send('hello');
 })
 
+
+
+dotenv.config();
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 // cas du json:
 
 let paquet1 =require("./models/paquet1.json");
@@ -99,7 +113,7 @@ app.delete("/paquet1/:id", (req, res) => {
 // fin partie json
 // Listen to server
 // Connect to MongoDB database
-dotenv.config();
+
 mongoose
   .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true
@@ -107,6 +121,7 @@ mongoose
   .then(() => {
     const app = express()
     app.use(express.json())
+    app.use(cors(corsOptions))
     app.use("/api", routes);
     app.use("/api/user", authRoutes);
     app.use("/api/dashboard", verifyToken, dashboardRoutes);

@@ -44,14 +44,15 @@ a {
   margin-left: 0;
   margin-right: 3%;
   margin-top: 1%;
-  
+
 }
+
 .croix {
   margin-left: 90%;
   margin-top: 10%;
   color: black;
   font-size: 2em;
- 
+
 }
 
 .cadre {
@@ -71,6 +72,7 @@ a {
 
 .cadreconnexion {
   margin-top: 2.5%;
+  padding-top: 2%;
   height: 27em;
   background-color: #475158;
   width: 60%;
@@ -300,7 +302,12 @@ div>p {
   margin-right: 5%;
 }
 
-.rectangle,.rectangle1,.rectangle2,.rectangle3,.rectangle4,.rectangle5 {
+.rectangle,
+.rectangle1,
+.rectangle2,
+.rectangle3,
+.rectangle4,
+.rectangle5 {
   height: 10em;
   width: 2.5em;
   background-color: black;
@@ -312,25 +319,29 @@ div>p {
   padding-top: 2%;
 }
 
-.rectangle > span {
+.rectangle>span {
   padding-top: 0%;
-  margin-top:20%;
+  margin-top: 20%;
 }
-.rectangle2 > span {
+
+.rectangle2>span {
   padding-top: 0%;
-  margin-top:33%;
+  margin-top: 33%;
 }
-.rectangle3 > span {
+
+.rectangle3>span {
   padding-top: 10%;
-  margin-top:45%;
+  margin-top: 45%;
 }
-.rectangle4 > span {
+
+.rectangle4>span {
   padding-top: 66%;
-  margin-top:20%;
+  margin-top: 20%;
 }
-.rectangle5 > span {
+
+.rectangle5>span {
   padding-top: 50%;
-  margin-top:100%;
+  margin-top: 100%;
 }
 
 .rectangleB {
@@ -340,7 +351,7 @@ div>p {
   margin-left: 66px;
   text-align: center;
   padding-top: 2%;
-  margin-right:5px;
+  margin-right: 5px;
 
 }
 
@@ -400,6 +411,7 @@ div>p {
   height: 5em;
   width: 23em;
 }
+
 .reussite {
   background-color: rgb(77, 200, 52);
   color: white;
@@ -408,6 +420,7 @@ div>p {
   border-radius: 50px;
   margin-top: 3%;
 }
+
 .btn2 {
   background-color: rgb(251, 173, 37);
   color: black;
@@ -470,20 +483,22 @@ li>.rep {
 }
 
 .forme {
-  margin:0%;
+  margin: 0%;
   width: 11.5em;
   height: 19%;
   background-color: #FAF5BC;
   padding: 5px;
   /* border: 5px solid  #475158!important; */
   box-shadow: none;
-  transition: 0,5s;
+  transition: 0, 5s;
 }
-.forme .drag{
+
+.forme .drag {
   transition: 0s;
-  opacity:0.5;
-  z-index:10000;
+  opacity: 0.5;
+  z-index: 10000;
 }
+
 /* .content{
   border: 1px solid  #FAF5BC!important;
 } */
@@ -491,7 +506,7 @@ li>.rep {
 .transparent {
   background-color: transparent;
   margin-top: 1%;
-  margin-left:1%;
+  margin-left: 1%;
   margin-right: 2%;
   width: 10em;
   height: 17%;
@@ -534,17 +549,28 @@ li>.rep {
 .ordonnee {
   width: 10%;
   margin-left: 2%;
-  margin-bottom:40px;
+  margin-bottom: 40px;
 }
 
 .abscisse {
   margin-top: 5%;
- margin-left:10%;
+  margin-left: 10%;
   display: flex;
 }
 
 .soustitre {
   text-align: center;
   font-size: 0.7em;
-  color:white;
+  color: white;
+}
+
+.buttonrep {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.labelspec{
+  margin-left: 20%;
+  margin-bottom: 0%;
+  padding-top: 5%;
 }

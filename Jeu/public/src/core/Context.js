@@ -8,7 +8,8 @@ class Context {
     user:[],
     joueurs: [],
     tours: [],
-    paquet:[]
+    paquet:[],
+    adminuserstories:[]
   };
   // ? Ca ressemble à un développeur qui se la joue mais il faudra vérifier
   static getInstance() {

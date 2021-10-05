@@ -953,7 +953,7 @@ article {
   height: 5rem;
   z-index: 100000;
 }
-
+/* partie accordeon  */
 /* relier a l'accordeon pour voir les differentes userstories en cours */
 .insideboxdetail {
   width: 98%;

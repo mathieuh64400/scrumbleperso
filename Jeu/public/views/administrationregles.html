@@ -15,76 +15,71 @@
 
 <section>
     <h1> Administrer les régles du jeu</h1>
-    <div class="cadregestionjeu">
+    <section>
+      <div style="display:flex;flex-direction:row;">
+    
+         
+          <p id="messageflash"> </p>
+      </div>
+      <div class="cadreconnexion">
+          <!-- <h1> Creer une regle de jeu: </h1> -->
+          <!-- id="reglecadre" -->
+          <div  class="cadregestionjeu">
+  
+              <form  method="post" id="myForm" name="myForm">
+  
+  
+                  <input type="text" id="titre" name="titre" placeholder="entre le titre de l'article">
+  
+  
+                  <input type="text" id="contenu" name="contenu" placeholder="entrer votre resume (max: 3lignes)">
+  
+                  <textarea id="textarea" name="texte" rows="4" cols="65"
+                      placeholder="rentrer le descriptif de votre regle de jeu">
+                  </textarea> <br>
+                  <p class="repartitionVert">
+                  <p class="repartition">
+                      <label class="position">choisir une image:</label>
+                      <input type="file" id="myFile" name="img" accept="image/x-png">
+                  </p><br>
+                  <p class="repartition">
+                      <label class="position">choisir une video :</label>
+                      <input type="file" id="myVideo" name="video" placeholder="choisir une video"></p>
+                  </p>
+  
+                  <div style="display: flex;flex-direction: row; justify-content: center;">
+                      <input type="reset" value="Annuler">
+                      <input type="submit" value="Valider la regle">
+  
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>
+  <div class="cadregestionjeu">
        
-        <h1 class="titre">liste des regles</h1>
+        <h1 class="titre" >liste des regles</h1>
        
- <button class="btnregles"> <a href="/createregles" data-link="/createregles">Creer une nouvelle regle</a> </button>
+
        <div id="reglecadre">
  <table>
           <tr>
             <th>id</th>
             <th>nom regles</th>
             <th>resumé</th>
-            <th>video</th>
+            <th>texte</th>
             <th>image</th>
-            <th>text</th>
+            <th>video</th>
+            
             <th>Action</th>
           </tr>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Helen Bennett</td>
-            <td>UK</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td> 
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
-            <td>Germany</td>
-            <td>Germany</td><td>Germany</td>
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Giovanni Rovelli</td>
-            <td>Italy</td>
-            <td>Germany</td>
-            <td>Germany</td> 
-            <td>Germany</td>
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
+          <tbody id="contenutable">
+        
+          
+         
+         
+         
+       
         </tbody>
         </table>
       </div>

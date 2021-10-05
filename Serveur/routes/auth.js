@@ -86,38 +86,38 @@ router.post("/login", async (req, res) => {
         },
         process.env.TOKEN_SECRET
     );
-    res.header("auth-token", token).json({
-        error: null,
-        data: {
-            token,
-        },
-    });
-    // res.json({
+    // res.header("auth-token", token).json({
     //     error: null,
     //     data: {
-    //         message: "Login successful",
+    //         token,
     //     },
     // });
+    res.json({
+        error: null,
+        data: {
+            message: "Login successful",
+        },
+    });
 });
-router.get("/", async (req, res) => {
-	const userlist = await User.find()
-	res.send(userlist);
-})
-// modification du role avec patch:
-router.patch("/update/:_id", async (req, res) => {
-	try {
-		const role = await User.findOne({ _id: req.params.id })
+// router.get("/", async (req, res) => {
+// 	const userlist = await User.find()
+// 	res.send(userlist);
+// })
+// // modification du role avec patch:
+// router.patch("/update/:_id", async (req, res) => {
+// 	try {
+// 		const role = await User.findOne({ _id: req.params.id })
 
-		if (req.body.role) {
-			role.role = req.body.role
-		}
-		await role.save()
-		res.send(regle)
-	} catch {
-		res.status(404)
-		res.send({ error: "User doesn't exist!" })
-	}
-})
+// 		if (req.body.role) {
+// 			role.role = req.body.role
+// 		}
+// 		await role.save()
+// 		res.send(regle)
+// 	} catch {
+// 		res.status(404)
+// 		res.send({ error: "User doesn't exist!" })
+// 	}
+// })
 // router.get('/testtoken',(req,res)=>{
 //     const token = jwt.sign({test: "ts"}, "vivelabelgique")
 

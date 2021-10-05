@@ -7,7 +7,7 @@ export default class Administration extends Controller {
         super();
         document.title = "gestion du jeu";
 
-        let user = this.state.user[0];
+        let user = this.state.user;
         console.log(user);
 
        
@@ -23,9 +23,9 @@ export default class Administration extends Controller {
                 adminvison.innerHTML = `
         <div>
         <button class="btn3"> <a href="/administrationregles" data-link="/administrationregles"> Gestion des regles </a></button>
-      
+        <button class="btn3"> <a href="/userstoriesSelect" data-link="/userstoriesSelect">Gestion des userstories</a></button>
         <button class="btn3"> <a href="/administrationroles" data-link="/administrationroles">Gestion des Droit d'Administration</a></button>
-        <button class="btn3" id="deconnexion0"> <a href="/" data-link="/">Ddeconnexion</a></button>
+        <button class="btn3" id="deconnexion0"> <a href="/" data-link="/">Deconnexion</a></button>
         </div>`
             }
             if (user.role === "USER") {

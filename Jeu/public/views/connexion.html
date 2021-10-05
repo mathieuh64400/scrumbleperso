@@ -12,20 +12,21 @@
 </head>
 
 
-    <section>
+    <section> 
+        <h1> Connectez-vous </h1>
         <div  class="cadreconnexion">
-            <h1> Inscrivez-vous </h1>
+           
             <form action="" method="post" id="form">
-
-
-                <input type="text" id="mail" name="mail" placeholder="entrez votre email">
-
-
-                <input type="password" id="password" name="password" placeholder="entrer votre password">
-              
+                <div>
+                <label class="labelspec"> Votre email</label><br>
+                <input type="text" id="mail" name="mail" placeholder="entrez votre email" autocomplete="false"></div>
+                <div>
+                <label class="labelspec"> Votre password</label><br>
+                <input type="password" id="password" name="password" placeholder="entrer votre password" >
+              </div>
                  
                
-                <div style="display: flex;flex-direction: row; justify-content: center;">
+                <div class="buttonrep" >
                     <input type="reset" value="Annuler">
                     <input type="submit"  value="Connexion">
                 </div>

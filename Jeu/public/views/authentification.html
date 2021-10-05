@@ -16,11 +16,12 @@
 <section>
     <div class="cadreadmin">
         <h1> Inscrivez-vous </h1>
+        
         <form action="" method="post" id="form">
 
-            <input type="text" id="nom" name="nom" placeholder="entrez votre nom">
-            <input type="text" id="mail" name="mail" placeholder="entrez votre email">
-            <input type="password" id="password" name="password" placeholder="entrer votre password">
+            <input type="text" id="nom" name="nom" placeholder="entrez votre nom" autocomplete="false">
+            <input type="text" id="mail" name="mail" placeholder="entrez votre email" autocomplete="false">
+            <input type="password" id="password" name="password" placeholder="entrer votre password" min="8" autocomplete="false">
 
             <div style="display: flex;flex-direction: row; justify-content: center;">
                 <input type="reset" value="Annuler">
@@ -30,7 +31,6 @@
 
     </div>
 </section>
-
 
 
 </html>

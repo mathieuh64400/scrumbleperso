@@ -7,11 +7,17 @@ export default class Regles extends Controller {
     const cadreref = document.getElementById("cadreregles");
     let hpCharacters = [];
 
-    let url = 'http://localhost:3003/regles';
+    var myHeaders = new Headers({ 'Access-Control-Allow-Headers': "*", "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json"});
+    var myInit = { method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default' };
+    let url = 'http://localhost:3050/api/regles';
 
     const loadCharacters = async () => {
       try {
-        const res = await fetch('http://localhost:3003/regles');
+        const res = await fetch(url,{method:'GET'});
         hpCharacters = await res.json();
         console.log(res + "  " + hpCharacters);
         displayCharacters(hpCharacters);
@@ -19,11 +25,12 @@ export default class Regles extends Controller {
         console.error(err);
       }
     };
+
     const displayCharacters = (characters) => {
       const htmlString = characters
         .map((character) => {
           return `
-                    <div id="${character.id}">
+                    <div id="${character._id}">
                         <div class="rep">
                             <img src=${character.img} alt="logo de la regle"class="img">
                             <div>
@@ -32,7 +39,7 @@ export default class Regles extends Controller {
                                 <button class="btn4" id="myBtnmodal${character.id}"> Voir </button> 
 
                                 <!-- The Modal -->
-                                <div id="myModal${character.id}" class="modal">
+                                <div id="myModal${character._id}" class="modal">
                                     <!-- Modal content -->
                                     <div class="modal-content">
                                     <h2 class="titremodal">${character.titre}</h2>

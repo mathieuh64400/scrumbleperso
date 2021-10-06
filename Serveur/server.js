@@ -5,16 +5,14 @@ const jsonwebtoken = require("jsonwebtoken");
 
 
 const routes = require('./routes/routes.js')
-// const { on } = require('process');
+const daylicarte =require('./routes/daylicarte.js');
+const revuecarte =require('./routes/revuecartes.js');
+const pbcartes =require('./routes/pbcartes.js');
+
+
 const app = express();
 const cors = require('cors');
-// app.use((req,res,next)=>{
-//   res.header("Access-Control-Allow-Origin","*");
-//   res.header("Access-Control-Allow-Methods","GET,POST,HEAD,OPTIONS,PUT,PATCH,DELETE");
-//   res.header("Access-Control-Allow-Headers","Origin,X-Requested-Width,Content-Type,OPTIONS,Accept");
-//   next();
-// })
-// const path=require('path');
+
 const http = require('http').createServer(app);
 const port = 3018;
 const port2 = 3050;
@@ -123,6 +121,9 @@ mongoose
     app.use(express.json())
     app.use(cors(corsOptions))
     app.use("/api", routes);
+    app.use("/api", daylicarte);
+    app.use("/api", revuecarte);
+    app.use("/api", pbcartes);
     app.use("/api/user", authRoutes);
     app.use("/api/dashboard", verifyToken, dashboardRoutes);
 

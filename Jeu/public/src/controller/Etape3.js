@@ -333,7 +333,7 @@ export default class Etape3 extends Controller {
     let urlselect = listurl[I];
     console.log(urlselect, I);
 
-    if (paqueturlbase === 'http://localhost:3003/paquet1') {
+    if (paqueturlbase === 'http://localhost:3018/paquet1') {
       console.log(paqueturlbase, typeof (paqueturlbase));
       listurl = ['http://localhost:3003/paquet1', 'http://localhost:3003/paquet1.1', 'http://localhost:3003/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
       I = 0;

@@ -15,11 +15,26 @@ import Authentification from "../controller/Authentification.js";
 import Adminuserstories from "../controller/Adminuserstories.js"
 import Administrationroles from "../controller/Administrationroles.js";
 import Createroles from "../controller/Createroles.js";
-import UserstoriesSelect from "../controller/userstoriesSelect.js"
+import UserstoriesSelect from "../controller/userstoriesSelect.js";
+import Daylicartes from "../controller/Daylicartes.js";
+import Revuecartes from "../controller/Revuecartes.js";
+import Pbcartes from "../controller/Pbcartes.js"
 export const routes = {
     "/": {
         controller: Accueil,
         view: "accueil"
+    },
+    "/daylicartes":{
+        controller:Daylicartes,
+        view:"daylicartes"
+    },
+    "/Pbcartes":{
+        controller:Pbcartes,
+        view:"pbcartes"
+    },
+    "/revuecartes":{
+        controller:Revuecartes,
+        view:"revuecartes"
     },
     "/administration": {
         controller: Administration,

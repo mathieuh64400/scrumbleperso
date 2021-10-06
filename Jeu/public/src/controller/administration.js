@@ -23,6 +23,9 @@ export default class Administration extends Controller {
                 adminvison.innerHTML = `
         <div>
         <button class="btn3"> <a href="/administrationregles" data-link="/administrationregles"> Gestion des regles </a></button>
+        <button class="btn3"> <a href="/daylicartes" data-link="/daylicartes"> Gestion des cartes Dayli </a></button>
+        <button class="btn3"> <a href="/revuecartes" data-link="/revuecartes"> Gestion des cartes revues </a></button>
+        <button class="btn3"> <a href="/Pbcartes" data-link="/Pbcartes"> Gestion des cartes problèmes </a></button>
         <button class="btn3"> <a href="/userstoriesSelect" data-link="/userstoriesSelect">Gestion des userstories</a></button>
         <button class="btn3"> <a href="/administrationroles" data-link="/administrationroles">Gestion des Droit d'Administration</a></button>
         <button class="btn3" id="deconnexion0"> <a href="/" data-link="/">Deconnexion</a></button>

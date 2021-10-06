@@ -14,7 +14,7 @@
 
 
 <section>
-    <h1> Administrer les régles du jeu</h1>
+    <h1> Administrer les Cartes revues</h1>
     <section>
       <div class="repartition">
     
@@ -32,20 +32,9 @@
                   <input type="text" id="titre" name="titre" placeholder="entre le titre de l'article">
   
   
-                  <input type="text" id="contenu" name="contenu" placeholder="entrer votre resume (max: 3lignes)">
-  
                   <textarea id="textarea" name="texte" rows="4" cols="65"
                       placeholder="rentrer le descriptif de votre regle de jeu">
                   </textarea> <br>
-                  <p class="repartitionVert">
-                  <p class="repartition">
-                      <label class="position">choisir une image:</label>
-                      <input type="file" id="myFile" name="img" accept="image/x-png">
-                  </p><br>
-                  <p class="repartition">
-                      <label class="position">choisir une video :</label>
-                      <input type="file" id="myVideo" name="video" placeholder="choisir une video"></p>
-                  </p>
   
                   <div class="buttonrep">
                       <input type="reset" value="Annuler">
@@ -58,20 +47,16 @@
   </section>
   <div class="cadregestionjeu">
        
-        <h1 class="titre" >liste des regles</h1>
+        <h1 class="titre" >liste des cartes revues</h1>
        
 
        <div id="reglecadre">
  <table>
           <tr>
             <th>id</th>
-            <th>nom regles</th>
-            <th>resumé</th>
-            <th>texte</th>
-            <th>image</th>
-            <th>video</th>
-            
-            <th>Action</th>
+            <th>titre</th>
+            <th>Contenu</th>
+          <th>Action</th>
           </tr>
           <tbody id="contenutable">
         

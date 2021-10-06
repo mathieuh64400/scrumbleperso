@@ -10,7 +10,8 @@ export default class Compte extends Controller {
      const entries= new Map([
        [ 'mail','mail'],
        ['password','...'],
-       ['role','....'],['statut','deconnecte']
+       ['role','....'],
+       ['statut','deconnecte']
      
      ]); 
      const obj=Object.fromEntries(entries);

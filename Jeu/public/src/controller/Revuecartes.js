@@ -1,6 +1,6 @@
 import Controller from "../core/Controller.js";
 
-export default class Administrationregles extends Controller {
+export default class Revuecartes extends Controller {
 
   constructor() {
 
@@ -22,8 +22,7 @@ export default class Administrationregles extends Controller {
       h.append('Accept', 'application/json');
 
       let titre = document.getElementById('titre').value;
-      let contenu = document.getElementById('contenu').value;
-      let texte = document.getElementById('textarea').value;
+      let contenu = document.getElementById('textarea').value;
 
       console.log(titre);
 
@@ -36,14 +35,11 @@ export default class Administrationregles extends Controller {
       const formData = new FormData(myForm);
       console.log(formData);
       // formData.append('image',image,"image.png");
-      fetch('http://localhost:3050/api/regles', {
+      fetch('http://localhost:3050/api/revuecarte', {
           method: 'POST',
           body: JSON.stringify({
             titre: titre,
-            contenu: contenu,
-            texte: texte,
-            img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
-            video: "Mountains - 2266.mp4"
+            contenu: contenu
           }),
           headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -60,7 +56,7 @@ export default class Administrationregles extends Controller {
       button.classList.add('btnregles');
       let lienrelance = document.createElement('a');
       lienrelance.innerHTML = "NEW";
-      lienrelance.setAttribute("href", "/createregles");
+      lienrelance.setAttribute("href", "/daylicartes");
 
       validationmessage.appendChild(button);
       button.appendChild(lienrelance);
@@ -86,7 +82,7 @@ export default class Administrationregles extends Controller {
       mode: 'cors',
       cache: 'default'
     };
-    let url = 'http://localhost:3050/api/regles';
+    let url = 'http://localhost:3050/api/revuecarte';
 
     const loadCharacters = async () => {
       try {
@@ -106,14 +102,10 @@ export default class Administrationregles extends Controller {
         .map((character) => {
           return `
                     <tr data-regles="${character._id}">
-                        <td>${character._id}</td>
+                    <td id="titre">${character._id}</td>
                         <td id="titre">${character.titre}</td>
-                        <td  id="resume"class="tdcontenu">${character.contenu}</td>
                         <td class="tdcontenu">
-                         A retenir: <br> <span id="contenu">${character.texte}</span></td>
-                        <td class="tdimage">${character.img}</td>
-                        <td class="tdcontenu">${character.video}</td> 
-                        
+                         <span id="contenu">${character.contenu}</span></td>
                         <td data-id="${character._id}"> <button class="edit" id="edit-post" data-id="${character._id}"> Edit </button> <button class="delete" id="${character._id}"> Delete</button> </td>
                     </tr>
                             
@@ -168,7 +160,7 @@ export default class Administrationregles extends Controller {
               e.preventDefault();
               console.log("go");
               // let idtest = '6156f28cd8bc2822c7003a0b'
-              fetch('http://localhost:3050/api/regles/' + id, {
+              fetch('http://localhost:3050/api/revuecarte/' + id, {
                 method: 'PATCH',
                 body: JSON.stringify({
                   titre: thetitre.value,
@@ -198,7 +190,7 @@ export default class Administrationregles extends Controller {
           e.preventDefault()
 
 
-          fetch('http://localhost:3050/api/regles/' + element.id, {
+          fetch('http://localhost:3050/api/revuecarte/' + element.id, {
             method: 'DELETE'
           })
 

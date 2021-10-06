@@ -4,9 +4,7 @@ class Controller {
   state = Context.getInstance().state;
 
   constructor() {
-    document.querySelectorAll("a[data-link]").forEach((link) => {
-      link.addEventListener("click", this.route);
-    });
+    this.refreshLinks()
   }
 
   replace(dataset, key, value) {
@@ -24,6 +22,12 @@ class Controller {
         detail: e.target.dataset.link,
       })
     );
+  }
+
+  refreshLinks() {
+    document.querySelectorAll("a[data-link]").forEach((link) => {
+      link.addEventListener("click", this.route);
+    });
   }
 
   go(route) {

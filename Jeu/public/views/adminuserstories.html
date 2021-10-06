@@ -9,26 +9,67 @@
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/scrumble.css">
     <link rel="stylesheet" href="../assets/css/administrationregles.css">
+    <link rel="stylesheet" href="../assets/css/adminuserstories.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 </head>
 
 
 <section>
+<h1> Administrer les differentes userstories</h1>
+ <!-- le formulaire de creation  -->
+        <div class="cadregestionjeu">
+            
+            <!-- id="reglecadre" -->
+            <div  class="cadregestionjeu">
+                <h4> Creer une usesrstorie </h4> <br>
+                <form  method="post" id="myForm" name="myForm">
+    
+    
+                    <input type="text" id="titre" name="titre" placeholder="entre le titre de l'article">
+                    <input  id="id" name="id" type="hidden" >
+    
+                    <textarea id="textarea" name="texte" rows="4" cols="65"
+                        placeholder=" rentrer le descriptif de votre regle de jeu">
+                    </textarea> <br>
+                   
+                    <p class="repartition">
+                        <label class="position">choisir une image:</label>
 
+                        <input type="file" id="myFile" name="img" accept="image/x-png">
+                    </p><br>
+                    <div > 
+                        <input type="number" id="dposition" name="dposition" placeholder="entrer la disposition de la userstorie" min="1" max="25">  
+                        <input type="number" id="Dependance" name="Dependance" placeholder="entrer la Dependance de la userstorie" min="1" max="15"> 
+                    </div>
+    
+                    <div class="buttonrep">
+                        <input type="reset" value="Annuler">
+                        <input type="submit" value="Valider la userstorie">
+    
+                    </div>
+                </form>
+            </div>
+        </div>
+      
     <div class="cadregestionjeu">
 
-        <h1> Administrer les differentes userstories</h1>
-
+        
+<p id="messageflash"></p>
+       
         <!-- <button class="btnregles"> <a href="/createregles" data-link="/createregles">Creer de nouvelles userstories</a> </button> -->
         <div id="reglecadre">
             <table>
                 <tr>
-                    <th>id</th>
-                    <th>userstories</th>
+                    <th>id </th>
+                    <th> titre Userstorie</th>
+                    <th> Contenu d'une Userstorie</th>
+                    <th> image de la Userstorie</th>
+                    <th> dposition de la Userstorie</th>
+                    <th> Dependance de la Userstorie</th>
                     <th>Action</th>
                 </tr>
                 <tbody id="contenutable">
-                    
+
 
 
 

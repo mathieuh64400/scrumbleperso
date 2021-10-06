@@ -20,7 +20,7 @@ export default class Etape2 extends Controller {
     urlchoisi.push(obj);
     console.log(urlchoisi);
     // liste des paquet existant associer a des variables unique dont une sera socké dans state
-    let url0 = "http://localhost:3003/paquet1";
+    let url0 = "http://localhost:3018/paquet1";
     let url1 = "http://localhost:3003/paquet2";
     let url2 = "http://localhost:3003/paquet3";
 

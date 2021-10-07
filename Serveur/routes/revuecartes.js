@@ -8,7 +8,7 @@ router.get("/revuecarte", async (req, res) => {
 })
 
 router.get("/revuecarte/:id", async (req, res) => {
-	const revuecarte= await Regle.findOne({ _id: req.params.id })
+	const revuecarte= await Revuecartes.findOne({ _id: req.params.id })
 	res.send(revuecarte)
 })
 
@@ -23,7 +23,7 @@ router.post("/revuecarte", async (req, res) => {
 
 router.patch("/revuecarte/:id", async (req, res) => {
 	try {
-		const revuecarte = await revuecarte.findOne({ _id: req.params.id })
+		const revuecarte = await Revuecartes.findOne({ _id: req.params.id })
 
 		if (req.body.titre) {
 			revuecarte.titre = req.body.titre
@@ -37,7 +37,7 @@ router.patch("/revuecarte/:id", async (req, res) => {
 		res.send(revuecarte)
 	} catch {
 		res.status(404)
-		res.send({ error: "Daylicarte doesn't exist!" })
+		res.send({ error: "RevueCarte doesn't exist!" })
 	}
 })
 

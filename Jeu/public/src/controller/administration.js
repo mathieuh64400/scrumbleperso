@@ -21,14 +21,18 @@ export default class Administration extends Controller {
             if (user.role === "ADMIN") {
 
                 adminvison.innerHTML = `
+        <div class='repartition'>
         <div>
         <button class="btn3"> <a href="/administrationregles" data-link="/administrationregles"> Gestion des regles </a></button>
         <button class="btn3"> <a href="/daylicartes" data-link="/daylicartes"> Gestion des cartes Dayli </a></button>
         <button class="btn3"> <a href="/revuecartes" data-link="/revuecartes"> Gestion des cartes revues </a></button>
         <button class="btn3"> <a href="/Pbcartes" data-link="/Pbcartes"> Gestion des cartes problèmes </a></button>
+        </div>
+        <div>
         <button class="btn3"> <a href="/userstoriesSelect" data-link="/userstoriesSelect">Gestion des userstories</a></button>
-        <button class="btn3"> <a href="/administrationroles" data-link="/administrationroles">Gestion des Droit d'Administration</a></button>
+        <button class="btn3"> <a href="/administrationroles" data-link="/administrationroles"> Droits d'Administration</a></button>
         <button class="btn3" id="deconnexion0"> <a href="/" data-link="/">Deconnexion</a></button>
+        </div>
         </div>`
             }
             if (user.role === "USER") {

@@ -14,63 +14,54 @@
 
 
 <section>
-    <h1> Administrer les differents droits d'utilisateurs</h1>
-    <div class="cadregestionjeu">
+    <h1> Administrer les droits utilisateurs</h1>
+    <section>
+      <div class="repartition">
+    
+         
+          <p id="messageflash"> </p>
+      </div>
+      <div class="cadregestionjeu">
+          <!-- <h1> Creer une regle de jeu: </h1> -->
+          <!-- id="reglecadre" -->
+          <div  class="cadregestionjeu">
+  
+              <form  method="post" id="myForm" name="myForm">
+                <label class="position">Choisir entre USER et ADMIN</label>
+                <input type="text" id="level" name="level" placeholder="entrer le role de vos utilisateurs" min="1" max="25">  
+                
+  
+                  <div class="buttonrep">
+                      <input type="reset" value="Annuler">
+                      <input type="submit" value="Valider">
+  
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>
+  <div class="cadregestionjeu">
        
-        <h1 class="titre">liste des utilisateurs</h1>
+        <h1 class="titre" >liste des utilisateurs</h1>
        
- <button class="btnregles"> <a href="/createroles" data-link="/createroles">offrez de nouveaux droits</a> </button>
+
        <div id="reglecadre">
  <table>
           <tr>
             <th>id</th>
-            <th>mail utilisateurs</th>
-            <th>roles</th>
+            <th>mail utilisateur</th>
+            <th>role</th>
+            
+            
             <th>Action</th>
           </tr>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-            
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Helen Bennett</td>
-            <td>UK</td>
-           
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
-           
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Giovanni Rovelli</td>
-            <td>Italy</td>
-            
-            <td> <button class="edit"> Edit </button> <button class="delete"> Delete</button> </td>
-          </tr>
+          <tbody id="contenutable">
+        
+          
+         
+         
+         
+       
         </tbody>
         </table>
       </div>

@@ -8,6 +8,7 @@ const routes = require('./routes/routes.js')
 const daylicarte =require('./routes/daylicarte.js');
 const revuecarte =require('./routes/revuecartes.js');
 const pbcartes =require('./routes/pbcartes.js');
+const roles =require('./routes/role.js');
 
 
 const app = express();
@@ -124,6 +125,7 @@ mongoose
     app.use("/api", daylicarte);
     app.use("/api", revuecarte);
     app.use("/api", pbcartes);
+    app.use("/api", roles);
     app.use("/api/user", authRoutes);
     app.use("/api/dashboard", verifyToken, dashboardRoutes);
 

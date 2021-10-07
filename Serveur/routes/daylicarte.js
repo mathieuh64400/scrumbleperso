@@ -17,8 +17,8 @@ router.post("/dayli", async (req, res) => {
 		titre: req.body.titre,
         contenu: req.body.contenu
 	})
-	await regle.save()
-	res.send(regle)
+	await daylicarte.save()
+	res.send(daylicarte)
 })
 
 router.patch("/dayli/:id", async (req, res) => {

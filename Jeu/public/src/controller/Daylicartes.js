@@ -28,9 +28,8 @@ export default class Daylicartes extends Controller {
 
       console.log(contenu);
 
-      console.log(texte);
-      // let image=document.getElementById('myFile').files[0];
-      // console.log(image);
+  
+      
 
       const formData = new FormData(myForm);
       console.log(formData);
@@ -102,10 +101,10 @@ export default class Daylicartes extends Controller {
         .map((character) => {
           return `
                     <tr data-regles="${character._id}">
-                    <td id="titre">${character._id}</td>
+                  <td id=${character._id}>${character._id}</td>
                         <td id="titre">${character.titre}</td>
-                        <td class="tdcontenu">
-                         <span id="contenu">${character.contenu}</span></td>
+                        <td id="contenu" class="contenu">
+                       ${character.contenu}</td>
                         <td data-id="${character._id}"> <button class="edit" id="edit-post" data-id="${character._id}"> Edit </button> <button class="delete" id="${character._id}"> Delete</button> </td>
                     </tr>
                             
@@ -133,7 +132,7 @@ export default class Daylicartes extends Controller {
             console.log(elt);
 
             let titre = elt.querySelector('#titre').textContent;
-            let resume = elt.querySelector('#resume').textContent;
+            // let resume = elt.querySelector('#resume').textContent;
             let texte = elt.querySelector('#contenu').textContent;
             console.log(titre);
 
@@ -145,11 +144,11 @@ export default class Daylicartes extends Controller {
 
             let thetitre = document.getElementById('titre')
             console.log(thetitre);
-            let thecontenu = document.getElementById('contenu');
+            // let thecontenu = document.getElementById('contenu');
             let thetexte = document.getElementById('textarea');
 
             thetitre.value = titre;
-            thecontenu.value = resume;
+         
             thetexte.value = texte;
             console.log(thetitre);
             // update existing post
@@ -163,11 +162,9 @@ export default class Daylicartes extends Controller {
               fetch('http://localhost:3050/api/dayli/' + id, {
                 method: 'PATCH',
                 body: JSON.stringify({
-                  titre: thetitre.value,
-                  contenu: thecontenu.value,
-                  texte: thetexte.value,
-                  img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
-                  video: "Mountains - 2266.mp4"
+                    titre: thetitre.value,
+                    contenu: thetexte.value
+                
                 }),
                 headers: {
                   "Content-type": "application/json; charset=UTF-8"
@@ -190,7 +187,7 @@ export default class Daylicartes extends Controller {
           e.preventDefault()
 
 
-          fetch('http://localhost:3050/api//dayli' + element.id, {
+          fetch('http://localhost:3050/api/dayli/' + element.id, {
             method: 'DELETE'
           })
 

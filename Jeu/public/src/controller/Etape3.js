@@ -81,7 +81,7 @@ export default class Etape3 extends Controller {
     let confref = this.state.paquet[0].configuration;
     console.log(confref);
     class Detail {
-      constructor(id, type, titre, contenu, img, dposition, Dependance) {
+      constructor(id, type, titre, contenu, img, dposition, Dependance,taille,value) {
         this.id = id;
         this.type = type;
         this.titre = titre;
@@ -89,6 +89,8 @@ export default class Etape3 extends Controller {
         this.img = img;
         this.dposition = dposition;
         this.Dependance = Dependance;
+        this.taille=taille;
+        this.value=value;
 
       }
       afficher() {
@@ -113,10 +115,12 @@ export default class Etape3 extends Controller {
           titre.innerHTML = this.titre;
           let para3 = document.createElement("p");
           para3.innerHTML = this.contenu;
-          let size = document.createElement("p");
+          let taille = document.createElement("p");
           let value = document.createElement("p");
-          value.innerHTML = ""
-          size.innerHTML = "";
+          value.innerHTML = 'value:'+this.value;
+          console.log(value.innerHTML);
+          taille.innerHTML = 'size :'+this.taille;
+          console.log(taille.innerHTML);
           let eletclick = document.createElement("div");
           eletclick.id=this.id ;
           eletclick.classList.add("croix");
@@ -129,7 +133,8 @@ export default class Etape3 extends Controller {
           sousdiv.appendChild(para2);
           carte.appendChild(titre);
           carte.appendChild(para3);
-          carte.appendChild(size),
+          carte.appendChild(taille);
+          carte.appendChild(value);
             carte.appendChild(eletclick);
         } else {
           let carte = document.createElement("div");
@@ -335,7 +340,7 @@ export default class Etape3 extends Controller {
 
     if (paqueturlbase === 'http://localhost:3018/paquet1') {
       console.log(paqueturlbase, typeof (paqueturlbase));
-      listurl = ['http://localhost:3003/paquet1', 'http://localhost:3003/paquet1.1', 'http://localhost:3003/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
+      listurl = ['http://localhost:3018/paquet1', 'http://localhost:3003/paquet1.1', 'http://localhost:3003/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
       I = 0;
 
       console.log(listurl);
@@ -423,7 +428,8 @@ export default class Etape3 extends Controller {
           cadrillage.innerHTML = "";
 
           datas.forEach(element => {
-            let Deatail = new Detail(element.id, element.type, element.titre, element.contenu, element.img, element.dposition, element.Dependance);
+            console.log(element);
+            let Deatail = new Detail(element.id, element.type, element.titre, element.contenu, element.img, element.dposition, element.Dependance,element.taille,element.value);
             Deatail.afficher();
           })
         } else if (xhr.readyState < 4) {

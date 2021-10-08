@@ -54,6 +54,7 @@ if((urlchoisi[0].url===listurl[0]|| urlchoisi[0].url===listurl[1] || urlchoisi[0
                         <td id="img">${character.img}</td>
                         <td id="dposition">${character.dposition}</td>
                         <td id="Dependance">${character.Dependance}</td>
+                        <td id="size">${character.taille}/${character.size}</td>
                         <td data-id="${character.id}"> <button class="edit" id="edit-post" data-id="${character.id}"> Edit </button> <button class="delete" id="${character.id}"> Delete</button> </td>
                     </tr>
                             

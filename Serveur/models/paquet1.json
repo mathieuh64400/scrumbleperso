@@ -5,7 +5,11 @@
     "contenu": "Italie-France: 3-0 .tamen clausos vehementer angebat quod ",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 0,
-    "Dependance": 1
+    "Dependance": 1,
+    "taille":"★ ★ ★ ★ ★",
+    "value":"XS"
+
+  
   },
   {
     "id": 2,
@@ -13,7 +17,9 @@
     "contenu": "Illud tamen clausos vehementer angebat quod captis navigiis. ",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 1,
-    "Dependance": 5
+    "Dependance": 5,
+    "taille":"★ ★ ★ ★ ★",
+    "value":"S"
   },
   {
     "id": 3,
@@ -21,7 +27,9 @@
     "contenu": " quae frumenta vehebant per flumen, Isauri quet.clausos veheter.",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 2,
-    "Dependance": 4
+    "Dependance": 4,
+    "taille":"★ ★ ★ ★ ★",
+    "value":"L"
   },
   {
     "id": 4,
@@ -29,7 +37,9 @@
     "contenu": "Illud tamen clausos vehementer angebat quod captis ",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 3,
-    "Dependance": 3
+    "Dependance": 3,
+    "taille":"★ ★ ★ ★ ★",
+    "value":"M"
   },
   {
     "id": 5,
@@ -37,7 +47,9 @@
     "contenu": "Illud tamen clausos vehementer angebat quod captit.",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 4,
-    "Dependance": 8
+    "Dependance": 8,
+    "taille":"★ ★ ★ ★ ★",
+    "value":"XL"
   },
   {
     "id": 6,
@@ -45,7 +57,9 @@
     "contenu": "Illud tamens adfluebant, ipsi vero solitarum rerum cibos ia",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 5,
-    "Dependance": 12
+    "Dependance": 12,
+    "taille":"★ ★ ★ ★ ",
+    "value":"XS"
   },
   {
     "id": 7,
@@ -53,7 +67,9 @@
     "contenu": "Illud tamen per flumen, Isauri quidem alimentorum adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 6,
-    "Dependance": 11
+    "Dependance": 11,
+    "taille":"★ ★ ★ ★ ",
+    "value":"S"
   },
   {
     "id": 8,
@@ -61,7 +77,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 7,
-    "Dependance": ""
+    "Dependance": "",
+    "taille":"★ ★ ★ ★ ",
+    "value":"L"
   },
   {
     "id": 9,
@@ -69,7 +87,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 8,
-    "Dependance": 15
+    "Dependance": 15,
+    "taille":"★ ★ ★ ★ ",
+    "value":"M"
   },
   {
     "id": 10,
@@ -77,7 +97,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 9,
-    "Dependance": ""
+    "Dependance": "",
+    "taille":"★ ★ ★ ★ ",
+    "value":"XL"
   },
   {
     "id": 11,
@@ -85,7 +107,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 10,
-    "Dependance": 14
+    "Dependance": 14,
+    "taille":"★ ★ ★ ",
+    "value":"XS"
   },
   {
     "id": 12,
@@ -93,7 +117,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 11,
-    "Dependance": ""
+    "Dependance": "",
+    "taille":"★ ★ ★ ",
+    "value":"S"
   },
   {
     "id": 13,
@@ -101,7 +127,10 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 12,
-    "Dependance": ""
+    "Dependance": "", 
+    "taille":"★ ★ ★ ",
+    "value":"L"
+    
   },
   {
     "id": 14,
@@ -109,7 +138,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 13,
-    "Dependance": ""
+    "Dependance": "",
+    "taille":"★ ★ ★ ",
+    "value":"M"
   },
   {
     "id": 15,
@@ -117,7 +148,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 14,
-    "Dependance": ""
+    "Dependance": "",
+    "taille":"★ ★ ★ ",
+    "value":"XL"
   },
   {
     "id": 16,
@@ -125,7 +158,10 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
+
   },
   {
     "id": 17,
@@ -133,7 +169,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 18,
@@ -141,7 +179,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 19,
@@ -149,7 +189,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 20,
@@ -157,7 +199,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 21,
@@ -165,7 +209,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 22,
@@ -173,7 +219,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 23,
@@ -181,7 +229,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 24,
@@ -189,7 +239,9 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   },
   {
     "id": 25,
@@ -197,6 +249,8 @@
     "contenu": ".....................",
     "img": ".........................",
     "dposition": "...........",
-    "Dependance": "............"
+    "Dependance": "............",
+    "taille":"",
+    "value":""
   }
 ]

@@ -1,0 +1,33 @@
+h1 {
+  text-align: center;
+}
+h2{font-size: x-large;
+text-align: center;}
+
+.card {
+  background-color: transparent;
+}
+
+.btn {
+  background-color: rgb(77, 200, 52);
+  color: white;
+  padding: 20px 75px;
+  margin-top: 10%;
+  border-radius: 50px;
+  height: 5em;
+  width: 15em;
+}
+
+input {
+  color:white;
+}
+/* .btn2 {
+  background-color: rgb(251, 173, 37);
+  color: black;
+  padding: 25px 75px;
+  margin-top: 10%;
+  margin-right: 2%;
+  border-radius: 50px;
+  height: 5em;
+  width: 15em;
+} */

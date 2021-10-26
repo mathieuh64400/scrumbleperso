@@ -5,7 +5,10 @@ export default class Createregles extends Controller {
         document.title = "Creation Regles du Jeu";
 
         const myForm = document.getElementById("myForm");
-
+        console.log("toto");
+        console.log( document.title, 'formulaire' ,myForm);
+ let myfile=document.getElementById('myFile');
+            console.log(myfile);
         myForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -18,10 +21,11 @@ export default class Createregles extends Controller {
             console.log(contenu);
             let texte= document.getElementById('textarea').value;
             console.log(texte);
-            // let image=document.getElementById('myFile').files[0];
-            // console.log(image);
+           
 
             const formData = new FormData(myForm);
+            formData.append('myfile',myfile.files[0]);
+            console.log( 'list :',myfile.files);
             console.log(formData);
             // formData.append('image',image,"image.png");
             fetch('http://localhost:3050/api/regles', {

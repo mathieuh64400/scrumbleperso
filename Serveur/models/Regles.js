@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-	titre: String,
+    titre: String,
+    // numero:Number,
     contenu: String,
     img: String,
     texte:String,

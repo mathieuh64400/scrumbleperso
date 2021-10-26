@@ -6,10 +6,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 0,
     "Dependance": 1,
-    "taille":"★ ★ ★ ★ ★",
-    "value":"XS"
-
-  
+    "taille": "★ ★ ★ ★ ★",
+    "value": "XS"
   },
   {
     "id": 2,
@@ -18,8 +16,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 1,
     "Dependance": 5,
-    "taille":"★ ★ ★ ★ ★",
-    "value":"S"
+    "taille": "★ ★ ★ ★ ★",
+    "value": "S"
   },
   {
     "id": 3,
@@ -28,8 +26,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 2,
     "Dependance": 4,
-    "taille":"★ ★ ★ ★ ★",
-    "value":"L"
+    "taille": "★ ★ ★ ★ ★",
+    "value": "L"
   },
   {
     "id": 4,
@@ -38,8 +36,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 3,
     "Dependance": 3,
-    "taille":"★ ★ ★ ★ ★",
-    "value":"M"
+    "taille": "★ ★ ★ ★ ★",
+    "value": "M"
   },
   {
     "id": 5,
@@ -48,8 +46,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 4,
     "Dependance": 8,
-    "taille":"★ ★ ★ ★ ★",
-    "value":"XL"
+    "taille": "★ ★ ★ ★ ★",
+    "value": "XL"
   },
   {
     "id": 6,
@@ -58,8 +56,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 5,
     "Dependance": 12,
-    "taille":"★ ★ ★ ★ ",
-    "value":"XS"
+    "taille": "★ ★ ★ ★ ",
+    "value": "XS"
   },
   {
     "id": 7,
@@ -68,8 +66,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 6,
     "Dependance": 11,
-    "taille":"★ ★ ★ ★ ",
-    "value":"S"
+    "taille": "★ ★ ★ ★ ",
+    "value": "S"
   },
   {
     "id": 8,
@@ -78,8 +76,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 7,
     "Dependance": "",
-    "taille":"★ ★ ★ ★ ",
-    "value":"L"
+    "taille": "★ ★ ★ ★ ",
+    "value": "L"
   },
   {
     "id": 9,
@@ -88,8 +86,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 8,
     "Dependance": 15,
-    "taille":"★ ★ ★ ★ ",
-    "value":"M"
+    "taille": "★ ★ ★ ★ ",
+    "value": "M"
   },
   {
     "id": 10,
@@ -98,8 +96,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 9,
     "Dependance": "",
-    "taille":"★ ★ ★ ★ ",
-    "value":"XL"
+    "taille": "★ ★ ★ ★ ",
+    "value": "XL"
   },
   {
     "id": 11,
@@ -108,8 +106,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 10,
     "Dependance": 14,
-    "taille":"★ ★ ★ ",
-    "value":"XS"
+    "taille": "★ ★ ★ ",
+    "value": "XS"
   },
   {
     "id": 12,
@@ -118,8 +116,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 11,
     "Dependance": "",
-    "taille":"★ ★ ★ ",
-    "value":"S"
+    "taille": "★ ★ ★ ",
+    "value": "S"
   },
   {
     "id": 13,
@@ -127,10 +125,9 @@
     "contenu": "Illud tamen, Isauri quidem alimentorum copiis adfluebant,",
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 12,
-    "Dependance": "", 
-    "taille":"★ ★ ★ ",
-    "value":"L"
-    
+    "Dependance": "",
+    "taille": "★ ★ ★ ",
+    "value": "L"
   },
   {
     "id": 14,
@@ -139,8 +136,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 13,
     "Dependance": "",
-    "taille":"★ ★ ★ ",
-    "value":"M"
+    "taille": "★ ★ ★ ",
+    "value": "M"
   },
   {
     "id": 15,
@@ -149,8 +146,8 @@
     "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
     "dposition": 14,
     "Dependance": "",
-    "taille":"★ ★ ★ ",
-    "value":"XL"
+    "taille": "★ ★ ★ ",
+    "value": "XL"
   },
   {
     "id": 16,
@@ -159,9 +156,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
-
+    "taille": "",
+    "value": ""
   },
   {
     "id": 17,
@@ -170,8 +166,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
     "id": 18,
@@ -180,8 +176,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
     "id": 19,
@@ -190,8 +186,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
     "id": 20,
@@ -200,8 +196,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
     "id": 21,
@@ -210,8 +206,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
     "id": 22,
@@ -220,8 +216,8 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
     "id": 23,
@@ -230,18 +226,18 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   },
   {
-    "id": 24,
+    "id": "24",
     "titre": "...",
-    "contenu": ".....................",
-    "img": ".........................",
-    "dposition": "...........",
-    "Dependance": "............",
-    "taille":"",
-    "value":""
+    "contenu": "Italie-France: 3-0 .tamen clausos vehementer angebat quod ",
+    "img": "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
+    "dposition": 0,
+    "Dependance": 1,
+    "taille": "★ ★ ★ ★ ★",
+    "value": "XS"
   },
   {
     "id": 25,
@@ -250,7 +246,7 @@
     "img": ".........................",
     "dposition": "...........",
     "Dependance": "............",
-    "taille":"",
-    "value":""
+    "taille": "",
+    "value": ""
   }
 ]

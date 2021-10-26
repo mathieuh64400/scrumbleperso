@@ -54,7 +54,7 @@ if((urlchoisi[0].url===listurl[0]|| urlchoisi[0].url===listurl[1] || urlchoisi[0
                         <td id="img">${character.img}</td>
                         <td id="dposition">${character.dposition}</td>
                         <td id="Dependance">${character.Dependance}</td>
-                        <td id="size">${character.taille}/${character.size}</td>
+                        <td> <span id="taille"> ${character.taille} </span> / <span id="value"> ${character.value} </span> </td>
                         <td data-id="${character.id}"> <button class="edit" id="edit-post" data-id="${character.id}"> Edit </button> <button class="delete" id="${character.id}"> Delete</button> </td>
                     </tr>
                             
@@ -103,7 +103,9 @@ let supp = document.querySelectorAll('.delete');
         let contenu = elt.querySelector('#contenu').textContent;
         let dposition = elt.querySelector('#dposition').textContent;
         let Dependance = elt.querySelector('#Dependance').textContent;
-        console.log(titre);
+        let value =elt.querySelector('#value').textContent;
+        let taille =elt.querySelector('#taille').textContent;
+        console.log(titre,value,taille);
 
 
 
@@ -116,11 +118,15 @@ let supp = document.querySelectorAll('.delete');
         let theDependance = document.getElementById('Dependance');
         let thedposition = document.getElementById('dposition');
         let thecontenu = document.getElementById('textarea');
+        let thetaille = document.getElementById('taille');
+        let thevalue =document.getElementById("value");
 
         thetitre.value = titre;
         thecontenu.value = contenu;
         theDependance.value = Dependance;
         thedposition.value=dposition;
+        thetaille.value=taille;
+        thevalue.value=value;
         console.log(thetitre);
         // update existing post
 
@@ -138,7 +144,9 @@ let supp = document.querySelectorAll('.delete');
                 contenu: contenu,
                 img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
                 dposition: dposition,
-                Dependance: Dependance
+                Dependance: Dependance,
+                taille:taille,
+                value:value
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
@@ -166,6 +174,8 @@ let supp = document.querySelectorAll('.delete');
             let contenu = document.getElementById('textarea').value;
             let dposition = document.getElementById('dposition').value;
             let Dependance = document.getElementById('Dependance').value;
+            // let taille =document.getElementById("taille").value;
+            // let value = document.getElementById("value").value;
             let id = document.getElementById("id").value;
             console.log(contenutable);
             let derniertr = contenutable.lastChild;
@@ -174,10 +184,6 @@ let supp = document.querySelectorAll('.delete');
             console.log(titre);
 
             console.log(contenu);
-
-
-            // let image=document.getElementById('myFile').files[0];
-            // console.log(image);
 
             const formData = new FormData(myForm);
             console.log(formData);
@@ -188,9 +194,12 @@ let supp = document.querySelectorAll('.delete');
                         id: tr.length + 1,
                         titre: titre,
                         contenu: contenu,
-                        img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
+                        img: "http://www.geek-it.org/wp-content/uploads/2013/06/964465jdr1-520x245.jpg",
                         dposition: dposition,
-                        Dependance: Dependance
+                        Dependance: Dependance,
+                        // taille: taille,
+                        // value:value
+
                     }),
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
@@ -217,9 +226,11 @@ let supp = document.querySelectorAll('.delete');
     loadCharacters();
    
 
-} else if ((urlchoisi[0].url===listurl[0]|| urlchoisi[0].url===listurl[1] || urlchoisi[0].url===listurl[2]) 
-&&( urlchoisi[0].configuration===listconfiguration[0],urlchoisi[0].configuration===listconfiguration[1],urlchoisi[0].configuration===listconfiguration[2],urlchoisi[0].configuration===listconfiguration[3],urlchoisi[0].configuration===listconfiguration[4],urlchoisi[0].configuration===listconfiguration[5])){
+}
+ else if ((urlchoisi[0].url !='') 
+&&( urlchoisi[0].configuration===listconfiguration[0]||urlchoisi[0].configuration===listconfiguration[1]||urlchoisi[0].configuration===listconfiguration[2]||urlchoisi[0].configuration===listconfiguration[3]||urlchoisi[0].configuration===listconfiguration[4]||urlchoisi[0].configuration===listconfiguration[5])){
     let url='http://localhost:3018/'+urlchoisi[0].configuration;
+    console.log(url);
     let hpCharacters = [];
 
     const loadCharacters = async () => {
@@ -246,6 +257,7 @@ let supp = document.querySelectorAll('.delete');
                         <td id="img">${character.img}</td>
                         <td id="dposition">${character.dposition}</td>
                         <td id="Dependance">${character.Dependance}</td>
+                        <td> <span id="taille"> ${character.taille} </span> / <span id="value"> ${character.value} </span> </td>
                         <td data-id="${character.id}"> <button class="edit" id="edit-post" data-id="${character.id}"> Edit </button> <button class="delete" id="${character.id}"> Delete</button> </td>
                     </tr>
                             
@@ -294,7 +306,9 @@ let supp = document.querySelectorAll('.delete');
         let contenu = elt.querySelector('#contenu').textContent;
         let dposition = elt.querySelector('#dposition').textContent;
         let Dependance = elt.querySelector('#Dependance').textContent;
-        console.log(titre);
+        let taille = elt.querySelector('#taille').textContent;
+        let value =elt.querySelector('#value').textContent;
+        console.log(titre,taille,value);
 
 
 
@@ -307,11 +321,16 @@ let supp = document.querySelectorAll('.delete');
         let theDependance = document.getElementById('Dependance');
         let thedposition = document.getElementById('dposition');
         let thecontenu = document.getElementById('textarea');
+        let thetaille = document.getElementById('taille');
+        let thevalue = document.getElementById('value');
+
 
         thetitre.value = titre;
         thecontenu.value = contenu;
         theDependance.value = Dependance;
         thedposition.value=dposition;
+        thetaille.value=taille;
+        thevalue.value=value;
         console.log(thetitre);
         // update existing post
 
@@ -329,7 +348,9 @@ let supp = document.querySelectorAll('.delete');
                 contenu: contenu,
                 img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
                 dposition: dposition,
-                Dependance: Dependance
+                Dependance: Dependance,
+                value:value,
+                taille:taille
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"

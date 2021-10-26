@@ -9,3 +9,6 @@ h4{
     width:100%;
     /* border:  1px solid hotpink; */
 }
+td{
+    width:2em;
+}

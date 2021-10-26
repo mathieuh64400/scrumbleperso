@@ -1,5 +1,31 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+// const multer= require('multer');
+
+// const storage =multer.diskStorage({
+// 	destination:function(req,file,cb) {
+// 		cb(null,'./uploads/');
+// 	},
+// 	filename:function(req,file,cb){
+// 		cb(null, Date.now()+'-'+file.originalname);
+// 	}
+// });
+// const FileFilter= (req, file,cb)=>{
+// 	// reject a file
+// 	if(file.mimetype==='image.jpeg'||file.mimetype==='image/png'){
+// 		cb(null,true);
+// 	} else{
+// 		cb(null,false);
+// 	}
+
+// }
+// const upload = multer({
+// 	storage:storage
+// }, 
+// //  FileFilter
+// )
+
+
 const Regle = require("./../models/Regles");
 
 router.get("/regles", async (req, res) => {
@@ -11,12 +37,14 @@ router.get("/regles/:id", async (req, res) => {
 	const regle = await Regle.findOne({ _id: req.params.id })
 	res.send(regle)
 })
-
-router.post("/regles", async (req, res) => {
+// upload.single('img'),
+router.post("/regles",  async (req, res) => {
+	console.log(req.file);
 	const regle = new Regle({
 		titre: req.body.titre,
-        contenu: req.body.contenu,
-        img: req.body.img,
+		contenu: req.body.contenu,
+		// numero: req.body.numero,
+		img:req.body.img,
         texte:req.body.texte,
         video:req.body.video
 	})
@@ -31,6 +59,9 @@ router.patch("/regles/:id", async (req, res) => {
 		if (req.body.titre) {
 			regle.titre = req.body.titre
 		}
+		// if (req.body.numero) {
+		// 	regle.numero = req.body.numero
+		// }
 
 		if (req.body.contenu) {
 			regle.contenu = req.body.contenu

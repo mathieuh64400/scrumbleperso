@@ -135,7 +135,7 @@ export default class Etape3 extends Controller {
           carte.appendChild(para3);
           carte.appendChild(taille);
           carte.appendChild(value);
-            carte.appendChild(eletclick);
+          carte.appendChild(eletclick);
         } else {
           let carte = document.createElement("div");
           carte.classList.add('transp');
@@ -327,6 +327,7 @@ export default class Etape3 extends Controller {
 
       }
     }
+    // cas du paquet userstories:
     let premiertirage = document.getElementById("devoiler");
     console.log(premiertirage);
     let listurl = [];
@@ -340,7 +341,7 @@ export default class Etape3 extends Controller {
 
     if (paqueturlbase === 'http://localhost:3018/paquet1') {
       console.log(paqueturlbase, typeof (paqueturlbase));
-      listurl = ['http://localhost:3018/paquet1', 'http://localhost:3003/paquet1.1', 'http://localhost:3003/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
+      listurl = ['http://localhost:3018/paquet1', 'http://localhost:3018/paquet1.1', 'http://localhost:3003/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
       I = 0;
 
       console.log(listurl);

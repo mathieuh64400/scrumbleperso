@@ -1,0 +1,66 @@
+
+    <h2 style="text-align: center;">Creer une nouvelle regle</h2>
+  
+    <!-- <a href="#" routerLink="/post/index" class="btn btn-primary">Back</a> -->
+        
+    <form [formGroup]="form" (ngSubmit)="submit()">
+  
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input 
+                formControlName="titre"
+                id="titre" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.titre.touched && f.titre.invalid" class="alert alert-danger">
+                <div *ngIf="f.titre.errors?.required">Titre is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="body">Contenu</label>
+            <textarea 
+                formControlName="contenu"
+                id="contenu" 
+                type="text" 
+                class="form-control">
+            </textarea>
+            <div *ngIf="f.contenu.touched && f.contenu.invalid" class="alert alert-danger">
+                <div *ngIf="f.contenu.errors?.required">Contenu is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title">img</label>
+            <input 
+                formControlName="img"
+                id="img" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.img.touched && f.img.invalid" class="alert alert-danger">
+                <div *ngIf="f.img.errors?.required">img is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="texte">resume</label>
+            <input 
+                formControlName="texte"
+                id="texte" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.texte.touched && f.texte.invalid" class="alert alert-danger">
+                <div *ngIf="f.texte.errors?.required">texte is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title">video</label>
+            <input 
+                formControlName="video"
+                id="video" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.video.touched && f.video.invalid" class="alert alert-danger">
+                <div *ngIf="f.video.errors?.required">video is required.</div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>

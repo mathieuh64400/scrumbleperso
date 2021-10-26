@@ -30,16 +30,16 @@ export default class Regles extends Controller {
       const htmlString = characters
         .map((character) => {
           return `
-                    <div id="${character._id}">
+                    <div data-regles="${character._id}">
                         <div class="rep">
-                            <img src=${character.img} alt="logo de la regle"class="img">
+                            <img src= '../../assets/image/${character.img}' alt="logo de la regle"class="img">
                             <div>
                                 <h2 class="titre"> ${character.titre}</h2>
                                 <p class="description"> ${character.contenu}</p>
-                                <button class="btn4" id="myBtnmodal${character.id}"> Voir </button> 
+                                <button class="btn4" id="${character._id}" data-clicked="false"> Voir </button> 
 
                                 <!-- The Modal -->
-                                <div id="myModal${character._id}" class="modal">
+                                <div  id="modal${character._id}" class="modal">
                                     <!-- Modal content -->
                                     <div class="modal-content">
                                     <h2 class="titremodal">${character.titre}</h2>
@@ -50,7 +50,7 @@ export default class Regles extends Controller {
                                         votre navigateur n'est pas a jour! mettez-le a jour!!!
                                         </video>
                                     </div>
-                                        <span class="close"id="close">&times;</span>
+                                        <span class="close" id="close${character._id}">&times;</span>
                                         
                                     </div>
                                 </div> 
@@ -60,46 +60,84 @@ export default class Regles extends Controller {
                 `;
         })
         .join('');
+        console.log(htmlString);
       cadreref.innerHTML = htmlString;
       // Get the modal
 
       // Get the modal;
       //   let modal=["modal1","modal2","modal3","modal4","modal5","modal6","modal7","modal8","modal9","modal10","modal11","modal12","modal13","modal14"];
+      console.log(document.querySelectorAll('.btn4'))
+      let btnmodal=document.querySelectorAll('.btn4');
+      btnmodal.forEach(element => {
+        element.addEventListener("click",(e) => {
+          e.preventDefault();
+          element.dataset.clicked="true";
+        let parent =element.closest('div[data-regles]');
+       if(parent.dataregles === element._id){
+         console.log(element);
+        let modal = document.getElementById('modal'+element.id)
+        console.log(modal);
+        let btnref=document.getElementById(element.id);
+        console.log(btnref);
+        modal.style.display = "block";
+            console.log('HIII');
+            let span = document.getElementById('close'+element.id);
+          span.onclick = function() {
+              modal.style.display = "none";
+            }
+          
+       }
+        // ;
+        // let modal = document.getElementById(element._id)
+        // console.log(modal);
+        // modal.onclick = function() {
+        //   modal.style.display = "block";
+        //   console.log('HIII');
+        // }
+        // console.log(modal);
+        // if(parent.id==modal.id){
+        //   console.log(modal);
+        //}
+
+        })
+        
+
+      });
       let x;
       let tabmodal = [];
       let listbtn = [];
       let span = [];
-      for (let i = 0; i < 50; i++) {
-        tabmodal.push(document.getElementById("myModal" + i));
-        listbtn.push(document.getElementById("myBtnmodal" + i));
-        span.push(document.getElementById("close" + i));
+      // for (let i = 0; i < 50; i++) {
+      //   tabmodal.push(document.getElementById("myModal" + i));
+      //   listbtn.push(document.getElementById("myBtnmodal" + i));
+      //   span.push(document.getElementById("close" + i));
 
-        console.log(tabmodal[i], i, tabmodal[3]);
-        console.log(listbtn[i], i);
-        if (tabmodal[i] != undefined || listbtn[i] != undefined ) {
-          console.log("dodo", i);
-          listbtn[i].onclick = function () {
-            tabmodal[i].style.display = "block";
+      //   console.log(tabmodal[i], i, tabmodal[3]);
+      //   console.log(listbtn[i], i);
+      //   if (tabmodal[i] != undefined || listbtn[i] != undefined ) {
+      //     console.log("dodo", i);
+      //     listbtn[i].onclick = function () {
+      //       tabmodal[i].style.display = "block";
          
-          }
+      //     }
         
-          console.log(span);
-          // span[0].onclick = function () {
-          //   tabmodal[i].style.display = "none";
-          // }
+      //     console.log(span);
+      //     // span[0].onclick = function () {
+      //     //   tabmodal[i].style.display = "none";
+      //     // }
 
-          window.onclick = function (event) {
+      //     window.onclick = function (event) {
 
-            if (event.target == tabmodal[i]) {
-              tabmodal[i].style.display = "none";
-            }
-            console.log(listbtn[i], tabmodal[i], );
+      //       if (event.target == tabmodal[i]) {
+      //         tabmodal[i].style.display = "none";
+      //       }
+      //       console.log(listbtn[i], tabmodal[i], );
 
-          }
+      //     }
 
-          // console.log(modal);
-        }
-      }
+      //     // console.log(modal);
+      //   }
+      // }
 
 
       //  console.log(tabmodal,listbtn);   

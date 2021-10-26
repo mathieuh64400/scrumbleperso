@@ -14,6 +14,9 @@ export default class Administrationregles extends Controller {
     // creation regles 
 
     const myForm = document.getElementById("myForm");
+    console.log("toto");
+   
+
 
     myForm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -22,19 +25,22 @@ export default class Administrationregles extends Controller {
       h.append('Accept', 'application/json');
 
       let titre = document.getElementById('titre').value;
+      let numero = document.getElementById('').value;
       let contenu = document.getElementById('contenu').value;
       let texte = document.getElementById('textarea').value;
-
+      let img = document.getElementById('img').value;
       console.log(titre);
 
       console.log(contenu);
 
-      console.log(texte);
+      console.log(texte,img);
       // let image=document.getElementById('myFile').files[0];
       // console.log(image);
 
       const formData = new FormData(myForm);
-      console.log(formData);
+      // formData.append('myfile',myfile.files[0]);
+      // console.log( 'list :',myfile.files);
+     console.log(formData);
       // formData.append('image',image,"image.png");
       fetch('http://localhost:3050/api/regles', {
           method: 'POST',
@@ -42,7 +48,7 @@ export default class Administrationregles extends Controller {
             titre: titre,
             contenu: contenu,
             texte: texte,
-            img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
+            img: img,
             video: "Mountains - 2266.mp4"
           }),
           headers: {
@@ -107,11 +113,12 @@ export default class Administrationregles extends Controller {
           return `
                     <tr data-regles="${character._id}">
                         <td>${character._id}</td>
+                        <td id="num">${character.numero}</td>
                         <td id="titre">${character.titre}</td>
                         <td  id="resume"class="tdcontenu">${character.contenu}</td>
                         <td class="tdcontenu">
                          A retenir: <br> <span id="contenu">${character.texte}</span></td>
-                        <td class="tdimage">${character.img}</td>
+                        <td id="image" class="tdimage">${character.img}</td>
                         <td class="tdcontenu">${character.video}</td> 
                         
                         <td data-id="${character._id}"> <button class="edit" id="edit-post" data-id="${character._id}"> Edit </button> <button class="delete" id="${character._id}"> Delete</button> </td>
@@ -143,7 +150,8 @@ export default class Administrationregles extends Controller {
             let titre = elt.querySelector('#titre').textContent;
             let resume = elt.querySelector('#resume').textContent;
             let texte = elt.querySelector('#contenu').textContent;
-            console.log(titre);
+            let img = elt.querySelector('#image').textContent;
+            console.log("img:",titre,img);
 
 
 
@@ -155,11 +163,13 @@ export default class Administrationregles extends Controller {
             console.log(thetitre);
             let thecontenu = document.getElementById('contenu');
             let thetexte = document.getElementById('textarea');
+            let theimg = document.getElementById('img');
 
             thetitre.value = titre;
             thecontenu.value = resume;
             thetexte.value = texte;
-            console.log(thetitre);
+            theimg.value = img;
+            console.log(thetitre, theimg);
             // update existing post
 
             let submition = document.querySelector('input[type=submit]');
@@ -174,7 +184,7 @@ export default class Administrationregles extends Controller {
                   titre: thetitre.value,
                   contenu: thecontenu.value,
                   texte: thetexte.value,
-                  img: "https://media.istockphoto.com/photos/blue-sky-and-white-clouds-background-picture-id825778252?k=20&m=825778252&s=612x612&w=0&h=i5tqMrPeAshcGZ_Clma9t_wp9rIw1bkm0gdz2ozR7OQ=,",
+                  img: theimg.value,
                   video: "Mountains - 2266.mp4"
                 }),
                 headers: {

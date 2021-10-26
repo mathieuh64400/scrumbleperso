@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/scrumble.css">
+    <link rel="stylesheet" href="../assets/css/administrationregles.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+</head>
+
+
+<section>
+    <h1> Selection du paquet de userstories a créer et a traiter</h1>
+    <p id="messageflash"> </p>
+    <div class="cadreconnexion">
+
+        <form action="" method="post" id="formpaquet">
+
+            <!-- <label class="labelspec"> Votre nom de paquet de userstories</label><br> -->
+            <select id="paquet" name="paquet" placeholder="selection du paquet">
+                <option value=""> selection du nom du paquet</option>
+                <option value="paquet1">paquet1</option>
+                <option value="paquet2">paquet2</option>
+                <option value="paquet3">paquet3</option>
+            </select>
+
+            <!-- <label class="labelspec"> le nom de la configuration du paquet des userstories</label><br> -->
+            <select id="configuration" name="configuration" placeholder="selection de la configuration du paquet traité">
+                <option value=""> selection du nom de la configuration du paquet </option>
+                <option value=""> none </option>
+                <option value="paquet1.1">paquet1.1</option>
+                <option value="paquet1.2">paquet1.2</option>
+                <option value="paquet1.3">paquet1.3</option>
+                <option value="paquet1.4">paquet1.4</option>
+                <option value="paquet1.">paquet1.5</option>
+            </select>
+
+            <div class="buttonrep">
+                <input type="reset" value="Annuler">
+                <input type="submit" value="Valider la regle">
+
+            </div>
+        </form>
+    </div>
+</section>
+
+
+</html>

@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h1>Gestion des cartes Problemes</h1>
+  
+    <a href="#" routerLink="/pbcartecreate" class="btn btn-success">Creer une nouvelle carte</a>
+    
+    <table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th >Action</th>
+      </tr>
+      <tr *ngFor="let post of cartes">
+        <td>{{ post._id }}</td>
+        <td>{{ post.titre }}</td>
+        <td>{{ post.contenu }}</td>
+        <td>
+          <!-- <a href="#" [routerLink]="['/post/', post._id, 'view']" class="btn btn-info">View</a>-->
+          <a href="#" [routerLink]="['/pbcarte/', post._id, 'edit']" class="btn btn-primary">Edit</a> 
+          <button type="button" (click)="deletePost(post._id)" class="btn btn-danger">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+ </div>
+ <app-footer></app-footer>
+ 

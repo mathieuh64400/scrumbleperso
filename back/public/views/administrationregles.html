@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/scrumble.css">
+    <link rel="stylesheet" href="../assets/css/administrationregles.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+</head>
+
+
+<section>
+    <h1> Administrer les régles du jeu</h1>
+    <section>
+      <div class="repartition">
+    
+         
+          <p id="messageflash"> </p>
+      </div>
+      <div class="cadregestionjeu">
+          <!-- <h1> Creer une regle de jeu: </h1> -->
+          <!-- id="reglecadre" -->
+          <div  class="cadregestionjeu">
+  
+              <form  method="post" id="myForm" name="myForm">
+  
+  
+                  <input type="text" id="titre" name="titre" placeholder="entre le titre de l'article">
+  
+  
+                  <input type="text" id="contenu" name="contenu" placeholder="entrer votre resume (max: 3lignes)">
+  
+                  <textarea id="textarea" name="texte" rows="4" cols="65"
+                      placeholder="rentrer le descriptif de votre regle de jeu">
+                  </textarea> <br>
+                  <p class="repartitionVert">
+                  <p>
+
+                      <label class="position">choisir une image:</label>
+                      <input type="text" id="img" name="img" placeholder="entre le titre de votre image">
+                      <!-- <input type="file" id="myFile" name="img" accept="image/x-png"> -->
+                  </p><br>
+                  <p class="repartition">
+                      <label class="position">choisir une video :</label>
+                      <input type="file" id="myVideo" name="video" placeholder="choisir une video"></p>
+                  </p>
+  
+                  <div class="buttonrep">
+                      <input type="reset" value="Annuler">
+                      <input type="submit" value="Valider la regle">
+  
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>
+  <div class="cadregestionjeu">
+       
+        <h1 class="titre" >liste des regles</h1>
+       
+
+       <div id="reglecadre">
+ <table>
+          <tr>
+            <th>id</th>
+            <th>nom regles</th>
+            <th>resumé</th>
+            <th>texte</th>
+            <th>image</th>
+            <th>video</th>
+            
+            <th>Action</th>
+          </tr>
+          <tbody id="contenutable">
+        
+          
+         
+         
+         
+       
+        </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="positionbutton">
+    <button class="btnregles"> <a href="/administration" data-link="/administration">précédent</a> </button></div>
+</section>
+
+
+<br>
+<div></div>
+</html>

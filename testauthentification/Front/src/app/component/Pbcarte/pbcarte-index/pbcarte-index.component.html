@@ -17,7 +17,7 @@
         <td>{{ post.contenu }}</td>
         <td>
           <!-- <a href="#" [routerLink]="['/post/', post._id, 'view']" class="btn btn-info">View</a>-->
-          <a href="#" [routerLink]="['/pbcarte/', post._id, 'edit']" class="btn btn-primary">Edit</a> 
+          <a href="#" [routerLink]="['/pbcarte/', post._id, 'edit', {postId: post._id}]" class="btn btn-primary">Edit</a> 
           <button type="button" (click)="deletePost(post._id)" class="btn btn-danger">Supprimer</button>
         </td>
       </tr>

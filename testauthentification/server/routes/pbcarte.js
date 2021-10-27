@@ -3,26 +3,28 @@ const router = express.Router()
 const Pbcartes = require("./../models/Pbcartes");
 
 router.get("/Pbcarte", async (req, res) => {
-	const pbcarte = await Pbcartes.find()
-	res.send(pbcarte);
+	const pbcartes = await Pbcartes.find()
+	res.send(pbcartes);
 })
 
 router.get("/Pbcarte/:id", async (req, res) => {
-	const pbcarte= await Pbcartes.findOne({ _id: req.params.id })
-	res.send(pbcarte)
+	const pbcartes= await Pbcartes.findOne({ _id: req.params.id })
+	res.send(pbcartes)
 })
 
 router.post("/Pbcarte", async (req, res) => {
-	const pbcarte = new Pbcartes({
+	const pbcartes = new Pbcartes({
 		titre: req.body.titre,
         contenu: req.body.contenu
 	})
-	await pbcarte.save()
-	res.send(Pbcarte)
+	await pbcartes.save()
+	res.send(pbcartes)
 })
 
 router.patch("/Pbcarte/:id", async (req, res) => {
+
 	try {
+		console.log(req.param.id);
 		const pbcarte = await Pbcartes.findOne({ _id: req.params.id })
 
 		if (req.body.titre) {
@@ -33,7 +35,7 @@ router.patch("/Pbcarte/:id", async (req, res) => {
 			pbcarte.contenu = req.body.contenu
         }
       
-		await pbcarte.save()
+		await pbcarte.save();
 		res.send(pbcarte)
 	} catch {
 		res.status(404)

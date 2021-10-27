@@ -18,7 +18,7 @@ router.post("/Pbcarte", async (req, res) => {
         contenu: req.body.contenu
 	})
 	await pbcarte.save()
-	res.send(Pbcarte)
+	res.send(pbcarte)
 })
 
 router.patch("/Pbcarte/:id", async (req, res) => {

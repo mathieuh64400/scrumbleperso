@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PbcarteService } from '../../../service/pbcarte.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pbcarte } from '../../../model/pbcarte';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 @Component({
   selector: 'app-pbcarte-edit',
   templateUrl: './pbcarte-edit.component.html',
@@ -21,9 +21,15 @@ export class PbcarteEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // console.log("hello");
+
     this._id = this.route.snapshot.params['postId'];
+    // console.log(this.route.snapshot.params['postId']);
+    
     this.pbcarteservice.find(this._id).subscribe((data: Pbcarte)=>{
        this.pbcarte = data;
+       console.log(this.pbcarte);
+       
   })
   this.form = new FormGroup({
     titre: new FormControl('', [Validators.required]),

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 })
 export class DaylicarteService {
   selectedDaylicarte:any = {titre: '', contenu: '' };
-  daylicarte:any=[];
+  daylicarte:Daylicarte[]=[];
   readonly baseURL='http://localhost:3050/api/dayli'
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,20 +22,19 @@ export class DaylicarteService {
   constructor( public http: HttpClient) { }
 
   postdayli(dayli:Daylicarte){
-    return this.http.post(this.baseURL,dayli,this.httpOptions);
-    console.log(dayli);
-    
-
+    return this.http.post(this.baseURL,dayli,this.httpOptions).pipe(map((res:any)=>{
+      return res
+    }))
+  
   }
   putdayli(dayli: Daylicarte) {
-    return this.http.put(this.baseURL + `/${dayli._id}`, dayli);
+    return this.http.put(this.baseURL + `/${dayli._id}`, dayli).pipe(map((res:any)=>{
+      return res
+    }))
   }
    getdayliList() {
     return this.http.get(this.baseURL);
   }
-
- 
-
   deletedayli(_id: string) {
     return this.http.delete(this.baseURL + `/${_id}`);
   }

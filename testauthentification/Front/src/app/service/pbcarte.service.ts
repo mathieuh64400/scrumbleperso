@@ -10,7 +10,7 @@ import {Pbcarte} from '../model/pbcarte';
 })
 export class PbcarteService {
     
-  private apiURL = "http://localhost:3050/api/Pbcarte";
+  private apiURL = "http://localhost:3051/api/Pbcarte";
      
   httpOptions = {
     headers: new HttpHeaders({
@@ -47,7 +47,7 @@ export class PbcarteService {
   }     
   update(_id:string, postcarte:Pbcarte): Observable<any> {
 
-    return this.httpClient.put(this.apiURL +'/'+ _id, JSON.stringify(postcarte), this.httpOptions)
+    return this.httpClient.patch(this.apiURL +'/'+ _id, JSON.stringify(postcarte), this.httpOptions)
 
     .pipe(
       catchError(this.errorHandler)

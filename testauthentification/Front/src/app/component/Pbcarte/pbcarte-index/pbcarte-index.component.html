@@ -1,15 +1,16 @@
 <app-navbar></app-navbar>
-<div class="container">
+
+  <article class="container">
     <h1>Gestion des cartes Problemes</h1>
-  
-    <a href="#" routerLink="/pbcartecreate" class="btn btn-success">Creer une nouvelle carte</a>
-    
-    <table class="table table-bordered">
+
+    <a href="#" routerLink="/pbcartecreate" class="btn2">Creer une nouvelle carte </a>
+    <br> <br> <br>
+    <table class="table">
       <tr>
         <th>ID</th>
         <th>Titre</th>
         <th>Contenu</th>
-        <th >Action</th>
+        <th>Action</th>
       </tr>
       <tr *ngFor="let post of cartes">
         <td>{{ post._id }}</td>
@@ -17,11 +18,15 @@
         <td>{{ post.contenu }}</td>
         <td>
           <!-- <a href="#" [routerLink]="['/post/', post._id, 'view']" class="btn btn-info">View</a>-->
-          <a href="#" [routerLink]="['/pbcarte/', post._id, 'edit', {postId: post._id}]" class="btn btn-primary">Edit</a> 
-          <button type="button" (click)="deletePost(post._id)" class="btn btn-danger">Supprimer</button>
+          <a href="#" [routerLink]="['/pbcarte/', post._id, 'edit', {postId: post._id}]" class="btn">EDIT</a>
+
+          <a class="action-btn" (click)="deletePost(post._id)" class="btn2">
+            DELETE
+          </a>
         </td>
       </tr>
     </table>
- </div>
- <app-footer></app-footer>
+  </article>
  
+
+<app-footer></app-footer>

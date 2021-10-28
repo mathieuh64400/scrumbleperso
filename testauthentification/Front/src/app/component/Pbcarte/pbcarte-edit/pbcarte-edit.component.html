@@ -2,7 +2,7 @@
 <div class="container">
     <h1>Mettre a jour une carte:</h1>
   
-    <a href="#" routerLink="/pbcarte" class="btn btn-primary">Accueil</a>
+    <a href="#" routerLink="/pbcarte" class="btn2">Accueil</a>
         
     <form [formGroup]="form" (ngSubmit)="submit()">
   
@@ -33,7 +33,7 @@
             </div>
         </div>
         
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+        <button class="btn" type="submit" [disabled]="!form.valid">Update</button>
     </form>
 </div>
 <app-footer></app-footer>

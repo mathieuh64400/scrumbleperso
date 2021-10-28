@@ -19,6 +19,17 @@ import { CreateComponent } from './component/daylicarte/create/create.component'
 import { PbcarteIndexComponent } from './component/Pbcarte/pbcarte-index/pbcarte-index.component';
 import { PbcarteCreateComponent } from './component/Pbcarte/pbcarte-create/pbcarte-create.component';
 import { PbcarteEditComponent } from './component/Pbcarte/pbcarte-edit/pbcarte-edit.component';
+import { ChoixComponent } from './component/Userstories/choix/choix.component';
+import { Userstories1Component } from './component/Userstories/userstories1/userstories1.component';
+import { Userstories1createComponent } from './component/Userstories/userstories1create/userstories1create.component';
+import { Userstories1editComponent } from './component/Userstories/userstories1edit/userstories1edit.component';
+import { RevueCarteIndexComponent } from './component/RevueCarte/revue-carte-index/revue-carte-index.component';
+import { RevueCarteCreateComponent } from './component/RevueCarte/revue-carte-create/revue-carte-create.component';
+import { RevueCarteEditComponent } from './component/RevueCarte/revue-carte-edit/revue-carte-edit.component';
+import { ReglesIndexComponent } from './component/Regles/regles-index/regles-index.component';
+import { ReglesCreateComponent } from './component/Regles/regles-create/regles-create.component';
+import { ReglesEditComponent } from './component/Regles/regles-edit/regles-edit.component';
+
 // import { RoleComponent } from './component/role/role.component';
 // import { RolecreateComponent } from './component/rolecreate/rolecreate.component';
 
@@ -34,7 +45,7 @@ import { PbcarteEditComponent } from './component/Pbcarte/pbcarte-edit/pbcarte-e
     FooterComponent,
      NavbaroldComponent, 
      IndexComponent, 
-     CreateComponent, PbcarteIndexComponent, PbcarteCreateComponent, PbcarteEditComponent, 
+     CreateComponent, PbcarteIndexComponent, PbcarteCreateComponent, PbcarteEditComponent, ChoixComponent, Userstories1Component, Userstories1createComponent, Userstories1editComponent, RevueCarteIndexComponent, RevueCarteCreateComponent, RevueCarteEditComponent, ReglesIndexComponent, ReglesCreateComponent, ReglesEditComponent,
  
 
   ],

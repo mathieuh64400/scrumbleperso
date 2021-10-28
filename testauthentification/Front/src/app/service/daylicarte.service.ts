@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class DaylicarteService {
   selectedDaylicarte:any = {titre: '', contenu: '' };
   daylicarte:Daylicarte[]=[];
-  readonly baseURL='http://localhost:3050/api/dayli'
+  readonly baseURL='http://localhost:3051/api/dayli'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export class DaylicarteService {
   
   }
   putdayli(dayli: Daylicarte) {
-    return this.http.put(this.baseURL + `/${dayli._id}`, dayli).pipe(map((res:any)=>{
+    return this.http.patch(this.baseURL + `/${dayli._id}`, dayli).pipe(map((res:any)=>{
       return res
     }))
   }

@@ -60,7 +60,7 @@ export class IndexComponent implements OnInit {
   }
 
   onDelete(_id: any, form: NgForm) {
-    if (confirm('Are you sure to delete this record ?') == true) {
+    if (confirm('etes vous sur de vouloir supprimer  ?') == true) {
       this.dayliservice.deletedayli(_id).subscribe((res:any) => {
         this.refreshdayliList();
         this.resetForm(form);

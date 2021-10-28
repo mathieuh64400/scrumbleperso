@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+  <article class="container">
+    <h1>Gestion des Userstories</h1>
+    <p> Gestion du paquet 1.0</p>
+
+    <a href="#" routerLink="/userstories1create" class="btn2">Creer une nouvelle Userstories </a>
+    <br> <br> <br>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>image</th>
+        <th>Dependance</th>
+        <th>dposition</th>
+        <th>taille/value</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let userstorie of userstories">
+        <td>{{ userstorie.id }}</td>
+        <td>{{ userstorie.titre }}</td>
+        <td>{{ userstorie.contenu }}</td>
+        <td>{{ userstorie.img }}</td>
+        <td>{{ userstorie.Dependance }}</td>
+        <td>{{ userstorie.dposition }}</td>
+        <td>{{ userstorie.taille }}/{{userstorie.value}}</td>
+        <td>
+          <!-- <a href="#" [routerLink]="['/post/', post._id, 'view']" class="btn btn-info">View</a>-->
+          <a href="#" [routerLink]="['/userstories1gestion/', userstorie.id, 'edit', {postId: userstorie.id}]" class="btn">EDIT</a>
+
+          <a class="action-btn" (click)="deleteUserstories(userstorie.id)" class="btn2">
+            DELETE
+          </a>
+        </td>
+      </tr>
+    </table>
+  </article>
+ 
+
+<app-footer></app-footer>

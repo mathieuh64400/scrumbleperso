@@ -18,20 +18,20 @@
         <div>
             <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
               <label> votre nom complet </label>
-              <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="Full Name"
+              <input type="text" value="" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="Full Name"
               required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
               <div *ngIf="signUpForm.submitted && !fullName.valid">
                 <label class="validation-message">This field is required.</label>
               </div>
               <label> votre mail</label>
-                <input type="mail" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
+                <input type="mail" value="" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
                 required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
                 <div *ngIf="signUpForm.submitted && email.errors">
                   <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
                   <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
                 </div>
                 <label> votre mot de passe</label>
-                <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+                <input type="password" value="" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
                 minlength="8" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
                 
                 <div *ngIf="signUpForm.submitted && password.errors">

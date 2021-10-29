@@ -29,6 +29,9 @@ import { RevueCarteEditComponent } from './component/RevueCarte/revue-carte-edit
 import { ReglesIndexComponent } from './component/Regles/regles-index/regles-index.component';
 import { ReglesCreateComponent } from './component/Regles/regles-create/regles-create.component';
 import { ReglesEditComponent } from './component/Regles/regles-edit/regles-edit.component';
+import { RoleComponent } from './component/Role/role/role.component';
+import { RoleeditComponent } from './component/Role/roleedit/roleedit.component';
+import { EditComponent } from './component/daylicarte/edit/edit.component';
 
 // import { RoleComponent } from './component/role/role.component';
 // import { RolecreateComponent } from './component/rolecreate/rolecreate.component';
@@ -43,9 +46,9 @@ import { ReglesEditComponent } from './component/Regles/regles-edit/regles-edit.
     AccueilComponent, 
     NavbarComponent, 
     FooterComponent,
-     NavbaroldComponent, 
-     IndexComponent, 
-     CreateComponent, PbcarteIndexComponent, PbcarteCreateComponent, PbcarteEditComponent, ChoixComponent, Userstories1Component, Userstories1createComponent, Userstories1editComponent, RevueCarteIndexComponent, RevueCarteCreateComponent, RevueCarteEditComponent, ReglesIndexComponent, ReglesCreateComponent, ReglesEditComponent,
+    NavbaroldComponent, 
+    IndexComponent, 
+    CreateComponent, PbcarteIndexComponent, PbcarteCreateComponent, PbcarteEditComponent, ChoixComponent, Userstories1Component, Userstories1createComponent, Userstories1editComponent, RevueCarteIndexComponent, RevueCarteCreateComponent, RevueCarteEditComponent, ReglesIndexComponent, ReglesCreateComponent, ReglesEditComponent, RoleComponent, RoleeditComponent, EditComponent,
  
 
   ],

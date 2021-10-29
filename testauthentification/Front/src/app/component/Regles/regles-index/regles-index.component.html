@@ -6,7 +6,7 @@
     <a href="#" routerLink="/reglecreate" class="btn2">Creer une nouvelle regle: </a>
     <br> <br> <br>
     <table class="table">
-      <tr>
+      <tr class="cadretitre">
         <th>ID</th>
         <th>Titre</th>
         <th>Contenu</th>
@@ -15,13 +15,17 @@
         <th>Video(nom du fichier)</th>
         <th>Action</th>
       </tr>
-      <tr *ngFor="let regle of regles">
+      <tr *ngFor="let regle of regles" class="cadreinfo">
         <td>{{ regle._id }}</td>
         <td>{{ regle.titre }}</td>
         <td>{{ regle.contenu}}</td>
-        <td>{{ regle.img}}</td>
+        <td> <p>{{ regle.img}}</p> <br> <img src="./assets/img/{{regle.img}}"></td>
         <td>{{ regle.texte}}</td>
-        <td> {{regle.video}}</td>
+        <td> <p>{{regle.video}}</p> 
+             <video controls="controls">
+            <source src="./assets/video/{{regle.video}}"/>
+            votre navigateur n'est pas a jour! mettez-le a jour!!!
+            </video></td>
         <td>
           <!-- <a href="#" [routerLink]="['/post/', post._id, 'view']" class="btn btn-info">View</a>-->
           <a href="#" [routerLink]="['/regles/', regle._id, 'edit', {postId: regle._id}]" class="btn">EDIT</a>

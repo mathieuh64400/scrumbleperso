@@ -19,7 +19,7 @@ var userSchema = new mongoose.Schema({
     },
     role:{
       type:String,
-      default:"USER"
+   
     },
     saltSecret: String
 });
@@ -57,4 +57,4 @@ userSchema.methods.generateJwt = function () {
 
 
 
-mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

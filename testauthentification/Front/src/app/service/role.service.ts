@@ -9,7 +9,7 @@ import {User} from '../model/user';
 })
 export class RoleService {
  
-  private apiURL = "http://localhost:3050/api/rolelist";
+  private apiURL = "http://localhost:3051/api/rolelist";
      
   httpOptions = {
     headers: new HttpHeaders({
@@ -45,7 +45,7 @@ export class RoleService {
   }     
   update(_id:string, role:User): Observable<any> {
 
-    return this.httpClient.put(this.apiURL +'/'+ _id, JSON.stringify(role), this.httpOptions)
+    return this.httpClient.patch(this.apiURL +'/'+ _id, JSON.stringify(role), this.httpOptions)
 
     .pipe(
       catchError(this.errorHandler)

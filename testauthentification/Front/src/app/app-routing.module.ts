@@ -20,11 +20,15 @@ import { RevueCarteEditComponent } from './component/RevueCarte/revue-carte-edit
 import { ReglesIndexComponent } from './component/Regles/regles-index/regles-index.component';
 import { ReglesCreateComponent } from './component/Regles/regles-create/regles-create.component';
 import { ReglesEditComponent } from './component/Regles/regles-edit/regles-edit.component';
+import { RoleComponent } from './component/Role/role/role.component';
+import { RoleeditComponent } from './component/Role/roleedit/roleedit.component';
+import { EditComponent } from './component/daylicarte/edit/edit.component';
 const routes: Routes = [
   {path:'',component:SigninComponent},
   {path:'signup',component:SignupComponent},
   {path:'accueil',component:AccueilComponent,canActivate:[AuthGuard]},
   {path:'daylicarte',component:IndexComponent},
+  {path:'daylicarte/:_id/edit',component:EditComponent},
   {path:'daylicartecreate',component:CreateComponent},
   {path:'pbcarte',component:PbcarteIndexComponent},
   {path:'pbcartecreate',component:PbcarteCreateComponent},
@@ -35,6 +39,8 @@ const routes: Routes = [
   {path:'regles',component:ReglesIndexComponent},
   {path:'reglecreate',component:ReglesCreateComponent},
   {path:'regles/:_id/edit',component:ReglesEditComponent},
+  {path:'role',component:RoleComponent},
+  {path:'role/:_id/edit',component:RoleeditComponent},
   {path:'choix',component:ChoixComponent},
   {path:'userstories1gestion',component:Userstories1Component},
   {path:'userstories1create',component:Userstories1createComponent},

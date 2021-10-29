@@ -9,9 +9,28 @@ import { ReglesService } from 'src/app/service/regles.service';
 })
 export class ReglesCreateComponent implements OnInit {
   form:any= FormGroup;
-  constructor(public reglesservice:ReglesService) { }
+  constructor(public reglesservice:ReglesService, private router: Router) { }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      titre: new FormControl('', [Validators.required]),
+      contenu: new FormControl('', Validators.required),
+      img:new FormControl('', Validators.required),
+      texte:new FormControl('', Validators.required),
+      video: new FormControl('', Validators.required),
+
+    });
+  }
+  get f(){
+    return this.form.controls;
+  }
+    
+  submit(){
+    console.log(this.form.value);
+    this.reglesservice.create(this.form.value).subscribe(res => {
+         alert('carte created successfully!');
+         this.router.navigateByUrl('/regles');
+    })
   }
 
 }

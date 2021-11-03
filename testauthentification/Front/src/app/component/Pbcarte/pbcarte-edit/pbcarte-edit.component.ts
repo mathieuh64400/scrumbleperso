@@ -35,6 +35,7 @@ export class PbcarteEditComponent implements OnInit {
     titre: new FormControl('', [Validators.required]),
     contenu: new FormControl('', Validators.required)
   });
+  
 }
  
 get f(){

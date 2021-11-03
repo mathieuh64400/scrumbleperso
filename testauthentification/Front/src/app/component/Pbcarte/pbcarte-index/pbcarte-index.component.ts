@@ -20,7 +20,7 @@ export class PbcarteIndexComponent implements OnInit {
     if (!_id) return
     this.carteservice.delete(_id).subscribe(res => {
          this.cartes= this.cartes.filter(item => item._id !== _id);
-         console.log('Pbcartes deleted successfully!');
+        alert('Pbcartes deleted successfully!');
     })
   }
 

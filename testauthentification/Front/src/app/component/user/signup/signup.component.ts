@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
     this.userService.postUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
-        this.router.navigateByUrl('/accueil');
+        this.router.navigateByUrl('/signin');
         setTimeout(() => this.showSucessMessage = false, 4000);
         
         this.resetForm(form);

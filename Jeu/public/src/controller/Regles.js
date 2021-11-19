@@ -13,7 +13,7 @@ export default class Regles extends Controller {
     headers: myHeaders,
     mode: 'cors',
     cache: 'default' };
-    let url = 'http://localhost:3050/api/regles';
+    let url = 'http://localhost:3051/api/regles';
 
     const loadCharacters = async () => {
       try {

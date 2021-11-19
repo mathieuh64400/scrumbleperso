@@ -3,6 +3,7 @@
 section {
    margin-left: 50%;
    margin-top: 5%;
+   margin-bottom: 10%;
 }
 
 body {
@@ -11,3 +12,5 @@ body {
    background-size: 55%;
    background-repeat: no-repeat;
 }
+.first{margin-left:50%; margin-top: 5%;}
+.first > p {margin-left:37%;}

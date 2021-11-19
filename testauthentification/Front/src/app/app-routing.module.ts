@@ -23,10 +23,18 @@ import { ReglesEditComponent } from './component/Regles/regles-edit/regles-edit.
 import { RoleComponent } from './component/Role/role/role.component';
 import { RoleeditComponent } from './component/Role/roleedit/roleedit.component';
 import { EditComponent } from './component/daylicarte/edit/edit.component';
+import { WelcomeComponent } from './component/welcome/welcome.component';
+import { Usesrtories2indexComponent } from './component/Userstories/userstories2/usesrtories2index/usesrtories2index.component';
+import { Usesrtories2createComponent } from './component/Userstories/userstories2/usesrtories2create/usesrtories2create.component';
+import { Usesrtories2editComponent } from './component/Userstories/userstories2/usesrtories2edit/usesrtories2edit.component';
+import { Userstories3indexComponent } from './component/Userstories/userstories3/userstories3index/userstories3index.component';
+import { Userstories3createComponent } from './component/Userstories/userstories3/userstories3create/userstories3create.component';
+import { Userstories3EditComponent } from './component/Userstories/userstories3/userstories3-edit/userstories3-edit.component';
 const routes: Routes = [
   {path:'',component:SigninComponent},
   {path:'signup',component:SignupComponent},
-  {path:'accueil',component:AccueilComponent,canActivate:[AuthGuard]},
+  {path:'welcome',component: WelcomeComponent,canActivate:[AuthGuard]},
+  {path:'accueil',component:AccueilComponent},
   {path:'daylicarte',component:IndexComponent},
   {path:'daylicarte/:_id/edit',component:EditComponent},
   {path:'daylicartecreate',component:CreateComponent},
@@ -45,6 +53,12 @@ const routes: Routes = [
   {path:'userstories1gestion',component:Userstories1Component},
   {path:'userstories1create',component:Userstories1createComponent},
   {path:'userstories1gestion/:id/edit',component:Userstories1editComponent},
+  {path:'usesrtories2gestion',component:Usesrtories2indexComponent},
+  {path:'usesrtories2create',component:Usesrtories2createComponent},
+  {path:'usesrtories2gestion/:id/edit',component:Usesrtories2editComponent},
+  {path:'usesrtories3gestion',component:Userstories3indexComponent},
+  {path:'usesrtories3create',component:Userstories3createComponent},
+  {path:'usesrtories3gestion/:id/edit',component:Userstories3EditComponent}
 
 ];
 

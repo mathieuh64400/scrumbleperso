@@ -1,6 +1,5 @@
 import Controller from "../core/Controller.js";
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
+
 
 export default class Etape4 extends Controller {
     constructor() {
@@ -22,6 +21,10 @@ export default class Etape4 extends Controller {
         console.log(valuecarteid4);
         let configuration = config.configuration;
         console.log(configuration, carteid1, carteid2, carteid3, carteid4);
+
+        // rien a voir avec le fetch ceci est pour 
+        // l'interieur du fetch, sert a identifier les sous-elements a partir du titre
+
         let urlch = config.configuration + '/';
         console.log(urlch);
 
@@ -29,6 +32,7 @@ export default class Etape4 extends Controller {
         let carte2 = urlch + config.carte2;
         let carte3 = urlch + config.carte3;
         let carte4 = urlch + config.carte4;
+        console.log(carte4);
 
         let urlcarte = [carte1, carte2, carte3, carte4];
         console.log(typeof (carte1), );
@@ -45,7 +49,7 @@ export default class Etape4 extends Controller {
         let urlchoisi = urlcarte[0];
 
         function fetchDATA() {
-            fetch(config.configuration).then(response => {
+            fetch(config.url).then(response => {
                 return response.json();
 
             }).then(
@@ -61,11 +65,11 @@ export default class Etape4 extends Controller {
                                     <div style="display:flex; flex-direction:row; margin-left:25%;">
                                     <p class="titreCard"> Userstorie:${carte.id}</p>
                                     <p class="titreCard">Dependance:${carte.Dependance}</p></div>
-                                     <img src=${carte.img} alt="logo de la regle" class="image">
+                                     <img src="../../assets/image/${carte.img}" alt="logo de l'image" class="image">
                                       <h3 class="titreCard"> ${carte.titre}</h3>
                                       <p class="texteCard"> ${carte.contenu}</p>
                                       <div>
-                                        <p class="texteCard"> Value, Size:</p>
+                                        <p class="texteCard"> Value:${carte.value}, Size:${carte.taille}</p>
                                         <p data-statut="afaire"id="${carte.id}" class="satutCard">afaire<p>
                                       </div>
                               </div>

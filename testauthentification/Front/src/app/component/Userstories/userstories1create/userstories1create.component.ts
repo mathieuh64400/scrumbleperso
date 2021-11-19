@@ -14,7 +14,7 @@ export class Userstories1createComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      // id:new FormControl('', [Validators.required]),
+       id:new FormControl('', [Validators.required]),
       titre: new FormControl('', [Validators.required]),
       contenu: new FormControl('', Validators.required),
       img:new FormControl('', Validators.required),

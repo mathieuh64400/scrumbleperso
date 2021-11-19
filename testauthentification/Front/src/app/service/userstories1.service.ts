@@ -9,7 +9,7 @@ import { Userstories1 } from '../model/userstories1';
   providedIn: 'root'
 })
 export class Userstories1Service {
-  private apiURL = "http://localhost:3051/paquet1";
+  private apiURL = "http://localhost:3051/api/paquet1";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -24,9 +24,9 @@ export class Userstories1Service {
       catchError(this.errorHandler)
     )
   }
-  find(id:number): Observable<any> {
+  find(_id:string): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/' + id)
+    return this.httpClient.get(this.apiURL + '/' + _id)
 
     .pipe(
       catchError(this.errorHandler)
@@ -42,17 +42,17 @@ export class Userstories1Service {
     )
   }  
   
-  update(id:number, postcarte:Userstories1): Observable<any> {
+  update(_id:string, postcarte:Userstories1): Observable<any> {
 
-    return this.httpClient.put(this.apiURL +'/'+ id, JSON.stringify(postcarte), this.httpOptions)
+    return this.httpClient.patch(this.apiURL +'/'+ _id, JSON.stringify(postcarte), this.httpOptions)
 
     .pipe(
       catchError(this.errorHandler)
     )
   }
      
-  delete(id:number){
-    return this.httpClient.delete(this.apiURL+'/'+ id, this.httpOptions)
+  delete(_id:string){
+    return this.httpClient.delete(this.apiURL+'/'+ _id, this.httpOptions)
 
     .pipe(
       catchError(this.errorHandler)

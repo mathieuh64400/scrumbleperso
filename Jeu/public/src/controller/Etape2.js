@@ -20,9 +20,10 @@ export default class Etape2 extends Controller {
     urlchoisi.push(obj);
     console.log(urlchoisi);
     // liste des paquet existant associer a des variables unique dont une sera socké dans state
-    let url0 = "http://localhost:3018/paquet1";
-    let url1 = "http://localhost:3003/paquet2";
-    let url2 = "http://localhost:3003/paquet3";
+    let url0 = "http://localhost:3051/api/paquet1";
+    let url1 = "http://localhost:3051/api/paquet2";
+    let url2 = "http://localhost:3051/api/paquet3";
+    console.log(url0,url1,url2);
 
 
     
@@ -54,7 +55,7 @@ export default class Etape2 extends Controller {
           return `
                     
                         <div class="box">
-                            <img src=${character.img} alt="logo de la regle"class="img">
+                            <img src="../../assets/image/${character.img}" alt="logo de la regle"class="img">
                                 <h3> ${character.titre}</h3>
                                 <p> ${character.contenu}</p>
                         </div>
@@ -91,7 +92,7 @@ export default class Etape2 extends Controller {
           return `
                           
                               <div class="box">
-                                  <img src=${character.img} alt="logo de la regle" class="img">
+                              <img src="../../assets/image/${character.img}" alt="logo de la regle"class="img">
                                       <h3> ${character.titre}</h3>
                                       <p> ${character.contenu}</p>
                               </div>
@@ -129,7 +130,7 @@ export default class Etape2 extends Controller {
           return `
                           
                               <div class="box">
-                                  <img src=${character.img} alt="logo de la regle" class="img">
+                              <img src="../../assets/image/${character.img}" alt="logo de la regle"class="img">
                                       <h3> ${character.titre}</h3>
                                       <p> ${character.contenu}</p>
                               </div>

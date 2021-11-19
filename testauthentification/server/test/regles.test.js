@@ -2,6 +2,7 @@ const request = require('supertest')('http://localhost:3051/api');
 // const assert = require('assert');
 const chai = require('chai');
 let expect = chai.expect;
+
 let id;
 let title;
 let resume;
@@ -85,33 +86,3 @@ describe('regles',function (){
        })
 })
 
-// describe('Post /dayli',function(){
- 
-// })
-
-
-// describe('Put /regles/:id',function(){
-//     it('modifier une regle',async function(){
-//      console.log(id);
-//         const res = await request.patch('/regles/'+id)
-//         .set({titre:title,texte:resume})
-//         .send({titre:"Le Jeu",texte:'Lorem ipsum dolor sit amet. In vitae dignissimos quo libero delectus ut rerum enim et voluptas perferendis'})
-//         expect(res.status).to.eql(200);
-//         const attributes = res.body;
-
-//         expect(attributes).to.have.own.property('titre');
-//         expect(attributes.titre).to.be.a('string');
-//         expect(attributes.titre).to.eql('Le Jeu');
-
-//         expect(attributes).to.have.own.property('texte');
-//         expect(attributes.texte).to.be.a('string');
-//         expect(attributes.texte).to.equal('Lorem ipsum dolor sit amet. In vitae dignissimos quo libero delectus ut rerum enim et voluptas perferendis');
-
-//         expect(attributes).to.have.own.property('contenu')
-//         expect(attributes).to.have.own.property('img')
-//         expect(attributes).to.have.own.property('video')
-//         // expect(attributes.property).to.eql('TITRE TEST');
-//         // expect(attributes.titre).to.eql('TITRE TEST');
-        
-//     })
-// })

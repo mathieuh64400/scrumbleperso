@@ -6,13 +6,13 @@
     <a href="#" routerLink="/pbcartecreate" class="btn2">Creer une nouvelle carte </a>
     <br> <br> <br>
     <table class="table">
-      <tr>
+      <tr class="cadretitre">
         <th>ID</th>
         <th>Titre</th>
         <th>Contenu</th>
         <th>Action</th>
       </tr>
-      <tr *ngFor="let post of cartes">
+      <tr *ngFor="let post of cartes"class="cadreinfo">
         <td>{{ post._id }}</td>
         <td>{{ post.titre }}</td>
         <td>{{ post.contenu }}</td>

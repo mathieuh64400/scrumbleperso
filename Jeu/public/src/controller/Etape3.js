@@ -1,10 +1,10 @@
 import Controller from "../core/Controller.js";
 //  const interact = require('..node_modules/interactjs') ;
-import interact from 'interactjs';
-import {
-  array,
-  object
-} from "@amcharts/amcharts4/core";
+// import interact from 'interactjs';
+// import {
+//   array,
+//   object
+// } from "@amcharts/amcharts4/core";
 // import Sortable from "../component/Sortable.js";
 export default class Etape3 extends Controller {
   constructor() {
@@ -17,69 +17,13 @@ export default class Etape3 extends Controller {
     let paqueturlbase = paqueturl[0].url;
     console.log(paqueturlbase);
 
-    //  url = url selectionné au cours de l'étape deux et mis dans le state
-
-    // let sysurl;
-    // sysurl.innerHTML= urljeu;
-    // console.log(sysurl);
-    // const cadrillage = document.getElementById("ref"); //selction du cadre gris contenat l'ensemble des cartes
-
-    // let hpCharacters = []; //création d'un tableau destiné a recevoir les datas
-
-    // const loadCharacters = async () => { //ensemble de la fonction qui est asynchrone
-    //   try {
-    //     const res = await fetch(url); //stockage dans une constante des données issues du paquet 1 grace a un fetch 
-    //     hpCharacters = await res.json();
-    //     console.log(hpCharacters); //mise des données dans le tableau de données  
-    //     displayCharacters(hpCharacters); //céation d'une fonction avec ce  tableau de données en paramétres
-
-
-    //     let sortable = new Sortable(document.getElementById("ref")); //creation d'un objet  sortable avec pour valeur les elements avec l'id ref soit le cadre
-
-
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // };
-    // const displayCharacters = (characters) => { //fonction fléchée displayCharacters
-    //   const htmlString = characters //création d'une constante de mapage des données (characters)qui retoune sous forme de contenu (innerhtml de  )
-    //     .map((character, index) => {
-    //       return `
-    //                     <div class="forme" id="sousref${index}" data-position="${character.dposition}"data-id="${character.id}"data-choisi="false">
-    //                             <div class="repartition">
-    //                               <p>Usrestorie:${character.id}</p> 
-    //                               <p>Depend:${character.Dependance}<p>
-    //                             </div>
-    //                               <h3> ${character.titre}</h3>
-    //                               <p> ${character.contenu}</p>
-    //                               <p> Size: </p>
-    //                               <p> Value: </p>
-    //                            <div id="interet${character.id}"class="croix"> + </div>
-
-    //                     </div>
-
-    //                  `;
-    //     })
-    //     .join('');
-    //   cadrillage.innerHTML = htmlString;
-
-
-
-    // }
-
-
-    // loadCharacters();
-
-
-
-
     let obj1 = {};
     let obj2 = {};
-    let obj3 ={};
-    let obj4={};
+    let obj3 = {};
+    let obj4 = {};
     let paquetref = this.state.paquet[0];
     let confref = this.state.paquet[0].configuration;
-    console.log(confref);
+    console.log(confref,paquetref);
     class Detail {
       constructor(id, type, titre, contenu, img, dposition, Dependance,taille,value) {
         this.id = id;
@@ -110,7 +54,12 @@ export default class Etape3 extends Controller {
           let para1 = document.createElement('p');
           para1.innerHTML = "Userstorie:" + this.id;
           let para2 = document.createElement('p');
-          para2.innerHTML = "Depend" + this.Dependance;
+          if (this.Dependance===null) {
+            para2.innerHTML = "";
+          }
+          else{  para2.innerHTML = "Depend: titre" + this.Dependance;} 
+          
+         
           let titre = document.createElement("h3");
           titre.innerHTML = this.titre;
           let para3 = document.createElement("p");
@@ -339,9 +288,11 @@ export default class Etape3 extends Controller {
     let urlselect = listurl[I];
     console.log(urlselect, I);
 
-    if (paqueturlbase === 'http://localhost:3018/paquet1') {
+    if (paqueturlbase === 'http://localhost:3051/api/paquet1'||paqueturlbase==='http://localhost:3051/api/paquet2'||paqueturlbase==='http://localhost:3051/api/paquet3') {
       console.log(paqueturlbase, typeof (paqueturlbase));
-      listurl = ['http://localhost:3018/paquet1', 'http://localhost:3018/paquet1.1', 'http://localhost:3003/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
+      listurl = ['http://localhost:3051/api/paquet1', 'http://localhost:3051/api/paquet1.1', 'http://localhost:3051/api/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
+     let listurl2 =['http://localhost:3051/api/paquet2', 'http://localhost:3051/api/paquet2.1', 'http://localhost:3051/api/paquet2.2', 'http://localhost:3003/paquet2.3', 'http://localhost:3003/paquet2.4'];
+     let listurl3 =['http://localhost:3051/api/paquet3', 'http://localhost:3051/paquet3.1', 'http://localhost:3003/paquet3.2', 'http://localhost:3003/paquet3.3', 'http://localhost:3003/paquet3.4']
       I = 0;
 
       console.log(listurl);
@@ -353,7 +304,8 @@ export default class Etape3 extends Controller {
       if (nbreclick === 0) {
         console.log(nbreclick);
         console.log(listurl);
-        let urlcas = listurl[0];
+       
+        let urlcas = paqueturlbase;
         console.log(urlcas);
 
         console.log(obj1);
@@ -386,28 +338,95 @@ export default class Etape3 extends Controller {
           nbreclick = I;
           console.log(nbreclick);
           if (nbreclick > 0 && nbreclick < nbreurl) {
-            let newurl = listurl[nbreclick];
-            console.log(newurl);
-            console.log(obj2);
-            Object.defineProperty(obj2, "configuration", {
-              enumerable: false,
-              configurable: true,
-              writable: false,
-              value: newurl
-            });
+            if (paqueturlbase === 'http://localhost:3051/api/paquet1') {
+              let newurl = listurl[nbreclick];
+              console.log(newurl);
+              console.log(obj2);
+              Object.defineProperty(obj2, "configuration", {
+                enumerable: false,
+                configurable: true,
+                writable: false,
+                value: newurl
+              });
+  
+              Object.defineProperty(paquetref, "configuration", {
+                enumerable: false,
+                configurable: true,
+                writable: false,
+                value: obj2.configuration
+              });
+              console.log(obj2, obj2.configuration);
+  
+  
+              console.log(paquetref);
+              newderouler(newurl)
+            }
+            if (paqueturlbase === 'http://localhost:3051/api/paquet2') {
+              let newurl2 = listurl2[nbreclick];
+              console.log(newurl2);
+              console.log(obj2);
+              Object.defineProperty(obj2, "configuration", {
+                enumerable: false,
+                configurable: true,
+                writable: false,
+                value: newurl2
+              });
+              Object.defineProperty(paquetref, "configuration", {
+                enumerable: false,
+                configurable: true,
+                writable: false,
+                value: obj2.configuration
+              });
+              console.log(obj2, obj2.configuration);
+              console.log(paquetref);
+              newderouler(newurl2)
+              
+            }
+            if (paqueturlbase === 'http://localhost:3051/api/paquet3') {
+              let newurl3 = listurl2[nbreclick];
+              console.log(newurl3);
+              console.log(obj2);
+              Object.defineProperty(obj2, "configuration", {
+                enumerable: false,
+                configurable: true,
+                writable: false,
+                value: newurl3
+              });
+  
+              Object.defineProperty(paquetref, "configuration", {
+                enumerable: false,
+                configurable: true,
+                writable: false,
+                value: obj2.configuration
+              });
+              console.log(obj2, obj2.configuration);
+  
+  
+              console.log(paquetref);
+              newderouler(newurl3)
+            }
+            // let newurl = listurl[nbreclick];
+            // console.log(newurl);
+            // console.log(obj2);
+            // Object.defineProperty(obj2, "configuration", {
+            //   enumerable: false,
+            //   configurable: true,
+            //   writable: false,
+            //   value: newurl
+            // });
 
 
-            Object.defineProperty(paquetref, "configuration", {
-              enumerable: false,
-              configurable: true,
-              writable: false,
-              value: obj2.configuration
-            });
-            console.log(obj2, obj2.configuration);
+            // Object.defineProperty(paquetref, "configuration", {
+            //   enumerable: false,
+            //   configurable: true,
+            //   writable: false,
+            //   value: obj2.configuration
+            // });
+            // console.log(obj2, obj2.configuration);
 
 
-            console.log(paquetref);
-            newderouler(newurl)
+            // console.log(paquetref);
+            // newderouler(newurl)
           }
         }
 

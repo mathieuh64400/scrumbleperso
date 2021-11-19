@@ -1,15 +1,15 @@
-
+<body style=" height:100vh; overflow-y:hidden; background-image: url('./assets/img/Scrumble_plateau.png'); background-size: 55%;
+    background-repeat: no-repeat;">
     
-
 <app-navbar></app-navbar>
     <section>
 
-        <h1> SCRUMBLE</h1>
+        <h1> SCRUMBLE </h1>
         <p> L'experience Agile</p><br>
         <p> Bienvenue: <span *ngIf="userDetails">{{userDetails.fullName.split(' ')[0]}} </span> </p>
         <input type="button" (click)="onLogout()" value="Logout"/>
     </section>
-
+</body>
 <!-- <table  class="table-fill">
     <thead>
         <tr>

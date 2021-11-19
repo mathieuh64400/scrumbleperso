@@ -7,7 +7,8 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class UserService {
- 
+  private apiURL = "http://localhost:3051/api";
+  // private apiBaseUrl:'';
   selectedUser: User = {
     fullName: '',
     email: '',
@@ -21,15 +22,15 @@ export class UserService {
   //HttpMethods
 
   postUser(user: User){
-    return this.http.post(environment.apiBaseUrl+'/register',user,this.noAuthHeader);
+    return this.http.post(this.apiURL+'/register',user,this.noAuthHeader);
   }
 
   login(authCredentials:any) {
-    return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
+    return this.http.post(this.apiURL + '/authenticate', authCredentials,this.noAuthHeader);
   }
 
   getUserProfile() {
-    return this.http.get(environment.apiBaseUrl + '/userProfile');
+    return this.http.get(this.apiURL + '/userProfile');
   }
 
 

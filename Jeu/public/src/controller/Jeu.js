@@ -9,8 +9,8 @@ import {
 export default class Jeu extends Controller {
   constructor() {
     super();
-    fetch('http://localhost:3000/').then(res => console.log(res))
-
+    fetch('http://localhost:3051/').then(res => console.log(res))
+    // let config = this.state.paquet[0];
     // player ajouté donnée au state joueur des le debut du jeu
     const player = {
 
@@ -24,69 +24,17 @@ export default class Jeu extends Controller {
     console.log(player);
 
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
-    let config = this.state.paquet[0];
+    let config = this.state.paquet[0]; //recuperation des userstories
     console.log(config);
-
-// traitement de la partie usersstories en cours
-let dettetechnique=document.getElementById("dettetech");
-console.log(dettetechnique);
-dettetechnique.innerHTML=config.dettetechnique;
-// let eltbase = document.querySelector('#depart');
-// eltbase.innerHTML = ` `;
-// console.log(eltbase);
-
-// function fetchDATA() {
-//   fetch(config.configuration).then(response => {
-//       return response.json();
-
-//   }).then(
-//       data => {
-//           console.log(data);
-//           const html = data.map(carte => {
-//               //    console.log(carte);
-//               if (carte.id === valuecarteid1 || carte.id === valuecarteid2 || carte.id === valuecarteid3 || carte.id === valuecarteid4) {
-//                   return `
-//                   <div class="insideboxcadre">
-//                   <p class="insideboxtext"> N°${carte.id}: ${carte.titre}</p>
-//                   <p style="margin-left: 1%; margin-right: 1%;">|</p>
-//                   <p class="insideboxtext"> <span>&#x2605;</span> <span>&#x2605;</span>
-//                       <span>&#x2605;</span></p>
-//                   <p style="margin-left: 2% ;margin-right: 2%;">|</p>
-//                   <p class="cadrebox"> </p>
-//               </div>
-//      `;
-//               }
-
-//           }).join('');
-
-//           console.log(html);
-//           // console.log(data, eltbase); 
-//           eltbase.insertAdjacentHTML('beforeend', html);
-//         }
-         
-//   ).catch(er => {
-//       console.log(er);
-//   });
-// }
-// fetchDATA();
-
-
-
-
-
-
 
     console.log(joueurs.length);
     const nbretotjoeuer = {
       nbre: joueurs.length
     }
     console.log(nbretotjoeuer);
-    // let listcolor=["white","red","blue","yellow","green","orange","pink","black"];
-
 
     let listcolor = ["cyan", "purple", "white", "red", "blue", "yellow", "green", "orange", "pink", "lime"];
 
-    // let color = [color1, color2, color3, color4, color5, color6, color7, color8];
     let color = [];
     console.log(color)
     for (let i = 0; i < joueurs.length; i++) {
@@ -102,10 +50,11 @@ dettetechnique.innerHTML=config.dettetechnique;
       console.log(joueurs);
     }
     // if (joueurs[i].statut==="Developpeur") {
-    // ;
+    // 
     // for(let colori=0; colori<joueurs.length;colori++){
 
     //  }}
+    
     // modal:
     var modal = document.getElementById('myModal');
 
@@ -136,6 +85,7 @@ dettetechnique.innerHTML=config.dettetechnique;
     // const formentretchat = document.getElementById("entretchat");
     // console.log(formentretchat);
     // let containertchat = document.getElementById('containerdutchat');
+
     let formsessions = document.getElementById("salon");
     const inputvalue = document.getElementById("username");
     const carduser = document.querySelector("#usercard");
@@ -180,160 +130,14 @@ dettetechnique.innerHTML=config.dettetechnique;
     //     //     // }
     //     // }
 
+
     let afficheresult = document.getElementById("#resultatTirage");
     let textDe = "";
     let numberDe;
     let textResult = "";
     let tableauDesRes = [];
 
-    // création des cartes 
-    let carteDayli = "http://localhost:3003/carteJeudayli/";
-    let carteRevue = "http://localhost:3003/carteJeuRevue/";
-    let cartePb = " http://localhost:3003/carteJeuPb/";
-    let colorcard = ["blue", "green", "red"];
-    let idList = ["carteday", "carterev", "cartepb"];
-    let backid = ["backid1", "backid2", "backid3"];
-    let minicarte0 = document.getElementById(idList[0]);
-    let minicarte1 = document.getElementById(idList[1]);
-    let minicarte2 = document.getElementById(idList[2]);
-    let minicarte = [minicarte0, minicarte1, minicarte2];
-
-    console.log(idList);
-
-    let longtab = idList.length;
-    let controlCard = [carteDayli, carteRevue, cartePb];
-    // });
-    // creation des cartes:
-    for (let h = 0; h < longtab; h++) {
-      minicarte[h].addEventListener("click", createbigcard);
-
-      let nbreclick1 = 0;
-      let nbreclick2 = 0;
-      let nbreclick3 = 0;
-      let nbrclick = [nbreclick1, nbreclick2, nbreclick3];
-      // console.log(nbrclick[h]);nbrclick[h]; 
-
-      function createbigcard() {
-
-        nbrclick[h]++;
-        console.log("nbrclick0:", nbrclick[0], "nbrclick1:", nbrclick[1], "nbrclick2:", nbrclick[2]);
-        console.log(minicarte[h]);
-
-        let carte = document.getElementById("carte");
-        // carte.style.border="10px solid red";
-        carte.addEventListener("click", flipcard);
-        console.log(carte);
-        let front = document.createElement("div");
-        front.classList.add("front");
-        front.style.backgroundColor = colorcard[h];
-        console.log(colorcard[h], front);
-        let back = document.createElement("div");
-        console.log(back);
-        if (front.style.backgroundColor == colorcard[h]) {
-
-          back.classList.add("back");
-          back.id = backid[h];
-          back.style.border = "5px solid " + colorcard[h];
-          back.style.color = "black";
-          let titre = document.createElement('h3');
-          let paragraphe = document.createElement('p');
-          let croix = document.createElement('p');
-          croix.innerText = "+";
-          croix.id = "interet1";
-          croix.classList.add("croix1");
-
-          if (back.id == "backid1") {
-            let urlfetch = controlCard[0];
-            fetch(urlfetch + nbrclick[0])
-              .then(res => res.json())
-              .then(data => {
-                  titre.innerText = `${data.titre}`;
-                  paragraphe.innerText = `${data.contenu}`;
-                }
-
-              );
-            paragraphe.style.fontSize = "0.9em";
-            back.appendChild(titre);
-            back.appendChild(paragraphe);
-            back.appendChild(croix);
-
-          } else if (back.id == "backid2") {
-            let urlfetch = controlCard[1];
-
-            //  for (let i = 1; i < 11; i++) { 
-            fetch(urlfetch + nbrclick[1])
-              .then(res => res.json())
-              .then(data => {
-                  titre.innerText = `${data.titre}`;
-                  paragraphe.innerText = `${data.contenu}`;
-                }
-
-              );
-            paragraphe.style.fontSize = "0.9em";
-            back.appendChild(titre);
-            back.appendChild(paragraphe);
-            back.appendChild(croix);
-
-          } else if (back.id == "backid3") {
-            let urlfetch = controlCard[2];
-
-            //  for (let i = 1; i < 11; i++) { 
-            fetch(urlfetch + nbrclick[2])
-              .then(res => res.json())
-              .then(data => {
-                  titre.innerText = `${data.titre}`;
-                  paragraphe.innerText = `${data.contenu}`;
-                }
-
-              );
-            paragraphe.style.fontSize = "0.9em";
-            back.appendChild(titre);
-            back.appendChild(paragraphe);
-            back.appendChild(croix);
-
-          }
-
-        };
-        carte.appendChild(front);
-        carte.appendChild(back);
-
-
-        let croixclick = document.getElementById("interet1");
-        console.log(croixclick);
-        croixclick.addEventListener("click", validate);
-
-        function validate() {
-
-          croixclick.innerHTML = `<span class=cercle> \ud83d\udc4d </span>`;
-          setTimeout(function () {
-            let carte = document.getElementById("carte");
-            console.log(carte);
-
-            // carte validée
-            let carteaurebus = document.getElementById("carterebu");
-            console.log("xx:", carteaurebus);
-            let frontrejet = document.createElement("div");
-            frontrejet.classList.add("front");
-
-            if (front.style.backgroundColor == "blue") {
-              frontrejet.style.backgroundColor = colorcard[h];
-            } else if (front.style.backgroundColor == "green") {
-              frontrejet.style.backgroundColor = colorcard[h];
-            } else if (front.style.backgroundColor == "red") {
-              frontrejet.style.backgroundColor = colorcard[h];
-            }
-            carteaurebus.appendChild(frontrejet);
-            carte.innerHTML = "";
-            carte.classList.remove("active");
-          }, 3000)
-        }
-      }
-
-      function flipcard() {
-        carte.classList.add("active");
-      }
-    }
-
+   
     // creation des joueurs et des dés.
     console.log(joueurs.statut);
     console.log(joueurs);
@@ -353,12 +157,27 @@ dettetechnique.innerHTML=config.dettetechnique;
 
     let cadrechoix = document.getElementById('cadrechoix');
 
-
     formsessions.onsubmit = function (e) {
       e.preventDefault();
+
+
+      // websocket test si possibilisté de remplacer le socket.io par cela
+      let clientId =null;
+      let ws = new WebSocket('ws://localhost:3051')
+      ws.onmessage = message =>{
+        // message.data
+        const response =JSON.parse(message.data);
+        // connection au jeu
+        if(response.method === "connect"){
+          console.log("client id set succesfully"+ clientId);
+        }
+        console.log(response);
+
+      }
       // let socket;
 
-      const socket = io('http://localhost:3018').connect()
+      const socket = io('http://localhost:3051').connect()
+      console.log(socket);
       formsessions.addEventListener('submit', function state() {
 
         if (socket.id != "" && player.username != " ") {
@@ -366,12 +185,16 @@ dettetechnique.innerHTML=config.dettetechnique;
           socket.on('statejoueurscommun', (sysstateencommun) => {
             joueurs = JSON.parse(sysstateencommun);
             console.log(sysstateencommun, joueurs);
+
           })
         }
       })
-      const sysJson=JSON.stringify(joueurs);
+
+
+
+      const sysJson = JSON.stringify(joueurs);
       console.log(sysJson);
-      socket.emit('joeuers',sysJson);
+      socket.emit('joeuers', sysJson);
       console.log(joueurs);
 
       player.username = inputvalue.value;
@@ -387,9 +210,9 @@ dettetechnique.innerHTML=config.dettetechnique;
       // let firstlistgameur=Object.values( player);
       // console.log(firstlistgameur);
       socket.emit('playerData', player);
-     
-      socket.emit('playernbre', nbretotjoeuer);
 
+      socket.emit('playernbre', nbretotjoeuer);
+      console.log('playernbre', nbretotjoeuer);
       //  socket.on('statejoueurscommun',(sysstateencommun)=>{ 
       //     joueurs=JSON.parse(sysstateencommun);
       //     console.log(sysstateencommun,joueurs);
@@ -399,36 +222,23 @@ dettetechnique.innerHTML=config.dettetechnique;
         console.log(idsocket);
         player.socketId = idsocket;
         listsocket.push(idsocket);
-        console.log(listsocket, player,joueurs);
-       
-       
-         
-      }) ;
+        console.log(listsocket, player, joueurs);
+
+      });
       socket.on('join room', (roomId) => {
         player.roomId = roomId;
         console.log(roomId);
 
-        socket.on('listplayername',(listplayer)=>{
-          console.log("ff:",listplayer,joueurs,player     )  });
-        console.log(joueurs,player.role);
+        socket.on('listplayername', (listplayer) => {
+          console.log("ff:", listplayer, joueurs, player)
+        });
+        console.log(joueurs, player.role);
         for (let id = 0; id < joueurs.length; id++) {
-          if (player.role===joueurs[id].name) { console.log( "toto:",linkToShare.innerHTML);}}
+          if (player.role === joueurs[id].name) {
+            console.log("toto:", linkToShare.innerHTML);
+          }
+        }
         linkToShare.innerHTML = " ";
-
-
-
-        // linkToShare.addEventListener('click', function addclient(){
-        //   if (joueurs==="") {
-        //     socket.on('statejoueurscommun',(sysstateencommun)=>{ 
-        //        joueurs=JSON.parse(sysstateencommun);
-        //       console.log(sysstateencommun,joueurs);})
-        //   } else {
-        //     const sysJson=JSON.stringify(joueurs);
-        //   console.log(sysJson);
-        //     socket.emit('joeuers',sysJson);
-        //   }
-
-        // })
 
         console.log(linkToShare);
         console.log(joueurs);
@@ -482,35 +292,37 @@ dettetechnique.innerHTML=config.dettetechnique;
               console.log(gameur, player);
               console.log(joueurs, joueurs[0]);
 
-              for (let h = 0; h< joueurs.length; h++) {
-                if (player.role===joueurs[h].name) { 
-                  
+              for (let h = 0; h < joueurs.length; h++) {
+                if (player.role === joueurs[h].name) {
+
                   linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
-                  
-                 console.log( "toto:",linkToShare.innerHTML);}};
+                    console.log(player);
+                  console.log("toto:", linkToShare.innerHTML);
+                }
+              };
 
             } else {
               alert("vous avez un probleme!! relancer le jeu depuis le départ (étape1)");
             }
-          for (let id = 0; id < joueurs.length; id++) {
-                if (player.role===joueurs[id].name) {
+            for (let id = 0; id < joueurs.length; id++) {
+              if (player.role === joueurs[id].name) {
                 Object.defineProperty(joueurs[id], 'idsocket', {
                   value: player.socketId,
                   writable: false
                 });
                 console.log(joueurs, player.role)
               }
-              }
-             
+            }
+
 
           });
-         
-         
+
+
           // socket.emit('playerData', player);
-          
+
         }
         console.log(joueurs);
-       
+
         console.log(nbrejoeur);
         console.log(joueurs);
         //  envoyer le state en socket idée send() ou io.emit() recherche set ?
@@ -541,6 +353,202 @@ dettetechnique.innerHTML=config.dettetechnique;
         console.log(listimage.length);
         let text = ""; //definition d'une varaible qui posséde le texte (nom des joueurs) comme valeur donc initialement est vide
         //let nameDev = "";definition d'une variable avec le role identique que la variable text mais servant dans le cas du Dé;
+        
+        // ajout des cartes 
+         // création des cartes 
+    let tabident1 = [];
+    let carteDayli = "http://localhost:3051/api/dayli";
+    fetch(carteDayli)
+      .then(res => res.json()).then(data => {
+          data.forEach(listedata => {
+            tabident1.push(listedata._id);
+            console.log(listedata._id,tabident1);
+          })
+        }
+
+      );
+      console.log(tabident1);
+
+
+    let carteRevue = "http://localhost:3051/api/revuecarte";
+    let tabident2 = [];
+
+    fetch(carteRevue)
+      .then(res => res.json()).then(data => {
+          data.forEach(listedata => {
+            tabident2.push(listedata._id);
+            console.log(listedata._id,tabident2);
+          })
+        }
+
+      );
+      console.log(tabident2);
+
+    let cartePb = "http://localhost:3051/api/Pbcarte";
+    let tabident3 = [];
+    fetch(cartePb)
+      .then(res => res.json()).then(data => {
+          data.forEach(listedata => {
+            tabident3.push(listedata._id);
+            console.log(listedata._id,tabident3, data);
+          })
+        }
+
+      );
+      console.log(tabident3);
+
+    let colorcard = ["blue", "green", "red"];
+    let idList = ["carteday", "carterev", "cartepb"];
+    let backid = ["backid1", "backid2", "backid3"];
+    let minicarte0 = document.getElementById(idList[0]);
+    let minicarte1 = document.getElementById(idList[1]);
+    let minicarte2 = document.getElementById(idList[2]);
+    let minicarte = [minicarte0, minicarte1, minicarte2];
+
+    console.log(idList);
+
+    let longtab = idList.length;
+    
+    let controlCard = [carteDayli, carteRevue, cartePb];
+    // });
+    // creation des cartes:
+    for (let h = 0; h < longtab; h++) {
+      minicarte[h].addEventListener("click", createbigcard);
+
+      let nbreclick1 = 0;
+      let nbreclick2 = 0;
+      let nbreclick3 = 0;
+      let nbrclick = [nbreclick1, nbreclick2, nbreclick3];
+       console.log(nbrclick[h]);
+       
+       nbrclick[h]; 
+
+      function createbigcard() {
+
+        nbrclick[h]++;
+        console.log(nbrclick);
+        console.log("nbrclick0:", nbrclick[0], "nbrclick1:", nbrclick[1], "nbrclick2:", nbrclick[2]);
+        console.log(minicarte[h], nbrclick[h]);
+
+        let carte = document.getElementById("carte");
+        // carte.style.border="10px solid red";
+        carte.addEventListener("click", flipcard);
+        console.log(carte);
+        let front = document.createElement("div");
+        front.classList.add("front");
+        front.style.backgroundColor = colorcard[h];
+        console.log(colorcard[h], front);
+        let back = document.createElement("div");
+        console.log(back);
+        if (front.style.backgroundColor == colorcard[h]) {
+
+          back.classList.add("back");
+          back.id = backid[h];
+          back.style.border = "5px solid " + colorcard[h];
+          back.style.color = "black";
+          let titre = document.createElement('h3');
+          let paragraphe = document.createElement('p');
+          let croix = document.createElement('p');
+          croix.innerText = "+";
+          croix.id = "interet1";
+          croix.classList.add("croix1");
+
+          if (back.id == "backid1") {
+            let urlfetch = controlCard[0];
+         
+            console.log(urlfetch, nbrclick[0],tabident1[nbrclick[0]-1]);
+            fetch(urlfetch +'/'+ tabident1[nbrclick[0]-1])
+              .then(res => res.json())
+              .then(data => {
+                  titre.innerText = `${data.titre}`;
+                  paragraphe.innerText = `${data.contenu}`;
+                }
+
+              );
+            paragraphe.style.fontSize = "0.9em";
+            back.appendChild(titre);
+            back.appendChild(paragraphe);
+            back.appendChild(croix);
+
+          } else if (back.id == "backid2") {
+            let urlfetch = controlCard[1];
+            console.log(urlfetch, nbrclick[1],tabident2[nbrclick[1]-1] );
+            //  for (let i = 1; i < 11; i++) { 
+            fetch(urlfetch +'/'+ tabident2[nbrclick[1]-1])
+              .then(res => res.json())
+              .then(data => {
+                  titre.innerText = `${data.titre}`;
+                  paragraphe.innerText = `${data.contenu}`;
+                }
+
+              );
+            paragraphe.style.fontSize = "0.9em";
+            back.appendChild(titre);
+            back.appendChild(paragraphe);
+            back.appendChild(croix);
+
+          } else if (back.id == "backid3") {
+            
+            let urlfetch = controlCard[2];
+            console.log(urlfetch, nbrclick[2],controlCard[2],tabident3); 
+
+            fetch(urlfetch +'/'+ tabident3[nbrclick[2]-1])
+              .then(res => res.json())
+              .then(data => {
+               
+                  titre.innerText = `${data.titre}`;
+                  paragraphe.innerText = `${data.contenu}`;
+                }
+
+              );
+            paragraphe.style.fontSize = "0.9em";
+            back.appendChild(titre);
+            back.appendChild(paragraphe);
+            back.appendChild(croix);
+
+          }
+
+        };
+        carte.appendChild(front);
+        carte.appendChild(back);
+
+
+        let croixclick = document.getElementById("interet1");
+        console.log(croixclick);
+        croixclick.addEventListener("click", validate);
+
+        function validate() {
+
+          croixclick.innerHTML = `<span class=cercle> \ud83d\udc4d </span>`;
+          setTimeout(function () {
+            let carte = document.getElementById("carte");
+            console.log(carte);
+
+            // carte validée
+            let carteaurebus = document.getElementById("carterebu");
+            console.log("xx:", carteaurebus);
+            let frontrejet = document.createElement("div");
+            frontrejet.classList.add("front");
+
+            if (front.style.backgroundColor == "blue") {
+              frontrejet.style.backgroundColor = colorcard[h];
+            } else if (front.style.backgroundColor == "green") {
+              frontrejet.style.backgroundColor = colorcard[h];
+            } else if (front.style.backgroundColor == "red") {
+              frontrejet.style.backgroundColor = colorcard[h];
+            }
+            carteaurebus.appendChild(frontrejet);
+            carte.innerHTML = "";
+            carte.classList.remove("active");
+          }, 3000)
+        }
+      }
+
+      function flipcard() {
+        carte.classList.add("active");
+      }
+    }
+
 
         if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
           if (joueurs != "") { //si la liste des joeurs  existe
@@ -644,10 +652,11 @@ dettetechnique.innerHTML=config.dettetechnique;
               console.log("toto:", joueurs[i].statut);
 
             }
-           
-            console.log(listsocket); console.log("xxx:",joueurs[2],player);
-            console.log(typeof(joueurs),joueurs);
-           
+
+            console.log(listsocket);
+            console.log("xxx:", joueurs[2], player);
+            console.log(typeof (joueurs), joueurs);
+
             let dice = [...document.querySelectorAll(".die-overlay")];
 
             //console.log(dice);
@@ -667,6 +676,7 @@ dettetechnique.innerHTML=config.dettetechnique;
 
               });
             });
+            let backapion = document.getElementById("backapion");
             if (player.statut != "Scrum Master" && player.statut != "Product Owner") {
               for (let i = 0; i < developpeurs.length; ++i) {
 
@@ -678,12 +688,13 @@ dettetechnique.innerHTML=config.dettetechnique;
                 syscolor.classList.add("itemGame");
 
                 // ////////////////////////////////////////////////////////////////
-                let backapion = document.getElementById("backapion");
+                
                 backapion.style.display = "flex";
                 backapion.style.flexDirection = "row";
                 console.log(backapion);
                 let pion = document.createElement('div');
                 pion.classList.add("pion");
+                console.log(pion);
                 // socket.emit('custom-evenet', pion);
                 const label = document.createElement("span");
                 label.style.marginTop = "2%";
@@ -697,7 +708,16 @@ dettetechnique.innerHTML=config.dettetechnique;
 
                 console.log(joueurs, joueurs[i].image);
                 pion.style.backgroundImage = image[i];
+              
                 console.log(pion.style.backgroundImage, image[i]);
+                //  modification du pion essaie depot par drag and drop sur cerle
+                console.log(backapion,pion,pion.length)
+                let pions= document.querySelectorAll(pion);
+                console.log(pions,pions.length);
+                pions.forEach(Pions=>{
+                  console.log(Pions[0]);
+                  Pions.style.border='10px solid green'
+                })
                 // fin pion
 
 
@@ -713,56 +733,151 @@ dettetechnique.innerHTML=config.dettetechnique;
 
                 nameJoueur.classList.add("repartition");
                 nameJoueur.style.width = "100%";
-                /////// creation du drage and drop sur accordeon
-                const zonejoueur = document.querySelectorAll('.cadrebox');
-                const itemGame = document.querySelectorAll('.itemGame');
-                console.log(zonejoueur, itemGame);
-                let draggedItem = null;
-                itemGame.forEach((element) => {
-                  // const item = element[i];
-                  // console.log(element[i])
 
-                  element.addEventListener("dragstart", function (e) {
-                    const element = e.target;
+                // traitement de la partie usersstories en cours
+                let dettetechnique = document.getElementById("dettetech");
+                console.log(dettetechnique);
+                dettetechnique.innerHTML = config.dettetechnique;
+                // traitement arrive des userstories:
 
-                    function display(e) {
-                      const zone = e.target;
-                      zone.append(element);
-                      console.log("elment", element);
+                let listUserstories = document.getElementById('listUserstories');
+
+                console.log(listUserstories, config);
+                // listUserstories.innerHTML = "";
+
+                let carteid1 = config.carte1;
+                let valuecarteid1 = parseInt(carteid1);
+                console.log(valuecarteid1);
+                let carteid2 = config.carte2;
+                let valuecarteid2 = parseInt(carteid2);
+                console.log(valuecarteid2);
+                let carteid3 = config.carte3;
+                let valuecarteid3 = parseInt(carteid3);
+                console.log(valuecarteid3);
+                let carteid4 = config.carte4;
+                let valuecarteid4 = parseInt(carteid4);
+                console.log(valuecarteid4);
+                let configuration = config.url;
+                console.log(configuration, carteid1, carteid2, carteid3, carteid4);
+
+                // const listUserstories = document.getElementById("listUserstories");
+
+
+                let hpCharacters = [];
+
+
+                const loadCharacters = async () => {
+                  try {
+                    const res = await fetch(config.url);
+                    hpCharacters = await res.json();
+                    console.log(res + "  " + hpCharacters);
+                    displayCharacters(hpCharacters);
+                  } catch (err) {
+                    console.error(err);
+                  }
+                };
+                const displayCharacters = (characters) => {
+                  const htmlString = characters
+                    .map((character) => {
+                      console.log(character);
+                      if ((config.carte1statut === 'encours' && character.id === valuecarteid1) || (config.carte2statut === 'encours' && character.id === valuecarteid2) || (config.carte3statut === 'encours' && character.id === valuecarteid3) || (config.carte4statut === 'encours' && character.id === valuecarteid4)) {
+                        console.log(config.carte1statut, config.carte2statut, config.carte3statut, config.carte4statut);
+
+                        return `
+                            <div class="insideboxcadre">
+                                <p class="insideboxtext">Userstorie N°${character.id} </p>
+                                <p style="margin-left: 2% ;margin-right: 2%;">|</p>
+                                <p class="insideboxtext"> ${character.taille} </span></p>
+                                <p style="margin-left: 2% ;margin-right: 2%;">|</p>
+                                <p class="cadrebox"> </p> 
+                            </div>`;
+
+
+                      }
+
+                    })
+                    .join('');
+                  listUserstories.innerHTML = htmlString;
+                  // /////////////////////dette technique://////////////
+                  dettetechnique.innerHTML = config.dettetechnique;
+                  /////// creation du drage and drop sur accordeon
+                  const zonejoueur = document.querySelectorAll('.cadrebox');
+                  const itemGame = document.querySelectorAll('.itemGame');
+                  console.log(zonejoueur, itemGame);
+                  let draggedItem = null;
+                  itemGame.forEach((element) => {
+                    // const item = element[i];
+                    // console.log(element[i])
+
+                    element.addEventListener("dragstart", function (e) {
+                      const element = e.target;
+
+                      function display(e) {
+                        const zone = e.target;
+                        zone.append(element);
+                        console.log("elment", element);
+
+                        zonejoueur.forEach((zone) => {
+                          zone.removeEventListener("drop", display);
+                        });
+                      }
+
+                      //sur chaque carte on effectue un evement d'activation du déplacement
+                      console.log("dragstart", e);
+                      // draggedItem = element; // 1 elt deplacé = un item
+                      setTimeout(function () {
+                        element.style.display = "none"; // chaque item n'a pas de style display particulier
+                      }, 0);
 
                       zonejoueur.forEach((zone) => {
-                        zone.removeEventListener("drop", display);
+                        zone.addEventListener("dragover", function (e) {
+                          e.preventDefault();
+                        });
+                        zone.addEventListener("dragenter", function (e) {
+                          e.preventDefault();
+                        });
+                        zone.addEventListener("drop", display);
                       });
-                    }
+                    });
 
-                    //sur chaque carte on effectue un evement d'activation du déplacement
-                    console.log("dragstart", e);
-                    // draggedItem = element; // 1 elt deplacé = un item
-                    setTimeout(function () {
-                      element.style.display = "none"; // chaque item n'a pas de style display particulier
-                    }, 0);
-
-                    zonejoueur.forEach((zone) => {
-                      zone.addEventListener("dragover", function (e) {
-                        e.preventDefault();
-                      });
-                      zone.addEventListener("dragenter", function (e) {
-                        e.preventDefault();
-                      });
-                      zone.addEventListener("drop", display);
+                    element.addEventListener("dragend", function () {
+                      // sur chaque carte on effectue un evement de fin du déplacement
+                      console.log("dragend");
+                      setTimeout(function (e) {
+                        element.style.display = "block"; // chaque item déplacé a style display particulier block
+                        //  draggedItem = null;
+                      }, 0);
                     });
                   });
+                  ///////////////////////////////fin dragenddrop////////
+                };
 
-                  element.addEventListener("dragend", function () {
-                    // sur chaque carte on effectue un evement de fin du déplacement
-                    console.log("dragend");
-                    setTimeout(function (e) {
-                      element.style.display = "block"; // chaque item déplacé a style display particulier block
-                      //  draggedItem = null;
-                    }, 0);
-                  });
-                });
-///////////////////////////////fin dragenddrop////////
+
+                loadCharacters();
+
+
+
+                // let urlch = config.url + '/';
+                // console.log(urlch);
+
+                // let carte1 = urlch + config.carte1;
+                // let carte2 = urlch + config.carte2;
+                // let carte3 = urlch + config.carte3;
+                // let carte4 = urlch + config.carte4;
+
+                // let urlcarte = [carte1, carte2, carte3, carte4];
+                // console.log(urlcarte, config.url);
+
+                console.log(listUserstories, config.carte1statut);
+                if (config.carte1statut === 'encours' || config.carte2statut === 'encours' || config.carte3statut === 'encours' || config.carte4statut === 'encours') {
+                  console.log('resultat', config.carte1statut, config.carte2statut, config.carte3statut, config.carte4statut);
+
+                }
+
+
+
+
+
                 // for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
 
                 // }

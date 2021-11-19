@@ -17,11 +17,11 @@ export class Userstories1Component implements OnInit {
       console.log(this.userstories);
     })  
   }
-  deleteUserstories(id?:number){
-    if (!id) return
-    this.userstoriesservice.delete(id).subscribe(res => {
-         this.userstories= this.userstories.filter(item => item.id !== id);
-         console.log('Pbcartes deleted successfully!');
+  deleteUserstories(_id?:string){
+    if (!_id) return
+    this.userstoriesservice.delete(_id).subscribe(res => {
+         this.userstories= this.userstories.filter(item => item._id !== _id);
+        alert('Userstories deleted successfully!');
     })
   }
 

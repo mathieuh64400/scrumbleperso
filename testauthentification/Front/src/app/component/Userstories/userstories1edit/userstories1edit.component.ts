@@ -11,7 +11,7 @@ import { Userstories1 } from 'src/app/model/userstories1';
   styleUrls: ['./userstories1edit.component.css']
 })
 export class Userstories1editComponent implements OnInit {
-  id: number=-1;
+  _id: string='';
   userstorie:any;
   form:any= FormGroup;
 
@@ -20,16 +20,16 @@ export class Userstories1editComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = this.route.snapshot.params['postId'];
+    this._id = this.route.snapshot.params['postId'];
     // console.log(this.route.snapshot.params['postId']);
     
-    this.userstories1service.find(this.id).subscribe((data: Userstories1)=>{
+    this.userstories1service.find(this._id).subscribe((data: Userstories1)=>{
        this.userstorie = data;
        console.log(this.userstorie);
        
   })
     this.form = new FormGroup({
-      // id:new FormControl('', [Validators.required]),
+       id:new FormControl('', [Validators.required]),
       titre: new FormControl('', [Validators.required]),
       contenu: new FormControl('', Validators.required),
       img:new FormControl('', Validators.required),
@@ -46,8 +46,8 @@ get f(){
    
 submit(){
   console.log(this.form.value);
-  this.userstories1service.update(this.id, this.form.value).subscribe((res:any) => {
-       console.log('Post updated successfully!');
+  this.userstories1service.update(this._id, this.form.value).subscribe((res:any) => {
+       alert('userstories updated successfully!');
        this.router.navigateByUrl('/userstories1gestion');
   })
 }

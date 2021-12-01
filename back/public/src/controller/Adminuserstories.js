@@ -1,4 +1,4 @@
-// import { log } from "console";
+// import { log } from "//console";
 import Controller from "../core/Controller.js";
 
 export default class Adminuserstories extends Controller {
@@ -8,20 +8,20 @@ export default class Adminuserstories extends Controller {
         super();
         document.title = "gestion des usesrstories";
         let urlchoisi = this.state.adminuserstories;
-        console.log(this.state);
-        console.log(urlchoisi[0]);
+        //console.log(this.state);
+        //console.log(urlchoisi[0]);
 
-        console.log(urlchoisi);
+        //console.log(urlchoisi);
         let listurl =['paquet1','paquet2','paquet3'];
         let listconfiguration=['paquet1.1','paquet1.2','paquet1.3','paquet1.4','paquet1.5']
      
         
         let contenutable = document.getElementById("contenutable");
-        console.log(contenutable);
-        console.log(contenutable);
+        //console.log(contenutable);
+        //console.log(contenutable);
 
         let derniertr = contenutable.lastChild;
-        console.log(derniertr);
+        //console.log(derniertr);
         const myForm = document.getElementById("myForm");
 
         // get une userstorie
@@ -36,10 +36,10 @@ if((urlchoisi[0].url===listurl[0]|| urlchoisi[0].url===listurl[1] || urlchoisi[0
                 method: 'GET'
             });
             hpCharacters = await res.json();
-            console.log(res + "  " + hpCharacters);
+            //console.log(res + "  " + hpCharacters);
             displayCharacters(hpCharacters);
         } catch (err) {
-            console.error(err);
+            //console.error(err);
         }
     };
 
@@ -64,11 +64,11 @@ if((urlchoisi[0].url===listurl[0]|| urlchoisi[0].url===listurl[1] || urlchoisi[0
         contenutable.innerHTML = htmlString;
 
         let tr = document.querySelectorAll("tr[data-regles]");
-        console.log(tr.length);
+        //console.log(tr.length);
 // supprimer une userstorie
 let supp = document.querySelectorAll('.delete');
-    // console.log(supp);
-    console.log(supp[0]);
+    // //console.log(supp);
+    //console.log(supp[0]);
     supp.forEach(element => {
         element.addEventListener("click", (e) => {
             e.preventDefault()
@@ -88,16 +88,16 @@ let supp = document.querySelectorAll('.delete');
   edit.forEach(editelement => {
     editelement.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(e.target.id, editelement);
+      //console.log(e.target.id, editelement);
 
       let editButtonIsPressed = e.target.id == 'edit-post';
-      console.log(editButtonIsPressed);
+      //console.log(editButtonIsPressed);
       if (editButtonIsPressed) {
-        console.log("editsysteme", e.target.parentElement.dataset.id);
+        //console.log("editsysteme", e.target.parentElement.dataset.id);
 
 
         var elt = editelement.closest("tr[data-regles]");
-        console.log(elt);
+        //console.log(elt);
 
         let titre = elt.querySelector('#titre').textContent;
         let contenu = elt.querySelector('#contenu').textContent;
@@ -105,16 +105,16 @@ let supp = document.querySelectorAll('.delete');
         let Dependance = elt.querySelector('#Dependance').textContent;
         let value =elt.querySelector('#value').textContent;
         let taille =elt.querySelector('#taille').textContent;
-        console.log(titre,value,taille);
+        //console.log(titre,value,taille);
 
 
 
-        // console.log(greatfather, e.target.parentElement);
+        // //console.log(greatfather, e.target.parentElement);
         let id = e.target.parentElement.dataset.id;
 
         // correspond au input;
         let thetitre = document.getElementById('titre')
-        console.log(thetitre);
+        //console.log(thetitre);
         let theDependance = document.getElementById('Dependance');
         let thedposition = document.getElementById('dposition');
         let thecontenu = document.getElementById('textarea');
@@ -127,14 +127,14 @@ let supp = document.querySelectorAll('.delete');
         thedposition.value=dposition;
         thetaille.value=taille;
         thevalue.value=value;
-        console.log(thetitre);
+        //console.log(thetitre);
         // update existing post
 
         let submition = document.querySelector('input[type=submit]');
-        console.log(submition);
+        //console.log(submition);
         submition.addEventListener('click', (e) => {
           e.preventDefault();
-          console.log("go");
+          //console.log("go");
         //   let idtest = '6156f28cd8bc2822c7003a0b'
           fetch('http://localhost:3018'+'/'+  id, {
             method: 'PATCH',
@@ -166,7 +166,7 @@ let supp = document.querySelectorAll('.delete');
 
         myForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            console.log(tr.length);
+            //console.log(tr.length);
             let h = new Headers();
             h.append('Accept', 'application/json');
 
@@ -177,16 +177,16 @@ let supp = document.querySelectorAll('.delete');
             // let taille =document.getElementById("taille").value;
             // let value = document.getElementById("value").value;
             let id = document.getElementById("id").value;
-            console.log(contenutable);
+            //console.log(contenutable);
             let derniertr = contenutable.lastChild;
-            console.log(derniertr);
-            console.log(id);
-            console.log(titre);
+            //console.log(derniertr);
+            //console.log(id);
+            //console.log(titre);
 
-            console.log(contenu);
+            //console.log(contenu);
 
             const formData = new FormData(myForm);
-            console.log(formData);
+            //console.log(formData);
             // formData.append('image',image,"image.png");
             fetch(url, {
                     method: 'POST',
@@ -205,9 +205,9 @@ let supp = document.querySelectorAll('.delete');
                         "Content-type": "application/json; charset=UTF-8"
                     }
                 }).then(res => res.json())
-                .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
-                .catch(err => console.log(err))
-            console.log("go");
+                .then(data => //console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
+                .catch(err => //console.log(err))
+            //console.log("go");
 
             let validationmessage = document.getElementById("messageflash");
             validationmessage.innerHTML = "nouvelle usesrstorie crée";
@@ -230,7 +230,7 @@ let supp = document.querySelectorAll('.delete');
  else if ((urlchoisi[0].url !='') 
 &&( urlchoisi[0].configuration===listconfiguration[0]||urlchoisi[0].configuration===listconfiguration[1]||urlchoisi[0].configuration===listconfiguration[2]||urlchoisi[0].configuration===listconfiguration[3]||urlchoisi[0].configuration===listconfiguration[4]||urlchoisi[0].configuration===listconfiguration[5])){
     let url='http://localhost:3018/'+urlchoisi[0].configuration;
-    console.log(url);
+    //console.log(url);
     let hpCharacters = [];
 
     const loadCharacters = async () => {
@@ -239,10 +239,10 @@ let supp = document.querySelectorAll('.delete');
                 method: 'GET'
             });
             hpCharacters = await res.json();
-            console.log(res + "  " + hpCharacters);
+            //console.log(res + "  " + hpCharacters);
             displayCharacters(hpCharacters);
         } catch (err) {
-            console.error(err);
+            //console.error(err);
         }
     };
 
@@ -267,11 +267,11 @@ let supp = document.querySelectorAll('.delete');
         contenutable.innerHTML = htmlString;
 
         let tr = document.querySelectorAll("tr[data-regles]");
-        console.log(tr.length);
+        //console.log(tr.length);
 // supprimer une userstorie
 let supp = document.querySelectorAll('.delete');
-    // console.log(supp);
-    console.log(supp[0]);
+    // //console.log(supp);
+    //console.log(supp[0]);
     supp.forEach(element => {
         element.addEventListener("click", (e) => {
             e.preventDefault()
@@ -287,20 +287,20 @@ let supp = document.querySelectorAll('.delete');
     // update
 
   let edit = document.querySelectorAll(".edit");
-  console.log(edit);
+  //console.log(edit);
   edit.forEach(editelement => {
     editelement.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(e.target.id, editelement);
+      //console.log(e.target.id, editelement);
 
       let editButtonIsPressed = e.target.id == 'edit-post';
-      console.log(editButtonIsPressed);
+      //console.log(editButtonIsPressed);
       if (editButtonIsPressed) {
-        console.log("editsysteme", e.target.parentElement.dataset.id);
+        //console.log("editsysteme", e.target.parentElement.dataset.id);
 
 
         var elt = editelement.closest("tr[data-regles]");
-        console.log(elt);
+        //console.log(elt);
 
         let titre = elt.querySelector('#titre').textContent;
         let contenu = elt.querySelector('#contenu').textContent;
@@ -308,16 +308,16 @@ let supp = document.querySelectorAll('.delete');
         let Dependance = elt.querySelector('#Dependance').textContent;
         let taille = elt.querySelector('#taille').textContent;
         let value =elt.querySelector('#value').textContent;
-        console.log(titre,taille,value);
+        //console.log(titre,taille,value);
 
 
 
-        // console.log(greatfather, e.target.parentElement);
+        // //console.log(greatfather, e.target.parentElement);
         let id = e.target.parentElement.dataset.id;
 
         // correspond au input;
         let thetitre = document.getElementById('titre')
-        console.log(thetitre);
+        //console.log(thetitre);
         let theDependance = document.getElementById('Dependance');
         let thedposition = document.getElementById('dposition');
         let thecontenu = document.getElementById('textarea');
@@ -331,14 +331,14 @@ let supp = document.querySelectorAll('.delete');
         thedposition.value=dposition;
         thetaille.value=taille;
         thevalue.value=value;
-        console.log(thetitre);
+        //console.log(thetitre);
         // update existing post
 
         let submition = document.querySelector('input[type=submit]');
-        console.log(submition);
+        //console.log(submition);
         submition.addEventListener('click', (e) => {
           e.preventDefault();
-          console.log("go");
+          //console.log("go");
         //   let idtest = '6156f28cd8bc2822c7003a0b'
           fetch('http://localhost:3018'+'/'+  id, {
             method: 'PATCH',
@@ -370,7 +370,7 @@ let supp = document.querySelectorAll('.delete');
 
         myForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            console.log(tr.length);
+            //console.log(tr.length);
             let h = new Headers();
             h.append('Accept', 'application/json');
 
@@ -379,20 +379,20 @@ let supp = document.querySelectorAll('.delete');
             let dposition = document.getElementById('dposition').value;
             let Dependance = document.getElementById('Dependance').value;
             let id = document.getElementById("id").value;
-            console.log(contenutable);
+            //console.log(contenutable);
             let derniertr = contenutable.lastChild;
-            console.log(derniertr);
-            console.log(id);
-            console.log(titre);
+            //console.log(derniertr);
+            //console.log(id);
+            //console.log(titre);
 
-            console.log(contenu);
+            //console.log(contenu);
 
 
             // let image=document.getElementById('myFile').files[0];
-            // console.log(image);
+            // //console.log(image);
 
             const formData = new FormData(myForm);
-            console.log(formData);
+            //console.log(formData);
             // formData.append('image',image,"image.png");
             fetch(url, {
                     method: 'POST',
@@ -408,9 +408,9 @@ let supp = document.querySelectorAll('.delete');
                         "Content-type": "application/json; charset=UTF-8"
                     }
                 }).then(res => res.json())
-                .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
-                .catch(err => console.log(err))
-            console.log("go");
+                .then(data => //console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
+                .catch(err => //console.log(err))
+            //console.log("go");
 
             let validationmessage = document.getElementById("messageflash");
             validationmessage.innerHTML = "nouvelle usesrstorie crée";

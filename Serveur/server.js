@@ -57,9 +57,9 @@ let paquet11 = require("./models/paquet1.1.json");
 app.get('/paquet1.1', (req, res) => {
   try {
     res.json(paquet11);
-    console.log(paquet11);
+    //console.log(paquet11);
   } catch (error) {
-    console.log(error)
+    //console.log(error)
   }
 
 });
@@ -85,7 +85,7 @@ app.post("/paquet1.1", bodyParser.json(), (req, res) => {
       stateInfo: req.body,
     });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
 
   }
 
@@ -94,7 +94,7 @@ app.post("/paquet1.1", bodyParser.json(), (req, res) => {
 // update sur paquet1conf1
 app.put("/paquet1.1/:id", bodyParser.json(), (req, res) => {
   paquet1 = paquet1.map((paquet) => {
-    console.log(paquet);
+    //console.log(paquet);
     if (paquet.id === Number(req.params.id)) {
       return req.body;
     } else {
@@ -116,7 +116,7 @@ app.delete("/paquet1.1/:id", (req, res) => {
     newLength: paquet1.length,
   });
 });
-console.log(paquet11);
+//console.log(paquet11);
 
 // cas du paquet1
 let paquet1 = require("./models/paquet1.json");
@@ -151,7 +151,7 @@ app.post("/paquet1", bodyParser.json(), (req, res) => {
 // put
 app.put("/paquet1/:id", bodyParser.json(), (req, res) => {
   paquet1 = paquet1.map((paquet) => {
-    console.log(paquet);
+    //console.log(paquet);
     if (paquet.id === Number(req.params.id)) {
       return req.body;
     } else {
@@ -183,7 +183,7 @@ app.delete("/paquet1/:id", (req, res) => {
 mongoose
   .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true
-  }, console.log("db connecté!!"))
+  }, //console.log("db connecté!!"))
   .then(() => {
     const app = express()
     app.use(express.json())
@@ -199,7 +199,7 @@ mongoose
 
 
     app.listen(port2, () => {
-      console.log(`Server running at http://localhost:${port2}`);
+      //console.log(`Server running at http://localhost:${port2}`);
     })
   });
 
@@ -228,67 +228,67 @@ mongoose
 //   res.json(rooms)
 // })
 // http.listen(port, () => {
-//   console.log(`listening on http://localhost:3018`);
+//   //console.log(`listening on http://localhost:3018`);
 // });
 
 // // attention toujours le pb  des routes car port 3000 est toujours utilisé donc 3020
 // // creation d'une session de jeu
 // //  const players=[]; 
 // let rooms = []; // toutes les rooms qui existe
-// console.log("rooms", rooms);
+// //console.log("rooms", rooms);
 // // creation de la socket permettant de donnecter les différents joueurs
 
 // io.on('connection', (socket) => { // connection de la socket grace a l'evenement on connection
-//   console.log(`[connection],${socket.id}`); //log sur l'evt connection et récupère l'id de sa socket
+//   //console.log(`[connection],${socket.id}`); //log sur l'evt connection et récupère l'id de sa socket
 //   socket.emit('socketnecessaireaconnection', `${socket.id}`);
 
 //   let stocksys = [];
 //   socket.on('joeuers', (sysJson) => {
 //     const state = JSON.parse(sysJson);
-//     console.log('[joeuers]', state);
+//     //console.log('[joeuers]', state);
 //     stocksys.push(state);
 
 //     let sysstateencommun = JSON.stringify(stocksys);
-//     console.log('[sysstateencommun]', sysstateencommun);
+//     //console.log('[sysstateencommun]', sysstateencommun);
 //     socket.broadcast.emit('statejoueurscommun', sysstateencommun);
 //   });
 //   let listplayer = [];
 //   socket.on('playerData', (player) => { //création d'un event playerData avec por nature d'evt une fonction fléché de creation de room
-//     console.log(`[playerData],${player.username},[connection],${socket.id},${player}`); // récupération de data username et player
+//     //console.log(`[playerData],${player.username},[connection],${socket.id},${player}`); // récupération de data username et player
 //     let room = null; //etat initial pas de room crée
 //     if (roomId != null) {
 //       listplayer.push(player);
-//       console.log('listplayer', listplayer);
+//       //console.log('listplayer', listplayer);
 //     }
 
 //     if (!player.roomId) { //si le player n'est pas lé a une valeur Id de room
-//       console.log("ping0");
+//       //console.log("ping0");
 //       room = createRoom(player); //creation de la room (session) pour 
 
-//       console.log(`[createRoom],${room.id}-${player.username},${player.roomId}`); //
+//       //console.log(`[createRoom],${room.id}-${player.username},${player.roomId}`); //
 //     } else {
 //       room = rooms.find(r => r.id === player.roomId);
-//       console.log("ping1");
+//       //console.log("ping1");
 //       if (room === undefined) {
-//         console.log("ping2");
+//         //console.log("ping2");
 //         return;
 //       }
 //       player.roomId = room.id;
 //       room.players.push(player);
-//       console.log("ping3");
+//       //console.log("ping3");
 
 //       listplayer.push(player.username);
 
 //       socket.emit('listplayername', listplayer);
-//       console.log('listplayername')
+//       //console.log('listplayername')
 //     }
 //     //  socket.on('playernbre',(nbreplayer)=>{
-//     //   console.log(`[playerNbre],${nbreplayer.nbre}`);
+//     //   //console.log(`[playerNbre],${nbreplayer.nbre}`);
 //     // })
 //     socket.join(room.id);
 
 //     // socket.broadcast.emit("listplayer",player);
-//     // console.log('[listplayer]',player);
+//     // //console.log('[listplayer]',player);
 
 //     io.to(socket.id).emit('join room', room.id);
 
@@ -305,7 +305,7 @@ mongoose
 //   //   io.to(socket.id).emit('listRooms', rooms);
 //   // })
 //   // socket.on('statejoueur',()=>{
-//   //   console.log('[statejouers]',joueurs,state);
+//   //   //console.log('[statejouers]',joueurs,state);
 //   // })
 
 

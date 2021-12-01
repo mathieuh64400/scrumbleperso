@@ -8,13 +8,13 @@ export default class Administration extends Controller {
         document.title = "gestion du jeu";
 
         let user = this.state.user;
-        console.log(user);
+        //console.log(user);
 
        
 
 
         let adminvison = document.getElementById("gestion");
-        console.log(user.role);
+        //console.log(user.role);
 
 
         if (user.statut == "connecte") {

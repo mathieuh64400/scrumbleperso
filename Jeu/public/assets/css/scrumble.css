@@ -569,8 +569,15 @@ li>.rep {
   flex-direction: row;
   justify-content: center;
 }
-.labelspec{
+
+.labelspec {
   margin-left: 20%;
   margin-bottom: 0%;
   padding-top: 5%;
+}
+
+.formchoixjr {
+  margin-right: 10%;
+  height: 21em;
+  overflow-y: scroll;
 }

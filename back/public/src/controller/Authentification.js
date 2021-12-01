@@ -8,7 +8,7 @@ export default class Authentification extends Controller {
         document.title = "Authentification";
 
         const myForm = document.getElementById("form");
-        console.log(myForm);
+        //console.log(myForm);
 
         myForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -20,16 +20,16 @@ export default class Authentification extends Controller {
             let password = document.getElementById('password').value;
             let mail = document.getElementById('mail').value;
       
-            console.log(nom);
+            //console.log(nom);
       
-            // console.log(password);
+            // //console.log(password);
       
-            console.log(mail);
+            //console.log(mail);
             // let image=document.getElementById('myFile').files[0];
-            // console.log(image);
+            // //console.log(image);
       
             const formData = new FormData(myForm);
-            console.log(formData);
+            //console.log(formData);
           
             fetch('http://localhost:3050/api/user/register', {
                 method: 'POST',
@@ -46,11 +46,11 @@ export default class Authentification extends Controller {
               }).then(res => res.json())
               .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
               .catch(err => console.log(err))
-            console.log("go");
+            //console.log("go");
             
 
             let submition = document.querySelector('input[type=submit]');
-            console.log(submition);
+            //console.log(submition);
             submition.addEventListener('click', (e) => {
               e.preventDefault();
                 location.reload(); 
@@ -75,21 +75,21 @@ export default class Authentification extends Controller {
 
 
         // this.form = document.getElementById("form");
-        // console.log(this.form);
+        // //console.log(this.form);
         // this.form.addEventListener("submit", (e) => {
         //     e.preventDefault();
         //  let x=   new FormData(this.form);
-        //     console.log(Array.from(x));
+        //     //console.log(Array.from(x));
         // });
         // this.form.addEventListener("formdata",(e)=>{
         //     const data= e.formData;
         //     if (data.get("mail")==="" || data.get("password")===""|| data.get("level")==="") return;
         //     this.state.mail=data.get("mail");
-        //     console.log(data.get("mail"))
+        //     //console.log(data.get("mail"))
         //     this.state.password=data.get("password");
-        //     console.log(data.get("password"))
+        //     //console.log(data.get("password"))
         //     this.state.level=data.get("level");
-        //     console.log(data.get("level"));
+        //     //console.log(data.get("level"));
             
         //      
         // })

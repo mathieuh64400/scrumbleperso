@@ -8,13 +8,13 @@ export default class Administrationregles extends Controller {
     document.title = "gestion des regles";
 
     let user = this.state.user[0];
-    console.log(user);
-    // console.log(user);
+    //console.log(user);
+    // //console.log(user);
 
     // creation regles 
 
     const myForm = document.getElementById("myForm");
-    console.log("toto");
+    //console.log("toto");
    
 
 
@@ -29,18 +29,18 @@ export default class Administrationregles extends Controller {
       let contenu = document.getElementById('contenu').value;
       let texte = document.getElementById('textarea').value;
       let img = document.getElementById('img').value;
-      console.log(titre);
+      //console.log(titre);
 
-      console.log(contenu);
+      //console.log(contenu);
 
-      console.log(texte,img);
+      //console.log(texte,img);
       // let image=document.getElementById('myFile').files[0];
-      // console.log(image);
+      // //console.log(image);
 
       const formData = new FormData(myForm);
       // formData.append('myfile',myfile.files[0]);
-      // console.log( 'list :',myfile.files);
-     console.log(formData);
+      // //console.log( 'list :',myfile.files);
+     //console.log(formData);
       // formData.append('image',image,"image.png");
       fetch('http://localhost:3050/api/regles', {
           method: 'POST',
@@ -55,9 +55,9 @@ export default class Administrationregles extends Controller {
             "Content-type": "application/json; charset=UTF-8"
           }
         }).then(res => res.json())
-        .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
-        .catch(err => console.log(err))
-      console.log("go");
+        .then(data => //console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
+        .catch(err => //console.log(err))
+      //console.log("go");
 
       let validationmessage = document.getElementById("messageflash");
       validationmessage.innerHTML = "nouvelle regles creer";
@@ -75,7 +75,7 @@ export default class Administrationregles extends Controller {
 
     // get
     let contenutable = document.getElementById("contenutable");
-    console.log(contenutable);
+    //console.log(contenutable);
 
 
     const cadreref = document.getElementById("cadreregles");
@@ -100,10 +100,10 @@ export default class Administrationregles extends Controller {
           method: 'GET'
         });
         hpCharacters = await res.json();
-        console.log(res + "  " + hpCharacters);
+        //console.log(res + "  " + hpCharacters);
         displayCharacters(hpCharacters);
       } catch (err) {
-        console.error(err);
+        //console.error(err);
       }
     };
 
@@ -132,35 +132,35 @@ export default class Administrationregles extends Controller {
 
 
       let edit = document.querySelectorAll(".edit");
-      console.log(edit);
+      //console.log(edit);
       edit.forEach(editelement => {
         editelement.addEventListener("click", (e) => {
           e.preventDefault();
-          console.log(e.target.id, editelement);
+          //console.log(e.target.id, editelement);
 
           let editButtonIsPressed = e.target.id == 'edit-post';
-          console.log(editButtonIsPressed);
+          //console.log(editButtonIsPressed);
           if (editButtonIsPressed) {
-            console.log("editsysteme", e.target.parentElement.dataset.id);
+            //console.log("editsysteme", e.target.parentElement.dataset.id);
 
 
             var elt = editelement.closest("tr[data-regles]");
-            console.log(elt);
+            //console.log(elt);
 
             let titre = elt.querySelector('#titre').textContent;
             let resume = elt.querySelector('#resume').textContent;
             let texte = elt.querySelector('#contenu').textContent;
             let img = elt.querySelector('#image').textContent;
-            console.log("img:",titre,img);
+            //console.log("img:",titre,img);
 
 
 
-            // console.log(greatfather, e.target.parentElement);
+            // //console.log(greatfather, e.target.parentElement);
             let id = e.target.parentElement.dataset.id;
 
 
             let thetitre = document.getElementById('titre')
-            console.log(thetitre);
+            //console.log(thetitre);
             let thecontenu = document.getElementById('contenu');
             let thetexte = document.getElementById('textarea');
             let theimg = document.getElementById('img');
@@ -169,14 +169,14 @@ export default class Administrationregles extends Controller {
             thecontenu.value = resume;
             thetexte.value = texte;
             theimg.value = img;
-            console.log(thetitre, theimg);
+            //console.log(thetitre, theimg);
             // update existing post
 
             let submition = document.querySelector('input[type=submit]');
-            console.log(submition);
+            //console.log(submition);
             submition.addEventListener('click', (e) => {
               e.preventDefault();
-              console.log("go");
+              //console.log("go");
               // let idtest = '6156f28cd8bc2822c7003a0b'
               fetch('http://localhost:3050/api/regles/' + id, {
                 method: 'PATCH',
@@ -202,7 +202,7 @@ export default class Administrationregles extends Controller {
       }
     )
       let supp = document.querySelectorAll('.delete');
-      console.log(supp[0]);
+      //console.log(supp[0]);
       supp.forEach(element => {
         element.addEventListener("click", (e) => {
           e.preventDefault()

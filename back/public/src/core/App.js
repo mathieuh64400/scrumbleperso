@@ -31,14 +31,14 @@ class App {
 
   render() {
     this.route = routes[window.location.pathname || "/"];
-    console.log(window.location.pathname);
+    //console.log(window.location.pathname);
     fetch(`/public/views/${this.route.view}.html`)
       .then((raw) => raw.text())
       .then((txt) => {
         document.getElementById("app").innerHTML = txt;
         this.controller = new this.route.controller();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => //console.error(err));
   }
 }
 

@@ -24,16 +24,17 @@ const paquet1A1=require('./routes/Userstories/Paquet1A1');
 const paquet1A2=require('./routes/Userstories/Paquet1A2');
 const paquet2A2=require('./routes/Userstories/Paquet2A2');
 const paquet2A1=require('./routes/Userstories/Paquet2A1');
+
 const app = express();
 const http = require('http').createServer(app);
-const websocketServer = require('websocket').server;
+// const websocketServer = require('websocket').server;
 
 const clients ={};
 
 console.log(clients);
-const wsServer = new websocketServer({
-  "httpServer": http
-})
+// const wsServer = new websocketServer({
+//   "httpServer": http
+// })
 app.use(bodyParser.json());
 app.use(cors({origin:'*'}));
 
@@ -102,8 +103,6 @@ app.use((err, req, res, next) => {
 
 
 // partie socket
-
-
 // socket part
 const io = require('socket.io')(http, {
   cors: {
@@ -113,21 +112,96 @@ const io = require('socket.io')(http, {
     credentials: true
   }
 });
-// instrument(io, {
-//   auth: false
-// });
+// partie web ssimplified tuto:
+//  io.on('connection',socket=>{
+//    console.log(socket.id);
+//    socket.on('send-message',(message,room)=>{
+//      if(room ===""){
+//             socket.broadcast.emit('receive-message',message);
+//      } else{
+//        socket.to(room).emit('receive-message',message);
+//      }
 
-app.use(express.static("public"))
-// app.get('/', (req, res) => {
-//   res.sendFiles(`/var/www/html/Scrumble/Jeu/views/jeu.html`);
-// });
-app.get('/rooms', (r, res) => {
-  res.json(rooms)
-})
+//      console.log(message);
+//    })
+//  })
 
+
+// // instrument(io, {
+// //   auth: false
+// // });
+
+// app.use(express.static("public"))
+// // app.get('/', (req, res) => {
+// //   res.sendFiles(`/var/www/html/Scrumble/Jeu/views/jeu.html`);
+// // });
+
+// // START SOCKET TEST JEU
+// let rooms =[];
+// io.on('connection', (socket) => { 
+//   console.log(`[connection],${socket.id}` );
+
+//   socket.on('playerData',(player)=>{
+//     console.log(`[playerData], ${player.username}`);
+//      let room = null;
+//      if(!player.roomId){
+//         room = createRoom(player);
+//         console.log(`[create room]-${room.id}-${player.username}`);
+//      }
+//      else {
+//        room = rooms.find(r =>r.id === player.roomId);
+//        if (room === undefined) {
+//          return;
+//        }
+//        room.players.push(player);
+//      }
+//      socket.join(room.id);
+//      io.to(socket.id).emit('join room',room.id);
+//      if(room.players.length === 2){ //change to player.length
+//        io.to(room.id).emit('Start Game',room.players);
+//        console.log(room.players);
+//      }
+
+//   });
+//   socket.on('get rooms',()=>{
+//     io.to(socket.id).emit('list rooms',rooms)
+//     console.log(rooms)
+//   })
+//   socket.on('disconnect',()=>{
+//     console.log(`[disconnect] ${socket.id}`);
+//     let room= null;
+//     rooms.forEach(r=>r.players.forEach(p =>{
+//       if(p.socketId === socket.id && p.host){
+//         room=r;
+//         rooms =rooms.filter(r => r !== room);
+//       }
+//     }))
+//   })
+// })
+
+// function createRoom(player) {
+//   const room = { id: roomId(), players: [] };
+
+//   player.roomId = room.id;
+
+//   room.players.push(player);
+//   rooms.push(room);
+
+//   return room;
+// }
+
+// function roomId() {
+//   return Math.random().toString(36).substr(2, 9);
+// }
+
+
+// app.get('/rooms', (r, res) => {
+//   res.json(rooms)
+// })
+// partie en cours:
 // attention toujours le pb  des routes car port 3000 est toujours utilisé donc 3020
 // creation d'une session de jeu
-//  const players=[]; 
+ const players=[]; 
 let rooms = []; // toutes les rooms qui existe initialement
 console.log("rooms", rooms);
 // creation de la socket permettant de deconnecter les différents joueurs
@@ -136,16 +210,20 @@ io.on('connection', (socket) => { // connection de la socket grace a l'evenement
   console.log(`[connection],${socket.id}`); //log sur l'evt connection et récupère l'id de sa socket
   socket.emit('socketnecessaireaconnection', `${socket.id}`);
 
+  // socket.on('joueur',this.state.joueurs);
+  // console.log(this.state.joueurs);
+
   let stocksys = [];
   socket.on('joeuers', (sysJson) => {
     const state = JSON.parse(sysJson);
-    console.log('[joeuers]', state,sysJson) ;
+    console.log('[joeuers]', state) ;
     stocksys.push(state);
 
     let sysstateencommun = JSON.stringify(stocksys);
     console.log('[sysstateencommun]', sysstateencommun);
-    socket.broadcast.emit('statejoueurscommun', sysstateencommun);
+    socket.broadcast.emit('statejoueurscommun', JSON.stringify(sysstateencommun));
   });
+
   let listplayer = [];
   socket.on('playerData', (player) => { //création d'un event playerData avec pour nature d'evt une fonction fléché de creation de room
     console.log(`[playerData],${player.username},[connection],${socket.id},${player}`); // récupération de data username et player

@@ -6,7 +6,7 @@ export default class Compte extends Controller {
      super();
 
      let user=this.state.user;
-     console.log(user); 
+     //console.log(user); 
      const entries= new Map([
        [ 'mail','mail'],
        ['password','...'],
@@ -15,9 +15,9 @@ export default class Compte extends Controller {
      
      ]); 
      const obj=Object.fromEntries(entries);
-     console.log(obj);
+     //console.log(obj);
      user.push(obj);
-     console.log(user,typeof(user));
+     //console.log(user,typeof(user));
 
 
     }

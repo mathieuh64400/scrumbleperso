@@ -8,21 +8,21 @@ export default class UserstoriesSelect extends Controller {
         document.title = "selection du paquet de userstories";
 
         let urlchoisi = this.state.adminuserstories;
-        console.log(urlchoisi);
+        //console.log(urlchoisi);
         const paquettraite= {
             'url':'tttt',
             'configuration':'....'
         }
-        console.log(typeof(paquettraite),paquettraite);
+        //console.log(typeof(paquettraite),paquettraite);
         const me = Object.create(paquettraite);
-        console.log(me);
+        //console.log(me);
         urlchoisi.push(me);
       
 
       
-        console.log(urlchoisi);
-        console.log(urlchoisi[0].url);
-        console.log(this.state.adminuserstories,this.state.adminuserstories[0].url,this.state.adminuserstories[0].configuration);
+        //console.log(urlchoisi);
+        //console.log(urlchoisi[0].url);
+        //console.log(this.state.adminuserstories,this.state.adminuserstories[0].url,this.state.adminuserstories[0].configuration);
         // traitement du formulaire
         const myForm = document.getElementById("formpaquet");
 
@@ -34,18 +34,18 @@ export default class UserstoriesSelect extends Controller {
             let paquetselectconfiguration = document.getElementById('configuration').value;
 
 
-            console.log(paquetselect);
+            //console.log(paquetselect);
 
-            console.log(paquetselectconfiguration);
+            //console.log(paquetselectconfiguration);
 
-            //  console.log(texte);
+            //  //console.log(texte);
             // let image=document.getElementById('myFile').files[0];
-            // console.log(image);
+            // //console.log(image);
 
             const formData = new FormData(myForm);
-            console.log(formData);
+            //console.log(formData);
 
-            console.log("go");
+            //console.log("go");
             Object.defineProperty(urlchoisi[0], "url", {
                 enumerable: false,
                 configurable: true,
@@ -58,7 +58,7 @@ export default class UserstoriesSelect extends Controller {
                 writable: false,
                 value: paquetselectconfiguration
             });
-            console.log(urlchoisi[0],urlchoisi);
+            //console.log(urlchoisi[0],urlchoisi);
 
              let validationmessage = document.getElementById("messageflash");
              validationmessage.innerHTML = "clicker sur le bouton pour continuer à traiter les userstories ";
@@ -73,7 +73,7 @@ export default class UserstoriesSelect extends Controller {
              validationmessage.appendChild(button);
              button.appendChild(lienrelance);
              this.refreshLinks()
-             console.log(this.state);
+             //console.log(this.state);
         }.bind(this))
 
 

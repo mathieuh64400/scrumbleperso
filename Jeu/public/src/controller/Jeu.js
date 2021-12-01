@@ -9,7 +9,7 @@ import {
 export default class Jeu extends Controller {
   constructor() {
     super();
-    fetch('http://localhost:3051/').then(res => console.log(res))
+    // fetch('http://localhost:3051/').then(res => console.log(res))
     // let config = this.state.paquet[0];
     // player ajouté donnée au state joueur des le debut du jeu
     const player = {
@@ -36,7 +36,8 @@ export default class Jeu extends Controller {
     let listcolor = ["cyan", "purple", "white", "red", "blue", "yellow", "green", "orange", "pink", "lime"];
 
     let color = [];
-    console.log(color)
+    console.log(color);
+
     for (let i = 0; i < joueurs.length; i++) {
       if (joueurs[i].statut === "Developpeur") {
         Object.defineProperty(joueurs[i], 'color', {
@@ -55,7 +56,7 @@ export default class Jeu extends Controller {
 
     //  }}
     
-    // modal:
+    // ///////modal://///////////////////////////////////////////////
     var modal = document.getElementById('myModal');
 
     // Get the button that opens the modal
@@ -80,11 +81,7 @@ export default class Jeu extends Controller {
         modal.style.display = "none";
       }
     }
-    //  creation de session de de jeu:
-    //  pb socket Failed to load resource: net::ERR_CONNECTION_REFUSED dans console
-    // const formentretchat = document.getElementById("entretchat");
-    // console.log(formentretchat);
-    // let containertchat = document.getElementById('containerdutchat');
+
 
     let formsessions = document.getElementById("salon");
     const inputvalue = document.getElementById("username");
@@ -162,34 +159,42 @@ export default class Jeu extends Controller {
 
 
       // websocket test si possibilisté de remplacer le socket.io par cela
-      let clientId =null;
-      let ws = new WebSocket('ws://localhost:3051')
-      ws.onmessage = message =>{
-        // message.data
-        const response =JSON.parse(message.data);
-        // connection au jeu
-        if(response.method === "connect"){
-          console.log("client id set succesfully"+ clientId);
-        }
-        console.log(response);
+      // let clientId =null;
+      // let ws = new WebSocket('ws://localhost:3051')
+      // ws.onmessage = message =>{
+      //   // message.data
+      //   const response =JSON.parse(message.data);
+      //   // connection au jeu
+      //   if(response.method === "connect"){
+      //     console.log("client id set succesfully"+ clientId);
+      //   }
+      //   console.log(response);
 
-      }
+      // }
+      ////////////////////////partie pur socket.io://///////////////////////
+
       // let socket;
 
       const socket = io('http://localhost:3051').connect()
       console.log(socket);
       formsessions.addEventListener('submit', function state() {
 
-        if (socket.id != "" && player.username != " ") {
-
+        if (idsocket != "" && player.username != "") {
+            console.log(idsocket, socket);
           socket.on('statejoueurscommun', (sysstateencommun) => {
             joueurs = JSON.parse(sysstateencommun);
-            console.log(sysstateencommun, joueurs);
+            console.log('sys',sysstateencommun, joueurs);
 
           })
         }
+        const sysJson = JSON.stringify(joueurs);
+        console.log(sysJson);
       })
-
+      console.log('xxxx');
+      console.log(joueurs);
+      socket.on('statejoueurscommun', (sysstateencommun) => {
+        joueurs = JSON.parse(sysstateencommun);
+        console.log('sys',sysstateencommun, joueurs);})
 
 
       const sysJson = JSON.stringify(joueurs);
@@ -209,6 +214,7 @@ export default class Jeu extends Controller {
 
       // let firstlistgameur=Object.values( player);
       // console.log(firstlistgameur);
+      // socket.emit('joueur', JSON.parse(this.state.joueurs));
       socket.emit('playerData', player);
 
       socket.emit('playernbre', nbretotjoeuer);
@@ -233,11 +239,12 @@ export default class Jeu extends Controller {
           console.log("ff:", listplayer, joueurs, player)
         });
         console.log(joueurs, player.role);
-        for (let id = 0; id < joueurs.length; id++) {
-          if (player.role === joueurs[id].name) {
-            console.log("toto:", linkToShare.innerHTML);
-          }
-        }
+        // for (let id = 0; id < joueurs.length; id++) {
+        //   console.log(joueurs[id].name);
+        //   if (player.role === joueurs[id].name) {
+        //     console.log("toto:", linkToShare.innerHTML, joueurs[id].name);
+        //   }
+        // }
         linkToShare.innerHTML = " ";
 
         console.log(linkToShare);
@@ -245,7 +252,7 @@ export default class Jeu extends Controller {
         console.log(socket.id);
         console.log(socket);
 
-        if (linkToShare.innerHTML = " ") {
+        if (linkToShare.innerHTML == " ") {
 
           cadrechoix.innerHTML = `<p>vous choississez d'incarner:</p>`
           let formchoix = document.createElement('form');
@@ -697,6 +704,7 @@ export default class Jeu extends Controller {
                 console.log(pion);
                 // socket.emit('custom-evenet', pion);
                 const label = document.createElement("span");
+                console.log(label);
                 label.style.marginTop = "2%";
                 label.style.marginRight = "1%";
                 label.innerHTML = developpeurs[i].name;
@@ -704,6 +712,7 @@ export default class Jeu extends Controller {
                 console.log(developpeurs[0]);
                 // pion
                 pion.style.backgroundColor = label.style.color;
+
                 console.log(pion);
 
                 console.log(joueurs, joueurs[i].image);
@@ -712,10 +721,10 @@ export default class Jeu extends Controller {
                 console.log(pion.style.backgroundImage, image[i]);
                 //  modification du pion essaie depot par drag and drop sur cerle
                 console.log(backapion,pion,pion.length)
-                let pions= document.querySelectorAll(pion);
+                let pions= document.querySelectorAll('.pion');
                 console.log(pions,pions.length);
                 pions.forEach(Pions=>{
-                  console.log(Pions[0]);
+                  console.log(typeof(Pions));
                   Pions.style.border='10px solid green'
                 })
                 // fin pion

@@ -1,4 +1,5 @@
-import Controller from "../core/Controller.js"
+import Controller from "../core/Controller.js";
+import listcarte from "../component/listCarte.js";
 export default class Regles extends Controller {
   constructor() {
     super();
@@ -17,7 +18,7 @@ export default class Regles extends Controller {
     headers: myHeaders,
     mode: 'cors',
     cache: 'default' };
-    let url = 'http://localhost:3051/api/regles';
+    let url = listcarte[3];
 
     const loadCharacters = async () => {
       try {

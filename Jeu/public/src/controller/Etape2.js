@@ -1,6 +1,6 @@
 
 import Controller from "../core/Controller.js";
-// import Joueur from '../model/Joueur.js';
+import url from "../component/listAdresse.js";
 export default class Etape2 extends Controller {
   constructor() {
     super();
@@ -13,7 +13,7 @@ export default class Etape2 extends Controller {
     this.traitement();
     this.createDette();
   }
-  
+
 traitement(){
   document.title = "Etape du jeu 2"
   //console.log("jeu:etape2");
@@ -30,9 +30,9 @@ traitement(){
   //console.log(obj);
   urlchoisi.push(obj);
   //console.log(urlchoisi);
-  let url0 = "http://localhost:3051/api/paquet1";
-  let url1 = "http://localhost:3051/api/paquet2";
-  let url2 = "http://localhost:3051/api/paquet3";
+  console.log(url) 
+  // let url1 = "http://localhost:3051/api/paquet2";
+  // let url2 = "http://localhost:3051/api/paquet3";
   //console.log(url0,url1,url2);
 
     // selection de l'ensemble des div avec l'attribut data-selected
@@ -65,16 +65,16 @@ traitement(){
           let urlselecionne;
           if (valeurpaquet === "paquet0") {
             //console.log(valeurpaquet);
-            urlselecionne = url0;
+            urlselecionne = url[0];
             //console.log(urlselecionne)
 
           } else if (valeurpaquet === "paquet1") {
             //console.log(valeurpaquet);
-            urlselecionne = url1;
+            urlselecionne = url[1];
             //console.log(urlselecionne);
           } else {
             //console.log(valeurpaquet);
-            urlselecionne = url2;
+            urlselecionne = url[2];
             //console.log(urlselecionne);
           }
           //console.log(urlselecionne);
@@ -166,7 +166,7 @@ traitement(){
 //   });
   }
 createloadCharacters1() {
-    let url0 = "http://localhost:3051/api/paquet1";
+  console.log(url[0]) 
     const paquet = document.getElementById("paquet0");
 
 
@@ -176,7 +176,7 @@ createloadCharacters1() {
   
     const loadCharacters = async () => {
       try {
-        const res = await fetch(url0);
+        const res = await fetch(url[0]);
         hpCharacters = await res.json();
         //console.log(res + "  " + hpCharacters);
         displayCharacters(hpCharacters);
@@ -205,7 +205,7 @@ createloadCharacters1() {
     loadCharacters();
   }
 createloadCharacters2() {
-  let url1 = "http://localhost:3051/api/paquet2";
+  // let url1 = "http://localhost:3051/api/paquet2";
   const paquet1 = document.getElementById("paquet1");
 
   let hpCharacters1 = [];
@@ -213,7 +213,7 @@ createloadCharacters2() {
 
   const loadCharacters1 = async () => {
     try {
-      const res = await fetch(url1);
+      const res = await fetch(url[1]);
       hpCharacters1 = await res.json();
       //console.log(res + "  " + hpCharacters1);
       displayCharacters1(hpCharacters1);
@@ -244,7 +244,7 @@ createloadCharacters2() {
 
   }
 createloadCharacters3(){
-  let url2 = "http://localhost:3051/api/paquet3";
+  // let url2 = "http://localhost:3051/api/paquet3";
 
   //paquet2///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -255,7 +255,7 @@ createloadCharacters3(){
 
   const loadCharacters2 = async () => {
     try {
-      const res = await fetch(url2);
+      const res = await fetch(url[2]);
       hpCharacters2 = await res.json();
       //console.log(res + "  " + hpCharacters2);
       displayCharacters2(hpCharacters2);
@@ -303,13 +303,11 @@ createDette(){
   //console.log(obj);
   urlchoisi.push(obj);
   //console.log(urlchoisi);
-  let url0 = "http://localhost:3051/api/paquet1";
-  let url1 = "http://localhost:3051/api/paquet2";
-  let url2 = "http://localhost:3051/api/paquet3";
+
   //console.log(url0,url1,url2);
 let paquetcarte=this.state.paquet[0];
 //console.log(paquetcarte);
-let dettetechpos=["DETTE INEXISTANTE x3","DETTE FAIBLE x4","DETTE MOYENNE x5"];
+const dettetechpos=["DETTE INEXISTANTE x3","DETTE FAIBLE x4","DETTE MOYENNE x5"];
 let nombreposdette=Math.trunc(Math.random()*3);
 //console.log(nombreposdette);
 let dette=dettetechpos[nombreposdette];

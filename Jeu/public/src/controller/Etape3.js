@@ -1,10 +1,14 @@
 import Controller from "../core/Controller.js";
+import  url from "../component/listAdresse.js";
+import listurl from "../component/listurl.js";
+import listurl2 from "../component/listurl1.js";
+import listurl3 from "../component/listurl2.js";
 export default class Etape3 extends Controller {
   constructor() {
     super();
 
     document.title = "Etape3:Backlog";
-
+console.log(listurl);
      this.afficher();
      this.tirage();
 
@@ -255,6 +259,7 @@ export default class Etape3 extends Controller {
   
   // }
   tirage(){
+  
     let paqueturl = this.state.paquet;
     //console.log(typeof (paqueturl));
     let paqueturlbase = paqueturl[0].url;
@@ -269,7 +274,7 @@ export default class Etape3 extends Controller {
      // cas du paquet userstories:
      let premiertirage = document.getElementById("devoiler");
      //console.log(premiertirage);
-     let listurl = [];
+    //  let listurl = [];
      //console.log(listurl);
      let I = 0;
      let nbreclick = I;
@@ -278,22 +283,23 @@ export default class Etape3 extends Controller {
      let urlselect = listurl[I];
      //console.log(urlselect, I);
  
-     if (paqueturlbase === 'http://localhost:3051/api/paquet1'||paqueturlbase==='http://localhost:3051/api/paquet2'||paqueturlbase==='http://localhost:3051/api/paquet3') {
+     if (paqueturlbase === url[0]||paqueturlbase===url[1]||paqueturlbase===url[2]) {
        //console.log(paqueturlbase, typeof (paqueturlbase));
-       listurl = ['http://localhost:3051/api/paquet1', 'http://localhost:3051/api/paquet1.1', 'http://localhost:3051/api/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
-      let listurl2 =['http://localhost:3051/api/paquet2', 'http://localhost:3051/api/paquet2.1', 'http://localhost:3051/api/paquet2.2', 'http://localhost:3003/paquet2.3', 'http://localhost:3003/paquet2.4'];
-      let listurl3 =['http://localhost:3051/api/paquet3', 'http://localhost:3051/paquet3.1', 'http://localhost:3003/paquet3.2', 'http://localhost:3003/paquet3.3', 'http://localhost:3003/paquet3.4']
+      //  listurl = ['http://localhost:3051/api/paquet1', 'http://localhost:3051/api/paquet1.1', 'http://localhost:3051/api/paquet1.2', 'http://localhost:3003/paquet1.3', 'http://localhost:3003/paquet1.4'];
+      // let listurl2 =['http://localhost:3051/api/paquet2', 'http://localhost:3051/api/paquet2.1', 'http://localhost:3051/api/paquet2.2', 'http://localhost:3003/paquet2.3', 'http://localhost:3003/paquet2.4'];
+      // let listurl3 =['http://localhost:3051/api/paquet3', 'http://localhost:3051/paquet3.1', 'http://localhost:3003/paquet3.2', 'http://localhost:3003/paquet3.3', 'http://localhost:3003/paquet3.4']
        I = 0;
  
-       //console.log(listurl);
+       console.log(listurl);
        nbreurl = listurl.length;
-       //console.log(nbreurl);
+       console.log(nbreurl);
+       console.log(listurl);
        urlselect = listurl[I];
-       //console.log(urlselect, I);
+       console.log(urlselect, I);
 
        if (nbreclick === 0) {
          //console.log(nbreclick);
-         //console.log(listurl);
+         console.log(listurl);
          let urlcas = paqueturlbase;
          //console.log(urlcas);
  
@@ -327,7 +333,7 @@ export default class Etape3 extends Controller {
            nbreclick = I;
            //console.log(nbreclick);
            if (nbreclick > 0 && nbreclick < nbreurl) {
-             if (paqueturlbase === 'http://localhost:3051/api/paquet1') {
+             if (paqueturlbase === listurl[0]) {
                let newurl = listurl[nbreclick];
                //console.log(newurl);
                //console.log(obj2);
@@ -350,7 +356,7 @@ export default class Etape3 extends Controller {
                //console.log(paquetref);
                newderouler(newurl)
              }
-             if (paqueturlbase === 'http://localhost:3051/api/paquet2') {
+             if (paqueturlbase === listurl2[0]) {
                let newurl2 = listurl2[nbreclick];
                //console.log(newurl2);
                //console.log(obj2);
@@ -371,7 +377,7 @@ export default class Etape3 extends Controller {
                newderouler(newurl2)
                
              }
-             if (paqueturlbase === 'http://localhost:3051/api/paquet3') {
+             if (paqueturlbase === listurl3[0]) {
                let newurl3 = listurl2[nbreclick];
                //console.log(newurl3);
                //console.log(obj2);
@@ -463,5 +469,3 @@ export default class Etape3 extends Controller {
   }
 
  
- 
-  

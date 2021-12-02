@@ -4,14 +4,25 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import {
   io
 } from "socket.io-client";
-
+import listcarte from "../component/listCarte.js"
 
 export default class Jeu extends Controller {
   constructor() {
     super();
-    // fetch('http://localhost:3051/').then(res => console.log(res))
-    // let config = this.state.paquet[0];
-    // player ajouté donnée au state joueur des le debut du jeu
+
+    this.jeu();
+    this.createModal();
+    // this.createDice();
+    // this.getRandomNumber()
+    //  this.traitementformulaire();
+    // this.createCarte();
+    // this.validate();
+   
+    this.Makeplateau();
+
+  
+  }
+  jeu(){
     const player = {
 
       host: false,
@@ -21,10 +32,12 @@ export default class Jeu extends Controller {
       role: "",
       statut: ""
     };
+
     console.log(player);
 
     let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
     let config = this.state.paquet[0]; //recuperation des userstories
+
     console.log(config);
 
     console.log(joueurs.length);
@@ -50,39 +63,11 @@ export default class Jeu extends Controller {
 
       console.log(joueurs);
     }
-    // if (joueurs[i].statut==="Developpeur") {
-    // 
-    // for(let colori=0; colori<joueurs.length;colori++){
 
-    //  }}
-    
+
     // ///////modal://///////////////////////////////////////////////
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    btn.onclick = function () {
-      modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-
-
+ 
+// this.traitementformulaire()
     let formsessions = document.getElementById("salon");
     const inputvalue = document.getElementById("username");
     const carduser = document.querySelector("#usercard");
@@ -98,43 +83,13 @@ export default class Jeu extends Controller {
     console.log(formsessions, inputvalue, toddolist);
 
 
-
-    // socket.emit('get rooms');
-    // socket.on('list rooms', (rooms) => {
-    //     let html = "";
-    //    console.log(html);
-    //     if (rooms.length > 0) { console.log(rooms);
-    //         rooms.forEach(room => {
-    //             if (room.players.length !== 2) {
-    //                 html += `<li>
-    //                             <p> Salon proposé par ${room.players[0].username} - ${room.id}</p>
-    //                             <button data-room="${room.id}">Rejoindre</button>
-    //                         </li>`;
-    //             }
-    //         });
-    //     } else{
-    //       alert("pb");
-    //     }
-
-    //     // if (html !== "") {
-    //     //   console.log(html);
-    //     //   listsalon.innerHTML="";
-    //     //   listsalon.innerHTML = html;
-    //     //   console.log(listsalon);
-
-    //     //     // for (const element of document.getElementsByClassName('join-room')) {
-    //     //     //     element.addEventListener('click', joinRoom, false)
-    //     //     // }
-    //     // }
-
-
     let afficheresult = document.getElementById("#resultatTirage");
     let textDe = "";
     let numberDe;
     let textResult = "";
     let tableauDesRes = [];
 
-   
+
     // creation des joueurs et des dés.
     console.log(joueurs.statut);
     console.log(joueurs);
@@ -157,44 +112,19 @@ export default class Jeu extends Controller {
     formsessions.onsubmit = function (e) {
       e.preventDefault();
 
-
-      // websocket test si possibilisté de remplacer le socket.io par cela
-      // let clientId =null;
-      // let ws = new WebSocket('ws://localhost:3051')
-      // ws.onmessage = message =>{
-      //   // message.data
-      //   const response =JSON.parse(message.data);
-      //   // connection au jeu
-      //   if(response.method === "connect"){
-      //     console.log("client id set succesfully"+ clientId);
-      //   }
-      //   console.log(response);
-
-      // }
       ////////////////////////partie pur socket.io://///////////////////////
 
       // let socket;
 
       const socket = io('http://localhost:3051').connect()
       console.log(socket);
-      formsessions.addEventListener('submit', function state() {
+     
 
-        if (idsocket != "" && player.username != "") {
-            console.log(idsocket, socket);
-          socket.on('statejoueurscommun', (sysstateencommun) => {
-            joueurs = JSON.parse(sysstateencommun);
-            console.log('sys',sysstateencommun, joueurs);
 
-          })
-        }
-        const sysJson = JSON.stringify(joueurs);
-        console.log(sysJson);
-      })
-      console.log('xxxx');
-      console.log(joueurs);
       socket.on('statejoueurscommun', (sysstateencommun) => {
         joueurs = JSON.parse(sysstateencommun);
-        console.log('sys',sysstateencommun, joueurs);})
+        console.log('sys', sysstateencommun, joueurs);
+      })
 
 
       const sysJson = JSON.stringify(joueurs);
@@ -204,7 +134,7 @@ export default class Jeu extends Controller {
 
       player.username = inputvalue.value;
       player.host = true;
-      // player.socketId = socket.id;
+      player.socketId = socket.id;
       console.log(socket.id);
       console.log(player);
       carduser.innerHTML = " ";
@@ -279,6 +209,7 @@ export default class Jeu extends Controller {
           for (let player = 0; player < joueurs.length; player++) {
             optionsHTML += `<option value="${val[player].statut}"> ${val[player].name}</option>`;
           };
+
           select.innerHTML = optionsHTML;
           console.log(select.innerHTML);
 
@@ -286,6 +217,7 @@ export default class Jeu extends Controller {
           formchoix.appendChild(buttonvalidationchoix);
 
           console.log(cadrechoix);
+          // formechoix traitement: methode
           document.getElementById('formchoix').addEventListener('submit', () => {
             const validateChoice = confirm('Confirmez-vous votre choix?');
             if (validateChoice) {
@@ -303,7 +235,7 @@ export default class Jeu extends Controller {
                 if (player.role === joueurs[h].name) {
 
                   linkToShare.innerHTML = `<a class="lienroom" href="${window.location.href}?room=${player.roomId}" target="_blank" id="lien"> ${window.location.href}?room=${player.roomId}</a>`;
-                    console.log(player);
+                  console.log(player);
                   console.log("toto:", linkToShare.innerHTML);
                 }
               };
@@ -323,6 +255,7 @@ export default class Jeu extends Controller {
 
 
           });
+          // fin formchoix traitement
 
 
           // socket.emit('playerData', player);
@@ -345,6 +278,7 @@ export default class Jeu extends Controller {
         let myarray = {};
         let listimage = ["url('../../assets/img/pagoda.png')", "url('../../assets/img/monument-de-la-democratie.png')", "url('../../assets/img/atomium.png')", "url('../../assets/img/chichen-itza.png')", "url('../../assets/img/egyptian.png')", "url('../../assets/img/eiffel-tower.png')", "url('../../assets/img/giza.png')", "url('../../assets/img/statue-of-liberty.png')", "url('../../assets/img/torii-gate.png')", "url('../../assets/img/pisa.png')"];
         let image = [];
+        
         for (let index = 0; index < joueurs.length; index++) {
           if (joueurs[index].statut === "Developpeur") {
             Object.defineProperty(joueurs[index], 'image', {
@@ -360,11 +294,17 @@ export default class Jeu extends Controller {
         console.log(listimage.length);
         let text = ""; //definition d'une varaible qui posséde le texte (nom des joueurs) comme valeur donc initialement est vide
         //let nameDev = "";definition d'une variable avec le role identique que la variable text mais servant dans le cas du Dé;
-        
+
         // ajout des cartes 
-         // création des cartes 
+        // création des cartes 
+        // methode traitement des cartes:
+        // création des cartes ////////////////////////////////////////////////////
+        // creation de cartes methodes pb creation de cartes 
+        ///////////////////////////////////////////////////////////////////////////////
+          // this.createCard()
+                  // création des cartes 
     let tabident1 = [];
-    let carteDayli = "http://localhost:3051/api/dayli";
+    let carteDayli = listcarte[0];
     fetch(carteDayli)
       .then(res => res.json()).then(data => {
           data.forEach(listedata => {
@@ -377,7 +317,7 @@ export default class Jeu extends Controller {
       console.log(tabident1);
 
 
-    let carteRevue = "http://localhost:3051/api/revuecarte";
+    let carteRevue = listcarte[1];
     let tabident2 = [];
 
     fetch(carteRevue)
@@ -391,7 +331,7 @@ export default class Jeu extends Controller {
       );
       console.log(tabident2);
 
-    let cartePb = "http://localhost:3051/api/Pbcarte";
+    let cartePb = listcarte[2];
     let tabident3 = [];
     fetch(cartePb)
       .then(res => res.json()).then(data => {
@@ -421,6 +361,8 @@ export default class Jeu extends Controller {
     // creation des cartes:
     for (let h = 0; h < longtab; h++) {
       minicarte[h].addEventListener("click", createbigcard);
+      //devient ()=>this.createbigCard()
+      
 
       let nbreclick1 = 0;
       let nbreclick2 = 0;
@@ -440,6 +382,7 @@ export default class Jeu extends Controller {
         let carte = document.getElementById("carte");
         // carte.style.border="10px solid red";
         carte.addEventListener("click", flipcard);
+         //devient ()=>this.create
         console.log(carte);
         let front = document.createElement("div");
         front.classList.add("front");
@@ -523,6 +466,7 @@ export default class Jeu extends Controller {
         let croixclick = document.getElementById("interet1");
         console.log(croixclick);
         croixclick.addEventListener("click", validate);
+        // devient ()=>this.validate();
 
         function validate() {
 
@@ -555,8 +499,16 @@ export default class Jeu extends Controller {
         carte.classList.add("active");
       }
     }
+    
 
+        //////////////////////////////////////////////////////////////////////////////////
+        //Fin de carte//
+        /////////////////////////////////////////////////////////////////////////
 
+        ////////////////////////////
+        //create dice
+        ////////////////////////////////////////
+       // this.createDice(); 
         if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
           if (joueurs != "") { //si la liste des joeurs  existe
             let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
@@ -607,7 +559,8 @@ export default class Jeu extends Controller {
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
-              </li>;`
+              </li>;
+              `
 
 
               list.id = "die-" + i;
@@ -683,6 +636,8 @@ export default class Jeu extends Controller {
 
               });
             });
+           // creation de pion 
+          //  creation methode create pion ajout de let color =[] et player
             let backapion = document.getElementById("backapion");
             if (player.statut != "Scrum Master" && player.statut != "Product Owner") {
               for (let i = 0; i < developpeurs.length; ++i) {
@@ -694,8 +649,8 @@ export default class Jeu extends Controller {
                 syscolor.setAttribute("draggable", "true");
                 syscolor.classList.add("itemGame");
 
-                // ////////////////////////////////////////////////////////////////
-                
+                //// ////////////////////////////////////////////////////////////////
+
                 backapion.style.display = "flex";
                 backapion.style.flexDirection = "row";
                 console.log(backapion);
@@ -717,19 +672,13 @@ export default class Jeu extends Controller {
 
                 console.log(joueurs, joueurs[i].image);
                 pion.style.backgroundImage = image[i];
-              
+
                 console.log(pion.style.backgroundImage, image[i]);
                 //  modification du pion essaie depot par drag and drop sur cerle
-                console.log(backapion,pion,pion.length)
-                let pions= document.querySelectorAll('.pion');
-                console.log(pions,pions.length);
-                pions.forEach(Pions=>{
-                  console.log(typeof(Pions));
-                  Pions.style.border='10px solid green'
-                })
+                console.log(backapion, pion, pion.length)
+                let pions = document.querySelectorAll('.pion');
+                console.log(pions, pions.length);
                 // fin pion
-
-
 
                 // la variable text est rempli par l'iteration de noms des joueurs
                 console.log(developpeurs[i].name, "....", text);
@@ -743,7 +692,7 @@ export default class Jeu extends Controller {
                 nameJoueur.classList.add("repartition");
                 nameJoueur.style.width = "100%";
 
-                // traitement de la partie usersstories en cours
+                // traitement de la partie usersstories en cours creation methode TraitementUserstories
                 let dettetechnique = document.getElementById("dettetech");
                 console.log(dettetechnique);
                 dettetechnique.innerHTML = config.dettetechnique;
@@ -753,6 +702,7 @@ export default class Jeu extends Controller {
 
                 console.log(listUserstories, config);
                 // listUserstories.innerHTML = "";
+
 
                 let carteid1 = config.carte1;
                 let valuecarteid1 = parseInt(carteid1);
@@ -864,32 +814,16 @@ export default class Jeu extends Controller {
 
                 loadCharacters();
 
+              // fin de la methode userstories//
 
-
-                // let urlch = config.url + '/';
-                // console.log(urlch);
-
-                // let carte1 = urlch + config.carte1;
-                // let carte2 = urlch + config.carte2;
-                // let carte3 = urlch + config.carte3;
-                // let carte4 = urlch + config.carte4;
-
-                // let urlcarte = [carte1, carte2, carte3, carte4];
-                // console.log(urlcarte, config.url);
+            
 
                 console.log(listUserstories, config.carte1statut);
                 if (config.carte1statut === 'encours' || config.carte2statut === 'encours' || config.carte3statut === 'encours' || config.carte4statut === 'encours') {
                   console.log('resultat', config.carte1statut, config.carte2statut, config.carte3statut, config.carte4statut);
 
                 }
-
-
-
-
-
-                // for (let i = 0; i < itemGame.length; i++) { // boucle sur chaque list d'items 
-
-                // }
+                  
               }
               nmbredejoeur.innerHTML = nbrejoeur;
             } //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
@@ -901,7 +835,7 @@ export default class Jeu extends Controller {
           //console.log(nbrejoeur);
           alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
         }
-
+        // transformation en méthode 
         function rollDice(e, elmt) {
 
           console.log(elmt);
@@ -947,18 +881,20 @@ export default class Jeu extends Controller {
           }, 1000);
 
         }
-
+        // transformation en méthode
         function toggleClasses(die) {
           die.classList.toggle("odd-roll");
           die.classList.toggle("even-roll");
         }
-
+         // transformation en méthode
         function getRandomNumber(min, max) {
           min = Math.ceil(min);
           max = Math.floor(max);
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-
+        ///////////////////////////
+        //fin createDice
+        ///////////////////////////////////////////////
       });
 
     }
@@ -970,8 +906,680 @@ export default class Jeu extends Controller {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // creation de la méthode pour créer le plateau de jeu
-    console.log("cela marche?");
+  }
+  createModal(){
+    function modal() {
+      var modal = document.getElementById('myModal');
+
+ // Get the button that opens the modal
+ var btn = document.getElementById("myBtn");
+
+ // Get the <span> element that closes the modal
+ var span = document.getElementsByClassName("close")[0];
+
+ // When the user clicks on the button, open the modal
+ btn.onclick = function () {
+   modal.style.display = "block";
+ }
+
+ // When the user clicks on <span> (x), close the modal
+ span.onclick = function () {
+   modal.style.display = "none";
+ }
+
+ // When the user clicks anywhere outside of the modal, close it
+ window.onclick = function (event) {
+   if (event.target == modal) {
+     modal.style.display = "none";
+   }
+ }
+
+ }
+modal()
+
+  }
+// createCard(){
+//   socket.on('join room', (roomId) => {
+//     player.roomId = roomId;
+
+//     let tabident1 = [];
+//     let carteDayli = "http://localhost:3051/api/dayli";
+//     fetch(carteDayli)
+//       .then(res => res.json()).then(data => {
+//           data.forEach(listedata => {
+//             tabident1.push(listedata._id);
+//             console.log(listedata._id,tabident1);
+//           })
+//         }
+
+//       );
+//       console.log(tabident1);
+
+
+//     let carteRevue = "http://localhost:3051/api/revuecarte";
+//     let tabident2 = [];
+
+//     fetch(carteRevue)
+//       .then(res => res.json()).then(data => {
+//           data.forEach(listedata => {
+//             tabident2.push(listedata._id);
+//             console.log(listedata._id,tabident2);
+//           })
+//         }
+
+//       );
+//       console.log(tabident2);
+
+//     let cartePb = "http://localhost:3051/api/Pbcarte";
+//     let tabident3 = [];
+//     fetch(cartePb)
+//       .then(res => res.json()).then(data => {
+//           data.forEach(listedata => {
+//             tabident3.push(listedata._id);
+//             console.log(listedata._id,tabident3, data);
+//           })
+//         }
+
+//       );
+//       console.log(tabident3);
+
+//     let colorcard = ["blue", "green", "red"];
+//     let idList = ["carteday", "carterev", "cartepb"];
+//     let backid = ["backid1", "backid2", "backid3"];
+//     let minicarte0 = document.getElementById(idList[0]);
+//     let minicarte1 = document.getElementById(idList[1]);
+//     let minicarte2 = document.getElementById(idList[2]);
+//     let minicarte = [minicarte0, minicarte1, minicarte2];
+
+//     console.log(idList);
+
+//     let longtab = idList.length;
+    
+//     let controlCard = [carteDayli, carteRevue, cartePb];
+//     // });
+//     // creation des cartes:
+//     for (let h = 0; h < longtab; h++) {
+//       minicarte[h].addEventListener("click", createbigcard);
+
+//       let nbreclick1 = 0;
+//       let nbreclick2 = 0;
+//       let nbreclick3 = 0;
+//       let nbrclick = [nbreclick1, nbreclick2, nbreclick3];
+//        console.log(nbrclick[h]);
+       
+//        nbrclick[h]; 
+
+//       function createbigcard() {
+
+//         nbrclick[h]++;
+//         console.log(nbrclick);
+//         console.log("nbrclick0:", nbrclick[0], "nbrclick1:", nbrclick[1], "nbrclick2:", nbrclick[2]);
+//         console.log(minicarte[h], nbrclick[h]);
+
+//         let carte = document.getElementById("carte");
+//         // carte.style.border="10px solid red";
+//         carte.addEventListener("click", flipcard);
+//         console.log(carte);
+//         let front = document.createElement("div");
+//         front.classList.add("front");
+//         front.style.backgroundColor = colorcard[h];
+//         console.log(colorcard[h], front);
+//         let back = document.createElement("div");
+//         console.log(back);
+//         if (front.style.backgroundColor == colorcard[h]) {
+
+//           back.classList.add("back");
+//           back.id = backid[h];
+//           back.style.border = "5px solid " + colorcard[h];
+//           back.style.color = "black";
+//           let titre = document.createElement('h3');
+//           let paragraphe = document.createElement('p');
+//           let croix = document.createElement('p');
+//           croix.innerText = "+";
+//           croix.id = "interet1";
+//           croix.classList.add("croix1");
+
+//           if (back.id == "backid1") {
+//             let urlfetch = controlCard[0];
+         
+//             console.log(urlfetch, nbrclick[0],tabident1[nbrclick[0]-1]);
+//             fetch(urlfetch +'/'+ tabident1[nbrclick[0]-1])
+//               .then(res => res.json())
+//               .then(data => {
+//                   titre.innerText = `${data.titre}`;
+//                   paragraphe.innerText = `${data.contenu}`;
+//                 }
+
+//               );
+//             paragraphe.style.fontSize = "0.9em";
+//             back.appendChild(titre);
+//             back.appendChild(paragraphe);
+//             back.appendChild(croix);
+
+//           } else if (back.id == "backid2") {
+//             let urlfetch = controlCard[1];
+//             console.log(urlfetch, nbrclick[1],tabident2[nbrclick[1]-1] );
+//             //  for (let i = 1; i < 11; i++) { 
+//             fetch(urlfetch +'/'+ tabident2[nbrclick[1]-1])
+//               .then(res => res.json())
+//               .then(data => {
+//                   titre.innerText = `${data.titre}`;
+//                   paragraphe.innerText = `${data.contenu}`;
+//                 }
+
+//               );
+//             paragraphe.style.fontSize = "0.9em";
+//             back.appendChild(titre);
+//             back.appendChild(paragraphe);
+//             back.appendChild(croix);
+
+//           } else if (back.id == "backid3") {
+            
+//             let urlfetch = controlCard[2];
+//             console.log(urlfetch, nbrclick[2],controlCard[2],tabident3); 
+
+//             fetch(urlfetch +'/'+ tabident3[nbrclick[2]-1])
+//               .then(res => res.json())
+//               .then(data => {
+               
+//                   titre.innerText = `${data.titre}`;
+//                   paragraphe.innerText = `${data.contenu}`;
+//                 }
+
+//               );
+//             paragraphe.style.fontSize = "0.9em";
+//             back.appendChild(titre);
+//             back.appendChild(paragraphe);
+//             back.appendChild(croix);
+
+//           }
+
+//         };
+//         carte.appendChild(front);
+//         carte.appendChild(back);
+
+
+//         let croixclick = document.getElementById("interet1");
+//         console.log(croixclick);
+//         croixclick.addEventListener("click", validate);
+
+//         function validate() {
+
+//           croixclick.innerHTML = `<span class=cercle> \ud83d\udc4d </span>`;
+//           setTimeout(function () {
+//             let carte = document.getElementById("carte");
+//             console.log(carte);
+
+//             // carte validée
+//             let carteaurebus = document.getElementById("carterebu");
+//             console.log("xx:", carteaurebus);
+//             let frontrejet = document.createElement("div");
+//             frontrejet.classList.add("front");
+
+//             if (front.style.backgroundColor == "blue") {
+//               frontrejet.style.backgroundColor = colorcard[h];
+//             } else if (front.style.backgroundColor == "green") {
+//               frontrejet.style.backgroundColor = colorcard[h];
+//             } else if (front.style.backgroundColor == "red") {
+//               frontrejet.style.backgroundColor = colorcard[h];
+//             }
+//             carteaurebus.appendChild(frontrejet);
+//             carte.innerHTML = "";
+//             carte.classList.remove("active");
+//           }, 3000)
+//         }
+//       }
+
+//       function flipcard() {
+//         carte.classList.add("active");
+//       }
+//     }
+
+//   })
+
+// }
+// createDice(){
+//   const player = {
+
+//     host: false,
+//     roomId: null,
+//     username: "",
+//     socketId: "",
+//     role: "",
+//     statut: ""
+//   };
+
+//   console.log(player);
+//   let joueurs = this.state.joueurs; //recupération de la liste  des joueurs
+//     let config = this.state.paquet[0]; //recuperation des userstories
+//     let nbrejoeur = joueurs.length - 2; //récupération de la longueur de la liste de joueurs de type developpeurs
+
+
+//     let listimage = ["url('../../assets/img/pagoda.png')", "url('../../assets/img/monument-de-la-democratie.png')", "url('../../assets/img/atomium.png')", "url('../../assets/img/chichen-itza.png')", "url('../../assets/img/egyptian.png')", "url('../../assets/img/eiffel-tower.png')", "url('../../assets/img/giza.png')", "url('../../assets/img/statue-of-liberty.png')", "url('../../assets/img/torii-gate.png')", "url('../../assets/img/pisa.png')"];
+//     let image = [];
+//     let listcolor = ["cyan", "purple", "white", "red", "blue", "yellow", "green", "orange", "pink", "lime"];
+//     let nameJoueur = document.getElementById("nameJoeur"); //selection balise ou id = namedejoeur
+//     let myarray = {};
+//     let color = [];
+//     console.log(color);
+//     let list = document.getElementById("listJoueur");
+//     for (let i = 0; i < joueurs.length; i++) {
+//       if (joueurs[i].statut === "Developpeur") {
+//         Object.defineProperty(joueurs[i], 'color', {
+//           value: listcolor[i],
+//           writable: false
+//         });
+//         color.push(joueurs[i].color);
+//         console.log(color);
+//       }
+
+//       console.log(joueurs);
+//     }
+
+//     //    création du dé:
+//     let eltref = document.getElementById("ref");
+//     eltref.style.display = "flex";
+//     eltref.style.flexDirection = "row";
+//     console.log(config);
+
+//     console.log(joueurs.length);
+//     const nbretotjoeuer = {
+//       nbre: joueurs.length
+//     }
+//     console.log(nbretotjoeuer);
+//   if (joueurs.length >= 3) { //possibilité de jouer si le il y  a au minimun 3 membres choisis
+//     if (joueurs != "") { //si la liste des joeurs  existe
+//       let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
+//       console.log('deve', developpeurs, typeof (developpeurs));
+//       console.log(joueurs);
+//       let Die = ["die-0", "die-1", "die-2", "die-3", "die-4", "die-5", "die-6", "die-7", "die-8", "die-9", "die-10"];
+//       for (let i = 0; i < nbrejoeur; i++) {
+
+//         let overlay = document.createElement("a");
+//         overlay.setAttribute("href", "#");
+//         overlay.style.marginRight = "5%";
+//         overlay.classList.add("die-overlay");
+//         let list = document.createElement("ol");
+//         list.classList.add("die-list");
+//         list.classList.add("even-roll");
+//         list.setAttribute("data-roll", "");
+//         list.setAttribute("data-level", i + 1);
+//         list.innerHTML = `
+//            <li class="die-item" data-side="1">
+//           <span class="dot"></span>
+//         </li>
+//         <li class="die-item" data-side="2">
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//         </li>
+//         <li class="die-item" data-side="3">
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//         </li>
+//         <li class="die-item" data-side="4">
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//         </li>
+//         <li class="die-item" data-side="5">
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//         </li>
+//         <li class="die-item" data-side="6">
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//           <span class="dot"></span>
+//         </li>;
+//         `
+
+
+//         list.id = "die-" + i;
+//         console.log(list.id);
+//         overlay.appendChild(list);
+//         eltref.append(overlay);
+//         console.log(joueurs);
+
+//         let cube1 = document.getElementById("die-0");
+//         let cube2 = document.getElementById("die-1");
+//         let cube3 = document.getElementById("die-2");
+//         let cube4 = document.getElementById("die-3");
+//         let cube5 = document.getElementById("die-4");
+//         let cube6 = document.getElementById("die-5");
+//         let cube7 = document.getElementById("die-6");
+//         let cube8 = document.getElementById("die-7");
+//         let cube9 = document.getElementById("die-8");
+//         let cube10 = document.getElementById("die-9");
+
+//         let cube = [cube1, cube2, cube3, cube4, cube5, cube6, cube7, cube8, cube9, cube10];
+//         console.log(cube[0]);
+
+//         if (cube[i] != " ") {
+//           console.log(cube[i]);
+//           let face = cube[i].querySelectorAll("li.die-item");
+//           console.log(face);
+//           for (var j = 0; j < face.length; j++) {
+
+//             console.log(face[1]);
+//             face[j].style.background = color[i];
+//             console.log(face[j].style.background, color[i]);
+//           }
+//         }
+
+
+//         for (let i = 0; i < joueurs.length; i++) {
+//           if (joueurs[i].statut === "Developpeur") {
+//             console.log(joueurs);
+//             Object.defineProperty(joueurs[i], 'cube', {
+//               value: Die[i],
+//               writable: false
+//             });
+
+//           }
+
+//           console.log("list:", joueurs);
+//         }
+
+//         console.log("toto:", joueurs[i].statut);
+
+//       }
+
+//       // console.log(listsocket);
+//       console.log("xxx:", joueurs[2], player);
+//       console.log(typeof (joueurs), joueurs);
+
+//       let dice = [...document.querySelectorAll(".die-overlay")];
+
+//       //console.log(dice);
+//       dice.forEach(De => { //boucle sur chaque div auquel on applique un evenement click qui lance la fonction selectionner
+
+//         console.log(player.statut);
+//         De.addEventListener('click', (e) => {
+//           e.preventDefault();
+//           console.log(player.statut);
+//           if (player.statut === "Developpeur") {
+
+//             rollDice(e, De);
+
+//           } else {
+//             alert('vous n avez pas le droit de jouer car vous etes soit scrum master soit product owner');
+//           }
+
+//         });
+//       });
+//      // creation de pion 
+//     //  creation methode create pion ajout de let color =[] et player
+//       let backapion = document.getElementById("backapion");
+//       if (player.statut != "Scrum Master" && player.statut != "Product Owner") {
+//         for (let i = 0; i < developpeurs.length; ++i) {
+
+//           const syscolor = document.createElement("div");
+//           syscolor.classList.add("cercles");
+//           syscolor.style.background = color[i];
+//           console.log(color[i]);
+//           syscolor.setAttribute("draggable", "true");
+//           syscolor.classList.add("itemGame");
+
+//           //// ////////////////////////////////////////////////////////////////
+
+//           backapion.style.display = "flex";
+//           backapion.style.flexDirection = "row";
+//           console.log(backapion);
+//           let pion = document.createElement('div');
+//           pion.classList.add("pion");
+//           console.log(pion);
+//           // socket.emit('custom-evenet', pion);
+//           const label = document.createElement("span");
+//           console.log(label);
+//           label.style.marginTop = "2%";
+//           label.style.marginRight = "1%";
+//           label.innerHTML = developpeurs[i].name;
+//           label.style.color = color[i];
+//           console.log(developpeurs[0]);
+//           // pion
+//           pion.style.backgroundColor = label.style.color;
+
+//           console.log(pion);
+
+//           console.log(joueurs, joueurs[i].image);
+//           pion.style.backgroundImage = image[i];
+
+//           console.log(pion.style.backgroundImage, image[i]);
+//           //  modification du pion essaie depot par drag and drop sur cerle
+//           console.log(backapion, pion, pion.length)
+//           let pions = document.querySelectorAll('.pion');
+//           console.log(pions, pions.length);
+//           // fin pion
+
+//           // la variable text est rempli par l'iteration de noms des joueurs
+//           console.log(developpeurs[i].name, "....");
+//           // nameJoueur.innerHTML =  text ;
+//           backapion.append(pion);
+//           nameJoueur.append(label);
+
+//           list.append(syscolor);
+//           console.log(syscolor);
+
+//           nameJoueur.classList.add("repartition");
+//           nameJoueur.style.width = "100%";
+
+//           // traitement de la partie usersstories en cours creation methode TraitementUserstories
+//           let dettetechnique = document.getElementById("dettetech");
+//           console.log(dettetechnique);
+//           dettetechnique.innerHTML = config.dettetechnique;
+//           // traitement arrive des userstories:
+
+//           let listUserstories = document.getElementById('listUserstories');
+
+//           console.log(listUserstories, config);
+//           // listUserstories.innerHTML = "";
+
+
+//           let carteid1 = config.carte1;
+//           let valuecarteid1 = parseInt(carteid1);
+//           console.log(valuecarteid1);
+//           let carteid2 = config.carte2;
+//           let valuecarteid2 = parseInt(carteid2);
+//           console.log(valuecarteid2);
+//           let carteid3 = config.carte3;
+//           let valuecarteid3 = parseInt(carteid3);
+//           console.log(valuecarteid3);
+//           let carteid4 = config.carte4;
+//           let valuecarteid4 = parseInt(carteid4);
+//           console.log(valuecarteid4);
+//           let configuration = config.url;
+//           console.log(configuration, carteid1, carteid2, carteid3, carteid4);
+
+//           // const listUserstories = document.getElementById("listUserstories");
+
+
+//           let hpCharacters = [];
+
+
+//           const loadCharacters = async () => {
+//             try {
+//               const res = await fetch(config.url);
+//               hpCharacters = await res.json();
+//               console.log(res + "  " + hpCharacters);
+//               displayCharacters(hpCharacters);
+//             } catch (err) {
+//               console.error(err);
+//             }
+//           };
+//           const displayCharacters = (characters) => {
+//             const htmlString = characters
+//               .map((character) => {
+//                 console.log(character);
+//                 if ((config.carte1statut === 'encours' && character.id === valuecarteid1) || (config.carte2statut === 'encours' && character.id === valuecarteid2) || (config.carte3statut === 'encours' && character.id === valuecarteid3) || (config.carte4statut === 'encours' && character.id === valuecarteid4)) {
+//                   console.log(config.carte1statut, config.carte2statut, config.carte3statut, config.carte4statut);
+
+//                   return `
+//                       <div class="insideboxcadre">
+//                           <p class="insideboxtext">Userstorie N°${character.id} </p>
+//                           <p style="margin-left: 2% ;margin-right: 2%;">|</p>
+//                           <p class="insideboxtext"> ${character.taille} </span></p>
+//                           <p style="margin-left: 2% ;margin-right: 2%;">|</p>
+//                           <p class="cadrebox"> </p> 
+//                       </div>`;
+
+
+//                 }
+
+//               })
+//               .join('');
+//             listUserstories.innerHTML = htmlString;
+//             // /////////////////////dette technique://////////////
+//             dettetechnique.innerHTML = config.dettetechnique;
+//             /////// creation du drage and drop sur accordeon
+//             const zonejoueur = document.querySelectorAll('.cadrebox');
+//             const itemGame = document.querySelectorAll('.itemGame');
+//             console.log(zonejoueur, itemGame);
+//             let draggedItem = null;
+//             itemGame.forEach((element) => {
+//               // const item = element[i];
+//               // console.log(element[i])
+
+//               element.addEventListener("dragstart", function (e) {
+//                 const element = e.target;
+
+//                 function display(e) {
+//                   const zone = e.target;
+//                   zone.append(element);
+//                   console.log("elment", element);
+
+//                   zonejoueur.forEach((zone) => {
+//                     zone.removeEventListener("drop", display);
+//                   });
+//                 }
+
+//                 //sur chaque carte on effectue un evement d'activation du déplacement
+//                 console.log("dragstart", e);
+//                 // draggedItem = element; // 1 elt deplacé = un item
+//                 setTimeout(function () {
+//                   element.style.display = "none"; // chaque item n'a pas de style display particulier
+//                 }, 0);
+
+//                 zonejoueur.forEach((zone) => {
+//                   zone.addEventListener("dragover", function (e) {
+//                     e.preventDefault();
+//                   });
+//                   zone.addEventListener("dragenter", function (e) {
+//                     e.preventDefault();
+//                   });
+//                   zone.addEventListener("drop", display);
+//                 });
+//               });
+
+//               element.addEventListener("dragend", function () {
+//                 // sur chaque carte on effectue un evement de fin du déplacement
+//                 console.log("dragend");
+//                 setTimeout(function (e) {
+//                   element.style.display = "block"; // chaque item déplacé a style display particulier block
+//                   //  draggedItem = null;
+//                 }, 0);
+//               });
+//             });
+//             ///////////////////////////////fin dragenddrop////////
+//           };
+
+
+//           loadCharacters();
+
+//         // fin de la methode userstories//
+
+      
+
+//           console.log(listUserstories, config.carte1statut);
+//           if (config.carte1statut === 'encours' || config.carte2statut === 'encours' || config.carte3statut === 'encours' || config.carte4statut === 'encours') {
+//             console.log('resultat', config.carte1statut, config.carte2statut, config.carte3statut, config.carte4statut);
+
+//           }
+            
+//         }
+//         nmbredejoeur.innerHTML = nbrejoeur;
+//       } //le nombre de developpeur est affiché comme contenu de la balise nmbrejoeur;
+//     } else {
+//       //console.log(nbrejoeur);
+//       alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
+//     }
+//   } else {
+//     //console.log(nbrejoeur);
+//     alert("le nombre de developpeur n'est pas au minimun égal à 1! retournez à l'étape 1 pour continuer à joeur")
+//   }
+//   // transformation en méthode 
+//   function rollDice(e, elmt) {
+
+//     console.log(elmt);
+//     // console.log(e);
+//     let afficheresult = document.getElementById("resultatTirage");
+//     afficheresult.style.marginTop = "-10%";
+//     console.log("resultat:", afficheresult, console.log(e.target));
+//     let result = " ";
+//     console.log(result);
+//     // console.log('deve', developpeurs)
+//     // console.log(elmt);
+//     const die = elmt.firstElementChild;
+
+//     toggleClasses(die);
+//     console.log(die);
+//     die.dataset.roll = getRandomNumber(1, 6);
+
+//     result = die.dataset.roll;
+
+//     console.log(socket);
+
+//     setTimeout(function () {
+//       let listeDe = document.querySelectorAll("ol[data-level]");
+//       console.log(listeDe);
+//       let developpeurs = joueurs.filter((e) => e.statut === 'Developpeur')
+//       console.log('deve', developpeurs);
+//       for (let i = 0; i < developpeurs.length; ++i) {
+
+
+//         console.log(numberDe);
+//         let listDice = listeDe.forEach(Res => {
+//           tableauDesRes = [Res.dataset.roll];
+//           console.log("resultat dans tableau sont" + developpeurs[i].name + tableauDesRes);
+//         });
+//         console.log(listeDe);
+//         console.log("le array du resultat" + tableauDesRes);
+//         myarray[developpeurs[i].name] = tableauDesRes;
+//         console.log("le array du resultat" + myarray[developpeurs[i].name]);
+
+//       }
+//       afficheresult.innerHTML = "Votre dé a pour resultat:" + result;
+
+//     }, 1000);
+
+//   }
+//   // transformation en méthode
+//   function toggleClasses(die) {
+//     die.classList.toggle("odd-roll");
+//     die.classList.toggle("even-roll");
+//   }
+//    // transformation en méthode
+//   function getRandomNumber(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+//   }
+// }
+// getRandomNumber(min, max){
+  
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+  
+
+// }
+  Makeplateau(){
 
     function plateaudeJeu() {
       const chart = am4core.create("chartdiv", am4charts.PieChart);
@@ -1678,29 +2286,6 @@ export default class Jeu extends Controller {
       pieSeries.labels.template.padding(0, 0, 0, 0);
       pieSeries.labels.template.relativeRotation = 0;
 
-      ////////////////////  tooltip //////
-      //       let x = "http://localhost:3003/paquet1/1"
-      //       console.log(x);
-      //      let USERSTORIES;
-      //       let paragraphecard = document.createElement('p');
-      //       fetch(x)
-      //         .then(res => res.json())
-      //         .then(data => { let USERSTORIES;
-      //           // console.log(data.contenu);
-      //           // USERSTORIES.innerText=`${data.contenu}`;
-      //           // console.log(USERSTORIES.innerText);
-
-      //             // titre.innerText = `${data.titre}`;
-      //             paragraphecard.innerText = `${data.contenu}`;
-      //             // USERSTORIES.innertext =
-      //             // `${data.contenu}`+ " " + "<br><br>" + " &#x2605; &#x2605; &#x2605; &#x2605; &#x2605; ";
-
-      //           }
-
-      //         );
-      // // USERSTORIES.appendChild( paragraphecard);
-
-
       pieSeries.ticks.template.disabled = true; //elimine le fait que les tooltip sont invisibles
       pieSeries.tooltip.label.maxWidth = 210; //taille du tootip
       pieSeries.tooltip.label.wrap = true; //contenu du tootip va a la ligne
@@ -1708,8 +2293,7 @@ export default class Jeu extends Controller {
 
       const hs = pieSeries.slices.template.states.getKey("hover");
       hs.properties.scale = 1;
-      // const as = pieSeries.slices.template.states.getKey("active");
-      // as.properties.shiftRadius = 0;
+    
 
       ///////////////////////Element Central/////////////////////:::
 
@@ -1798,5 +2382,6 @@ export default class Jeu extends Controller {
 
 
     plateaudeJeu();
+
   }
 }

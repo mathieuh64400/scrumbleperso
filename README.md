@@ -4,17 +4,17 @@ Projet de réalisation du jeu Scrumble en relation avec le réseau Pyxis
 ## How to run
 ```sh
 # run server (expressJS) :3051
-cd testauthentification/server
+cd back/server
 npm start
 cd ../..
 
 # run admin (if needed) (AngularJS) :4200
-cd testauthentification/Front
+cd back/front-admin
 npm run start
 cd ../..
 
 # run game (custom framework) :3000
-cd Jeu 
+cd front-game
 npm run dev
 
 ```

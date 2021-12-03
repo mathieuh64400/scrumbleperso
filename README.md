@@ -23,6 +23,7 @@ npm run dev
 * Create .env-example
 Dev who clone project can know what environment variable the application need
 
-* Create route loader (for keeping app.js cleaner)
+* (OK) Create route loader (for keeping app.js cleaner) 
 * Use .env file to store private environment variable (rather config.json)
 * JWT should be placed in a middlewares.js file
+* Remove useless comments to keep readable code

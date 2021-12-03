@@ -1,3 +1,5 @@
+const fs = require("fs")
+
 require('./config/config');
 require('./models/db');
 require('./config/passportConfig');
@@ -8,58 +10,62 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 
-
-
-
-const rtsIndex = require('./routes/index.js');
-const dayliroute =require('./routes/daylicartes.js');
-const cartepb =require('./routes/pbcarte');
-const revuecarte=require('./routes/revuescartes');
-const regles=require('./routes/regles');
-const role=require('./routes/roles');
-const paquet1=require('./routes/Userstories/Paquet1');
-const paquet2=require('./routes/Userstories/Paquet2');
-const paquet3=require('./routes/Userstories/Paquet3');
-const paquet1A1=require('./routes/Userstories/Paquet1A1');
-const paquet1A2=require('./routes/Userstories/Paquet1A2');
-const paquet2A2=require('./routes/Userstories/Paquet2A2');
-const paquet2A1=require('./routes/Userstories/Paquet2A1');
-
 const app = express();
+
+/* 
+Use node FileSystem to autoload routes in routes folder
+
+https://nodejs.org/api/fs.html
+*/
+fs.readdir(`${__dirname}/routes`, (err, files) => {
+  if (err) {
+    console.log('Unable to read directoy')
+  }
+
+  files.forEach(file => {
+    if (file.indexOf('.js') !== -1) {
+      const route = require(`./routes/${file}`)
+      app.use('/api', route)
+    } else {
+      // If current file is a folder, readdir again and loop all routes in it
+      fs.readdir(`${__dirname}/routes/${file}`, (err, subFiles) => {
+        if (err) {
+          console.log('Unable to read directory')
+        }
+        subFiles.forEach(subFile => {
+          if (subFile.indexOf('.js') !== -1) {
+            const subRoute = require(`./routes/${file}/${subFile}`)
+            app.use("/api", subRoute)
+          }
+        })
+      })
+    }
+  })
+})
+
+
 const http = require('http').createServer(app);
 // const websocketServer = require('websocket').server;
 
-const clients ={};
+const clients = {};
 
 console.log(clients);
 // const wsServer = new websocketServer({
 //   "httpServer": http
 // })
 app.use(bodyParser.json());
-app.use(cors({origin:'*'}));
+app.use(cors({ origin: '*' }));
 
 app.use(passport.initialize());
-app.use('/api', rtsIndex);
-app.use('/api',dayliroute);
-app.use('/api',cartepb);
-app.use('/api',revuecarte);
-app.use('/api',regles);
-app.use('/api',role);
-app.use('/api',paquet1);
-app.use('/api',paquet2);
-app.use('/api',paquet3);
-app.use('/api',paquet1A1);
-app.use('/api',paquet1A2);
-app.use('/api',paquet2A2);
-app.use('/api',paquet2A1);
+
 // error handler
 app.use((err, req, res, next) => {
-    if (err.name === 'ValidationError') {
-        var valErrors = [];
-        Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
-        res.status(422).send(valErrors)
-    }
-    
+  if (err.name === 'ValidationError') {
+    var valErrors = [];
+    Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
+    res.status(422).send(valErrors)
+  }
+
 });
 // // partie websocket
 // wsServer.on('request', request=>{
@@ -201,7 +207,7 @@ const io = require('socket.io')(http, {
 // partie en cours:
 // attention toujours le pb  des routes car port 3000 est toujours utilisé donc 3020
 // creation d'une session de jeu
- const players=[]; 
+const players = [];
 let rooms = []; // toutes les rooms qui existe initialement
 console.log("rooms", rooms);
 // creation de la socket permettant de deconnecter les différents joueurs
@@ -216,7 +222,7 @@ io.on('connection', (socket) => { // connection de la socket grace a l'evenement
   let stocksys = [];
   socket.on('joeuers', (sysJson) => {
     const state = JSON.parse(sysJson);
-    console.log('[joeuers]', state) ;
+    console.log('[joeuers]', state);
     stocksys.push(state);
 
     let sysstateencommun = JSON.stringify(stocksys);
@@ -334,7 +340,7 @@ http.listen(process.env.PORT, () => console.log(`Server started at http://localh
 
 // //Create(C) in CRUD
 // app.post("/paquet1", bodyParser.json(), (req, res) => {
-  
+
 //   paquet1.push(req.body);
 //   save();
 //   res.json({
@@ -358,7 +364,7 @@ http.listen(process.env.PORT, () => console.log(`Server started at http://localh
 //         Dependance: req.body.Dependance,
 //         taille: req.body.taille,
 //         value: req.body.value
-    
+
 //       }
 //       return body;
 //     } else {
@@ -404,7 +410,7 @@ http.listen(process.env.PORT, () => console.log(`Server started at http://localh
 
 // //Create(C) in CRUD
 // app.post("/paquet1.1", bodyParser.json(), (req, res) => {
-  
+
 //   paquet1.push(req.body);
 //   save();
 //   res.json({
@@ -428,7 +434,7 @@ http.listen(process.env.PORT, () => console.log(`Server started at http://localh
 //         Dependance: req.body.Dependance,
 //         taille: req.body.taille,
 //         value: req.body.value
-    
+
 //       }
 //       return body;
 //     } else {
